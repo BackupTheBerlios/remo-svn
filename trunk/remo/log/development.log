@@ -2289,3 +2289,27 @@ Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:45:22) [GET]
 Rendering  within layouts/main
 Rendering main/hello
 Completed in 0.03856 (25 reqs/sec) | Rendering: 0.03402 (88%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:47:04) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.03083 (32 reqs/sec) | Rendering: 0.00296 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:47:06) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00701 (142 reqs/sec) | Rendering: 0.00281 (40%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:47:14) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00791 (126 reqs/sec) | Rendering: 0.00317 (40%) | 200 OK [http://railsmachine/main/hello]
