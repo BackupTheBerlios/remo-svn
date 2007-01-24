@@ -1289,3 +1289,1003 @@ Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:24:06) [GET]
   Parameters: {"action"=>"hello", "controller"=>"main"}
 Rendering main/hello
 Completed in 0.03626 (27 reqs/sec) | Rendering: 0.00413 (11%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:30:35) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+ERROR: compiling _run_rhtml_47app47views47layouts47main46rhtml RAISED compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^
+Function body: def _run_rhtml_47app47views47layouts47main46rhtml(local_assigns)
+_erbout = ''; _erbout.concat "!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
+_erbout.concat "                      \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+_erbout.concat "<html>\n"
+_erbout.concat "<head>\n"
+_erbout.concat "  <title>remo - rule editor for modsecurity</title>\n"
+_erbout.concat "  "; _erbout.concat(( stylesheet_link_tag "remo", :media => "all" ).to_s); _erbout.concat "\n"
+_erbout.concat "</head>\n"
+_erbout.concat "\n"
+_erbout.concat "<body id=\"remo\">\n"
+_erbout.concat "  <div id=\"banner\" class=\"header\">\n"
+_erbout.concat "    <div id=\"title\"><h1>"; _erbout.concat(( @page_title || "Remo Demo" ).to_s); _erbout.concat "</h1></div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "  <div id=\"maindiv\">\n"
+_erbout.concat "    <div id=\"source\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"source-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: source-toolsetarea\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: source-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      class: mainarea, id: source-mainarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: source-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "    <div id=\"rules\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"rules-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: rules-toolsetarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: rules-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: rules-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "</body>\n"
+_erbout.concat "</html>\n"
+_erbout.concat "\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/layouts/main.rhtml:47:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^) on line #36 of app/views/layouts/main.rhtml:
+33:       class: detailarea, id: rules-detailarea      
+34:       </div>
+35:       <div id="rules-mainarea" class="mainarea">
+36:       <%= yield : layout %>
+37:       </div>
+38:       <div id="rules-statusarea" class="statusarea">
+39:       class: statusarea, id: rules-statusarea      
+
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:47:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:31:06) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+ERROR: compiling _run_rhtml_47app47views47layouts47main46rhtml RAISED compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      <!-- "; _erbout.concat(( yield : layout ).to_s); _erbout.concat " -->\n"
+                                                      ^
+Function body: def _run_rhtml_47app47views47layouts47main46rhtml(local_assigns)
+_erbout = ''; _erbout.concat "!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
+_erbout.concat "                      \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+_erbout.concat "<html>\n"
+_erbout.concat "<head>\n"
+_erbout.concat "  <title>remo - rule editor for modsecurity</title>\n"
+_erbout.concat "  "; _erbout.concat(( stylesheet_link_tag "remo", :media => "all" ).to_s); _erbout.concat "\n"
+_erbout.concat "</head>\n"
+_erbout.concat "\n"
+_erbout.concat "<body id=\"remo\">\n"
+_erbout.concat "  <div id=\"banner\" class=\"header\">\n"
+_erbout.concat "    <div id=\"title\"><h1>"; _erbout.concat(( @page_title || "Remo Demo" ).to_s); _erbout.concat "</h1></div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "  <div id=\"maindiv\">\n"
+_erbout.concat "    <div id=\"source\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"source-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: source-toolsetarea\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: source-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      class: mainarea, id: source-mainarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: source-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "    <div id=\"rules\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"rules-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: rules-toolsetarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: rules-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      <!-- "; _erbout.concat(( yield : layout ).to_s); _erbout.concat " -->\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: rules-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "</body>\n"
+_erbout.concat "</html>\n"
+_erbout.concat "\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/layouts/main.rhtml:47:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      <!-- "; _erbout.concat(( yield : layout ).to_s); _erbout.concat " -->\n"
+                                                      ^) on line #36 of app/views/layouts/main.rhtml:
+33:       class: detailarea, id: rules-detailarea      
+34:       </div>
+35:       <div id="rules-mainarea" class="mainarea">
+36:       <!-- <%= yield : layout %> -->
+37:       </div>
+38:       <div id="rules-statusarea" class="statusarea">
+39:       class: statusarea, id: rules-statusarea      
+
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:47:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:31:24) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.04514 (22 reqs/sec) | Rendering: 0.04071 (90%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:31:25) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:31:36) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.03711 (26 reqs/sec) | Rendering: 0.03127 (84%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:31:36) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:34:13) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01076 (92 reqs/sec) | Rendering: 0.00434 (40%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:34:13) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:34:43) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.04415 (22 reqs/sec) | Rendering: 0.01310 (29%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:34:44) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:34:52) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+ERROR: compiling _run_rhtml_47app47views47layouts47main46rhtml RAISED compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^
+Function body: def _run_rhtml_47app47views47layouts47main46rhtml(local_assigns)
+_erbout = ''; _erbout.concat "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
+_erbout.concat "                      \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+_erbout.concat "<html>\n"
+_erbout.concat "<head>\n"
+_erbout.concat "  <title>remo - rule editor for modsecurity</title>\n"
+_erbout.concat "  "; _erbout.concat(( stylesheet_link_tag "remo", :media => "all" ).to_s); _erbout.concat "\n"
+_erbout.concat "</head>\n"
+_erbout.concat "\n"
+_erbout.concat "<body id=\"remo\">\n"
+_erbout.concat "  <div id=\"banner\" class=\"header\">\n"
+_erbout.concat "    <div id=\"title\"><h1>"; _erbout.concat(( @page_title || "Remo Demo" ).to_s); _erbout.concat "</h1></div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "  <div id=\"maindiv\">\n"
+_erbout.concat "    <div id=\"source\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"source-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: source-toolsetarea\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: source-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      class: mainarea, id: source-mainarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: source-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "    <div id=\"rules\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"rules-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: rules-toolsetarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: rules-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: rules-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "</body>\n"
+_erbout.concat "</html>\n"
+_erbout.concat "\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/layouts/main.rhtml:47:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^) on line #36 of app/views/layouts/main.rhtml:
+33:       class: detailarea, id: rules-detailarea      
+34:       </div>
+35:       <div id="rules-mainarea" class="mainarea">
+36:       <%= yield : layout %>
+37:       </div>
+38:       <div id="rules-statusarea" class="statusarea">
+39:       class: statusarea, id: rules-statusarea      
+
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:47:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:38:03) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+ERROR: compiling _run_rhtml_47app47views47layouts47main46rhtml RAISED compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^
+Function body: def _run_rhtml_47app47views47layouts47main46rhtml(local_assigns)
+_erbout = ''; _erbout.concat "<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Transitional//EN\"\n"
+_erbout.concat "                      \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd\">\n"
+_erbout.concat "<html>\n"
+_erbout.concat "<head>\n"
+_erbout.concat "  <title>remo - rule editor for modsecurity</title>\n"
+_erbout.concat "  "; _erbout.concat(( stylesheet_link_tag "remo", :media => "all" ).to_s); _erbout.concat "\n"
+_erbout.concat "</head>\n"
+_erbout.concat "\n"
+_erbout.concat "<body id=\"remo\">\n"
+_erbout.concat "  <div id=\"banner\" class=\"header\">\n"
+_erbout.concat "    <div id=\"title\"><h1>"; _erbout.concat(( @page_title || "Remo Demo" ).to_s); _erbout.concat "</h1></div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "  <div id=\"maindiv\">\n"
+_erbout.concat "    <div id=\"source\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"source-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: source-toolsetarea\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: source-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      class: mainarea, id: source-mainarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"source-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: source-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "    <div id=\"rules\" class=\"maincolumn\">\n"
+_erbout.concat "      <div id=\"rules-toolsetarea\" class=\"toolsetarea\">\n"
+_erbout.concat "      class: toolsetarea, id: rules-toolsetarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-detailarea\" class=\"detailarea\">\n"
+_erbout.concat "      class: detailarea, id: rules-detailarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-mainarea\" class=\"mainarea\">\n"
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+_erbout.concat "      </div>\n"
+_erbout.concat "      <div id=\"rules-statusarea\" class=\"statusarea\">\n"
+_erbout.concat "      class: statusarea, id: rules-statusarea      \n"
+_erbout.concat "      </div>\n"
+_erbout.concat "    </div>\n"
+_erbout.concat "  </div>\n"
+_erbout.concat "</body>\n"
+_erbout.concat "</html>\n"
+_erbout.concat "\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/layouts/main.rhtml:47:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/layouts/main.rhtml:36: syntax error, unexpected ':', expecting ')'
+_erbout.concat "      "; _erbout.concat(( yield : layout ).to_s); _erbout.concat "\n"
+                                                 ^) on line #36 of app/views/layouts/main.rhtml:
+33:       class: detailarea, id: rules-detailarea      
+34:       </div>
+35:       <div id="rules-mainarea" class="mainarea">
+36:       <%= yield : layout %>
+37:       </div>
+38:       <div id="rules-statusarea" class="statusarea">
+39:       class: statusarea, id: rules-statusarea      
+
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:47:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:39:08) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.04326 (23 reqs/sec) | Rendering: 0.03891 (89%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:39:09) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:39:37) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00846 (118 reqs/sec) | Rendering: 0.00424 (50%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing ApplicationController#index (for 192.168.1.200 at 2007-01-24 15:39:37) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {}
+
+
+ActionController::RoutingError (no route found to match "/stylesheets/remo.css" with {:method=>:get}):
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1266:in `recognize_path'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/routing.rb:1256:in `recognize'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:40:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (404 Page Not Found)
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:40:41) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00711 (140 reqs/sec) | Rendering: 0.00285 (40%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:41:02) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00999 (100 reqs/sec) | Rendering: 0.00545 (54%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:42:45) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02125 (47 reqs/sec) | Rendering: 0.01685 (79%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-24 15:45:22) [GET]
+  Session ID: 233e5dabcb01f56da543804ab449a4ae
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.03856 (25 reqs/sec) | Rendering: 0.03402 (88%) | 200 OK [http://railsmachine/main/hello]

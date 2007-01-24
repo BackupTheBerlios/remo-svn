@@ -1,0 +1,155 @@
+/* Global styles */
+
+/* START:notice */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+/* END:notice */
+
+h1 {
+  color: #494949;
+  font-size: 150%;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+img {
+  border: none;
+}
+
+a:link, a:visited, a:hover {
+  color: #2eaeff;
+  text-decoration: none;
+}
+
+
+/* Styles for main page */
+
+#banner {
+  float: left;
+  width: 100%;
+  background: #d4ebf9;
+  border: 1px solid white;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+  color: #494949;
+}
+
+
+#title {
+  float: left;
+  width: 49%;
+  margin-left: 1%;
+  white-space: nowrap;
+}
+      
+#logodiv {
+  float: left;
+  width: 49%;
+}
+
+#maindiv {
+  float: left;
+  width: 100%;
+  padding-top: 5px;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+
+#source {
+  float: left;
+  width: 50%;
+}
+
+#rules {
+  float: left;
+  padding-left: 1%;
+  width: 49%;
+}
+
+.toolsetarea {
+  background: #d4ebf9;
+  height: 40px;
+  border-top: 1px dotted gray;
+  border-left: 1px dotted gray;
+  border-right: 1px dotted gray;
+}
+.detailarea {
+  background: #49a6e0;
+  margin-top: 2px;
+  height: 80px;
+  border-left: 1px dotted gray;
+  border-right: 1px dotted gray;
+}
+.mainarea {
+  background: white;
+  margin-top: 2px;
+  height: 600px;
+  border-left: 1px dotted gray;
+  border-right: 1px dotted gray;
+}
+.statusarea {
+  background: #d4ebf9;
+  border-left: 1px dotted gray;
+  border-right: 1px dotted gray;
+  border-bottom: 1px dotted gray;
+}
+
+#source-toolsetarea {
+}
+#source-detailarea {
+}
+#source-mainarea {
+}
+#source-statusarea {
+}
+
+#rules-toolsetarea {
+}
+#rules-detailarea {
+}
+#rules-mainarea {
+}
+#rules-statusarea {
+}
+
+/* The error box */
+
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+

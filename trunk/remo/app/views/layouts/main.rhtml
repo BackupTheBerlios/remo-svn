@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+                      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+  <title>remo - rule editor for modsecurity</title>
+  <%= stylesheet_link_tag "remo", :media => "all" %>
+</head>
+
+<body id="remo">
+  <div id="banner" class="header">
+    <div id="title"><h1><a href="http://remo.netnea.com">remo</a> - rule editor for <a href="http://www.modsecurity.org">modsecurity</a></h1></div>
+    <div id="logodiv" align="right"><a href="http://remo.netnea.com"><img id="logo" src="/images/logo.png"/></a></div>
+  </div>
+  <div id="maindiv">
+    <div id="source" class="maincolumn">
+      <div id="source-toolsetarea" class="toolsetarea">
+      area will be used later
+      </div>
+      <div id="source-detailarea" class="detailarea">
+      area will be used later
+      </div>
+      <div id="source-mainarea" class="mainarea">
+      area will be used later
+      </div>
+      <div id="source-statusarea" class="statusarea">
+      none
+      </div>
+    </div>
+    <div id="rules" class="maincolumn">
+      <div id="rules-toolsetarea" class="toolsetarea">
+      toolset (soon to come)
+      </div>
+      <div id="rules-detailarea" class="detailarea">
+      detail (soon to come)
+      </div>
+      <div id="rules-mainarea" class="mainarea">
+      <%= yield :layout %>
+      </div>
+      <div id="rules-statusarea" class="statusarea">
+      status: active
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
