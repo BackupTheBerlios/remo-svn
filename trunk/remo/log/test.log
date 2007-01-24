@@ -1,0 +1,504 @@
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:33:11) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01765 (56 reqs/sec) | Rendering: 0.01160 (65%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:33:28) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01602 (62 reqs/sec) | Rendering: 0.01153 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:34:12) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01586 (63 reqs/sec) | Rendering: 0.01121 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:35:01) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01823 (54 reqs/sec) | Rendering: 0.01218 (66%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:35:14) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01764 (56 reqs/sec) | Rendering: 0.01176 (66%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:37:41) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01883 (53 reqs/sec) | Rendering: 0.01431 (76%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:38:11) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01893 (52 reqs/sec) | Rendering: 0.01186 (62%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:40:03) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01810 (55 reqs/sec) | Rendering: 0.01319 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:43:41) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01565 (63 reqs/sec) | Rendering: 0.01116 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:44:10) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01545 (64 reqs/sec) | Rendering: 0.01098 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:44:34) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01568 (63 reqs/sec) | Rendering: 0.01108 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:45:56) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01683 (59 reqs/sec) | Rendering: 0.01221 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:46:33) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01858 (53 reqs/sec) | Rendering: 0.01212 (65%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:49:58) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01558 (64 reqs/sec) | Rendering: 0.01102 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:50:14) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01982 (50 reqs/sec) | Rendering: 0.01532 (77%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:51:32) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01856 (53 reqs/sec) | Rendering: 0.01402 (75%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:52:17) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01807 (55 reqs/sec) | Rendering: 0.01310 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:53:01) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02319 (43 reqs/sec) | Rendering: 0.01158 (49%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:55:09) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02037 (49 reqs/sec) | Rendering: 0.01352 (66%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:55:44) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01726 (57 reqs/sec) | Rendering: 0.01206 (69%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:56:01) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02297 (43 reqs/sec) | Rendering: 0.01814 (78%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:56:37) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01682 (59 reqs/sec) | Rendering: 0.01201 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:56:57) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01811 (55 reqs/sec) | Rendering: 0.01207 (66%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:57:48) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01641 (60 reqs/sec) | Rendering: 0.01158 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:58:05) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01809 (55 reqs/sec) | Rendering: 0.01319 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:59:04) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02035 (49 reqs/sec) | Rendering: 0.01560 (76%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 16:59:22) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02034 (49 reqs/sec) | Rendering: 0.01433 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:00:09) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01623 (61 reqs/sec) | Rendering: 0.01175 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:01:39) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01989 (50 reqs/sec) | Rendering: 0.01363 (68%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:02:39) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01900 (52 reqs/sec) | Rendering: 0.01423 (74%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:04:13) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01965 (50 reqs/sec) | Rendering: 0.01370 (69%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:08:47) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01608 (62 reqs/sec) | Rendering: 0.01150 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:08:58) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02206 (45 reqs/sec) | Rendering: 0.01719 (77%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:09:30) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01919 (52 reqs/sec) | Rendering: 0.01320 (68%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:10:12) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01558 (64 reqs/sec) | Rendering: 0.01114 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:11:23) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01559 (64 reqs/sec) | Rendering: 0.01107 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:12:14) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02165 (46 reqs/sec) | Rendering: 0.01626 (75%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:13:39) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01583 (63 reqs/sec) | Rendering: 0.01131 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:13:52) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01913 (52 reqs/sec) | Rendering: 0.01279 (66%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:14:11) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02049 (48 reqs/sec) | Rendering: 0.01570 (76%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:14:54) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01538 (65 reqs/sec) | Rendering: 0.01091 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:15:06) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01932 (51 reqs/sec) | Rendering: 0.01459 (75%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:16:27) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01757 (56 reqs/sec) | Rendering: 0.01311 (74%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:19:37) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01826 (54 reqs/sec) | Rendering: 0.01164 (63%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:20:05) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01989 (50 reqs/sec) | Rendering: 0.01515 (76%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:20:17) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02099 (47 reqs/sec) | Rendering: 0.01623 (77%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:21:00) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01873 (53 reqs/sec) | Rendering: 0.01170 (62%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:21:10) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01848 (54 reqs/sec) | Rendering: 0.01389 (75%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:23:40) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01820 (54 reqs/sec) | Rendering: 0.01318 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:24:01) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02127 (47 reqs/sec) | Rendering: 0.01634 (76%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:24:19) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01789 (55 reqs/sec) | Rendering: 0.01331 (74%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:24:45) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01948 (51 reqs/sec) | Rendering: 0.01465 (75%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:26:43) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01986 (50 reqs/sec) | Rendering: 0.01463 (73%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:26:57) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01768 (56 reqs/sec) | Rendering: 0.01295 (73%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:27:34) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02025 (49 reqs/sec) | Rendering: 0.01563 (77%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:28:35) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01811 (55 reqs/sec) | Rendering: 0.01191 (65%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:28:51) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02126 (47 reqs/sec) | Rendering: 0.01500 (70%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:29:48) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01593 (62 reqs/sec) | Rendering: 0.01131 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:30:37) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02006 (49 reqs/sec) | Rendering: 0.01501 (74%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:31:09) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01677 (59 reqs/sec) | Rendering: 0.01192 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:31:44) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01549 (64 reqs/sec) | Rendering: 0.01105 (71%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:32:04) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.01630 (61 reqs/sec) | Rendering: 0.01180 (72%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:32:36) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02273 (43 reqs/sec) | Rendering: 0.01265 (55%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
