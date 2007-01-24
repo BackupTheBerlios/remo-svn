@@ -1,3 +1,3 @@
 class MainController < ApplicationController
-  scaffold :product
+  scaffold :request
 end
