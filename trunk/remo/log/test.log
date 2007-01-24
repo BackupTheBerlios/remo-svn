@@ -502,3 +502,11 @@ Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:32:36) [GET]
 Rendering  within layouts/main
 Rendering main/hello
 Completed in 0.02273 (43 reqs/sec) | Rendering: 0.01265 (55%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:38:36) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.02662 (37 reqs/sec) | Rendering: 0.01136 (42%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
