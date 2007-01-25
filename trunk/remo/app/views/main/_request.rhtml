@@ -1,1 +1,4 @@
-<div id="request-item-<%= request.id-%>" class="listitem"><div class="http_method"><%= request.http_method -%></div><div class="path"><%= request.path -%></div></div><br />
+<div id="request-item-<%= request.id-%>" class="listitem">
+<div class="http_method"><%= link_to_remote request.http_method, :url => { :action => :display_detail, :id => request } -%></div>
+<div class="path"><%= link_to_remote request.path, :url => { :action => :display_detail, :id => request } -%></div>
+</div><br />

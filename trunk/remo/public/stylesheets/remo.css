@@ -115,6 +115,42 @@ a:link, a:visited, a:hover {
 #rules-statusarea {
 }
 
+/* The rules detailarea requestitem */
+
+.detailarea #requestitem #label_http_method{
+  color: #494949;
+  padding-left: 1%;
+  float: left;
+  width: 20%;
+}
+.detailarea #requestitem #http_method{
+  float: left;
+  width: 79%;
+}
+.detailarea #requestitem #label_path{
+  color: #494949;
+  padding-left: 1%;
+  float: left;
+  width: 20%;
+}
+.detailarea #requestitem #path{
+  float: left;
+  width: 79%;
+}
+.detailarea #requestitem #label_weight{
+  color: #494949;
+  padding-left: 1%;
+  float: left;
+  width: 20%;
+}
+.detailarea #requestitem #weight{
+  float: left;
+  width: 79%;
+}
+
+
+/* The rules request list */
+
 .listitem {
   padding-left: 2px;
 }
@@ -128,6 +164,7 @@ a:link, a:visited, a:hover {
   float: left;
   width: 60%;
 }
+
 
 /* The error box */
 

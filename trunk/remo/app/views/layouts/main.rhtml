@@ -4,6 +4,7 @@
 <head>
   <title>REMO - rule editor for modsecurity</title>
   <%= stylesheet_link_tag "remo", :media => "all" %>
+<%= javascript_include_tag :defaults %>
 </head>
 
 <body id="remo">
@@ -14,30 +15,30 @@
   <div id="maindiv">
     <div id="source" class="maincolumn">
       <div id="source-toolsetarea" class="toolsetarea">
-      area will be used later
+        area will be used later
       </div>
       <div id="source-detailarea" class="detailarea">
-      area will be used later
+        area will be used later
       </div>
       <div id="source-mainarea" class="mainarea">
-      area will be used later
+        area will be used later
       </div>
       <div id="source-statusarea" class="statusarea">
-      none
+        none
       </div>
     </div>
     <div id="rules" class="maincolumn">
       <div id="rules-toolsetarea" class="toolsetarea">
-      toolset (soon to come)
+        toolset (soon to come)
       </div>
       <div id="rules-detailarea" class="detailarea">
-      detail (soon to come)
+        <%= render(:partial => "request_rules_detailarea", :object => Request.find_requests.first) -%>
       </div>
       <div id="rules-mainarea" class="mainarea">
       <%= yield :layout %>
       </div>
       <div id="rules-statusarea" class="statusarea">
-      status: active
+        status: active
       </div>
     </div>
   </div>
