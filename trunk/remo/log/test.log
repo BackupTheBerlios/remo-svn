@@ -823,3 +823,49 @@ Completed in 0.05814 (17 reqs/sec) | Rendering: 0.03888 (66%) | DB: 0.01179 (20%
   [4;35;1mRequest Load (0.001292)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
   [4;36;1mRequest Load (0.000668)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
   [4;35;1mSQL (0.000460)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-25 17:35:22) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005246)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003074)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02094)
+Rendered main/_request (0.00254)
+  [4;36;1mRequest Load (0.002283)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00307)
+Completed in 0.06369 (15 reqs/sec) | Rendering: 0.04595 (72%) | DB: 0.01060 (16%) | 200 OK [http://test.host/main/hello]
+  [4;35;1mRequest Load (0.001358)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001460)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000678)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001364)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000745)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000854)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001286)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000684)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000547)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-25 17:36:00) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006070)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003273)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01246)
+Rendered main/_request (0.00359)
+  [4;36;1mRequest Load (0.002266)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00299)
+Completed in 0.05805 (17 reqs/sec) | Rendering: 0.03828 (65%) | DB: 0.01161 (19%) | 200 OK [http://test.host/main/hello]
+  [4;35;1mRequest Load (0.001311)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.003468)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000665)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001315)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000684)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000957)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001235)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000659)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000571)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m

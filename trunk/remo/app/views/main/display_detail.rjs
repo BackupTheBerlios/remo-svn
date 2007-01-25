@@ -1,1 +1,4 @@
 page.replace_html("requestitem", :partial => "request_rules_detailarea", :object => @detailrequest)
+page.replace_html("rules-statusarea", "Selected request item #{@detailrequest.id}")
+page.call 'Element.addClassName', "request-item-#{@detailrequest.id}-http_method", 'http_method-selected'
+page.call 'Element.addClassName', "request-item-#{@detailrequest.id}-path", 'path-selected'

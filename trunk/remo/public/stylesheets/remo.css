@@ -162,7 +162,19 @@ a:link, a:visited, a:hover {
 .path {
   white-space: nowrap;
   float: left;
-  width: 60%;
+  width: 90%;
+}
+.http_method-selected {
+  background: #d4ebf9;
+  white-space: nowrap;
+  float: left;
+  width: 10%;
+}
+.path-selected {
+  background: #d4ebf9;
+  white-space: nowrap;
+  float: left;
+  width: 90%;
 }
 
 
