@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+valid_get:
   id: 1
-two:
+  http_method: "GET"
+  path: "/index.html"
+  weight: 3
+valid_post:
   id: 2
+  http_method: "POST"
+  path: "/action/post.php"
+  weight: 4

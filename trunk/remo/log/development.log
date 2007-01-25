@@ -2377,3 +2377,173 @@ Processing MainController#hello (for 192.168.1.200 at 2007-01-25 09:22:32) [GET]
 Rendering  within layouts/main
 Rendering main/hello
 Completed in 0.00717 (139 reqs/sec) | Rendering: 0.00284 (39%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001420)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001269)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000871)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.005244)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "method" varchar(255), "path" varchar(255), "order" integer NOT NULL) [0m
+  [4;36;1mSQL (0.003783)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.001176)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001177)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002804)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000358)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001536)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000970)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001136)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.006087)[0m   [0mDROP TABLE requests[0m
+  [4;36;1mSQL (0.014969)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+Reached target version: 2
+  [4;35;1mSQL (0.001325)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000993)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.002080)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001065)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001314)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.017697)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "method" varchar(10) NOT NULL, "path" text NOT NULL, "order" integer NOT NULL) [0m
+  [4;36;1mSQL (0.002424)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.001132)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001205)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002850)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000355)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.002900)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001420)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.006237)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000490)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.005507)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "order" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.002922)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.005443)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001255)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.002114)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.007753)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001249)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000913)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001169)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.004631)[0m   [0mDROP TABLE requests[0m
+  [4;36;1mSQL (0.002470)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+Reached target version: 2
+  [4;35;1mSQL (0.001172)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.002607)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001347)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000933)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.031472)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.015144)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) NOT NULL, "path" text NOT NULL, "order" integer NOT NULL) [0m
+  [4;36;1mSQL (0.012486)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.001183)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001145)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002799)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000363)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.009384)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.001716)[0m   [0mINSERT INTO requests ("http_method", "order", "path") VALUES('GET', 0, '')[0m
+  [4;36;1mRequest Load (0.012579)[0m   [0;1mSELECT * FROM requests LIMIT 1[0m
+  [4;35;1mRequest Update (0.014383)[0m   [0mUPDATE requests SET "http_method" = 'GET', "order" = 3, "path" = '' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.001567)[0m   [0;1mSELECT * FROM requests LIMIT 1[0m
+  [4;36;1mSQL (0.007000)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.007578)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.009179)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.005330)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001038)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iundex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.001660)[0m   [0;1mINSERT INTO requests ("http_method", "order", "path") VALUES('GET', 6, '/iundex.html')[0m
+  [4;35;1mRequest Load (0.001508)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iundex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.005372)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001771)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iundex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.011784)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001062)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mRequest Load (0.000784)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.006781)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001029)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mRequest Load (0.000753)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.005421)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001031)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mRequest Load (0.000816)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;35;1mSQL (0.001632)[0m   [0mINSERT INTO requests ("http_method", "order", "path") VALUES('POSTX', 6, '/iux2ndex.html')[0m
+  [4;36;1mSQL (0.005581)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001764)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.005156)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001826)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iux2ndex.html') LIMIT 1[0m
+  [4;36;1mRequest Load (0.000760)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/iuxx2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.005334)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001014)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/iuxx2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.001600)[0m   [0;1mINSERT INTO requests ("http_method", "order", "path") VALUES('POST', 6, '/iuxx2ndex.html')[0m
+  [4;35;1mRequest Load (0.000745)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/ixuxx2ndex.html') LIMIT 1[0m
+  [4;36;1mSQL (0.005253)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001038)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/ixuxx2ndex.html') LIMIT 1[0m
+  [4;36;1mRequest Load (0.000766)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/ixuxx2ndex.html') LIMIT 1[0m
+  [4;35;1mSQL (0.001594)[0m   [0mINSERT INTO requests ("http_method", "order", "path") VALUES('POST', 6, '/ixuxx2ndex.html')[0m
+  [4;36;1mRequest Load (0.001465)[0m   [0;1mSELECT * FROM requests WHERE (requests.path = '/ixuxx2ndex.html') LIMIT 1[0m
+  [4;35;1mRequest Load (0.000769)[0m   [0mSELECT * FROM requests WHERE (requests.path = '/ixuxx2ndex.htsml') LIMIT 1[0m
+  [4;36;1mSQL (0.007168)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000000)[0m   [0mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.005759)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.001801)[0m   [0mINSERT INTO requests ("http_method", "order", "path") VALUES('POST', 1, '/ixuxx2ndex.htsml')[0m
+  [4;36;1mSQL (0.000939)[0m   [0;1mINSERT INTO requests ("http_method", "order", "path") VALUES('POST', 2, '/ixuxx2ndex.htsml')[0m
+  [4;36;1mSQL (0.005389)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000000)[0m   [0mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 0) LIMIT 1[0m
+  [4;36;1mRequest Load (0.000000)[0m   [0;1mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 1) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000000)[0m   [0mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.005632)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000000)[0m   [0mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 1) LIMIT 1[0m
+  [4;36;1mRequest Load (0.000000)[0m   [0;1mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 1) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000000)[0m   [0mSQLite3::SQLException: near "order": syntax error: SELECT * FROM requests WHERE (requests.order = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001267)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000993)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001145)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.007327)[0m   [0mDROP TABLE requests[0m
+  [4;36;1mSQL (0.015072)[0m   [0;1mUPDATE schema_info SET version = 2[0m
+Reached target version: 2
+  [4;35;1mSQL (0.001158)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.000981)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001356)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001181)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.003240)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to RecreateRequests (3)
+  [4;35;1mSQL (0.006197)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) NOT NULL, "path" text NOT NULL, "weight" integer NOT NULL) [0m
+  [4;36;1mSQL (0.016359)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+  [4;35;1mSQL (0.001133)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001160)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002835)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000392)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.005280)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000980)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.001606)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 3, '/ixuxx2ndex.htsml')[0m
+  [4;35;1mRequest Load (0.001542)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.002873)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001395)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.003393)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000423)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.006645)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "weight" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.002887)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002288)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001302)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.002231)[0m   [0mUPDATE schema_info SET version = 3[0m
+  [4;36;1mSQL (0.005186)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.003186)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.003077)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000464)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.008729)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "weight" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.002987)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002190)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001327)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.005326)[0m   [0mUPDATE schema_info SET version = 3[0m

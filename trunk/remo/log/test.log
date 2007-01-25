@@ -510,3 +510,210 @@ Processing MainController#hello (for 0.0.0.0 at 2007-01-24 17:38:36) [GET]
 Rendering  within layouts/main
 Rendering main/hello
 Completed in 0.02662 (37 reqs/sec) | Rendering: 0.01136 (42%) | DB: 0.00000 (0%) | 200 OK [http://test.host/main/hello]
+  [4;36;1mSQL (0.002980)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.002959)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003153)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003086)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003179)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003075)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003394)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001529)[0m   [0mSELECT * FROM requests WHERE (requests.id = 3) [0m
+  [4;36;1mSQL (0.005287)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000984)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(3, 'GET', '/index.html')[0m
+  [4;36;1mSQL (0.004393)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000978)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(5, 'GET', '/index.html')[0m
+  [4;36;1mSQL (0.005450)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000979)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(5, 'GET', '/index.html')[0m
+  [4;36;1mSQL (0.003066)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000980)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(5, 'GET', '/index.html')[0m
+  [4;36;1mSQL (0.002971)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000978)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(5, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.003093)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000982)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(5, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.004866)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: SQL logic error or missing database: INSERT INTO requests ("order", "method", "path") VALUES(NULL, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.001061)[0m   [0;1mINSERT INTO requests ("order", "method", "path") VALUES(5, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.002975)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: SQL logic error or missing database: INSERT INTO requests ("order", "method", "path") VALUES(NULL, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.000829)[0m   [0;1mINSERT INTO requests ("order", "method", "path") VALUES(5, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.003043)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000978)[0m   [0mINSERT INTO requests ("order", "method", "path") VALUES(6, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.000945)[0m   [0;1mINSERT INTO requests ("order", "method", "path") VALUES(5, 'HEAD', '/start.html')[0m
+  [4;36;1mSQL (0.003326)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003046)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.008335)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.003138)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000967)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mSQL (0.001019)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('HEAD', 5, '/start.html')[0m
+  [4;36;1mSQL (0.003022)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000963)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mRequest Load (0.000765)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000868)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('HEAD', 5, '/start.html')[0m
+  [4;36;1mSQL (0.003442)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000959)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mRequest Load (0.000885)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000974)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('HEAD', 5, '/start.html')[0m
+  [4;36;1mSQL (0.002994)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001001)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mSQL (0.003096)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000956)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001350)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.001332)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.002989)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001489)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001418)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001346)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001327)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.003339)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.002123)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001456)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001572)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001320)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003044)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001474)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001469)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001486)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001513)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003344)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001544)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001449)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001514)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001363)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003114)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001487)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001683)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001316)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001854)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003000)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001454)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001414)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001291)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001347)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.002993)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001610)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001581)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001401)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001427)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.004837)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001523)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.003877)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001501)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001344)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003977)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001682)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001427)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001573)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001712)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.003578)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.002691)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.002797)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001337)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000744)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 13) LIMIT 1[0m
+  [4;35;1mSQL (0.001001)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 13, '/index.html')[0m
+  [4;36;1mSQL (0.003069)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001553)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001430)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001346)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000663)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 14) LIMIT 1[0m
+  [4;35;1mSQL (0.000870)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 14, '/index.html')[0m
+  [4;36;1mSQL (0.005196)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001970)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001602)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001532)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001811)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.002989)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001497)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001421)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001294)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000671)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000882)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/index.html')[0m
+  [4;36;1mSQL (0.005005)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001544)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.002087)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001398)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000723)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.001303)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/index.html')[0m
+  [4;36;1mSQL (0.005783)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001514)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.003128)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001368)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000675)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000870)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003002)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001684)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001428)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001320)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000661)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000869)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003195)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.002958)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001518)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001376)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000694)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000912)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.004784)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001493)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001610)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001371)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000696)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000914)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003355)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001555)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.002868)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001442)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001004)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000938)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003067)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001626)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001488)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001341)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.002863)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000935)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.005234)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001559)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001412)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001607)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000680)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000922)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003166)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001554)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001412)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001468)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000673)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000949)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003153)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001684)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001519)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.001313)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000668)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 999) LIMIT 1[0m
+  [4;35;1mSQL (0.000885)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 999, '/index.html')[0m
+  [4;36;1mSQL (0.003138)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001453)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001394)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000701)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001361)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000701)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000964)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001286)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000678)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000491)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
+  [4;36;1mSQL (0.002953)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.002414)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001406)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000692)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001300)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000693)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000851)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001363)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000697)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000487)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
+  [4;36;1mSQL (0.003044)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001819)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001435)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000695)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.001314)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000770)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000859)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001442)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000679)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000500)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
