@@ -23,7 +23,7 @@ class MainControllerTest < Test::Unit::TestCase
 
     def assert_exist_elementlist (list, num=1)
     	list.each do |item|
-    		assert_select item, num, "ERROR: Page item " + item + " not found " + num.to_s + " time(s) as expected." # check that item exists <num> of times in the page
+    		assert_select item, num, "FAILURE: Page item " + item + " not found " + num.to_s + " time(s) as expected." # check that item exists <num> of times in the page
 	end
     end
     # make sure we have the correct set of page elements
