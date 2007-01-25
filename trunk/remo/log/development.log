@@ -2973,3 +2973,602 @@ Rendering main/hello
   [4;35;1mSQL (0.002918)[0m   [0mPRAGMA table_info(requests)[0m
 Rendered main/_request (0.00794)
 Completed in 0.07557 (13 reqs/sec) | Rendering: 0.00916 (12%) | DB: 0.00516 (6%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001436)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001054)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001155)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001247)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.004145)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001361)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000914)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001105)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000846)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001656)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001551)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000961)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001185)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000957)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001658)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001348)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000918)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001000)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000981)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001746)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001327)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001145)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000876)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000852)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001636)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.002937)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.000754)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001076)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/index.html')[0m
+  [4;36;1mRequest Load (0.000716)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001309)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/index.html' WHERE id = 1[0m
+  [4;36;1mSQL (0.006169)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.001111)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001192)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002658)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000343)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001457)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001036)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000893)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000934)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001163)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001647)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.003065)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000371)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001341)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000953)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000842)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000837)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001151)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001367)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002796)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000366)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.002069)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001015)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001012)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000900)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001154)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.003308)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.004744)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000381)[0m   [0mPRAGMA index_list(requests)[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:20:59) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002386)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.039953)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04685)
+Completed in 0.09548 (10 reqs/sec) | Rendering: 0.01171 (12%) | DB: 0.04234 (44%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:21:21) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002224)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002904)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00853)
+Completed in 0.08879 (11 reqs/sec) | Rendering: 0.00983 (11%) | DB: 0.00513 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:21:24) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002149)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002866)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00645)
+Completed in 0.09949 (10 reqs/sec) | Rendering: 0.00765 (7%) | DB: 0.00502 (5%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001341)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000933)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000857)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000869)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001158)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001369)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002854)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000362)[0m   [0mPRAGMA index_list(requests)[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:21:27) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002201)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002847)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00642)
+Completed in 0.10407 (9 reqs/sec) | Rendering: 0.00763 (7%) | DB: 0.00505 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:21:29) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002357)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002989)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00669)
+Completed in 0.10647 (9 reqs/sec) | Rendering: 0.03858 (36%) | DB: 0.00535 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:21:31) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002256)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002956)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00654)
+Completed in 0.10512 (9 reqs/sec) | Rendering: 0.03818 (36%) | DB: 0.00521 (4%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001394)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000946)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000856)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000856)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001150)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001355)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002767)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000366)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001193)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000958)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000850)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001331)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001384)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.004419)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000416)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001175)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000985)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001146)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;35;1mRequest Delete all (0.028198)[0m   [0mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.015316)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+Reached target version: 3
+  [4;35;1mSQL (0.001139)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001310)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002835)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000366)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001172)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001220)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001109)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000893)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000945)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;35;1mRequest Delete all (0.001657)[0m   [0mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.003062)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000758)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.001073)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;35;1mRequest Load (0.000735)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;36;1mRequest Update (0.001061)[0m   [0;1mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;35;1mRequest Load (0.000645)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;36;1mSQL (0.000759)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;35;1mRequest Load (0.000715)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000915)[0m   [0;1mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;35;1mRequest Load (0.000693)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;36;1mSQL (0.000754)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;35;1mRequest Load (0.000688)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000994)[0m   [0;1mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;35;1mRequest Load (0.002221)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;36;1mSQL (0.000960)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;35;1mRequest Load (0.000677)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000992)[0m   [0;1mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;35;1mRequest Load (0.000662)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;36;1mSQL (0.000926)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;35;1mRequest Load (0.002229)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000948)[0m   [0;1mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;35;1mRequest Load (0.000646)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;36;1mSQL (0.000813)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;35;1mRequest Load (0.000798)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;36;1mRequest Update (0.001116)[0m   [0;1mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;35;1mRequest Load (0.000642)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;36;1mSQL (0.000883)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;35;1mRequest Load (0.000664)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000905)[0m   [0;1mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;35;1mRequest Load (0.000655)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;36;1mSQL (0.000749)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;35;1mRequest Load (0.000669)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000918)[0m   [0;1mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;35;1mSQL (0.015456)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.001112)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001118)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002618)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000369)[0m   [0mPRAGMA index_list(requests)[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:22:50) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006520)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003208)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00687)
+Rendered main/_request (0.00040)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00028)
+Completed in 0.06954 (14 reqs/sec) | Rendering: 0.01649 (23%) | DB: 0.00973 (13%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:23:28) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005181)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.033457)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.03860)
+Rendered main/_request (0.00040)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Completed in 0.11450 (8 reqs/sec) | Rendering: 0.01565 (13%) | DB: 0.03864 (33%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:24:15) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.043109)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003276)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00860)
+Rendered main/_request (0.00041)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00031)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00027)
+Completed in 0.11279 (8 reqs/sec) | Rendering: 0.01701 (15%) | DB: 0.04639 (41%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001256)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000944)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001182)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001164)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001574)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002913)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000381)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001152)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000912)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001138)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;35;1mRequest Delete all (0.004432)[0m   [0mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.002783)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+Reached target version: 3
+  [4;35;1mSQL (0.001291)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001232)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002897)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000364)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001373)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001201)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001413)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000923)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001654)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.003065)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001121)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001396)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;36;1mRequest Load (0.000725)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001138)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.000657)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.000827)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;36;1mRequest Load (0.000715)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000963)[0m   [0mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;36;1mRequest Load (0.000819)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.000812)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000668)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001009)[0m   [0mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;36;1mRequest Load (0.000802)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.000794)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;36;1mRequest Load (0.000677)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001196)[0m   [0mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;36;1mRequest Load (0.000944)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000823)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000658)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000957)[0m   [0mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;36;1mRequest Load (0.000651)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.000808)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;36;1mRequest Load (0.000714)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001244)[0m   [0mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;36;1mRequest Load (0.000804)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.000838)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;36;1mRequest Load (0.000651)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000875)[0m   [0mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;36;1mRequest Load (0.000628)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.000711)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;36;1mRequest Load (0.000655)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000869)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;36;1mSQL (0.017959)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.001130)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001168)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002880)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000358)[0m   [0;1mPRAGMA index_list(requests)[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:27:58) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005277)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002935)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00649)
+Rendered main/_request (0.00041)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Completed in 0.10961 (9 reqs/sec) | Rendering: 0.01422 (12%) | DB: 0.00821 (7%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.007075)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001123)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.003710)[0m   [0;1mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;35;1mRequest Delete all (0.004837)[0m   [0mDELETE FROM requests WHERE 1=1[0m
+  [4;36;1mSQL (0.003600)[0m   [0;1mUPDATE schema_info SET version = 3[0m
+Reached target version: 3
+  [4;35;1mSQL (0.001160)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001481)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.002886)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000499)[0m   [0;1mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001790)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001020)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000876)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000876)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.001665)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.003114)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.000807)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001077)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;36;1mRequest Load (0.000711)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001033)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.000658)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.000735)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;36;1mRequest Load (0.000694)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000925)[0m   [0mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;36;1mRequest Load (0.002254)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.000802)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000736)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000905)[0m   [0mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;36;1mRequest Load (0.000814)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.000828)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;36;1mRequest Load (0.000667)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000976)[0m   [0mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;36;1mRequest Load (0.000817)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000832)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000721)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001020)[0m   [0mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;36;1mRequest Load (0.000702)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.000866)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;36;1mRequest Load (0.007509)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000976)[0m   [0mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;36;1mRequest Load (0.000748)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.000781)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;36;1mRequest Load (0.000843)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001355)[0m   [0mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;36;1mRequest Load (0.000636)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.000778)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;36;1mRequest Load (0.000825)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000959)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001857)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000980)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.002221)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001159)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.002185)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.008271)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000391)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001720)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.004250)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001036)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000861)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.007979)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.002926)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.000781)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001027)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;36;1mRequest Load (0.000662)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001153)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.000650)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.000769)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;36;1mRequest Load (0.000730)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000982)[0m   [0mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;36;1mRequest Load (0.000661)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.000773)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000697)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001140)[0m   [0mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;36;1mRequest Load (0.000649)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.000773)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;36;1mRequest Load (0.000724)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000899)[0m   [0mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;36;1mRequest Load (0.000638)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.002087)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000699)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000915)[0m   [0mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;36;1mRequest Load (0.000795)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.000759)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;36;1mRequest Load (0.000727)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000970)[0m   [0mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;36;1mRequest Load (0.000650)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.000755)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;36;1mRequest Load (0.000652)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000881)[0m   [0mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;36;1mRequest Load (0.000631)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.000723)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;36;1mRequest Load (0.000644)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000894)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001465)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.003231)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.002947)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001149)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001409)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.003268)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000385)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.003163)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001167)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000858)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000865)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.009153)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.003090)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.000766)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001064)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;36;1mRequest Load (0.000662)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001293)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.000731)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.000896)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;36;1mRequest Load (0.000681)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000977)[0m   [0mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;36;1mRequest Load (0.000723)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.000786)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;36;1mRequest Load (0.003346)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000991)[0m   [0mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;36;1mRequest Load (0.000827)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.000745)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;36;1mRequest Load (0.000700)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000962)[0m   [0mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;36;1mRequest Load (0.000770)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000740)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000659)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001047)[0m   [0mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;36;1mRequest Load (0.000648)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.000727)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;36;1mRequest Load (0.000825)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000909)[0m   [0mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;36;1mRequest Load (0.000658)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.000761)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;36;1mRequest Load (0.000660)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000944)[0m   [0mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;36;1mRequest Load (0.000642)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.000803)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;36;1mRequest Load (0.000662)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000980)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.001156)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001044)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.000855)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.001215)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.004306)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.004399)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000392)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.000000)[0m   [0mSQLite3::SQLException: table schema_info already exists: CREATE TABLE schema_info (version integer)[0m
+  [4;36;1mSQL (0.001363)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001149)[0m   [0mSELECT version FROM schema_info[0m
+  [4;36;1mSQL (0.000914)[0m   [0;1mSELECT version FROM schema_info[0m
+  [4;35;1mSQL (0.001100)[0m   [0mSELECT version FROM schema_info[0m
+Migrating to FillRequestTable (4)
+  [4;36;1mRequest Delete all (0.007180)[0m   [0;1mDELETE FROM requests WHERE 1=1[0m
+  [4;35;1mSQL (0.011748)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.000782)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;35;1mSQL (0.001078)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/myindex.html')[0m
+  [4;36;1mRequest Load (0.000693)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001112)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+  [4;36;1mRequest Load (0.000733)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2) LIMIT 1[0m
+  [4;35;1mSQL (0.002616)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 2, '/action/post.php')[0m
+  [4;36;1mRequest Load (0.000669)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000909)[0m   [0mUPDATE requests SET "weight" = 2, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+  [4;36;1mRequest Load (0.000651)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mSQL (0.001417)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 3, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000720)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3 AND requests.id <> 3) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000906)[0m   [0mUPDATE requests SET "weight" = 3, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 3[0m
+  [4;36;1mRequest Load (0.000632)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4) LIMIT 1[0m
+  [4;35;1mSQL (0.000826)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 4, '/view,html')[0m
+  [4;36;1mRequest Load (0.000685)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 4 AND requests.id <> 4) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001102)[0m   [0mUPDATE requests SET "weight" = 4, "http_method" = 'GET', "path" = '/view,html' WHERE id = 4[0m
+  [4;36;1mRequest Load (0.000691)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5) LIMIT 1[0m
+  [4;35;1mSQL (0.000779)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 5, '/detail.html')[0m
+  [4;36;1mRequest Load (0.000650)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 5 AND requests.id <> 5) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001181)[0m   [0mUPDATE requests SET "weight" = 5, "http_method" = 'GET', "path" = '/detail.html' WHERE id = 5[0m
+  [4;36;1mRequest Load (0.000679)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6) LIMIT 1[0m
+  [4;35;1mSQL (0.000749)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 6, '/index.html')[0m
+  [4;36;1mRequest Load (0.003011)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 6 AND requests.id <> 6) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000994)[0m   [0mUPDATE requests SET "weight" = 6, "http_method" = 'GET', "path" = '/index.html' WHERE id = 6[0m
+  [4;36;1mRequest Load (0.000809)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7) LIMIT 1[0m
+  [4;35;1mSQL (0.000762)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 7, '/info.html')[0m
+  [4;36;1mRequest Load (0.000642)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 7 AND requests.id <> 7) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000888)[0m   [0mUPDATE requests SET "weight" = 7, "http_method" = 'GET', "path" = '/info.html' WHERE id = 7[0m
+  [4;36;1mRequest Load (0.000651)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8) LIMIT 1[0m
+  [4;35;1mSQL (0.001041)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 8, '/action/delete.php')[0m
+  [4;36;1mRequest Load (0.000811)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 8) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001170)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/delete.php' WHERE id = 8[0m
+  [4;36;1mSQL (0.002236)[0m   [0;1mUPDATE schema_info SET version = 4[0m
+  [4;35;1mSQL (0.001144)[0m   [0mSELECT * FROM schema_info[0m
+  [4;36;1mSQL (0.001196)[0m   [0;1mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;35;1mSQL (0.003880)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mSQL (0.000384)[0m   [0;1mPRAGMA index_list(requests)[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 14:33:45) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005223)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002943)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.03699)
+Rendered main/_request (0.00043)
+Rendered main/_request (0.00027)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Rendered main/_request (0.00026)
+Completed in 0.10696 (9 reqs/sec) | Rendering: 0.04486 (41%) | DB: 0.00817 (7%) | 200 OK [http://railsmachine/main/hello]

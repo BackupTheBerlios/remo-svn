@@ -116,6 +116,7 @@ a:link, a:visited, a:hover {
 }
 
 .listitem {
+  padding-left: 2px;
 }
 .http_method {
   white-space: nowrap;
