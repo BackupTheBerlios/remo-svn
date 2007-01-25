@@ -16,7 +16,7 @@ cd $TMPDIR
 svn checkout --quiet $SVNTREE
 cd $TRUNKDIR
 REV=`svn log 2>/dev/null | head -2 | tail -1 | cut -d" " -f1`	# clumsy way of getting the last revision number
-TEST=`ruby test/overall-testsuite.rb | tail -1`
+TEST=`ruby script/overall-testsuite.rb | tail -1`
 
 cd
 
