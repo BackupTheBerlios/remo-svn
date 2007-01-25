@@ -10,4 +10,7 @@ class Request < ActiveRecord::Base
 		end
 	end
 
+	def self.find_requests
+		find(:all, :order => "weight")
+	end
 end

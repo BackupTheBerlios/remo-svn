@@ -2547,3 +2547,429 @@ Migrating to RecreateRequests (3)
   [4;35;1mSQL (0.002190)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
   [4;36;1mSQL (0.001327)[0m   [0;1mPRAGMA table_info(schema_info)[0m
   [4;35;1mSQL (0.005326)[0m   [0mUPDATE schema_info SET version = 3[0m
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:29:49) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+Rendering  within layouts/main
+Rendering main/hello
+Completed in 0.00724 (138 reqs/sec) | Rendering: 0.00287 (39%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:34:37) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.053312)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003075)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.44349 (2 reqs/sec) | Rendering: 0.00815 (1%) | DB: 0.05639 (12%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:35:04) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002246)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002848)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.07429 (13 reqs/sec) | Rendering: 0.00772 (10%) | DB: 0.00509 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:36:28) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002137)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002837)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.06052 (16 reqs/sec) | Rendering: 0.00771 (12%) | DB: 0.00497 (8%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:36:36) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002084)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002873)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.07594 (13 reqs/sec) | Rendering: 0.00772 (10%) | DB: 0.00496 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:37:10) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002234)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002883)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.10461 (9 reqs/sec) | Rendering: 0.03650 (34%) | DB: 0.00512 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:38:23) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002144)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002895)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.06115 (16 reqs/sec) | Rendering: 0.00584 (9%) | DB: 0.00504 (8%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:38:46) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002102)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002958)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.10376 (9 reqs/sec) | Rendering: 0.00756 (7%) | DB: 0.00506 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:38:58) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002094)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002838)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.05197 (19 reqs/sec) | Rendering: 0.00778 (14%) | DB: 0.00493 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:39:09) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002484)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003638)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.05404 (18 reqs/sec) | Rendering: 0.01052 (19%) | DB: 0.00612 (11%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:39:25) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002266)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002940)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.05584 (17 reqs/sec) | Rendering: 0.01212 (21%) | DB: 0.00521 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:39:39) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002178)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003051)[0m   [0mPRAGMA table_info(requests)[0m
+Completed in 0.05435 (18 reqs/sec) | Rendering: 0.00825 (15%) | DB: 0.00523 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:43:41) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002231)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003252)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00839)
+Completed in 0.05358 (18 reqs/sec) | Rendering: 0.01072 (20%) | DB: 0.00548 (10%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:43:44) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002091)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002978)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00625)
+Completed in 0.07359 (13 reqs/sec) | Rendering: 0.00729 (9%) | DB: 0.00507 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:44:33) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002723)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003081)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00683)
+Completed in 0.09030 (11 reqs/sec) | Rendering: 0.01092 (12%) | DB: 0.00580 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:44:35) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002132)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002882)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00617)
+Completed in 0.07694 (12 reqs/sec) | Rendering: 0.00741 (9%) | DB: 0.00501 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:44:47) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002215)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.004349)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00785)
+Completed in 0.05649 (17 reqs/sec) | Rendering: 0.00868 (15%) | DB: 0.00656 (11%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:45:20) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002210)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002865)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00623)
+Completed in 0.05123 (19 reqs/sec) | Rendering: 0.00850 (16%) | DB: 0.00507 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:45:31) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005014)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003397)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00835)
+Completed in 0.24877 (4 reqs/sec) | Rendering: 0.00961 (3%) | DB: 0.00841 (3%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:45:33) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002251)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002963)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00628)
+Completed in 0.04407 (22 reqs/sec) | Rendering: 0.00753 (17%) | DB: 0.00521 (11%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:47:08) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002146)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002991)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01107)
+Completed in 0.04938 (20 reqs/sec) | Rendering: 0.01230 (24%) | DB: 0.00514 (10%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:47:10) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002092)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002858)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00612)
+Completed in 0.07373 (13 reqs/sec) | Rendering: 0.00741 (10%) | DB: 0.00495 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:47:26) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002145)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002855)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00618)
+Completed in 0.07368 (13 reqs/sec) | Rendering: 0.00738 (10%) | DB: 0.00500 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:47:36) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002408)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002953)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00634)
+Completed in 0.10657 (9 reqs/sec) | Rendering: 0.00767 (7%) | DB: 0.00536 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:47:50) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002189)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003006)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00644)
+Completed in 0.07426 (13 reqs/sec) | Rendering: 0.00752 (10%) | DB: 0.00519 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:48:19) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002106)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002885)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00618)
+Completed in 0.07436 (13 reqs/sec) | Rendering: 0.00745 (10%) | DB: 0.00499 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:48:43) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002082)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002966)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00624)
+Completed in 0.07360 (13 reqs/sec) | Rendering: 0.00733 (9%) | DB: 0.00505 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:49:00) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002387)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002978)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00636)
+Completed in 0.12346 (8 reqs/sec) | Rendering: 0.00773 (6%) | DB: 0.00537 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:49:16) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002310)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002934)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00629)
+Completed in 0.09874 (10 reqs/sec) | Rendering: 0.03787 (38%) | DB: 0.00524 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:49:27) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002939)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002861)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00619)
+Completed in 0.07482 (13 reqs/sec) | Rendering: 0.00742 (9%) | DB: 0.00580 (7%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:49:36) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002106)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002866)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00614)
+Completed in 0.07381 (13 reqs/sec) | Rendering: 0.00739 (10%) | DB: 0.00497 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:49:47) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002494)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003059)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.03693)
+Completed in 0.19234 (5 reqs/sec) | Rendering: 0.03824 (19%) | DB: 0.00555 (2%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:51:19) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002367)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003010)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00760)
+Completed in 0.10490 (9 reqs/sec) | Rendering: 0.00920 (8%) | DB: 0.00538 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:51:58) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002140)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002989)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00629)
+Completed in 0.07396 (13 reqs/sec) | Rendering: 0.00734 (9%) | DB: 0.00513 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:52:12) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002177)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002868)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00619)
+Completed in 0.07383 (13 reqs/sec) | Rendering: 0.00739 (10%) | DB: 0.00504 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:52:24) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002114)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002975)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00625)
+Completed in 0.07361 (13 reqs/sec) | Rendering: 0.00733 (9%) | DB: 0.00509 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:53:17) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.003024)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002967)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00637)
+Completed in 0.09926 (10 reqs/sec) | Rendering: 0.00759 (7%) | DB: 0.00599 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:53:33) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002186)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002982)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00635)
+Completed in 0.10610 (9 reqs/sec) | Rendering: 0.03933 (37%) | DB: 0.00517 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:54:13) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002173)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002912)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00793)
+Completed in 0.10584 (9 reqs/sec) | Rendering: 0.00905 (8%) | DB: 0.00509 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 192.168.1.200 at 2007-01-25 13:54:57) [GET]
+  Session ID: f06de0463e3f03b7f6d9a37345f937f6
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002238)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002918)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.00794)
+Completed in 0.07557 (13 reqs/sec) | Rendering: 0.00916 (12%) | DB: 0.00516 (6%) | 200 OK [http://railsmachine/main/hello]

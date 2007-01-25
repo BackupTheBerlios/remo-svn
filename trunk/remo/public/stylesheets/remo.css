@@ -115,6 +115,19 @@ a:link, a:visited, a:hover {
 #rules-statusarea {
 }
 
+.listitem {
+}
+.http_method {
+  white-space: nowrap;
+  float: left;
+  width: 10%;
+}
+.path {
+  white-space: nowrap;
+  float: left;
+  width: 60%;
+}
+
 /* The error box */
 
 .fieldWithErrors {
