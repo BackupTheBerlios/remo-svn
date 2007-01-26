@@ -869,3 +869,26 @@ Completed in 0.05805 (17 reqs/sec) | Rendering: 0.03828 (65%) | DB: 0.01161 (19%
   [4;35;1mRequest Load (0.001235)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
   [4;36;1mRequest Load (0.000659)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
   [4;35;1mSQL (0.000571)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
+
+
+Processing MainController#hello (for 0.0.0.0 at 2007-01-26 11:53:21) [GET]
+  Session ID: 
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005353)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003048)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01278)
+Rendered main/_request (0.00249)
+  [4;36;1mRequest Load (0.002079)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00340)
+Completed in 0.05308 (18 reqs/sec) | Rendering: 0.03510 (66%) | DB: 0.01048 (19%) | 200 OK [http://test.host/main/hello]
+  [4;35;1mRequest Load (0.001287)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001462)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 3) LIMIT 1[0m
+  [4;35;1mRequest Load (0.000696)[0m   [0mSELECT * FROM requests WHERE (requests.weight IS NULL) LIMIT 1[0m
+  [4;36;1mRequest Load (0.007321)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000759)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1000) LIMIT 1[0m
+  [4;36;1mSQL (0.000809)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1000, '/index.html')[0m
+  [4;35;1mRequest Load (0.001385)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.001034)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1001) LIMIT 1[0m
+  [4;35;1mSQL (0.000515)[0m   [0mINSERT INTO requests ("http_method", "weight", "path") VALUES('POST', 1001, '/action/post.php')[0m
