@@ -1,4 +1,10 @@
-page.replace_html("requestitem", :partial => "request_rules_detailarea", :object => @detailrequest)
-page.replace_html("rules-statusarea", "Selected request item #{@detailrequest.id}")
-page.call 'Element.addClassName', "request-item-#{@detailrequest.id}-http_method", 'http_method-selected'
-page.call 'Element.addClassName', "request-item-#{@detailrequest.id}-path", 'path-selected'
+require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+display_rules_detailitem page, @detailrequest
+display_rules_status page, "Selected request item #{@detailrequest.id}"
+
+unselect_listitem page, 'http_method'
+unselect_listitem page, 'path'
+select_listitem page, "request-item-#{@detailrequest.id}-http_method", 'http_method'
+select_listitem page, "request-item-#{@detailrequest.id}-path", 'path'
+
