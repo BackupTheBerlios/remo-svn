@@ -1,5 +1,5 @@
 <div id="requestitem">
-          <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless request_rules_detailarea.nil? -%></div>
-          <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
-          <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+          <div id="label_http_method">Method: </div><div id="http_method"><%=  unless request_rules_detailarea.nil? then request_rules_detailarea.http_method else "&nbsp;" end -%></div>
+          <div id="label_path">Path: </div><div id="path"><%= unless request_rules_detailarea.nil? then request_rules_detailarea.path else "&nbsp;" end  -%></div>
+          <div id="label_weight">Weight: </div><div id="weight"><%=  unless request_rules_detailarea.nil? then request_rules_detailarea.weight else "&nbsp;" end -%></div>
         </div>

@@ -32,7 +32,7 @@
         toolset (soon to come)
       </div>
       <div id="rules-detailarea" class="detailarea">
-        <%= render(:partial => "request_rules_detailarea", :object => Request.find_requests.first) -%>
+        <%= render(:partial => "request_rules_detailarea", :object => nil) -%>
       </div>
       <div id="rules-mainarea" class="mainarea">
       <%= yield :layout %>

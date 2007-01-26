@@ -17982,3 +17982,1213 @@ Rendered main/_request (0.00297)
   [4;35;1mRequest Load (0.015885)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
 Rendered main/_request_rules_detailarea (0.00194)
 Completed in 0.14011 (7 reqs/sec) | Rendering: 0.05805 (41%) | DB: 0.02594 (18%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:48:57) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004906)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002957)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01432)
+Rendered main/_request (0.01359)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00276)
+Rendered main/_request (0.00282)
+Rendered main/_request (0.00253)
+  [4;36;1mRequest Load (0.004400)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00043)
+Completed in 0.10117 (9 reqs/sec) | Rendering: 0.05328 (52%) | DB: 0.01226 (12%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:49:14) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.004602)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002804)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04356)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00234)
+Rendered main/_request (0.00238)
+Rendered main/_request (0.00234)
+Rendered main/_request (0.00233)
+Rendered main/_request (0.00239)
+  [4;35;1mRequest Load (0.034700)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00042)
+Completed in 0.17347 (5 reqs/sec) | Rendering: 0.06872 (39%) | DB: 0.04211 (24%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:49:55) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004909)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002941)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01389)
+Rendered main/_request (0.00279)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00252)
+Rendered main/_request (0.00245)
+Rendered main/_request (0.00269)
+  [4;36;1mRequest Load (0.004216)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00044)
+Completed in 0.09945 (10 reqs/sec) | Rendering: 0.04160 (41%) | DB: 0.01207 (12%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:50:15) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.004980)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.003046)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01493)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00289)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00449)
+  [4;35;1mRequest Load (0.004464)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendered main/_request_rules_detailarea (0.00043)
+Completed in 0.10115 (9 reqs/sec) | Rendering: 0.05423 (53%) | DB: 0.01249 (12%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:51:22) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005567)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002863)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01385)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00238)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00238)
+Rendered main/_request (0.00253)
+Rendered main/_request_rules_detailarea (0.00033)
+Completed in 0.09734 (10 reqs/sec) | Rendering: 0.04706 (48%) | DB: 0.00843 (8%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:52:25) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004748)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002864)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01361)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00243)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00327)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:52:42) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.014847)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002902)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01369)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00260)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00239)
+Rendered main/_request (0.00263)
+Rendered main/_request (0.00279)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                             ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                             ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;" end -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:54:01) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004669)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002858)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01595)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00276)
+Rendered main/_request (0.00267)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00240)
+Rendered main/_request (0.00236)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                              ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                              ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless request_rules_detailarea.nil? then "&nbsp;"; end -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:54:18) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005042)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003685)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01461)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00239)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00238)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                               ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                               ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless request_rules_detailarea.nil? then; "&nbsp;"; end -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:54:45) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005523)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003101)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02276)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00235)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00275)
+Rendered main/_request (0.00244)
+Rendered main/_request (0.00237)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                  ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                                 ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                  ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                                 ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless (request_rules_detailarea.nil?) then ("&nbsp;") end -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:54:58) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004711)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002922)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01390)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00237)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00845)
+Rendered main/_request (0.00297)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: odd number list for Hash
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                  ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: odd number list for Hash
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                                 ^
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_path\">Path: </div><div id=\"path\">"; _erbout.concat(( request_rules_detailarea.path unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "          <div id=\"label_weight\">Weight: </div><div id=\"weight\">"; _erbout.concat(( request_rules_detailarea.weight unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</div>\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: odd number list for Hash
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kTHEN, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                  ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: odd number list for Hash
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:2: syntax error, unexpected kEND, expecting ')'
+_erbout.concat "          <div id=\"label_http_method\">Method: </div><div id=\"http_method\">"; _erbout.concat(( request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end ).to_s); _erbout.concat "</div>\n"
+                                                                                                                                                                                                                 ^) on line #2 of app/views/main/_request_rules_detailarea.rhtml:
+1: <div id="requestitem">
+2:           <div id="label_http_method">Method: </div><div id="http_method"><%= request_rules_detailarea.http_method unless {request_rules_detailarea.nil?} then {"&nbsp;"} end -%></div>
+3:           <div id="label_path">Path: </div><div id="path"><%= request_rules_detailarea.path unless request_rules_detailarea.nil? -%></div>
+4:           <div id="label_weight">Weight: </div><div id="weight"><%= request_rules_detailarea.weight unless request_rules_detailarea.nil? -%></div>
+5:         </div>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:7:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:35:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:55:52) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004766)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003197)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01610)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00333)
+Rendered main/_request (0.00247)
+Rendered main/_request (0.00238)
+Rendered main/_request (0.00249)
+Rendered main/_request (0.00254)
+Rendered main/_request_rules_detailarea (0.00290)
+Completed in 0.09456 (10 reqs/sec) | Rendering: 0.04434 (46%) | DB: 0.00796 (8%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:56:52) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005291)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003023)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01390)
+Rendered main/_request (0.00275)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00237)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00276)
+Rendered main/_request (0.00242)
+Rendered main/_request_rules_detailarea (0.00272)
+Completed in 0.09331 (10 reqs/sec) | Rendering: 0.04077 (43%) | DB: 0.00831 (8%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.22.88 at 2007-01-26 13:56:55) [POST]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"display_detail", "id"=>"2", "controller"=>"main"}
+  [4;36;1mSQL (0.003356)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001368)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.00169)
+Completed in 0.09065 (11 reqs/sec) | Rendering: 0.05290 (58%) | DB: 0.00472 (5%) | 200 OK [http://railsmachine/main/display_detail/2]
+
+
+Processing MainController#display_detail (for 85.3.22.88 at 2007-01-26 13:56:57) [POST]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"display_detail", "id"=>"4", "controller"=>"main"}
+  [4;36;1mSQL (0.005139)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001432)[0m   [0mSELECT * FROM requests WHERE (requests.id = 4) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.00180)
+Completed in 0.07340 (13 reqs/sec) | Rendering: 0.02972 (40%) | DB: 0.00657 (8%) | 200 OK [http://railsmachine/main/display_detail/4]
+
+
+Processing MainController#display_detail (for 85.3.22.88 at 2007-01-26 13:56:58) [POST]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"display_detail", "id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.003481)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001318)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.00499)
+Completed in 0.07439 (13 reqs/sec) | Rendering: 0.03389 (45%) | DB: 0.00480 (6%) | 200 OK [http://railsmachine/main/display_detail/1]
+
+
+Processing MainController#hello (for 85.3.22.88 at 2007-01-26 13:56:59) [GET]
+  Session ID: 96cb90f7de84b36f1798f2141b04a5db
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004813)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003279)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01401)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00235)
+Rendered main/_request (0.00235)
+Rendered main/_request (0.00287)
+Rendered main/_request (0.00243)
+Rendered main/_request (0.00235)
+Rendered main/_request_rules_detailarea (0.00054)
+Completed in 0.09281 (10 reqs/sec) | Rendering: 0.03753 (40%) | DB: 0.00809 (8%) | 200 OK [http://railsmachine/main/hello]
