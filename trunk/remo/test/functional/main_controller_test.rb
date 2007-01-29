@@ -71,6 +71,7 @@ class MainControllerTest < Test::Unit::TestCase
 		"div#rules",
 		"div#rules-toolsetarea",
 		"div#rules-detailarea",
+		".submit",	# detailarea submit button
 		"div#rules-mainarea",
 		"div#rules-statusarea", 
 		"div#rules-statusarea"]
@@ -83,6 +84,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#title > h1 > a[href=http://remo.netnea.com]", 1
     assert_select "div#title > h1 > a:nth-child(2)", /modsecurity/
     assert_select "div#title > h1 > a[href=http://www.modsecurity.org]", 1
+
 
     # check existence of logo
     assert_select "img#logo[src=/images/logo.png]", 1
@@ -97,6 +99,14 @@ class MainControllerTest < Test::Unit::TestCase
     	elements << "div#request-item-#{n}-path"
     end
     assert_exist_elementlist elements
+
+    # check for existence and correct title of submit button detailarea
+    regexp = /<input(.*?)type="submit"(.*?)value="Update request"(.*?)>/
+    assert false, "No button found with button text:\"Update request\"."  if regexp.match(@response.body).nil?
+
+    # check for detailarea form
+    regexp = /<form(.*?)action="\/main\/update_request"(.*?)method="post"/
+    assert false, "No detailarea form found."  if regexp.match(@response.body).nil?
 
     # testing content of the first data item
     assert_select "div#request-item-1-lens a[href=/main/hello/1]", 1
