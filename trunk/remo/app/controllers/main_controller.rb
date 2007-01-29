@@ -7,7 +7,7 @@ class MainController < ApplicationController
   	begin
 		@detailrequest = Request.find(params[:id])
 	rescue ActiveRecord::RecordNotFound
-		logger.error("Attempt to access invalid request #{params[:id]}")
+		logger.error("Attempt to access invalid request record #{params[:id]}")
 	end
   end
 end

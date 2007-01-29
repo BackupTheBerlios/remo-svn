@@ -4,6 +4,7 @@ class RequestTest < Test::Unit::TestCase
   fixtures :requests
 
   def test_valid_request_save
+    # save request to database
     request = Request.new(:http_method  => requests(:valid_get).http_method,
     			  :path   	=> requests(:valid_get).path,
     			  :weight  	=> 1000)  # has to be unique
@@ -14,6 +15,7 @@ class RequestTest < Test::Unit::TestCase
     assert request.save
   end
   def test_invalid_request_save
+    # save request to database
     request = Request.new(:http_method  => "HEAD_ILLEGAL",
     			  :path   	=> nil,
     			  :weight  	=> requests(:valid_get).weight)
