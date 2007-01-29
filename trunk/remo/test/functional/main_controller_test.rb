@@ -56,6 +56,7 @@ class MainControllerTest < Test::Unit::TestCase
     elements = ["div#banner", 
 		"div#title",
 		"div#logodiv",
+		"div#flash-notice",
 		"div#rules-mainarea",
 		"div#source-mainarea",
 		"div#banner",
@@ -139,8 +140,46 @@ class MainControllerTest < Test::Unit::TestCase
     assert_match /\$\$\(".http_method-selected"\).each\(function\(value, index\) \{/, body
     assert_match /Element.addClassName\("request-item-1-http_method", "http_method-selected"\);/, body
     assert_match /Element.removeClassName\("request-item-1-http_method", "http_method"\);/, body
+    
+    # reset vim syntax highlighting with another request (vim is a bit puzzled by the regexes)
+    assert_match /\$\$\(".path-selected"\).each\(function\(value, index\) \{/, body
 
     # with this we did not actually test the look of the view with the detail displayed
+
+  end
+
+  def test_flash_notice
+
+    get :hello
+    assert_equal nil, flash[:notice]
+    assert_select "div.flash-nok", 1  # it is nok by default
+    assert_select "div#rules-statusarea", "Status: active"
+
+    get :hello, :id => "500011100"
+    assert_equal "Attempt to access invalid request record 500011100", flash[:notice]
+    assert_select "div.flash-nok", 1 
+
+  end
+
+  def test_update_successful
+    post :update_request, :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3"
+    assert_redirected_to :action => "hello"
+    
+    follow_redirect
+    assert_response :success
+
+    #assert_equal "Successfully saved item 3!", flash[:notice] # the flash[:notice] seems to be nil when called via follow_redirect
+    assert_select "div.flash-ok", /Successfully saved item 3!/
+
+  end
+  def test_update_failure
+    post :update_request, :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3"
+    assert_redirected_to :action => "hello"
+    
+    follow_redirect
+    assert_response :success
+
+    assert_select "div.flash-nok", /Saving failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
 
   end
 

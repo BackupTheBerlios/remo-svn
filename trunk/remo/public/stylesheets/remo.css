@@ -45,10 +45,26 @@ a:link, a:visited, a:hover {
   margin-left: 1%;
   white-space: nowrap;
 }
+
       
 #logodiv {
   float: left;
   width: 49%;
+}
+
+#flash-notice {
+  float: left;
+  width: 100%;
+  margin-top: 5px;
+  padding-top: 2px;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+
+.flash-ok {
+  background: #aaffaa;
+}
+.flash-nok {
+  background: #ff8888;
 }
 
 #maindiv {
@@ -79,7 +95,7 @@ a:link, a:visited, a:hover {
 .detailarea {
   background: #49a6e0;
   margin-top: 2px;
-  height: 80px;
+  height: 100px;
   border-left: 1px dotted gray;
   border-right: 1px dotted gray;
 }

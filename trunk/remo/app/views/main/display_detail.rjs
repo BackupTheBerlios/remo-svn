@@ -1,10 +1,14 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-display_rules_detailitem page, @detailrequest
-display_rules_status page, "Selected request item #{@detailrequest.id}"
+page["flash-notice"].visual_effect :blind_up
 
+display_rules_detailitem page, @detail_request
+display_rules_status page, "Selected request item #{@detail_request.id}"
+
+unselect_listitem page, 'lens'
 unselect_listitem page, 'http_method'
 unselect_listitem page, 'path'
-select_listitem page, "request-item-#{@detailrequest.id}-http_method", 'http_method'
-select_listitem page, "request-item-#{@detailrequest.id}-path", 'path'
+select_listitem page, "request-item-#{@detail_request.id}-lens", 'lens'
+select_listitem page, "request-item-#{@detail_request.id}-http_method", 'http_method'
+select_listitem page, "request-item-#{@detail_request.id}-path", 'path'
 

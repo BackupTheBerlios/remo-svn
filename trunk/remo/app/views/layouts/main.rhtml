@@ -12,6 +12,9 @@
     <div id="title"><h1><a href="http://remo.netnea.com">remo</a> - rule editor for <a href="http://www.modsecurity.org">modsecurity</a></h1></div>
     <div id="logodiv" align="right"><a href="http://remo.netnea.com"><img id="logo" src="/images/logo.png"/></a></div>
   </div>
+  <div id="flash-notice" class="<%= if flash[:ok] then "flash-ok" else "flash-nok" end %>" style="display: <%= if flash[:notice].nil? then "none" else "inline" end %>;">
+    <%= flash[:notice] -%>
+  </div>
   <div id="maindiv">
     <div id="source" class="maincolumn">
       <div id="source-toolsetarea" class="toolsetarea">
@@ -38,7 +41,7 @@
       <%= yield :layout %>
       </div>
       <div id="rules-statusarea" class="statusarea">
-        status: active
+        <%= h(@rules_status) %> 
       </div>
     </div>
   </div>
