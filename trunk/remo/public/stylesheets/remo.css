@@ -26,7 +26,6 @@ a:link, a:visited, a:hover {
   text-decoration: none;
 }
 
-
 /* Styles for main page */
 
 #banner {
@@ -141,7 +140,7 @@ a:link, a:visited, a:hover {
 }
 .detailarea #requestitem #http_method{
   float: left;
-  width: 79%;
+  width: 50%;
 }
 .detailarea #requestitem #label_path{
   color: #494949;
@@ -161,7 +160,19 @@ a:link, a:visited, a:hover {
 }
 .detailarea #requestitem #weight{
   float: left;
-  width: 79%;
+  width: 50%;
+}
+
+.detailarea .submit {
+  background-image: url("bg-button.png");
+  background-repeat: repeat-x;
+  color: white;
+  font-weight: bold;
+  float: left;
+  width: 100%;
+  margin-top: 1px;
+  margin-left: 5px;
+  border: 1px solid white;
 }
 
 

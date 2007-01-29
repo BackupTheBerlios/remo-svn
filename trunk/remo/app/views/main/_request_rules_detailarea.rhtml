@@ -1,9 +1,10 @@
 <div id="requestitem">
 	  <% form_for :request, :url => { :action => :update_request } do |form| %>
 	    <%= hidden_field_tag "update_id", request_rules_detailarea.id unless request_rules_detailarea.nil? -%>
-            <label for="http_method">Method: </label><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div>
-            <label for="path">Path: </label><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path else "&nbsp;" end  -%></div>
-            <label for="weight">Weight: </label><div id="weight"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end -%></div>
-	    <%= submit_tag "Update request", :class => "submit" %>
+	    <table>
+	    <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div></td><td><%= submit_tag "Update request", :class => "submit" %></td></tr>
+	    <tr><td><div id="label_path">Path: </div></td><td><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  -%></div></td><td></td></tr>
+	    <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end -%></div></td><td></td></tr>
+            </table>
 	  <% end %>
         </div>
