@@ -98,6 +98,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_exist_elementlist elements
 
     # testing content of the first data item
+    assert_select "div#request-item-1-lens a[href=/main/hello/1]", 1
     assert_select "div#request-item-1-http_method", 'GET'
     assert_select "div#request-item-1-path", '/myindex.html'
 
@@ -106,6 +107,20 @@ class MainControllerTest < Test::Unit::TestCase
     # testing a http_method item and a path item will do
     assert_select "div#request-item-1-http_method a[onclick=new Ajax.Request('/main/display_detail/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "div#request-item-1-path a[onclick=new Ajax.Request('/main/display_detail/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+
+  end
+
+  def test_display_hello_detail_selected
+    # test of hello view with GET parameter id=1 (clicking on the lens in request list, thus loading view again with parameter)
+    get :hello, :id => 1
+    assert_response :success
+
+    assert_template "hello"
+    
+    # two example items will do.
+    assert_select "div.lens-selected a[href=/main/hello/1]", 1  # this one is the one called as GET parameter
+    assert_select "div.lens a[href=/main/hello/2]", 1
+
 
   end
 
@@ -128,5 +143,6 @@ class MainControllerTest < Test::Unit::TestCase
     # with this we did not actually test the look of the view with the detail displayed
 
   end
+
 
 end

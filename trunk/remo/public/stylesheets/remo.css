@@ -154,6 +154,10 @@ a:link, a:visited, a:hover {
 .listitem {
   padding-left: 2px;
 }
+.lens {
+  float: left;
+  width: 5%;
+}
 .http_method {
   white-space: nowrap;
   float: left;
@@ -162,7 +166,12 @@ a:link, a:visited, a:hover {
 .path {
   white-space: nowrap;
   float: left;
-  width: 90%;
+  width: 85%;
+}
+.lens-selected {
+  background: #d4ebf9;
+  float: left;
+  width: 5%;
 }
 .http_method-selected {
   background: #d4ebf9;
@@ -174,7 +183,7 @@ a:link, a:visited, a:hover {
   background: #d4ebf9;
   white-space: nowrap;
   float: left;
-  width: 90%;
+  width: 85%;
 }
 
 
