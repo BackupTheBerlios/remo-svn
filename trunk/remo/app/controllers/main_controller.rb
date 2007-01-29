@@ -50,11 +50,17 @@ class MainController < ApplicationController
   end
 
   def update_request
+	if params[:update_id].nil? 
+		redirect_to_hello nil, false, "Can't update. You have not selected a request to be updated." 
+		return
+	end
+
 	begin
 		@detail_request = Request.find(params[:update_id])
 	rescue ActiveRecord::RecordNotFound
 		logger.error("Attempt to access invalid request record #{params[:update_id]}")
 		redirect_to_hello 0, false, "Record could not be saved."
+		return
 	end
 	
 	@detail_request.http_method = params[:update_http_method]
@@ -64,8 +70,10 @@ class MainController < ApplicationController
 	begin
 		@detail_request.save!
 		redirect_to_hello params[:update_id], true, "Successfully saved item #{params[:update_id]}!"
+		return
 	rescue => err
 		redirect_to_hello params[:update_id], false, "Saving failed! " + err
+		return
 	end
   end
 end
