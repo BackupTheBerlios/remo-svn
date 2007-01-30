@@ -2,9 +2,9 @@
 	  <% form_for :request, :url => { :action => :update_request } do |form| %>
 	    <%= hidden_field_tag "update_id", request_rules_detailarea.id unless request_rules_detailarea.nil? -%>
 	    <table>
-	    <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div></td><td><%= submit_tag "Update request", :class => "submit" %></td></tr>
-	    <tr><td><div id="label_path">Path: </div></td><td><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  -%></div></td><td></td></tr>
-	    <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end -%></div></td><td></td></tr>
+	    <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div></td><td><%= submit_tag "New request", :class => "submit" -%></td></tr>
+	    <tr><td><div id="label_path">Path: </div></td><td><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  -%></div></td><td><%= if request_rules_detailarea.nil? then "" elsif request_rules_detailarea.id.nil? then submit_tag "Save request", :class => "submit" else submit_tag "Update request", :class => "submit" end -%></td></tr>
+	    <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end -%></div></td><td><%= submit_tag "Delete request", :class => "submit" unless request_rules_detailarea.nil? -%></td></tr>
             </table>
 	  <% end %>
         </div>

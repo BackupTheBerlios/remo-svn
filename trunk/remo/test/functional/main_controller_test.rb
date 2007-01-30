@@ -100,15 +100,27 @@ class MainControllerTest < Test::Unit::TestCase
     end
     assert_exist_elementlist elements
 
-    # check for existence and correct title of submit button detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="Update request"(.*?)>/
-    assert false, "No button found with button text:\"Update request\"."  if regexp.match(@response.body).nil?
-
     # check for detailarea form
     regexp = /<form(.*?)action="\/main\/update_request"(.*?)method="post"/
     assert false, "No detailarea form found."  if regexp.match(@response.body).nil?
 
-    # testing content of the first data item
+    # check for existence and correct title of submit button detailarea
+    regexp = /<input(.*?)type="submit"(.*?)value="New request"(.*?)>/
+    assert false, "No button found with button text: \"New request\"."  if regexp.match(@response.body).nil?
+
+    # check for non-existence submit button "Save request" in detailarea
+    regexp = /<input(.*?)type="submit"(.*?)value="Save request"(.*?)>/
+    assert true, "Button found with button text: \"Save request\"."  if regexp.match(@response.body).nil?
+
+    # check for non-existence submit button "Update request" in detailarea
+    regexp = /<input(.*?)type="submit"(.*?)value="Update request"(.*?)>/
+    assert true, "Button found with button text: \"Update request\"."  if regexp.match(@response.body).nil?
+
+    # check for non-existence submit button "Delete request" in detailarea
+    regexp = /<input(.*?)type="submit"(.*?)value="Delete request"(.*?)>/
+    assert true, "Button found with button text: \"Delete request\"."  if regexp.match(@response.body).nil?
+
+    # request list: testing content of the first data item
     assert_select "div#request-item-1-lens a[href=/main/hello/1]", 1
     assert_select "div#request-item-1-http_method", 'GET'
     assert_select "div#request-item-1-path", '/myindex.html'
@@ -154,7 +166,26 @@ class MainControllerTest < Test::Unit::TestCase
     # reset vim syntax highlighting with another request (vim is a bit puzzled by the regexes)
     assert_match /\$\$\(".path-selected"\).each\(function\(value, index\) \{/, body
 
-    # with this we did not actually test the look of the view with the detail displayed
+    # with this we did not actually test the look of the view with the detail displayed, but some
+    # items in the javascript code returned
+
+
+    # check for existence submit button "New request" 
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"New request\\"(.*?)>/
+    assert false, "No button found with button text: \"New request\"."  if regexp.match(@response.body).nil?
+
+    # check for existence submit button "Save request"
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Save request\\"(.*?)>/
+    assert true, "Button found with button text: \"Save request\"."  if regexp.match(@response.body).nil?
+
+    # check for existence submit button "Update request"
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Update request\\"(.*?)>/
+    assert false, "No button found with button text: \"Update request\"."  if regexp.match(@response.body).nil?
+
+    # check for existence submit button "Delete request"
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Delete request\\"(.*?)>/
+    assert false, "No button found with button text: \"Delete request\"."  if regexp.match(@response.body).nil?
+
 
   end
 

@@ -17249,3 +17249,822 @@ Rendered main/_request (0.00304)
 Rendered main/_request (0.00266)
 Rendered main/_request_rules_detailarea (0.00570)
 Completed in 0.13824 (7 reqs/sec) | Rendering: 0.08321 (60%) | DB: 0.01098 (7%) | 200 OK [http://railsmachine/main/hello/4]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 08:42:58) [GET]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.018715)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002980)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01341)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.02551)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00249)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00250)
+Rendered main/_request_rules_detailarea (0.00365)
+Completed in 0.13825 (7 reqs/sec) | Rendering: 0.06735 (48%) | DB: 0.02169 (15%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 08:43:03) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"display_detail", "id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.003504)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001289)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01451)
+Completed in 0.10315 (9 reqs/sec) | Rendering: 0.06036 (58%) | DB: 0.00479 (4%) | 200 OK [http://railsmachine/main/display_detail/8]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 08:43:10) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"commit"=>"Update request", "update_weight"=>"2", "action"=>"update_request", "update_path"=>"/action/delete.php", "update_http_method"=>"GFDHG", "update_id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.020570)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001547)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+  [4;35;1mRequest Load (0.000971)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 8) LIMIT 1[0m
+Redirected to http://railsmachine:3000/main/hello/8
+Completed in 0.16480 (6 reqs/sec) | DB: 0.02309 (14%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 08:43:10) [GET]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"hello", "id"=>"8", "controller"=>"main"}
+  [4;36;1mRequest Load (0.019144)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+  [4;35;1mSQL (0.004377)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001558)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.02797)
+Rendered main/_request (0.00273)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00270)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00264)
+Rendered main/_request_rules_detailarea (0.00762)
+Completed in 0.18349 (5 reqs/sec) | Rendering: 0.10157 (55%) | DB: 0.02508 (13%) | 200 OK [http://railsmachine/main/hello/8]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 08:43:19) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"commit"=>"Update request", "update_weight"=>"2", "action"=>"update_request", "update_path"=>"/action/delete.php", "update_http_method"=>"GET", "update_id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.004474)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001826)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+  [4;35;1mRequest Load (0.000935)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 2 AND requests.id <> 8) LIMIT 1[0m
+  [4;36;1mRequest Update (0.001262)[0m   [0;1mUPDATE requests SET "weight" = 2, "http_method" = 'GET', "path" = '/action/delete.php' WHERE id = 8[0m
+Redirected to http://railsmachine:3000/main/hello/8
+Completed in 0.09683 (10 reqs/sec) | DB: 0.00850 (8%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 08:43:20) [GET]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"hello", "id"=>"8", "controller"=>"main"}
+  [4;35;1mRequest Load (0.005588)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+  [4;36;1mSQL (0.002861)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001325)[0m   [0mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00941)
+Rendered main/_request (0.00278)
+Rendered main/_request (0.02009)
+Rendered main/_request (0.00270)
+Rendered main/_request (0.00300)
+Rendered main/_request (0.00451)
+Rendered main/_request (0.00272)
+Rendered main/_request (0.00278)
+Rendered main/_request_rules_detailarea (0.00604)
+Completed in 0.11857 (8 reqs/sec) | Rendering: 0.06725 (56%) | DB: 0.00977 (8%) | 200 OK [http://railsmachine/main/hello/8]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 09:52:57) [GET]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005707)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003013)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02553)
+Rendered main/_request (0.00272)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00268)
+Rendered main/_request (0.00262)
+Rendered main/_request (0.00260)
+Rendered main/_request (0.00263)
+Rendered main/_request (0.00312)
+Rendered main/_request_rules_detailarea (0.00534)
+Completed in 0.16011 (6 reqs/sec) | Rendering: 0.08601 (53%) | DB: 0.00872 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 09:53:00) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"display_detail", "id"=>"2", "controller"=>"main"}
+  [4;36;1mSQL (0.006494)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.010585)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01145)
+Completed in 0.21863 (4 reqs/sec) | Rendering: 0.11654 (53%) | DB: 0.01708 (7%) | 200 OK [http://railsmachine/main/display_detail/2]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 09:53:07) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"commit"=>"Update request", "update_weight"=>"8", "action"=>"update_request", "update_path"=>"/action/post.php", "update_http_method"=>"GET", "update_id"=>"2", "controller"=>"main"}
+  [4;36;1mSQL (0.003601)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001375)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Load (0.000762)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 2) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001017)[0m   [0mUPDATE requests SET "weight" = 8, "http_method" = 'GET', "path" = '/action/post.php' WHERE id = 2[0m
+Redirected to http://railsmachine:3000/main/hello/2
+Completed in 0.14219 (7 reqs/sec) | DB: 0.00676 (4%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 09:53:07) [GET]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"hello", "id"=>"2", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006392)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+  [4;35;1mSQL (0.003958)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001341)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.01780)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00258)
+Rendered main/_request (0.00252)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00252)
+Rendered main/_request (0.00249)
+Rendered main/_request_rules_detailarea (0.00703)
+Completed in 0.10552 (9 reqs/sec) | Rendering: 0.05481 (51%) | DB: 0.01169 (11%) | 200 OK [http://railsmachine/main/hello/2]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 09:53:13) [POST]
+  Session ID: f5dd4e42b6b5becbb1c9f1adaaa0b553
+  Parameters: {"action"=>"display_detail", "id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.005044)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001570)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.02288)
+Completed in 0.10622 (9 reqs/sec) | Rendering: 0.05797 (54%) | DB: 0.00661 (6%) | 200 OK [http://railsmachine/main/display_detail/8]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 16:31:24) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006867)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003047)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02594)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00247)
+Rendered main/_request (0.00983)
+Rendered main/_request (0.00258)
+Rendered main/_request (0.00251)
+Rendered main/_request (0.00250)
+Rendered main/_request_rules_detailarea (0.01497)
+Completed in 0.35844 (2 reqs/sec) | Rendering: 0.11595 (32%) | DB: 0.00991 (2%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:01:44) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006991)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.033335)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04375)
+Rendered main/_request (0.00260)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00317)
+Rendered main/_request (0.00282)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00253)
+Rendered main/_request_rules_detailarea (0.00393)
+Completed in 0.12430 (8 reqs/sec) | Rendering: 0.04540 (36%) | DB: 0.04033 (32%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:11:37) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006495)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.004314)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01590)
+Rendered main/_request (0.00306)
+Rendered main/_request (0.00504)
+Rendered main/_request (0.00365)
+Rendered main/_request (0.00276)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00404)
+Rendered main/_request (0.00260)
+Rendered main/_request_rules_detailarea (0.04205)
+Completed in 0.17506 (5 reqs/sec) | Rendering: 0.09078 (51%) | DB: 0.01081 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:15:39) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"New request", "action"=>"update_request", "controller"=>"main"}
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.01038 (96 reqs/sec) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:15:39) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005101)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002819)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01310)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00412)
+Rendered main/_request (0.00273)
+Rendered main/_request (0.00245)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00242)
+Rendered main/_request_rules_detailarea (0.00343)
+Completed in 0.13107 (7 reqs/sec) | Rendering: 0.04512 (34%) | DB: 0.00792 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:20:09) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"3", "controller"=>"main"}
+  [4;36;1mSQL (0.008543)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001458)[0m   [0mSELECT * FROM requests WHERE (requests.id = 3) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01122)
+Completed in 0.09636 (10 reqs/sec) | Rendering: 0.05122 (53%) | DB: 0.01000 (10%) | 200 OK [http://railsmachine/main/display_detail/3]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:26:16) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.008215)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003520)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01462)
+Rendered main/_request (0.00504)
+Rendered main/_request (0.00320)
+Rendered main/_request (0.00345)
+Rendered main/_request (0.00319)
+Rendered main/_request (0.03408)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00263)
+ERROR: compiling _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml RAISED compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:6: syntax error, unexpected ')', expecting kEND
+_erbout.concat "\t    <tr><td><div id=\"label_path\">Path: </div></td><td><div id=\"path\">"; _erbout.concat(( unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  ).to_s); _erbout.concat "</div></td><td>"; _erbout.concat(( if request_rules_detailarea.nil? then submit_tag "Save request", :class => "submit" else submit_tag "Update request", :class => "submit" ).to_s); _erbout.concat "</td></tr>\n"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:12: syntax error, unexpected kEND, expecting ')'
+Function body: def _run_rhtml_47app47views47main47_request_rules_detailarea46rhtml(local_assigns)
+request_rules_detailarea_counter = local_assigns[:request_rules_detailarea_counter]
+request_rules_detailarea = local_assigns[:request_rules_detailarea]
+_erbout = ''; _erbout.concat "<div id=\"requestitem\">\n"
+_erbout.concat "\t  ";  form_for :request, :url => { :action => :update_request } do |form| ; _erbout.concat "\n"
+_erbout.concat "\t    "; _erbout.concat(( hidden_field_tag "update_id", request_rules_detailarea.id unless request_rules_detailarea.nil? ).to_s)
+_erbout.concat "\t    <table>\n"
+_erbout.concat "\t    <tr><td><div id=\"label_http_method\">Method: </div></td><td><div id=\"http_method\">"; _erbout.concat((  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end ).to_s); _erbout.concat "</div></td><td>"; _erbout.concat(( submit_tag "New request", :class => "submit" ).to_s); _erbout.concat "</td></tr>\n"
+_erbout.concat "\t    <tr><td><div id=\"label_path\">Path: </div></td><td><div id=\"path\">"; _erbout.concat(( unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  ).to_s); _erbout.concat "</div></td><td>"; _erbout.concat(( if request_rules_detailarea.nil? then submit_tag "Save request", :class => "submit" else submit_tag "Update request", :class => "submit" ).to_s); _erbout.concat "</td></tr>\n"
+_erbout.concat "\t    <tr><td><div id=\"label_weight\">Weight: </div></td><td><div id=\"weight\">"; _erbout.concat((  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end ).to_s); _erbout.concat "</div></td><td>"; _erbout.concat(( submit_tag "Delete request", :class => "submit" unless request_rules_detailarea.nil? ).to_s); _erbout.concat "</td></tr>\n"
+_erbout.concat "            </table>\n"
+_erbout.concat "\t  ";  end ; _erbout.concat "\n"
+_erbout.concat "        </div>\n"
+_erbout
+end
+Backtrace: script/../config/../app/views/main/_request_rules_detailarea.rhtml:12:in `compile_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+script/../config/../app/views/layouts/main.rhtml:38:in `_run_rhtml_47app47views47layouts47main46rhtml'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+/usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+/usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+/usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+/usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+/usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+/usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+/usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+/usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+script/server:3
+
+
+ActionView::TemplateError (compile error
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:6: syntax error, unexpected ')', expecting kEND
+_erbout.concat "\t    <tr><td><div id=\"label_path\">Path: </div></td><td><div id=\"path\">"; _erbout.concat(( unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  ).to_s); _erbout.concat "</div></td><td>"; _erbout.concat(( if request_rules_detailarea.nil? then submit_tag "Save request", :class => "submit" else submit_tag "Update request", :class => "submit" ).to_s); _erbout.concat "</td></tr>\n"
+                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+script/../config/../app/views/main/_request_rules_detailarea.rhtml:12: syntax error, unexpected kEND, expecting ')') on line #6 of app/views/main/_request_rules_detailarea.rhtml:
+3: 	    <%= hidden_field_tag "update_id", request_rules_detailarea.id unless request_rules_detailarea.nil? -%>
+4: 	    <table>
+5: 	    <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div></td><td><%= submit_tag "New request", :class => "submit" -%></td></tr>
+6: 	    <tr><td><div id="label_path">Path: </div></td><td><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  -%></div></td><td><%= if request_rules_detailarea.nil? then submit_tag "Save request", :class => "submit" else submit_tag "Update request", :class => "submit" %></td></tr>
+7: 	    <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_weight", request_rules_detailarea.weight else "&nbsp;" end -%></div></td><td><%= submit_tag "Delete request", :class => "submit" unless request_rules_detailarea.nil? %></td></tr>
+8:             </table>
+9: 	  <% end %>
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:12:in `compile_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:319:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:38:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:27:29) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005068)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002844)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02019)
+Rendered main/_request (0.00381)
+Rendered main/_request (0.00314)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00411)
+Rendered main/_request (0.00312)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00253)
+Rendered main/_request_rules_detailarea (0.04136)
+Completed in 0.16935 (5 reqs/sec) | Rendering: 0.09607 (56%) | DB: 0.00791 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:27:39) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"3", "controller"=>"main"}
+  [4;36;1mSQL (0.003535)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.002426)[0m   [0mSELECT * FROM requests WHERE (requests.id = 3) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01327)
+Completed in 0.09628 (10 reqs/sec) | Rendering: 0.05115 (53%) | DB: 0.00596 (6%) | 200 OK [http://railsmachine/main/display_detail/3]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:27:43) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"8", "controller"=>"main"}
+  [4;36;1mSQL (0.003776)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.003645)[0m   [0mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01375)
+Completed in 0.09263 (10 reqs/sec) | Rendering: 0.04702 (50%) | DB: 0.00742 (8%) | 200 OK [http://railsmachine/main/display_detail/8]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:27:45) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.004701)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001277)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01199)
+Completed in 0.09359 (10 reqs/sec) | Rendering: 0.05217 (55%) | DB: 0.00598 (6%) | 200 OK [http://railsmachine/main/display_detail/1]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:29:52) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"New request", "update_weight"=>"1", "action"=>"update_request", "update_path"=>"/myindex.html", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.037240)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001546)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.001934)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.001506)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+Redirected to http://railsmachine:3000/main/hello/1
+Completed in 0.39384 (2 reqs/sec) | DB: 0.04223 (10%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:29:52) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005842)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+  [4;35;1mSQL (0.002937)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.002058)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.01021)
+Rendered main/_request (0.00341)
+Rendered main/_request (0.00264)
+Rendered main/_request (0.03310)
+Rendered main/_request (0.00277)
+Rendered main/_request (0.00257)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00261)
+Rendered main/_request_rules_detailarea (0.00610)
+Completed in 0.16677 (5 reqs/sec) | Rendering: 0.08079 (48%) | DB: 0.01084 (6%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:29:56) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Update request", "update_weight"=>"1", "action"=>"update_request", "update_path"=>"/myindex.html", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+  [4;35;1mSQL (0.003503)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001290)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;35;1mRequest Load (0.000719)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000949)[0m   [0;1mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+Redirected to http://railsmachine:3000/main/hello/1
+Completed in 0.14461 (6 reqs/sec) | DB: 0.00646 (4%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:29:57) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;35;1mRequest Load (0.005128)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+  [4;36;1mSQL (0.002725)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001297)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00971)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00249)
+Rendered main/_request (0.00251)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.03306)
+Rendered main/_request (0.00269)
+Rendered main/_request_rules_detailarea (0.00597)
+Completed in 0.18046 (5 reqs/sec) | Rendering: 0.10656 (59%) | DB: 0.00915 (5%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:30:00) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "update_weight"=>"1", "action"=>"update_request", "update_path"=>"/myindex.html", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.003411)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001239)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Load (0.000724)[0m   [0;1mSELECT * FROM requests WHERE (requests.weight = 1 AND requests.id <> 1) LIMIT 1[0m
+  [4;35;1mRequest Update (0.000937)[0m   [0mUPDATE requests SET "weight" = 1, "http_method" = 'GET', "path" = '/myindex.html' WHERE id = 1[0m
+Redirected to http://railsmachine:3000/main/hello/1
+Completed in 0.08368 (11 reqs/sec) | DB: 0.00631 (7%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:30:01) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005194)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+  [4;35;1mSQL (0.033778)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001416)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00929)
+Rendered main/_request (0.00270)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00258)
+Rendered main/_request (0.03323)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00262)
+Rendered main/_request (0.00258)
+Rendered main/_request_rules_detailarea (0.00615)
+Completed in 0.18317 (5 reqs/sec) | Rendering: 0.07675 (41%) | DB: 0.04039 (22%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:30:04) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"2", "controller"=>"main"}
+  [4;35;1mSQL (0.005402)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001797)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01396)
+Completed in 0.12922 (7 reqs/sec) | Rendering: 0.05193 (40%) | DB: 0.00720 (5%) | 200 OK [http://railsmachine/main/display_detail/2]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:30:10) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"New request", "update_weight"=>"8", "action"=>"update_request", "update_path"=>"/action/post.php", "update_http_method"=>"POST", "update_id"=>"2", "controller"=>"main"}
+  [4;35;1mSQL (0.003400)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001239)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;35;1mRequest Load (0.000711)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 8 AND requests.id <> 2) LIMIT 1[0m
+  [4;36;1mRequest Update (0.000955)[0m   [0;1mUPDATE requests SET "weight" = 8, "http_method" = 'POST', "path" = '/action/post.php' WHERE id = 2[0m
+Redirected to http://railsmachine:3000/main/hello/2
+Completed in 0.14390 (6 reqs/sec) | DB: 0.00630 (4%) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:30:10) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"2", "controller"=>"main"}
+  [4;35;1mRequest Load (0.005060)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+  [4;36;1mSQL (0.002706)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001389)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00840)
+Rendered main/_request (0.00301)
+Rendered main/_request (0.00316)
+Rendered main/_request (0.00297)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00411)
+Rendered main/_request (0.00308)
+Rendered main/_request (0.00372)
+Rendered main/_request_rules_detailarea (0.00663)
+Completed in 0.13684 (7 reqs/sec) | Rendering: 0.09358 (68%) | DB: 0.00916 (6%) | 200 OK [http://railsmachine/main/hello/2]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:32:12) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.038628)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002900)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01360)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00259)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.01825)
+Rendered main/_request (0.00563)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00253)
+
+
+ActionView::TemplateError (Called id for nil, which would mistakenly be 4 -- if you really wanted the id of nil, use object_id) on line #8 of app/views/main/_request_rules_detailarea.rhtml:
+5: 	    <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method"><%=  unless request_rules_detailarea.nil? then text_field_tag "update_http_method", request_rules_detailarea.http_method else "&nbsp;" end -%></div></td><td><%= submit_tag "New request", :class => "submit" -%></td></tr>
+6: 	    <tr><td><div id="label_path">Path: </div></td><td><div id="path"><%= unless request_rules_detailarea.nil? then text_field_tag "update_path", request_rules_detailarea.path, :size => "35" else "&nbsp;" end  -%></div></td><td><%= 
+7: 	    
+8: 	    if request_rules_detailarea.id then 
+9: 	    	submit_tag "Update request", :class => "submit" 
+10: 	    elsif request_rules_detailarea
+11: 	    	submit_tag "Save request", :class => "submit" 
+
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:8:in `_run_rhtml_47app47views47main47_request_rules_detailarea46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/helpers/form_helper.rb:151:in `fields_for'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/helpers/form_helper.rb:127:in `form_for'
+    #{RAILS_ROOT}/app/views/main/_request_rules_detailarea.rhtml:2:in `_run_rhtml_47app47views47main47_request_rules_detailarea46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:275:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:59:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/1.8/benchmark.rb:307:in `realtime'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:26:in `benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/partials.rb:58:in `render_partial'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:287:in `render'
+    #{RAILS_ROOT}/app/views/layouts/main.rhtml:38:in `_run_rhtml_47app47views47layouts47main46rhtml'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:326:in `compile_and_render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:301:in `render_template'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_view/base.rb:260:in `render_file'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/layout.rb:254:in `render_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:50:in `render'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:1093:in `perform_action_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:632:in `call_filter'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:619:in `perform_action_without_benchmark'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/1.8/benchmark.rb:293:in `measure'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/benchmarking.rb:66:in `perform_action_without_rescue'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/rescue.rb:83:in `perform_action'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `send'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:427:in `process_without_filters'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/filters.rb:624:in `process_without_session_management_support'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/session_management.rb:114:in `process'
+    /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/base.rb:330:in `process'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/dispatcher.rb:41:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:113:in `handle_dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:79:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:104:in `service'
+    /usr/lib/ruby/1.8/webrick/httpserver.rb:65:in `run'
+    /usr/lib/ruby/1.8/webrick/server.rb:173:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:162:in `start_thread'
+    /usr/lib/ruby/1.8/webrick/server.rb:95:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `each'
+    /usr/lib/ruby/1.8/webrick/server.rb:92:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:23:in `start'
+    /usr/lib/ruby/1.8/webrick/server.rb:82:in `start'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/webrick_server.rb:63:in `dispatch'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/servers/webrick.rb:59
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/rails-1.1.6.5848/lib/commands/server.rb:39
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `gem_original_require'
+    /usr/local/lib/site_ruby/1.8/rubygems/custom_require.rb:27:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:343:in `new_constants_in'
+    /usr/lib/ruby/gems/1.8/gems/activesupport-1.3.1.5848/lib/active_support/dependencies.rb:496:in `require'
+    script/server:3
+
+
+Rendering /usr/lib/ruby/gems/1.8/gems/actionpack-1.12.5.5848/lib/action_controller/templates/rescues/layout.rhtml (500 Internal Error)
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:33:36) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004993)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002808)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02318)
+Rendered main/_request (0.00285)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00282)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00358)
+Rendered main/_request (0.00332)
+Rendered main/_request (0.03555)
+Rendered main/_request_rules_detailarea (0.28788)
+Completed in 0.44868 (2 reqs/sec) | Rendering: 0.37675 (83%) | DB: 0.00780 (1%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.60.42 at 2007-01-30 17:33:42) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"8", "controller"=>"main"}
+  [4;36;1mSQL (0.003953)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001377)[0m   [0mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01539)
+Completed in 0.10088 (9 reqs/sec) | Rendering: 0.05826 (57%) | DB: 0.00533 (5%) | 200 OK [http://railsmachine/main/display_detail/8]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:33:46) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005169)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+  [4;35;1mSQL (0.002720)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001367)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00845)
+Rendered main/_request (0.00269)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00468)
+Rendered main/_request (0.00262)
+Rendered main/_request_rules_detailarea (0.04633)
+Completed in 0.18732 (5 reqs/sec) | Rendering: 0.09012 (48%) | DB: 0.00926 (4%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:33:50) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.005140)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002821)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04371)
+Rendered main/_request (0.00266)
+Rendered main/_request (0.00243)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00244)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.03315)
+Rendered main/_request_rules_detailarea (0.00351)
+Completed in 0.17495 (5 reqs/sec) | Rendering: 0.10480 (59%) | DB: 0.00796 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#update_request (for 85.3.60.42 at 2007-01-30 17:34:05) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"New request", "action"=>"update_request", "controller"=>"main"}
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.02036 (49 reqs/sec) | 302 Found [http://railsmachine/main/update_request]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:34:05) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.011147)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.003822)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04574)
+Rendered main/_request (0.00261)
+Rendered main/_request (0.00252)
+Rendered main/_request (0.00249)
+Rendered main/_request (0.00247)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00251)
+Rendered main/_request (0.00248)
+Rendered main/_request_rules_detailarea (0.00803)
+Completed in 0.16147 (6 reqs/sec) | Rendering: 0.08383 (51%) | DB: 0.01497 (9%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.60.42 at 2007-01-30 17:34:41) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.006427)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.003526)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04989)
+Rendered main/_request (0.00267)
+Rendered main/_request (0.00262)
+Rendered main/_request (0.00354)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00292)
+Rendered main/_request (0.00560)
+Rendered main/_request (0.00251)
+Rendered main/_request_rules_detailarea (0.00926)
+Completed in 0.14493 (6 reqs/sec) | Rendering: 0.09146 (63%) | DB: 0.00995 (6%) | 200 OK [http://railsmachine/main/hello]
