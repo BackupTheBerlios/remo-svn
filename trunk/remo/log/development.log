@@ -27817,3 +27817,41 @@ Rendered main/_request (0.00280)
 Rendered main/_request (0.00250)
 Rendered main/_request_rules_detailarea (0.00537)
 Completed in 0.18611 (5 reqs/sec) | Rendering: 0.11442 (61%) | DB: 0.00932 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 13:22:40) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"5", "controller"=>"main"}
+  [4;36;1mSQL (0.004204)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001557)[0m   [0mSELECT * FROM requests WHERE (requests.id = 5) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.03043)
+Completed in 0.14220 (7 reqs/sec) | Rendering: 0.07949 (55%) | DB: 0.00576 (4%) | 200 OK [http://railsmachine/main/display_detail/5]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 13:22:41) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Clear", "actionflag"=>"clear", "update_weight"=>"12", "action"=>"submit_detailarea", "update_path"=>"/detail.html2", "update_http_method"=>"GET", "update_id"=>"5", "controller"=>"main"}
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.00843 (118 reqs/sec) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 13:22:42) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.007135)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003060)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01497)
+Rendered main/_request (0.00316)
+Rendered main/_request (0.00352)
+Rendered main/_request (0.00337)
+Rendered main/_request (0.03789)
+Rendered main/_request (0.00287)
+Rendered main/_request (0.00337)
+Rendered main/_request (0.00312)
+Rendered main/_request (0.00285)
+Rendered main/_request (0.00303)
+Rendered main/_request_rules_detailarea (0.00603)
+Completed in 0.17738 (5 reqs/sec) | Rendering: 0.09676 (54%) | DB: 0.01020 (5%) | 200 OK [http://railsmachine/main/hello]

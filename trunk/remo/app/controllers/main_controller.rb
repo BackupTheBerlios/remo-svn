@@ -90,7 +90,7 @@ class MainController < ApplicationController
 				@detail_request = Request.find(params[:update_id])
 			rescue ActiveRecord::RecordNotFound
 				logger.error("Attempt to access invalid request record #{params[:update_id]}")
-				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id  #{params[:update_id]}." 
+				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
 				return
 			end
 
@@ -113,7 +113,7 @@ class MainController < ApplicationController
 				@detail_request = Request.find(params[:update_id])
 			rescue ActiveRecord::RecordNotFound
 				logger.error("Attempt to access invalid request record #{params[:update_id]}")
-				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id  #{params[:update_id]}." 
+				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
 				return
 			end
 			
