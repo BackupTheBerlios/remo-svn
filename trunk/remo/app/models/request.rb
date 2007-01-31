@@ -1,4 +1,6 @@
 class Request < ActiveRecord::Base
+	attr_accessible :http_method, :path, :weight
+
 	validates_presence_of :http_method, :path, :weight
 	validates_numericality_of :weight
 	validates_uniqueness_of  :weight

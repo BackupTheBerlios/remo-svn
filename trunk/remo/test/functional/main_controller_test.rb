@@ -101,12 +101,12 @@ class MainControllerTest < Test::Unit::TestCase
     assert_exist_elementlist elements
 
     # check for detailarea form
-    regexp = /<form(.*?)action="\/main\/update_request"(.*?)method="post"/
+    regexp = /<form(.*?)action="\/main\/submit_detailarea"(.*?)method="post"/
     assert false, "No detailarea form found."  if regexp.match(@response.body).nil?
 
     # check for existence and correct title of submit button detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="New request"(.*?)>/
-    assert false, "No button found with button text: \"New request\"."  if regexp.match(@response.body).nil?
+    regexp = /<input(.*?)type="submit"(.*?)value="Add request"(.*?)>/
+    assert false, "No button found with button text: \"Add request\"."  if regexp.match(@response.body).nil?
 
     # check for non-existence submit button "Save request" in detailarea
     regexp = /<input(.*?)type="submit"(.*?)value="Save request"(.*?)>/
@@ -170,13 +170,9 @@ class MainControllerTest < Test::Unit::TestCase
     # items in the javascript code returned
 
 
-    # check for existence submit button "New request" 
-    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"New request\\"(.*?)>/
-    assert false, "No button found with button text: \"New request\"."  if regexp.match(@response.body).nil?
-
-    # check for existence submit button "Save request"
-    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Save request\\"(.*?)>/
-    assert true, "Button found with button text: \"Save request\"."  if regexp.match(@response.body).nil?
+    # check for existence submit button "Clear" 
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Clear\\"(.*?)>/
+    assert false, "No button found with button text: \"Clear\"."  if regexp.match(@response.body).nil?
 
     # check for existence submit button "Update request"
     regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Update request\\"(.*?)>/
@@ -203,7 +199,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_update_successful
-    post :update_request, :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3"
+    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3"
     assert_redirected_to :action => "hello"
     
     follow_redirect
@@ -214,7 +210,7 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
   def test_update_failure
-    post :update_request, :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3"
+    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3"
     assert_redirected_to :action => "hello"
     
     follow_redirect
