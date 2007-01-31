@@ -27855,3 +27855,483 @@ Rendered main/_request (0.00285)
 Rendered main/_request (0.00303)
 Rendered main/_request_rules_detailarea (0.00603)
 Completed in 0.17738 (5 reqs/sec) | Rendering: 0.09676 (54%) | DB: 0.01020 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:25) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.006818)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.003043)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01358)
+Rendered main/_request (0.00267)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00244)
+Rendered main/_request (0.00294)
+Rendered main/_request (0.00245)
+Rendered main/_request (0.00244)
+Rendered main/_request (0.00249)
+Rendered main/_request_rules_detailarea (0.00534)
+Completed in 0.14564 (6 reqs/sec) | Rendering: 0.05413 (37%) | DB: 0.00986 (6%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:02:30) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.003878)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001567)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01805)
+Completed in 0.12701 (7 reqs/sec) | Rendering: 0.07268 (57%) | DB: 0.00545 (4%) | 200 OK [http://railsmachine/main/display_detail/1]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:02:31) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"1", "action"=>"submit_detailarea", "update_path"=>"/myindex.html", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.003407)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001353)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Delete all (0.034460)[0m   [0;1mDELETE FROM requests WHERE (id IN ('1')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.41089 (2 reqs/sec) | DB: 0.03922 (9%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:32) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.005920)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002977)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01368)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00257)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00260)
+Rendered main/_request (0.00263)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00256)
+Rendered main/_request_rules_detailarea (0.00537)
+Completed in 0.15199 (6 reqs/sec) | Rendering: 0.11080 (72%) | DB: 0.00890 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:02:35) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"3", "controller"=>"main"}
+  [4;35;1mSQL (0.004707)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001990)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 3) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01732)
+Completed in 0.11027 (9 reqs/sec) | Rendering: 0.05929 (53%) | DB: 0.00670 (6%) | 200 OK [http://railsmachine/main/display_detail/3]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:02:37) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"3", "action"=>"submit_detailarea", "update_path"=>"/detail.html", "update_http_method"=>"GET", "update_id"=>"3", "controller"=>"main"}
+  [4;35;1mSQL (0.003509)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001336)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 3) [0m
+  [4;35;1mRequest Delete all (0.093732)[0m   [0mDELETE FROM requests WHERE (id IN ('3')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.16663 (6 reqs/sec) | DB: 0.09858 (59%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:38) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.005127)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002894)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01309)
+Rendered main/_request (0.00257)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00246)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00241)
+Rendered main/_request (0.00254)
+Rendered main/_request_rules_detailarea (0.01246)
+Completed in 0.53997 (1 reqs/sec) | Rendering: 0.44040 (81%) | DB: 0.00802 (1%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:02:42) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"2", "controller"=>"main"}
+  [4;36;1mSQL (0.005866)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001631)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.02384)
+Completed in 0.14816 (6 reqs/sec) | Rendering: 0.09985 (67%) | DB: 0.00750 (5%) | 200 OK [http://railsmachine/main/display_detail/2]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:02:44) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"8", "action"=>"submit_detailarea", "update_path"=>"/action/post.php2", "update_http_method"=>"POST", "update_id"=>"2", "controller"=>"main"}
+  [4;36;1mSQL (0.003661)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001433)[0m   [0mSELECT * FROM requests WHERE (requests.id = 2) [0m
+  [4;36;1mRequest Delete all (0.033640)[0m   [0;1mDELETE FROM requests WHERE (id IN ('2')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.10846 (9 reqs/sec) | DB: 0.03873 (35%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:45) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.004763)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002989)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.06434)
+Rendered main/_request (0.00255)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00249)
+Rendered main/_request (0.00243)
+Rendered main/_request (0.00242)
+Rendered main/_request (0.00273)
+Rendered main/_request_rules_detailarea (0.00567)
+Completed in 0.16285 (6 reqs/sec) | Rendering: 0.12378 (76%) | DB: 0.00775 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:02:48) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"7", "controller"=>"main"}
+  [4;35;1mSQL (0.006940)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.003320)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 7) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01567)
+Completed in 0.32277 (3 reqs/sec) | Rendering: 0.26048 (80%) | DB: 0.01026 (3%) | 200 OK [http://railsmachine/main/display_detail/7]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:02:51) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"7", "action"=>"submit_detailarea", "update_path"=>"/info.html", "update_http_method"=>"GET", "update_id"=>"7", "controller"=>"main"}
+  [4;35;1mSQL (0.003837)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001499)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 7) [0m
+  [4;35;1mRequest Delete all (0.054936)[0m   [0mDELETE FROM requests WHERE (id IN ('7')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.12940 (7 reqs/sec) | DB: 0.06027 (46%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:52) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.004578)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002956)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.02254)
+Rendered main/_request (0.00304)
+Rendered main/_request (0.00251)
+Rendered main/_request (0.00247)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00255)
+Rendered main/_request_rules_detailarea (0.00538)
+Completed in 0.15673 (6 reqs/sec) | Rendering: 0.07922 (50%) | DB: 0.00753 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:02:55) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"4", "controller"=>"main"}
+  [4;36;1mSQL (0.003514)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001317)[0m   [0mSELECT * FROM requests WHERE (requests.id = 4) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01294)
+Completed in 0.13207 (7 reqs/sec) | Rendering: 0.08760 (66%) | DB: 0.00483 (3%) | 200 OK [http://railsmachine/main/display_detail/4]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:02:59) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"4", "action"=>"submit_detailarea", "update_path"=>"/view.cgi", "update_http_method"=>"GET", "update_id"=>"4", "controller"=>"main"}
+  [4;36;1mSQL (0.003525)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001269)[0m   [0mSELECT * FROM requests WHERE (requests.id = 4) [0m
+  [4;36;1mRequest Delete all (0.002997)[0m   [0;1mDELETE FROM requests WHERE (id IN ('4')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.07585 (13 reqs/sec) | DB: 0.00779 (10%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:02:59) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.004271)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.003072)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04429)
+Rendered main/_request (0.00265)
+Rendered main/_request (0.00250)
+Rendered main/_request (0.00256)
+Rendered main/_request (0.00252)
+Rendered main/_request_rules_detailarea (0.00567)
+Completed in 0.13815 (7 reqs/sec) | Rendering: 0.06801 (49%) | DB: 0.00734 (5%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:03:02) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.003703)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001451)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.03291)
+Completed in 0.16578 (6 reqs/sec) | Rendering: 0.09762 (58%) | DB: 0.00515 (3%) | 200 OK [http://railsmachine/main/display_detail/8]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:03:05) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"9", "action"=>"submit_detailarea", "update_path"=>"/info.html2", "update_http_method"=>"GET", "update_id"=>"8", "controller"=>"main"}
+  [4;35;1mSQL (0.003512)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001339)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 8) [0m
+  [4;35;1mRequest Delete all (0.064528)[0m   [0mDELETE FROM requests WHERE (id IN ('8')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.13767 (7 reqs/sec) | DB: 0.06938 (50%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:03:06) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.003344)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002852)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04408)
+Rendered main/_request (0.00253)
+Rendered main/_request (0.00248)
+Rendered main/_request (0.00242)
+Rendered main/_request_rules_detailarea (0.00534)
+Completed in 0.13064 (7 reqs/sec) | Rendering: 0.06331 (48%) | DB: 0.00620 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:03:09) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"9", "controller"=>"main"}
+  [4;36;1mSQL (0.003795)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001510)[0m   [0mSELECT * FROM requests WHERE (requests.id = 9) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.02140)
+Completed in 0.12469 (8 reqs/sec) | Rendering: 0.07720 (61%) | DB: 0.00531 (4%) | 200 OK [http://railsmachine/main/display_detail/9]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:03:12) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"15", "action"=>"submit_detailarea", "update_path"=>"/index.html", "update_http_method"=>"GET", "update_id"=>"9", "controller"=>"main"}
+  [4;36;1mSQL (0.003760)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001466)[0m   [0mSELECT * FROM requests WHERE (requests.id = 9) [0m
+  [4;36;1mRequest Delete all (0.033875)[0m   [0;1mDELETE FROM requests WHERE (id IN ('9')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.10786 (9 reqs/sec) | DB: 0.03910 (36%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:03:13) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.003075)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002873)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04376)
+Rendered main/_request (0.00254)
+Rendered main/_request (0.00242)
+Rendered main/_request_rules_detailarea (0.00525)
+Completed in 0.12713 (7 reqs/sec) | Rendering: 0.05968 (46%) | DB: 0.00595 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:03:58) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"11", "controller"=>"main"}
+  [4;35;1mSQL (0.003975)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001678)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 11) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01584)
+Completed in 0.13150 (7 reqs/sec) | Rendering: 0.06720 (51%) | DB: 0.00565 (4%) | 200 OK [http://railsmachine/main/display_detail/11]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:04:00) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"17", "action"=>"submit_detailarea", "update_path"=>"/indeox2.html", "update_http_method"=>"GET", "update_id"=>"11", "controller"=>"main"}
+  [4;35;1mSQL (0.003750)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001489)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 11) [0m
+  [4;35;1mRequest Delete all (0.003308)[0m   [0mDELETE FROM requests WHERE (id IN ('11')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.10781 (9 reqs/sec) | DB: 0.00855 (7%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:04:00) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002998)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002959)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04403)
+Rendered main/_request (0.00267)
+Rendered main/_request_rules_detailarea (0.00548)
+Completed in 0.12475 (8 reqs/sec) | Rendering: 0.05712 (45%) | DB: 0.00596 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:04:03) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"10", "controller"=>"main"}
+  [4;36;1mSQL (0.003569)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001335)[0m   [0mSELECT * FROM requests WHERE (requests.id = 10) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01620)
+Completed in 0.12966 (7 reqs/sec) | Rendering: 0.06662 (51%) | DB: 0.00490 (3%) | 200 OK [http://railsmachine/main/display_detail/10]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:04:05) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"16", "action"=>"submit_detailarea", "update_path"=>"/info.html", "update_http_method"=>"GET", "update_id"=>"10", "controller"=>"main"}
+  [4;36;1mSQL (0.003565)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001285)[0m   [0mSELECT * FROM requests WHERE (requests.id = 10) [0m
+  [4;36;1mRequest Delete all (0.003020)[0m   [0;1mDELETE FROM requests WHERE (id IN ('10')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.07611 (13 reqs/sec) | DB: 0.00787 (10%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:04:06) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.002501)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;36;1mSQL (0.002978)[0m   [0;1mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.01437)
+Rendered main/_request_rules_detailarea (0.00585)
+Completed in 0.12486 (8 reqs/sec) | Rendering: 0.05482 (43%) | DB: 0.00548 (4%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#display_detail (for 85.3.39.41 at 2007-01-31 14:04:09) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"display_detail", "id"=>"5", "controller"=>"main"}
+  [4;35;1mSQL (0.006722)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.004960)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 5) [0m
+Rendering main/display_detail
+Rendered main/_request_rules_detailarea (0.01823)
+Completed in 0.16915 (5 reqs/sec) | Rendering: 0.06717 (39%) | DB: 0.01168 (6%) | 200 OK [http://railsmachine/main/display_detail/5]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 14:04:12) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"12", "action"=>"submit_detailarea", "update_path"=>"/detail.html2", "update_http_method"=>"GET", "update_id"=>"5", "controller"=>"main"}
+  [4;35;1mSQL (0.003547)[0m   [0mPRAGMA table_info(requests)[0m
+  [4;36;1mRequest Load (0.001327)[0m   [0;1mSELECT * FROM requests WHERE (requests.id = 5) [0m
+  [4;35;1mRequest Delete all (0.034079)[0m   [0mDELETE FROM requests WHERE (id IN ('5')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.10714 (9 reqs/sec) | DB: 0.03895 (36%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:04:12) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.001962)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request_rules_detailarea (0.04497)
+Completed in 0.12327 (8 reqs/sec) | Rendering: 0.05127 (41%) | DB: 0.00196 (1%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 14:04:19) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.002476)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request_rules_detailarea (0.00998)
+Completed in 0.10681 (9 reqs/sec) | Rendering: 0.04841 (45%) | DB: 0.00248 (2%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.003824)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001538)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.003263)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000462)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.005393)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "weight" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.004060)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002200)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001244)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.002768)[0m   [0mUPDATE schema_info SET version = 4[0m
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 15:19:03) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Add request", "actionflag"=>"add", "update_weight"=>"1", "action"=>"submit_detailarea", "update_path"=>"/index.html", "update_http_method"=>"GET", "controller"=>"main"}
+  [4;36;1mSQL (0.003835)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000804)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.000981)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/index.html')[0m
+Redirected to http://railsmachine:3000/main/hello/1
+Completed in 0.11033 (9 reqs/sec) | DB: 0.00562 (5%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 15:19:03) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;35;1mRequest Load (0.002456)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+  [4;36;1mSQL (0.002994)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001435)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.00858)
+Rendered main/_request_rules_detailarea (0.01597)
+Completed in 0.11365 (8 reqs/sec) | Rendering: 0.03166 (27%) | DB: 0.00688 (6%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 15:25:08) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Delete request", "actionflag"=>"delete", "update_weight"=>"1", "action"=>"submit_detailarea", "update_path"=>"/index.html", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+  [4;36;1mSQL (0.003735)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001425)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+  [4;36;1mRequest Delete all (0.003245)[0m   [0;1mDELETE FROM requests WHERE (id IN ('1')) [0m
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.08944 (11 reqs/sec) | DB: 0.00840 (9%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 15:25:08) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;35;1mRequest Load (0.001623)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request_rules_detailarea (0.01598)
+Completed in 0.39663 (2 reqs/sec) | Rendering: 0.35749 (90%) | DB: 0.00162 (0%) | 200 OK [http://railsmachine/main/hello]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 15:25:33) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Add request", "actionflag"=>"add", "update_weight"=>"1", "action"=>"submit_detailarea", "update_path"=>"/action/post.php", "update_http_method"=>"GET", "controller"=>"main"}
+  [4;36;1mSQL (0.003712)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.000809)[0m   [0mSELECT * FROM requests WHERE (requests.weight = 1) LIMIT 1[0m
+  [4;36;1mSQL (0.001018)[0m   [0;1mINSERT INTO requests ("http_method", "weight", "path") VALUES('GET', 1, '/action/post.php')[0m
+Redirected to http://railsmachine:3000/main/hello/1
+Completed in 0.10618 (9 reqs/sec) | DB: 0.00554 (5%) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 15:25:34) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "id"=>"1", "controller"=>"main"}
+  [4;35;1mRequest Load (0.002357)[0m   [0mSELECT * FROM requests ORDER BY weight[0m
+  [4;36;1mSQL (0.003244)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mRequest Load (0.001532)[0m   [0mSELECT * FROM requests WHERE (requests.id = 1) [0m
+Rendering  within layouts/main
+Rendering main/hello
+Rendered main/_request (0.04333)
+Rendered main/_request_rules_detailarea (0.00879)
+Completed in 0.14728 (6 reqs/sec) | Rendering: 0.06333 (42%) | DB: 0.00713 (4%) | 200 OK [http://railsmachine/main/hello/1]
+
+
+Processing MainController#submit_detailarea (for 85.3.39.41 at 2007-01-31 15:25:37) [POST]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"commit"=>"Clear", "actionflag"=>"clear", "update_weight"=>"1", "action"=>"submit_detailarea", "update_path"=>"/action/post.php", "update_http_method"=>"GET", "update_id"=>"1", "controller"=>"main"}
+Redirected to http://railsmachine:3000/main/hello
+Completed in 0.00856 (116 reqs/sec) | 302 Found [http://railsmachine/main/submit_detailarea]
+
+
+Processing MainController#hello (for 85.3.39.41 at 2007-01-31 15:25:37) [GET]
+  Session ID: 341bd0612702b58216c47eb7f9604b22
+  Parameters: {"action"=>"hello", "controller"=>"main"}
+  [4;36;1mRequest Load (0.002231)[0m   [0;1mSELECT * FROM requests ORDER BY weight[0m
+Rendering  within layouts/main
+Rendering main/hello
+  [4;35;1mSQL (0.002863)[0m   [0mPRAGMA table_info(requests)[0m
+Rendered main/_request (0.04381)
+Rendered main/_request_rules_detailarea (0.00524)
+Completed in 0.11968 (8 reqs/sec) | Rendering: 0.05326 (44%) | DB: 0.00509 (4%) | 200 OK [http://railsmachine/main/hello]
