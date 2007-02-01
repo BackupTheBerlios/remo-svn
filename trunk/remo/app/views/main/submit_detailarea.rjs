@@ -1,0 +1,66 @@
+require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+  page.replace_html("rules-statusarea", flash[:notice])
+
+  logger.error("Flash before:")
+  logger.error(flash[:before])
+  logger.error("Flash now:")
+  logger.error(flash[:notice])
+
+if flash[:notice].nil? and ! flash[:before].nil? 
+  # no flash, used to be flash
+  page["flash-notice"].visual_effect :blind_up
+  page.replace_html("flash-notice", flash[:notice])
+elsif ! flash[:notice].nil? and flash[:before].nil? 
+  # flash, used to be no flash
+  page["flash-notice"].visual_effect :blind_down
+  page.replace_html("flash-notice", flash[:notice])
+elsif ! flash[:notice].nil? and ! flash[:before].nil? 
+  # flash, used to be flash
+  page.replace_html("flash-notice", flash[:notice])
+  page["flash-notice"].visual_effect :highlight
+end
+
+
+#
+# The Rules Request Detailarea has 2 forms according to http://remo.netnea.com/twiki/bin/view/Main/Task14Start
+# - Empty form in order to add a new request 
+#   It's possible, that an "add" request failed. Thus displaying the non-saved item instead of the empty form
+# - Displaying an existing request
+if params[:actionflag] == "clear" || (params[:actionflag] == "add" && ! flash[:notice].nil?)
+  if @detail_request.nil? 
+    @detail_request = Request.new()
+    @detail_request.http_method=""
+    @detail_request.path=""
+    @detail_request.weight=""
+  end
+  page.replace_html("requestitem", :partial => "request_rules_detailarea_empty", :object => @detail_request)
+else
+  page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
+end
+
+case params[:actionflag]
+  when "clear"
+    statusmessage = "Status: active"
+
+    unselect_listitem page, 'lens'
+    unselect_listitem page, 'http_method'
+    unselect_listitem page, 'path'
+
+  when "add"
+    statusmessage = "Successfully added new item #{@detail_request.id}!"
+    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
+
+  when "save"
+    statusmessage = "Successfully saved item #{params[:update_id]}!"
+    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
+
+  when "delete"
+    statusmessage = "Successfully deleted item #{params[:update_id]}!"
+    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
+    
+end
+
+page.replace_html("rules-statusarea", statusmessage )
+page.replace_html("rules-mainarea", :partial => "request", :collection => @requests) unless params[:actionflag] == "clear"
+
