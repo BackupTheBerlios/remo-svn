@@ -1,22 +1,15 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-  page.replace_html("rules-statusarea", flash[:notice])
+page.replace_html("rules-statusarea", flash[:notice])
 
-  logger.error("Flash before:")
-  logger.error(flash[:before])
-  logger.error("Flash now:")
-  logger.error(flash[:notice])
-
+# handle flash notice div
 if flash[:notice].nil? and ! flash[:before].nil? 
-  # no flash, used to be flash
   page["flash-notice"].visual_effect :blind_up
   page.replace_html("flash-notice", flash[:notice])
 elsif ! flash[:notice].nil? and flash[:before].nil? 
-  # flash, used to be no flash
   page["flash-notice"].visual_effect :blind_down
   page.replace_html("flash-notice", flash[:notice])
 elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-  # flash, used to be flash
   page.replace_html("flash-notice", flash[:notice])
   page["flash-notice"].visual_effect :highlight
 end
@@ -28,12 +21,6 @@ end
 #   It's possible, that an "add" request failed. Thus displaying the non-saved item instead of the empty form
 # - Displaying an existing request
 if params[:actionflag] == "clear" || (params[:actionflag] == "add" && ! flash[:notice].nil?)
-  if @detail_request.nil? 
-    @detail_request = Request.new()
-    @detail_request.http_method=""
-    @detail_request.path=""
-    @detail_request.weight=""
-  end
   page.replace_html("requestitem", :partial => "request_rules_detailarea_empty", :object => @detail_request)
 else
   page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
