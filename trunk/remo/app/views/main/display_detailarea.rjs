@@ -1,7 +1,7 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-page["flash-notice"].visual_effect :blind_up 
-page.replace_html("flash-notice", flash[:notice])
+page["flash-notice"].visual_effect :blind_up      # hide it if it is visible
+page.replace_html("flash-notice", nil) 
 
 page.replace_html("rules-statusarea", "Selected request item #{@detail_request.id}")
 
