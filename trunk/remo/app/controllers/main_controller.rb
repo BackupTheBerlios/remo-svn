@@ -54,18 +54,22 @@ class MainController < ApplicationController
   end
 
   def submit_detailarea
+        flash[:before] = flash[:notice]
+        flash[:notice] = nil
   	# Forminput validation
 	if ACTIONS_DETAILAREA.select { |e| e == params[:actionflag]}.size == 0
 		logger.error("Attempt to post illegal form actionflag. Manual manipulation of hidden form field.")
-		redirect_to_hello nil, false, "Form submission error. Actionflag is illegal: #{params[:actionflag]}"
+  	        flash[:notice] = "Form submission error. Actionflag is illegal: #{params[:actionflag]}"
+                @detail_request = Request.new(:weight => "")
 		return
 	end
 	
 	if params[:actionflag] != "add" && params[:actionflag] != "clear"
 		if params[:update_id].nil?  || params[:update_id].to_i.to_s != params[:update_id] # id not a valid integer
-			redirect_to_hello nil, false, "Can't execute action. You have not submitted a valid request id to be handled." 
-			return
-		end
+  	          flash[:notice] = "Can't execute action. You have not submitted a valid request id to be handled."
+                  @detail_request = Request.new(:weight => "")
+		  return
+	        end
 	end
 
 	# The rest of the attributes can be accepted without problem, 
@@ -81,11 +85,7 @@ class MainController < ApplicationController
 			begin
 			  @detail_request.save!
 			rescue => err
-                          flash[:before] = flash[:notice]
   	                  flash[:notice] = "Adding failed! " + err
-                        else
-                          flash[:before] = flash[:notice]
-  	                  flash[:notice] = nil
 			end
 
   	                @requests = Request.find_requests
@@ -94,24 +94,15 @@ class MainController < ApplicationController
 			# Request lookup / check
 			begin
 			  @detail_request = Request.find(params[:update_id])
+			  @detail_request.http_method = params[:update_http_method] 
+			  @detail_request.path = params[:update_path]
+			  @detail_request.weight = params[:update_weight]
+			  @detail_request.save!
 			rescue ActiveRecord::RecordNotFound
 			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
-                          flash[:before] = flash[:notice]
   	                  flash[:notice] = "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}."
-			end
-
-			@detail_request.http_method = params[:update_http_method] 
-			@detail_request.path = params[:update_path]
-			@detail_request.weight = params[:update_weight]
-
-			begin
-			  @detail_request.save!
 			rescue => err
-                          flash[:before] = flash[:notice]
   	                  flash[:notice] = "Saving failed! " + err
-                        else
-                          flash[:before] = flash[:notice]
-  	                  flash[:notice] = nil
 			end
 
   	                @requests = Request.find_requests
@@ -123,11 +114,7 @@ class MainController < ApplicationController
 			  Request.delete(params[:update_id])
 			rescue => err
 			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
-                          flash[:before] = flash[:notice]
   	                  flash[:notice] = "Removing failed! " + err
-                        else
-                          flash[:before] = flash[:notice]
-  	                  flash[:notice] = nil
 			end
 			
                         @detail_request = Request.new(:weight => "")

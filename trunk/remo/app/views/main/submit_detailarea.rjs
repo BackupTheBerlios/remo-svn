@@ -39,16 +39,10 @@ case params[:actionflag]
 
   when "add"
     statusmessage = "Successfully added new item!" if flash[:notice].nil?
-    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
-
   when "save"
     statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
-    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
-
   when "delete"
     statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
-    page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
-    
 end
 
 page.replace_html("rules-statusarea", statusmessage )
