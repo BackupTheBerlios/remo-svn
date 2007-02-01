@@ -67,7 +67,7 @@ class UserStory6Test < ActionController::IntegrationTest
 		end
 
 		def user.requests_detailarea(id)
-			xml_http_request "/main/display_detail", :id => id
+			xml_http_request "/main/display_detailarea", :id => id
 			assert_response :success
 
 			requests = Request.find(:all)

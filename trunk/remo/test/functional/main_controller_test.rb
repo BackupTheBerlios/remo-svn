@@ -149,8 +149,8 @@ class MainControllerTest < Test::Unit::TestCase
     # test for existence of javascript onclick link: we search for exactly 1 occurrence of a link with the 
     # onclick value matching the html sourcecode expected.
     # testing a http_method item and a path item will do
-    assert_select "div#request-item-1-http_method a[onclick=new Ajax.Request('/main/display_detail/1', {asynchronous:true, evalScripts:true}); return false;]", 1
-    assert_select "div#request-item-1-path a[onclick=new Ajax.Request('/main/display_detail/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item-1-http_method a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item-1-path a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
 
   end
 
@@ -166,12 +166,12 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div.lens a[href=/main/hello/2]", 1
   end
 
-  def test_display_detail
-    # test display_detail ajax request
-    get :display_detail, :id => 1
+  def test_display_detailarea
+    # test display_detailarea ajax request
+    get :display_detailarea, :id => 1
     assert_response :success
 
-    assert_template "display_detail"
+    assert_template "display_detailarea"
 
     body = @response.body
 

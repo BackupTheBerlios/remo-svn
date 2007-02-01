@@ -1,21 +1,5 @@
 class MainController < ApplicationController
-  ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
-
-  def redirect_to_hello(id, ok = false, msg = nil)
-  	flash[:notice] = msg if msg
-	if ok
-	  	flash[:ok] = true
-	else
-  		flash[:ok] = false
-	end
-	
-	if id 
-		redirect_to :action => :hello, :id => id
-	else
-		redirect_to :action => :hello
-	end
-
-  end
+  VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
 
   def hello
   	@requests = Request.find_requests
@@ -41,10 +25,9 @@ class MainController < ApplicationController
 		@rules_status = "Status: active"
 	end
 
-
   end
 
-  def display_detail
+  def display_detailarea
   	begin
 		@detail_request = Request.find(params[:id])
 	rescue ActiveRecord::RecordNotFound
@@ -57,7 +40,7 @@ class MainController < ApplicationController
         flash[:before] = flash[:notice]
         flash[:notice] = nil
   	# Forminput validation
-	if ACTIONS_DETAILAREA.select { |e| e == params[:actionflag]}.size == 0
+	if VALID_ACTIONS_DETAILAREA.select { |e| e == params[:actionflag]}.size == 0
 		logger.error("Attempt to post illegal form actionflag. Manual manipulation of hidden form field.")
   	        flash[:notice] = "Form submission error. Actionflag is illegal: #{params[:actionflag]}"
                 @detail_request = Request.new(:weight => "")
@@ -79,48 +62,45 @@ class MainController < ApplicationController
 		when "clear"
                   @detail_request = Request.new(:weight => "")
 		when "add"
-			@detail_request = Request.new(	:http_method => params[:update_http_method],
+		  @detail_request = Request.new(	:http_method => params[:update_http_method],
 							:path => params[:update_path],
 							:weight => params[:update_weight])
-			begin
-			  @detail_request.save!
-			rescue => err
-  	                  flash[:notice] = "Adding failed! " + err
-			end
-
-  	                @requests = Request.find_requests
+		  begin
+		    @detail_request.save!
+		  rescue => err
+  	            flash[:notice] = "Adding failed! " + err
+		  end
 
 		when "save"
-			# Request lookup / check
-			begin
-			  @detail_request = Request.find(params[:update_id])
-			  @detail_request.http_method = params[:update_http_method] 
-			  @detail_request.path = params[:update_path]
-			  @detail_request.weight = params[:update_weight]
-			  @detail_request.save!
-			rescue ActiveRecord::RecordNotFound
-			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
-  	                  flash[:notice] = "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}."
-			rescue => err
-  	                  flash[:notice] = "Saving failed! " + err
-			end
-
-  	                @requests = Request.find_requests
+		  # Request lookup / check
+		  begin
+		    @detail_request = Request.find(params[:update_id])
+		    @detail_request.http_method = params[:update_http_method] 
+		    @detail_request.path = params[:update_path]
+		    @detail_request.weight = params[:update_weight]
+		    @detail_request.save!
+		  rescue ActiveRecord::RecordNotFound
+		    logger.error("Attempt to access invalid request record #{params[:update_id]}")
+  	            flash[:notice] = "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}."
+		  rescue => err
+  	            flash[:notice] = "Saving failed! " + err
+		  end
 
 		when "delete"
-			# Request lookup / check
-			begin
-			  @detail_request = Request.find(params[:update_id])
-			  Request.delete(params[:update_id])
-			rescue => err
-			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
-  	                  flash[:notice] = "Removing failed! " + err
-			end
+		  # Request lookup / check
+		  begin
+		    @detail_request = Request.find(params[:update_id])
+		    Request.delete(params[:update_id])
+		  rescue => err
+		    logger.error("Attempt to access invalid request record #{params[:update_id]}")
+  	            flash[:notice] = "Removing failed! " + err
+		  end
 			
-                        @detail_request = Request.new(:weight => "")
-  	                @requests = Request.find_requests
+                  @detail_request = Request.new(:weight => "")
 
 	end
+
+        @requests = Request.find_requests
 
   end
 end
