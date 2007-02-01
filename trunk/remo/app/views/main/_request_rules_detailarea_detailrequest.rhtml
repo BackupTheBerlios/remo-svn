@@ -1,0 +1,18 @@
+<div id="requestitem">
+	  <% form_for :request, :url => { :action => :submit_detailarea } do |form| %>
+	    <%= hidden_field_tag 'actionflag', 'save' %>
+	    <%= hidden_field_tag "update_id", request_rules_detailarea_detailrequest.id %>
+	    <table>
+	      <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method">
+	        <%= text_field_tag("update_http_method", h(request_rules_detailarea_detailrequest.http_method)) -%>
+	        </div></td><td><%= submit_tag('Clear', :class => "submit", :onclick => "Form.getInputs(this.form, null, 'actionflag')[0].value = 'clear'") -%></td></tr>
+	      <tr><td><div id="label_path">Path: </div></td><td><div id="path">
+	        <%= text_field_tag("update_path", h(request_rules_detailarea_detailrequest.path), :size => "35" ) -%>
+	        </div></td><td><%= submit_tag('Update request', :class => "submit") -%></td></tr>
+	      <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight">
+    	        <%= text_field_tag("update_weight", h(request_rules_detailarea_detailrequest.weight) , :size => "5" ) -%></div></td><td><%= submit_tag('Delete request', :class => "submit", :onclick => "Form.getInputs(this.form, null, 'actionflag')[0].value = 'delete'") -%></td></tr>
+            </table>
+	  <% end %>
+        </div>
+
+

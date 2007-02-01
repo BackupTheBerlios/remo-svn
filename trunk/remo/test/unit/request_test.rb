@@ -33,5 +33,13 @@ class RequestTest < Test::Unit::TestCase
     assert_equal "can't be blank", request.errors.on(:path)
     assert_equal ["is not a number", "can't be blank"], request.errors.on(:weight)
   end
+  def test_valid_request_delete
+    requests = Request.find(:all)
+    requests.each do |item|
+    	assert Request.delete(item.id)
+    end
+  end
+    
+
 
 end

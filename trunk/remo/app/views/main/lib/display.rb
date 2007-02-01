@@ -1,5 +1,12 @@
 def display_rules_detailitem (page, request)
-	page.replace_html("requestitem", :partial => "request_rules_detailarea", :object => request)
+	# The Rules Request Detailarea has 2 forms according to http://remo.netnea.com/twiki/bin/view/Main/Task14Start
+	# - Empty form in order to add a new request
+	# - Displaying an existing request
+	if request.nil?
+		page.replace_html("requestitem", :partial => "request_rules_detailarea_empty", :object => request)
+	else
+		page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => request)
+	end
 end
 
 def display_rules_status (page, message)

@@ -35,7 +35,12 @@
         toolset (soon to come)
       </div>
       <div id="rules-detailarea" class="detailarea">
-        <%= render(:partial => "request_rules_detailarea", :object => @detail_request) -%>
+        <%= if @detail_request.nil?
+		render(:partial => "request_rules_detailarea_empty", :object => nil) 
+	    else
+		render(:partial => "request_rules_detailarea_detailrequest", :object => @detail_request) 
+	    end
+	-%>
       </div>
       <div id="rules-mainarea" class="mainarea">
       <%= yield :layout %>

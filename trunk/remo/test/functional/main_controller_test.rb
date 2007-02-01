@@ -6,6 +6,8 @@ class MainController; def rescue_action(e) raise e end; end
 
 class MainControllerTest < Test::Unit::TestCase
   def setup
+    Request.delete_all
+
     @controller = MainController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
@@ -118,7 +120,7 @@ class MainControllerTest < Test::Unit::TestCase
     regexp = /<form(.*?)action="\/main\/submit_detailarea"(.*?)method="post"/
     assert false, "No detailarea form found."  if regexp.match(@response.body).nil?
 
-    regexp = /<input id="actionflag" name="actionflag" type="hidden" value="" \/>/
+    regexp = /<input id="actionflag" name="actionflag" type="hidden" value="add" \/>/
     assert false, "No proper detailarea form hidden field actionflag found."  if regexp.match(@response.body).nil?
 
     # check for existence and correct title of submit button detailarea
