@@ -1,8 +1,8 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
-
 page.replace_html("rules-statusarea", "Selected request item #{@detail_request.id}")
+
+page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
 
 unselect_listitem page, 'lens'
 unselect_listitem page, 'http_method'
