@@ -19,8 +19,8 @@ end
 #   It's possible, that an "add" request failed. Thus displaying the non-saved item instead of the empty form
 # - Displaying an existing request
 if params[:actionflag] == "clear" || 
-  (params[:actionflag] == "delete" && flash[:notice].nil? )
-  (params[:actionflag] == "add" && ! flash[:notice].nil? ) ||
+  (params[:actionflag] == "delete" && flash[:notice].nil? ) ||
+  (params[:actionflag] == "add" && ! flash[:notice].nil? ) 
 
   page.replace_html("requestitem", :partial => "request_rules_detailarea_empty", :object => @detail_request)
 else
