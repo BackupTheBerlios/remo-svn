@@ -1,17 +1,15 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
 # handle flash notice div. flash[:before] is written in the main controller
-if flash[:notice].nil? and ! flash[:before].nil? 
-  page["flash-notice"].visual_effect :blind_up
-  page.replace_html("flash-notice", flash[:notice])
-elsif ! flash[:notice].nil? and flash[:before].nil? 
-  page["flash-notice"].visual_effect :blind_down
-  page.replace_html("flash-notice", flash[:notice])
+if flash[:notice].nil? and ! flash[:before].nil?        
+  page["flash-notice"].visual_effect :blind_up        # no error anymore
+elsif ! flash[:notice].nil? and flash[:before].nil?  
+  page["flash-notice"].visual_effect :blind_down      # new error
 elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-  page.replace_html("flash-notice", flash[:notice])
-  page["flash-notice"].visual_effect :highlight
+  page.replace_html("flash-notice", flash[:notice])   # repeting error
 end
 
+page.replace_html("flash-notice", flash[:notice])
 
 #
 # The Rules Request Detailarea has 2 forms according to http://remo.netnea.com/twiki/bin/view/Main/Task14Start
@@ -30,19 +28,19 @@ end
 statusmessage = flash[:notice]
 
 case params[:actionflag]
-  when "clear"
-    statusmessage = "Status: active" if flash[:notice].nil?
+when "clear"
+  statusmessage = "Status: active" if flash[:notice].nil?
 
-    unselect_listitem page, 'lens'
-    unselect_listitem page, 'http_method'
-    unselect_listitem page, 'path'
+  unselect_listitem page, 'lens'
+  unselect_listitem page, 'http_method'
+  unselect_listitem page, 'path'
 
-  when "add"
-    statusmessage = "Successfully added new item!" if flash[:notice].nil?
-  when "save"
-    statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
-  when "delete"
-    statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
+when "add"
+  statusmessage = "Successfully added new item!" if flash[:notice].nil?
+when "save"
+  statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
+when "delete"
+  statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
 end
 
 page.replace_html("rules-statusarea", statusmessage )
