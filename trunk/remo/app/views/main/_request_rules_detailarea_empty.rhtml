@@ -2,14 +2,21 @@
           <% form_remote_tag :url => { :action => :submit_detailarea } do %>
 	    <%= hidden_field_tag 'actionflag', 'add' %>
 	    <%= hidden_field_tag "update_id", nil %>
-	    <table>
-	      <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method">
-		<%= text_field_tag("update_http_method", h(request_rules_detailarea_empty.http_method)) -%></div></td>
-	    	<td><%= submit_tag('Add request', :class => "submit") -%></td></tr>
-	      <tr><td><div id="label_path">Path: </div></td><td><div id="path">
-		<%= text_field_tag("update_path", h(request_rules_detailarea_empty.path), :size => "35" ) -%></div></td><td></td></tr>
-	      <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight">
- 	   	<%= text_field_tag("update_weight", h(request_rules_detailarea_empty.weight), :size => "5" ) -%></div></td><td></td></tr>
+            <table>
+              <tr><td>
+	        <table>
+                  <tr><td><div id="label_http_method">Method: </div></td><td><div id="http_method">
+                    <%= text_field_tag("update_http_method", h(request_rules_detailarea_empty.http_method)) -%></div></td></tr>
+                  <tr><td><div id="label_path">Path: </div></td><td><div id="path">
+                    <%= text_field_tag("update_path", h(request_rules_detailarea_empty.path), :size => "35" ) -%></div></td></tr>
+                  <tr><td><div id="label_weight">Weight: </div></td><td><div id="weight">
+                    <%= text_field_tag("update_weight", h(request_rules_detailarea_empty.weight)) -%></div></td></tr>
+	        </table>
+                </td><td>
+	        <table>
+	          <tr><td><%= submit_tag('Add request', :class => "submit") -%></td></tr>
+	        </table>
+              </td></tr>
             </table>
 	  <% end %>
 	</div>

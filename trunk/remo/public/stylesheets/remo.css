@@ -26,6 +26,11 @@ a:link, a:visited, a:hover {
   text-decoration: none;
 }
 
+td {
+  vertical-align: top;
+}
+
+
 /* Styles for main page */
 
 #banner {
