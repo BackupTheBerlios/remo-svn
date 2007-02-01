@@ -1,7 +1,6 @@
 require "#{File.dirname(__FILE__)}/../test_helper"
 
 class UserStory6Test < ActionController::IntegrationTest
-  fixtures :requests
 
   def regular_user
   	open_session do |user|

@@ -28335,3 +28335,23 @@ Rendering main/hello
 Rendered main/_request (0.04381)
 Rendered main/_request_rules_detailarea (0.00524)
 Completed in 0.11968 (8 reqs/sec) | Rendering: 0.05326 (44%) | DB: 0.00509 (4%) | 200 OK [http://railsmachine/main/hello]
+  [4;36;1mSQL (0.007021)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001590)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.002811)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000364)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.007397)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "weight" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.003474)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.003965)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001238)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.003395)[0m   [0mUPDATE schema_info SET version = 4[0m
+  [4;36;1mSQL (0.002764)[0m   [0;1mSELECT * FROM schema_info[0m
+  [4;35;1mSQL (0.001385)[0m   [0mSELECT name FROM sqlite_master WHERE type = 'table'[0m
+  [4;36;1mSQL (0.004857)[0m   [0;1mPRAGMA table_info(requests)[0m
+  [4;35;1mSQL (0.000396)[0m   [0mPRAGMA index_list(requests)[0m
+  [4;36;1mSQL (0.000000)[0m   [0;1mSQLite3::SQLException: no such table: requests: DROP TABLE requests[0m
+  [4;35;1mSQL (0.015216)[0m   [0mCREATE TABLE requests ("id" INTEGER PRIMARY KEY NOT NULL, "http_method" varchar(10) DEFAULT '' NOT NULL, "path" text DEFAULT '' NOT NULL, "weight" integer DEFAULT 0 NOT NULL) [0m
+  [4;36;1mSQL (0.005237)[0m   [0;1mCREATE TABLE schema_info (version integer)[0m
+  [4;35;1mSQL (0.002318)[0m   [0mINSERT INTO schema_info (version) VALUES(0)[0m
+  [4;36;1mSQL (0.001850)[0m   [0;1mPRAGMA table_info(schema_info)[0m
+  [4;35;1mSQL (0.002856)[0m   [0mUPDATE schema_info SET version = 4[0m
