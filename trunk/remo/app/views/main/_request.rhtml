@@ -3,5 +3,3 @@
 <div id="request-item-<%= request.id-%>-http_method" class="http_method<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.http_method, :url => { :action => :display_detail, :id => request } -%></div>
 <div id="request-item-<%= request.id-%>-path" class="path<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.path, :url => { :action => :display_detail, :id => request } -%></div>
 </div><br />
-
-

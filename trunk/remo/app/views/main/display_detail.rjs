@@ -1,13 +1,13 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-page["flash-notice"].visual_effect :blind_up
+page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
 
-display_rules_detailitem page, @detail_request
-display_rules_status page, "Selected request item #{@detail_request.id}"
+page.replace_html("rules-statusarea", "Selected request item #{@detail_request.id}")
 
 unselect_listitem page, 'lens'
 unselect_listitem page, 'http_method'
 unselect_listitem page, 'path'
+
 select_listitem page, "request-item-#{@detail_request.id}-lens", 'lens'
 select_listitem page, "request-item-#{@detail_request.id}-http_method", 'http_method'
 select_listitem page, "request-item-#{@detail_request.id}-path", 'path'

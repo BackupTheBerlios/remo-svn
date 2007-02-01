@@ -12,8 +12,10 @@
     <div id="title"><h1><a href="http://remo.netnea.com">remo</a> - rule editor for <a href="http://www.modsecurity.org">modsecurity</a></h1></div>
     <div id="logodiv" align="right"><a href="http://remo.netnea.com"><img id="logo" src="/images/logo.png"/></a></div>
   </div>
-  <div id="flash-notice" class="<%= if flash[:ok] then "flash-ok" else "flash-nok" end %>" style="display: <%= if flash[:notice].nil? then "none" else "inline" end %>;">
-    <%= flash[:notice] -%>
+  <div id="flash-frame">
+    <div id="flash-notice" class="<%= if flash[:ok] then "flash-ok" else "flash-nok" end %>" style="display: <%= if flash[:notice].nil? then "none" else "inline" end %>;">
+      <%= flash[:notice] -%>
+    </div>
   </div>
   <div id="maindiv">
     <div id="source" class="maincolumn">
@@ -35,12 +37,7 @@
         toolset (soon to come)
       </div>
       <div id="rules-detailarea" class="detailarea">
-        <%= if @detail_request.nil?
-		render(:partial => "request_rules_detailarea_empty", :object => nil) 
-	    else
-		render(:partial => "request_rules_detailarea_detailrequest", :object => @detail_request) 
-	    end
-	-%>
+        <%= render(:partial => "request_rules_detailarea_empty", :object => @detail_request) -%>
       </div>
       <div id="rules-mainarea" class="mainarea">
       <%= yield :layout %>

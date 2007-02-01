@@ -20,14 +20,16 @@ class MainController < ApplicationController
   def hello
   	@requests = Request.find_requests
 
-	@detail_request = nil
 	unless params[:id].nil?
   		begin
-			@detail_request = Request.find(params[:id])
+		  @detail_request = Request.find(params[:id])
 		rescue ActiveRecord::RecordNotFound
-			logger.error("Attempt to access invalid request record #{params[:id]}")
-			flash[:notice] = "Attempt to access invalid request record #{params[:id]}"
+		  logger.error("Attempt to access invalid request record #{params[:id]}")
+		  flash[:notice] = "Attempt to access invalid request record #{params[:id]}"
+                  @detail_request = Request.new(:weight => "")
 		end
+        else
+          @detail_request = Request.new(:weight => "")
 	end
 
 	@rules_status = nil
@@ -71,27 +73,31 @@ class MainController < ApplicationController
 
 	case params[:actionflag]
 		when "clear"
-			redirect_to_hello nil, false
+                  @detail_request = Request.new(:weight => "")
 		when "add"
 			@detail_request = Request.new(	:http_method => params[:update_http_method],
 							:path => params[:update_path],
 							:weight => params[:update_weight])
 			begin
-				@detail_request.save!
-				redirect_to_hello @detail_request.id, true, "Successfully added new item #{@detail_request.id}!"
-				return
+			  @detail_request.save!
 			rescue => err
-				redirect_to_hello nil, false, "Adding failed! " + err
-				return
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = "Adding failed! " + err
+                        else
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = nil
 			end
 
+  	                @requests = Request.find_requests
+
 		when "save"
+			# Request lookup / check
 			begin
-				@detail_request = Request.find(params[:update_id])
+			  @detail_request = Request.find(params[:update_id])
 			rescue ActiveRecord::RecordNotFound
-				logger.error("Attempt to access invalid request record #{params[:update_id]}")
-				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
-				return
+			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}."
 			end
 
 			@detail_request.http_method = params[:update_http_method] 
@@ -99,37 +105,41 @@ class MainController < ApplicationController
 			@detail_request.weight = params[:update_weight]
 
 			begin
-				@detail_request.save!
-				redirect_to_hello params[:update_id], true, "Successfully saved item #{params[:update_id]}!"
-				return
+			  @detail_request.save!
 			rescue => err
-				redirect_to_hello params[:update_id], false, "Saving failed! " + err
-				return
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = "Saving failed! " + err
+                        else
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = nil
 			end
+
+  	                @requests = Request.find_requests
 
 		when "delete"
-			# Request lookup
+			# Request lookup / check
 			begin
-				@detail_request = Request.find(params[:update_id])
+			  @detail_request = Request.find(params[:update_id])
 			rescue ActiveRecord::RecordNotFound
-				logger.error("Attempt to access invalid request record #{params[:update_id]}")
-				redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
-				return
+			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
+			  redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
+			  return
 			end
 			
 			begin
-				Request.delete(params[:update_id])
-				redirect_to_hello nil, true, "Successfully deleted item #{params[:update_id]}!"
-				return
+			  Request.delete(params[:update_id])
 			rescue => err
-				redirect_to_hello params[:update_id], false, "Removing failed! " + err
-				return
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = "Removing failed! " + err
+                        else
+                          flash[:before] = flash[:notice]
+  	                  flash[:notice] = nil
 			end
-			@detail_request.save!
 			
-	end
+                        @detail_request = Request.new(:weight => "")
+  	                @requests = Request.find_requests
 
-	
+	end
 
   end
 end
