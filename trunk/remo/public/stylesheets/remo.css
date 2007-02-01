@@ -30,6 +30,14 @@ td {
   vertical-align: top;
 }
 
+ul {
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+li {
+  list-style-type: none;
+}
 
 /* Styles for main page */
 
