@@ -1,8 +1,6 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
 
-page.replace_html("rules-statusarea", flash[:notice])
-
-# handle flash notice div
+# handle flash notice div. flash[:before] is written in the main controller
 if flash[:notice].nil? and ! flash[:before].nil? 
   page["flash-notice"].visual_effect :blind_up
   page.replace_html("flash-notice", flash[:notice])
@@ -20,30 +18,35 @@ end
 # - Empty form in order to add a new request 
 #   It's possible, that an "add" request failed. Thus displaying the non-saved item instead of the empty form
 # - Displaying an existing request
-if params[:actionflag] == "clear" || (params[:actionflag] == "add" && ! flash[:notice].nil?)
+if params[:actionflag] == "clear" || 
+  (params[:actionflag] == "delete" && flash[:notice].nil? )
+  (params[:actionflag] == "add" && ! flash[:notice].nil? ) ||
+
   page.replace_html("requestitem", :partial => "request_rules_detailarea_empty", :object => @detail_request)
 else
   page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
 end
 
+statusmessage = flash[:notice]
+
 case params[:actionflag]
   when "clear"
-    statusmessage = "Status: active"
+    statusmessage = "Status: active" if flash[:notice].nil?
 
     unselect_listitem page, 'lens'
     unselect_listitem page, 'http_method'
     unselect_listitem page, 'path'
 
   when "add"
-    statusmessage = "Successfully added new item #{@detail_request.id}!"
+    statusmessage = "Successfully added new item!" if flash[:notice].nil?
     page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
 
   when "save"
-    statusmessage = "Successfully saved item #{params[:update_id]}!"
+    statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
     page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
 
   when "delete"
-    statusmessage = "Successfully deleted item #{params[:update_id]}!"
+    statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
     page.replace_html("rules-mainarea", :partial => "request", :collection => @requests)
     
 end

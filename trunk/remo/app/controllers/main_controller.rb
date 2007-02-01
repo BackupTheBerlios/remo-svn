@@ -120,15 +120,9 @@ class MainController < ApplicationController
 			# Request lookup / check
 			begin
 			  @detail_request = Request.find(params[:update_id])
-			rescue ActiveRecord::RecordNotFound
-			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
-			  redirect_to_hello nil, false, "Can't update. You have not selected a valid request to be updated. Requested id #{params[:update_id]}." 
-			  return
-			end
-			
-			begin
 			  Request.delete(params[:update_id])
 			rescue => err
+			  logger.error("Attempt to access invalid request record #{params[:update_id]}")
                           flash[:before] = flash[:notice]
   	                  flash[:notice] = "Removing failed! " + err
                         else

@@ -5,22 +5,22 @@ class UserStory6Test < ActionController::IntegrationTest
   def regular_user
   	open_session do |user|
 		def user.clicks_clear()
-			post_via_redirect "/main/submit_detailarea", :actionflag => "clear"
+			post "/main/submit_detailarea", :actionflag => "clear"
 			assert_response :success
-			assert_template "hello"
+			assert_template "submit_detailarea"
 
 			regexp = /Status: active/
 			assert false, "Page is not empty."  if regexp.match(response.body).nil?
 
-			regexp = /<input id="update_http_method" name="update_http_method" type="text" value="" \/>/
+			regexp = /<input id=\\"update_http_method\\" name=\\"update_http_method\\" type=\\"text\\" value=\\"''\\"/
 			assert false, "Detailarea is not empty."  if regexp.match(response.body).nil?
 		end
 
 		def user.adds_request(http_method, path, weight)
 			# add new item
-			post_via_redirect "/main/submit_detailarea", :actionflag => "add", :update_http_method => http_method, :update_path => path, :update_weight => weight
+			post "/main/submit_detailarea", :actionflag => "add", :update_http_method => http_method, :update_path => path, :update_weight => weight
 			assert_response :success
-			assert_template "hello"
+			assert_template "submit_detailarea"
 
 			regexp = /Successfully added new item/
 			assert false, "Item could not be added."  if regexp.match(response.body).nil?
@@ -36,9 +36,9 @@ class UserStory6Test < ActionController::IntegrationTest
 
 		def user.updates_request(id, http_method, path, weight)
 			# add new item
-			post_via_redirect "/main/submit_detailarea", :actionflag => "save", :update_id => id, :update_http_method => http_method, :update_path => path, :update_weight => weight
+			post "/main/submit_detailarea", :actionflag => "save", :update_id => id, :update_http_method => http_method, :update_path => path, :update_weight => weight
 			assert_response :success
-			assert_template "hello"
+			assert_template "submit_detailarea"
 
 			regexp = /Successfully saved item/
 			assert false, "Item could not be saved."  if regexp.match(response.body).nil?
@@ -56,9 +56,9 @@ class UserStory6Test < ActionController::IntegrationTest
 		def user.deletes_item(id)
 			count_pre = Request.find(:all).size
 
-			post_via_redirect "/main/submit_detailarea", :actionflag => "delete", :update_id => id
+			post "/main/submit_detailarea", :actionflag => "delete", :update_id => id
 			assert_response :success
-			assert_template "hello"
+			assert_template "submit_detailarea"
 
 			regexp = /Successfully deleted item/
 			assert false, "Item could not be deleted."  if regexp.match(response.body).nil?

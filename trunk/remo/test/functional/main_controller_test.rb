@@ -208,92 +208,62 @@ class MainControllerTest < Test::Unit::TestCase
 
   def test_clear
     post :submit_detailarea, :actionflag => "clear"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-nok", 1		# is hidden and nok, as it is nok by default when it is empty
-    assert_select "div#rules-statusarea", "Status: active"
+    regexp = /Element.update\(\"rules-statusarea\", \"Status: active\"\);/
+    assert false, "Status bar incorrect."  if regexp.match(@response.body).nil?
 
-    # check for existence and correct title of submit button detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="Add request"(.*?)>/
+    regexp = /<input(.*?)type=\\"submit\\"(.*?)value=\\"Add request\\"(.*?)>/
     assert false, "No button found with button text: \"Add request\"."  if regexp.match(@response.body).nil?
-
-    # check for non-existence submit button "Save request" in detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="Save request"(.*?)>/
-    assert true, "Button found with button text: \"Save request\"."  if regexp.match(@response.body).nil?
-
-    # check for non-existence submit button "Update request" in detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="Update request"(.*?)>/
-    assert true, "Button found with button text: \"Update request\"."  if regexp.match(@response.body).nil?
-
-    # check for non-existence submit button "Delete request" in detailarea
-    regexp = /<input(.*?)type="submit"(.*?)value="Delete request"(.*?)>/
-    assert true, "Button found with button text: \"Delete request\"."  if regexp.match(@response.body).nil?
-
   end
 
   def test_add_successful
     post :submit_detailarea, :actionflag => "add", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "1000"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-ok", /Successfully added new item/
+    regexp = /Successfully added new item/
+    assert false, "No button found with button text: \"Clear\"."  if regexp.match(@response.body).nil?
   end
 
   def test_add_failure
     post :submit_detailarea, :actionflag => "add", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "1000"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-nok", /Adding failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
-
+    regexp = /Adding failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
+    assert false, "No button found with button text: \"Clear\"."  if regexp.match(@response.body).nil?
   end
 
   def test_update_successful
     post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-ok", /Successfully saved item 3!/
+    regexp = /Successfully saved item 3!/
+    assert false, "Request updating failed."  if regexp.match(@response.body).nil?
   end
 
   def test_update_failure
     post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-nok", /Saving failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
+    regexp = /Saving failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
+    assert false, "Request updating test failed."  if regexp.match(@response.body).nil?
 
   end
 
   def test_delete_successful
     post :submit_detailarea, :actionflag => "delete", :update_id => "1"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-ok", /Successfully deleted item 1!/
+    regexp = /Successfully deleted item 1!/
+    assert false, "Request deletion failed."  if regexp.match(@response.body).nil?
   end
 
   def test_delete_failure
     post :submit_detailarea, :actionflag => "delete", :update_id => "24"
-    assert_redirected_to :action => "hello"
-    
-    follow_redirect
     assert_response :success
 
-    assert_select "div.flash-nok", /Can't update. You have not selected a valid request to be updated. Requested id 24./
+    regexp = /Removing failed! Couldn't find Request with ID=24/
+    assert false, "Request deletion test failed."  if regexp.match(@response.body).nil?
 
   end
 
