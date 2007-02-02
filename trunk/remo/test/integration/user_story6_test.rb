@@ -86,20 +86,23 @@ class UserStory6Test < ActionController::IntegrationTest
     Request.delete_all
 
     colin = regular_user
+
     colin.clicks_clear
     colin.adds_request("GET", "/index.html")
     colin.adds_request("POST", "/index.php")
     colin.adds_request("GET", "/index.cgi")
     colin.adds_request("GET", "/start.html")
+
     colin.requests_detailarea(4)
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.requests_detailarea(3)
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)
-    colin.deletes_request(1)
-    colin.rearranges_requests(["3", "2", "4"])
     colin.deletes_request(2)
+    colin.rearranges_requests(["3", "1", "4"])
+    colin.deletes_request(1)
+
     colin.updates_request(3, "POST", "/info.html")
     colin.clicks_clear
     colin.updates_request(4, "GET", "/start2.html")
