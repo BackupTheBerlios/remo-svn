@@ -110,7 +110,7 @@ class MainControllerTest < Test::Unit::TestCase
     elements = []
 
     1.upto(8) do |n|
-    	elements << "div#request-item-#{n}"
+    	elements << "li#request-item_#{n}"
     	elements << "div#request-item-#{n}-http_method"
     	elements << "div#request-item-#{n}-path"
     end

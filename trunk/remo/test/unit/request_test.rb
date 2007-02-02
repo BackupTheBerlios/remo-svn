@@ -22,7 +22,6 @@ class RequestTest < Test::Unit::TestCase
     assert !request.save
     assert_equal "has to be a valid http method, i.e. GET, PUT, etc.", request.errors.on(:http_method)
     assert_equal "can't be blank", request.errors.on(:path)
-    assert_equal "has already been taken", request.errors.on(:weight)
 
 
     request = Request.new(:http_method  => nil,
