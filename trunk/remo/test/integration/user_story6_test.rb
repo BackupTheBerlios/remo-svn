@@ -111,7 +111,6 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.clicks_clear
     colin.deletes_request(4)
     colin.clicks_clear
-
   end
 
 end
