@@ -5,7 +5,6 @@ class Request < ActiveRecord::Base
 
   validates_presence_of :http_method, :path, :weight
   validates_numericality_of :weight
-  validates_uniqueness_of  :weight
 
   def validate
     # make sure only valid http methods are used

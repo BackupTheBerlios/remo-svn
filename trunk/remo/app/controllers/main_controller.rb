@@ -111,13 +111,12 @@ class MainController < ApplicationController
     orderlist = params["rules-mainarea-sortlist"]
 
     1.upto(orderlist.size) do |i|
-      logger.error("id #{orderlist[i-1]} weight #{i}")
-      request = Request.find(orderlist[i-1])
-      logger.error(request.path)
       begin
+        request = Request.find(orderlist[i-1])
         request.weight = i
         request.save!
       rescue => err
+        logger.error("Rearranging error on item #{orderlist[i-1]}! " + err)
         flash[:notice] += "Rearranging item #{orderlist[i-1]} failed! " + err
       end
     end
