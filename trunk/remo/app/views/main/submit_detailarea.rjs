@@ -45,4 +45,4 @@ end
 
 page.replace_html("rules-statusarea", statusmessage )
 page.replace_html("rules-mainarea-sortlist", :partial => "request", :collection => @requests) unless params[:actionflag] == "clear"
-page.sortable 'rules-mainarea-sortlist', :url => {:action => "sort_requests"} unless params[:actionflag] == "clear"
+page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} unless params[:actionflag] == "clear"

@@ -104,11 +104,14 @@ class MainController < ApplicationController
 
   end
 
-  def sort_requests
+  def rearrange_requests
     if params["rules-mainarea-sortlist"].nil?
+      logger.error("Rearrange_requests called without order array.")
       return
     end
     orderlist = params["rules-mainarea-sortlist"]
+
+    @rearrangefail = false
 
     1.upto(orderlist.size) do |i|
       begin
@@ -117,7 +120,10 @@ class MainController < ApplicationController
         request.save!
       rescue => err
         logger.error("Rearranging error on item #{orderlist[i-1]}! " + err)
-        flash[:notice] += "Rearranging item #{orderlist[i-1]} failed! " + err
+        # FIXME: not writing flash notice here. It would be very cumbersome to interacting with visibility of the item. Also there
+        # are likely to be multiple errors...
+        # See task http://remo.netnea.com/twiki/bin/view/Main/Task18Start
+        @rearrangefail = true
       end
     end
 
