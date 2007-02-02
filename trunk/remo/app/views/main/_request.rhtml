@@ -1,6 +1,6 @@
-<li><div id="request-item-<%= request.id-%>" class="listitem">
+<li id="request-item_<%= request.id-%>">
 <div id="request-item-<%= request.id-%>-lens" class="lens<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><a href="/main/hello/<%= request.id -%>"><img src="/lens.png" alt="v"></a></div>
 <div id="request-item-<%= request.id-%>-http_method" class="http_method<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%></div>
 <div id="request-item-<%= request.id-%>-path" class="path<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } -%></div>
-</div><br />
+<br />
 </li>

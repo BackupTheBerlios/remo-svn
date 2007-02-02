@@ -103,4 +103,24 @@ class MainController < ApplicationController
     @requests = Request.find_requests
 
   end
+
+  def sort_requests
+    if params["rules-mainarea-sortlist"].nil?
+      return
+    end
+    orderlist = params["rules-mainarea-sortlist"]
+
+    1.upto(orderlist.size) do |i|
+      logger.error("id #{orderlist[i-1]} weight #{i}")
+      request = Request.find(orderlist[i-1])
+      logger.error(request.path)
+      begin
+        request.weight = i
+        request.save!
+      rescue => err
+        flash[:notice] += "Rearranging item #{orderlist[i-1]} failed! " + err
+      end
+    end
+
+  end
 end
