@@ -21,7 +21,7 @@ UserStory6Test	test/integration/user_story6_test.rb	/^class UserStory6Test < Act
 abort	public/javascripts/prototype.js	/^    function abort(message) { throw 'Parse error in selector: ' + message; }$/;"	f
 about	public/index.html	/^      function about() {$/;"	f
 adds_request	test/integration/user_story6_test.rb	/^		def user.adds_request(http_method, path, weight)$/;"	F	class:UserStory6Test.regular_user
-assert_exist_elementlist	test/functional/main_controller_test.rb	/^    def assert_exist_elementlist (list, num=1)$/;"	f	class:MainControllerTest.test_hello_basic
+assert_exist_elementlist	test/functional/main_controller_test.rb	/^    def assert_exist_elementlist (list, num=1)$/;"	f	class:MainControllerTest.test_index_basic
 clicks_clear	test/integration/user_story6_test.rb	/^		def user.clicks_clear()$/;"	F	class:UserStory6Test.regular_user
 copy	public/javascripts/prototype.js	/^  function copy(methods, destination, onlyIfAbsent) {$/;"	f
 deletes_item	test/integration/user_story6_test.rb	/^		def user.deletes_item(id)$/;"	F	class:UserStory6Test.regular_user
@@ -31,8 +31,9 @@ down	db/migrate/002_remove_request.rb	/^  def self.down$/;"	F	class:RemoveReques
 down	db/migrate/003_recreate_requests.rb	/^  def self.down$/;"	F	class:RecreateRequests
 down	db/migrate/004_fill_request_table.rb	/^  def self.down$/;"	F	class:FillRequestTable
 find_requests	app/models/request.rb	/^  def self.find_requests$/;"	F	class:Request
-hello	app/controllers/main_controller.rb	/^  def hello$/;"	f	class:MainController
+index	app/controllers/main_controller.rb	/^  def index$/;"	f	class:MainController
 parseColor	public/javascripts/effects.js	/^    function parseColor(color){$/;"	f
+rearrange_requests	app/controllers/main_controller.rb	/^  def rearrange_requests$/;"	f	class:MainController
 regular_user	test/integration/user_story6_test.rb	/^  def regular_user$/;"	f	class:UserStory6Test
 requests_detailarea	test/integration/user_story6_test.rb	/^		def user.requests_detailarea(id)$/;"	F	class:UserStory6Test.regular_user
 select_listitem	app/views/main/lib/display.rb	/^def select_listitem (page, item, base_classname)$/;"	f
@@ -44,9 +45,9 @@ test_clear	test/functional/main_controller_test.rb	/^  def test_clear$/;"	f	clas
 test_delete_failure	test/functional/main_controller_test.rb	/^  def test_delete_failure$/;"	f	class:MainControllerTest
 test_delete_successful	test/functional/main_controller_test.rb	/^  def test_delete_successful$/;"	f	class:MainControllerTest
 test_display_detailarea	test/functional/main_controller_test.rb	/^  def test_display_detailarea$/;"	f	class:MainControllerTest
-test_display_hello_detail_selected	test/functional/main_controller_test.rb	/^  def test_display_hello_detail_selected$/;"	f	class:MainControllerTest
+test_display_index_detail_selected	test/functional/main_controller_test.rb	/^  def test_display_index_detail_selected$/;"	f	class:MainControllerTest
 test_flash_notice	test/functional/main_controller_test.rb	/^  def test_flash_notice$/;"	f	class:MainControllerTest
-test_hello_basic	test/functional/main_controller_test.rb	/^  def test_hello_basic$/;"	f	class:MainControllerTest
+test_index_basic	test/functional/main_controller_test.rb	/^  def test_index_basic$/;"	f	class:MainControllerTest
 test_invalid_request_save	test/unit/request_test.rb	/^  def test_invalid_request_save$/;"	f	class:RequestTest
 test_update_failure	test/functional/main_controller_test.rb	/^  def test_update_failure$/;"	f	class:MainControllerTest
 test_update_successful	test/functional/main_controller_test.rb	/^  def test_update_successful$/;"	f	class:MainControllerTest

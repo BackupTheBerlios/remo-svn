@@ -1,7 +1,7 @@
 class MainController < ApplicationController
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
 
-  def hello
+  def index
     @requests = Request.find_requests
 
     unless params[:id].nil?

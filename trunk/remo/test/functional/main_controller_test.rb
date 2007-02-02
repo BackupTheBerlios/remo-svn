@@ -34,23 +34,23 @@ class MainControllerTest < Test::Unit::TestCase
 
   def test_flash_notice
 
-    get :hello
+    get :index
     assert_equal nil, flash[:notice]
     assert_select "div.flash-nok", 1  # it is nok by default
     assert_select "div#rules-statusarea", "Status: active"
 
-    get :hello, :id => "500011100"
+    get :index, :id => "500011100"
     assert_equal "Attempt to access invalid request record 500011100", flash[:notice]
     assert_select "div.flash-nok", 1 
 
   end
 
-  def test_hello_basic
-    # test layout hello view without any parameters
+  def test_index_basic
+    # test layout index view without any parameters
 
-    get :hello
+    get :index
     assert_response :success
-    assert_template "hello"	
+    assert_template "index"	
     assert_select "title", 1
 
     def assert_exist_elementlist (list, num=1)
@@ -142,7 +142,7 @@ class MainControllerTest < Test::Unit::TestCase
 
 
     # request list: testing content of the first data item
-    assert_select "div#request-item-1-lens a[href=/main/hello/1]", 1
+    assert_select "div#request-item-1-lens a[href=/main/index/1]", 1
     assert_select "div#request-item-1-http_method", 'GET'
     assert_select "div#request-item-1-path", '/myindex.html'
 
@@ -154,16 +154,16 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
-  def test_display_hello_detail_selected
-    # test of hello view with GET parameter id=1 (clicking on the lens in request list, thus loading view again with parameter)
-    get :hello, :id => 1
+  def test_display_index_detail_selected
+    # test of index view with GET parameter id=1 (clicking on the lens in request list, thus loading view again with parameter)
+    get :index, :id => 1
     assert_response :success
 
-    assert_template "hello"
+    assert_template "index"
     
     # two example items will do.
-    assert_select "div.lens-selected a[href=/main/hello/1]", 1  # this one is the one called as GET parameter
-    assert_select "div.lens a[href=/main/hello/2]", 1
+    assert_select "div.lens-selected a[href=/main/index/1]", 1  # this one is the one called as GET parameter
+    assert_select "div.lens a[href=/main/index/2]", 1
   end
 
   def test_display_detailarea
