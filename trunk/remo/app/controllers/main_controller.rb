@@ -33,6 +33,7 @@ class MainController < ApplicationController
     rescue ActiveRecord::RecordNotFound
       logger.error("Attempt to access invalid request record #{params[:id]}")
       flash[:notice] = "Attempt to access invalid request record #{params[:id]}"
+      @detail_request = Request.new(:weight => "")
     end
   end
 
@@ -62,9 +63,14 @@ class MainController < ApplicationController
     when "clear"
       @detail_request = Request.new(:weight => "")
     when "add"
+      begin
+        new_weight = Request.find(:first, :order => "weight DESC").weight + 1
+      rescue
+        new_weight = 1
+      end
       @detail_request = Request.new(:http_method => params[:update_http_method],
                                     :path => params[:update_path],
-                                    :weight => params[:update_weight])
+                                    :weight => new_weight) # max(weight) + 1
       begin
         @detail_request.save!
       rescue => err
@@ -77,7 +83,6 @@ class MainController < ApplicationController
         @detail_request = Request.find(params[:update_id])
         @detail_request.http_method = params[:update_http_method] 
         @detail_request.path = params[:update_path]
-        @detail_request.weight = params[:update_weight]
         @detail_request.save!
       rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid request record #{params[:update_id]}")

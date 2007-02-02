@@ -6,10 +6,10 @@ if flash[:notice].nil? and ! flash[:before].nil?
 elsif ! flash[:notice].nil? and flash[:before].nil?  
   page["flash-notice"].visual_effect :blind_down      # new error
 elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-  page.replace_html("flash-notice", flash[:notice])   # repeting error
+  page["flash-notice"].visual_effect :highlight      # new error
 end
 
-page.replace_html("flash-notice", flash[:notice])
+page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 #
 # The Rules Request Detailarea has 2 forms according to http://remo.netnea.com/twiki/bin/view/Main/Task14Start
@@ -43,6 +43,6 @@ when "delete"
   statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
 end
 
-page.replace_html("rules-statusarea", statusmessage )
+page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
 page.replace_html("rules-mainarea-sortlist", :partial => "request", :collection => @requests) unless params[:actionflag] == "clear"
 page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} unless params[:actionflag] == "clear"
