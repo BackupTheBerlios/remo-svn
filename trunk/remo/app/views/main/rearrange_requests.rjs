@@ -1,0 +1,7 @@
+require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+unless @rearrangefail
+  page.replace_html("rules-statusarea", "Rearranged items.")
+else
+  page.replace_html("rules-statusarea", "Rearranging items failed. Please reload.")
+end
