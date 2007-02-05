@@ -406,4 +406,12 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
+  def test_generate_ruleset
+    get :generate_ruleset
+    assert_response :success
+
+    # the content of the downloaded file transfer is difficult to test.
+    # this is done in the integration tests
+
+  end
 end

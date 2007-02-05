@@ -79,6 +79,17 @@ class UserStory6Test < ActionController::IntegrationTest
 
       end
 
+      def user.generates_ruleset()
+        get "/main/generate_ruleset"
+        assert_response :success
+
+        assert_equal "text/ascii", headers["content-type"][0]
+        assert_equal "attachment; filename=\"rulefile.conf\"", headers["content-disposition"][0]
+        assert headers["content-length"][0].to_i > 50    # seems to be a reasonable value
+
+        # do not know how to look into file. But i guess the risk is small
+
+      end
     end
   end
 
@@ -96,6 +107,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.requests_detailarea(4)
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.requests_detailarea(3)
+    colin.generates_ruleset
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)
