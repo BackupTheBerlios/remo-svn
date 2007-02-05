@@ -1,3 +1,5 @@
+require "rules_generator/main"
+
 class MainController < ApplicationController
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
   RULES_TOOLSET_BUTTONS = [
@@ -6,7 +8,7 @@ class MainController < ApplicationController
       [ "generate_ruleset",       # htmlid
         "generate_ruleset",       # link
         "/generate.png",          # image path
-        "generate ruleset" ]         # title
+        "generate ruleset" ]      # title
   ]
 
   def index
@@ -142,5 +144,10 @@ class MainController < ApplicationController
       end
     end
 
+  end
+
+  def generate_ruleset
+    filename = generate()
+    send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
 end
