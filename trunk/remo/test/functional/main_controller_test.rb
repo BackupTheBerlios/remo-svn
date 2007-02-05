@@ -128,6 +128,25 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
+  def test_index_rules_toolsetarea
+    # plain index call, checking the rules-toolsetarea seperately
+    get :index
+    assert_response :success
+    assert_template "index"	
+
+    assert_select "div#rules-toolsetarea > div.toolbutton", 1
+    assert_select "div#rules-toolsetarea > div#generate_ruleset > [href=generate_ruleset]", 1
+
+    assert_select "div#rules-toolsetarea > div" do
+      assert_select "img", 1
+      assert_select "img[title]", 1, "Image without title."
+      assert_select "img[title=""]", 0, "Title tag of image is empty."
+      assert_select "img[alt]", 1, "Image without alt tag."
+      assert_select "img[alt=""]", 0, "Alt tag of image is empty."
+    end
+
+  end
+
   def test_index_detailarea
     # plain index call, checking the detailarea seperately
     get :index

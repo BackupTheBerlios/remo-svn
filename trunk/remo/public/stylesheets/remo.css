@@ -99,7 +99,7 @@ li {
 
 .toolsetarea {
   background: #d4ebf9;
-  height: 40px;
+  height: 34px;
   border-top: 1px dotted gray;
   border-left: 1px dotted gray;
   border-right: 1px dotted gray;
@@ -141,6 +141,11 @@ li {
 #rules-mainarea {
 }
 #rules-statusarea {
+}
+
+/* toolset area */
+.toolbutton {
+  padding: 2px 2px 0px 2px;
 }
 
 /* The rules detailarea requestitem */

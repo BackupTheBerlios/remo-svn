@@ -34,7 +34,7 @@
     </div>
     <div id="rules" class="maincolumn">
       <div id="rules-toolsetarea" class="toolsetarea">
-        toolset (soon to come)
+        <%= render(:partial => "rules_toolset", :collection => @rules_toolset_buttons) -%>
       </div>
       <div id="rules-detailarea" class="detailarea">
         <%= if params[:id].nil?

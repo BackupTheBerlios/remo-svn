@@ -1,5 +1,13 @@
 class MainController < ApplicationController
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
+  RULES_TOOLSET_BUTTONS = [
+      # the partial display does not work with the form: array[ hash1, hash2, ...]
+      # so we are using array[array1, array2, ...]
+      [ "generate_ruleset",       # htmlid
+        "generate_ruleset",       # link
+        "/generate.png",          # image path
+        "generate ruleset" ]         # title
+  ]
 
   def index
     @requests = Request.find_requests
@@ -24,6 +32,8 @@ class MainController < ApplicationController
     else
       @rules_status = "Status: active"
     end
+
+    @rules_toolset_buttons = RULES_TOOLSET_BUTTONS
 
   end
 
