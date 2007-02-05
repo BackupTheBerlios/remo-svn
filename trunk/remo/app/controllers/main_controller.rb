@@ -1,6 +1,5 @@
-require "rules_generator/main"
-
 class MainController < ApplicationController
+  REMO_VERSION = "0.0.1"
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
   RULES_TOOLSET_BUTTONS = [
       # the partial display does not work with the form: array[ hash1, hash2, ...]
@@ -147,7 +146,9 @@ class MainController < ApplicationController
   end
 
   def generate_ruleset
-    filename = generate()
+    require "rules_generator/main"
+
+    filename = generate(request, REMO_VERSION)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
 end
