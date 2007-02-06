@@ -1,3 +1,5 @@
+require 'helpers/various'
+
 def generate(request=nil, version=nil)
   filename = "rulefile.conf"
   prepend_filename= "prepend-file.conf"
@@ -19,8 +21,9 @@ def generate(request=nil, version=nil)
     append_file(file, prepend_filename, request, version)
 
     requests.each do |r|
-      file.puts "SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"chain\""
-      file.puts "SecRule REQUEST_URI #{r.path}  \"pass,log,id:#{r.id}\""
+      file.puts "# allow: #{r.http_method} #{r.path}"
+      file.puts "SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"chain,allow,nolog,id:#{r.id}\""
+      file.puts "SecRule REQUEST_URI \"#{escape_path r.path}\""
       file.puts ""
     end
 

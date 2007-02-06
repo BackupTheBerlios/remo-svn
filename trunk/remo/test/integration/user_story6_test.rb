@@ -85,9 +85,9 @@ class UserStory6Test < ActionController::IntegrationTest
 
         assert_equal "text/ascii", headers["content-type"][0]
         assert_equal "attachment; filename=\"rulefile.conf\"", headers["content-disposition"][0]
-        assert headers["content-length"][0].to_i > 50    # seems to be a reasonable value
+        assert headers["content-length"][0].to_i > 300    # 300 bytes seems to be a reasonable minimum value.
 
-        # do not know how to look into file. But i guess the risk is small
+        # do not know how to look into file. So this will have to do.
 
       end
     end
