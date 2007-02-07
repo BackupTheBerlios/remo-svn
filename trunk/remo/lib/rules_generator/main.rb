@@ -5,7 +5,7 @@ def generate(request=nil, version=nil)
   prepend_filename= "prepend-file.conf"
   append_filename= "append-file.conf"
 
-  requests = Request.find(:all, :order => "weight DESC")
+  requests = Request.find(:all, :order => "weight ASC")
 
   def append_file(file, app_file, request, version)
     File.foreach(app_file) do |line|
