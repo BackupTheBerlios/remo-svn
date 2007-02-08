@@ -5,6 +5,8 @@ Dependencies:
 ruby >= 1.8 
 rails = 1.2.2
   if you use a different rails version, edit config/environment.rb: RAILS_GEM_VERSION
+sqlite3-ruby bindings
+
 
 
 WEBrick installation
@@ -13,7 +15,7 @@ WEBrick installation
 - tar xvf remo-x.x.x.tar.gz
 - cd remo-x.x.x
 - ruby script/server
-- direct browser to http://localhost:3000   
+- direct browser to http://localhost:3000/main/index
 
 
 Mongrel installation
@@ -25,5 +27,5 @@ You can get it from http://mongrel.rubyforge.org
 - tar xvf remo-x.x.x.tar.gz
 - cd remo-x.x.x
 - mongrel_rails start -d -e production -a 127.0.0.1 -p 3000
-- direct browser to http://localhost:3000   
+- direct browser to http://localhost:3000/main/index   
 
