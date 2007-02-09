@@ -25,18 +25,22 @@ def get_startline(rules_array, path)
   end
 
   # now stepping backwards to the start of the rule
-  # the start of the rule is either an empty line or a line starting with a comment
+  # the delimiter between two rules is always an empty line
   i = path_hit
+  start_rule = 0
   until i == 0 do
     regexp = /^(#|$)/
+    start_rule = i unless regexp.match(rules_array[i])  # counting down start_rule until we hit the comments
+    regexp = /^$/
     if regexp.match(rules_array[i])
-      start_line = i
+      start_line = i + 1  # i is the empty line
       break
     end
+
     i -= 1
   end
 
-  return start_line
+  return start_line, start_rule
 
 end
 
@@ -46,21 +50,26 @@ class RulesGeneratorTest < Test::Unit::TestCase
     rules_array = IO.readlines(filename)
 
     Request.find(:all).each do |item|
-      start = get_startline(rules_array, item.path)
+      start, start_rule = get_startline(rules_array, item.path)
 
-      # start + 0 has to be comment
+      # start + 0 has to be remarks field
       assert_equal false, /^#/.match(rules_array[start]).nil?, "First line of rule is not a comment" 
+      assert_equal false, /^# #{item.remarks}/.match(rules_array[start]).nil?, "First line of comment does not match the remarks field" 
 
-      # start + 1 has to be the start of the rule and the method
+      # start + 1 has to be comment outlining path
+      assert_equal false, /^#/.match(rules_array[start]).nil?, "First line of rule is not a comment" 
+      assert_equal false, /^# allow/.match(rules_array[start + 1]).nil?, "Second line of comment does not start with 'allow'" 
+
+      # start_rule has to be the start of the rule and the method
       regexp = /SecRule REQUEST_METHOD "\^#{item.http_method}\$" "chain,allow,nolog,id:#{item.id}"/
-      assert_equal false, regexp.match(rules_array[start+1]).nil?, "Second line is not correct" 
+      assert_equal false, regexp.match(rules_array[start_rule]).nil?, "First line of rule is not correct" 
 
-      # start + 2 has to be the path
+      # start_rule + 1 has to be the path
       regexp = /REQUEST_URI "#{escape_path(escape_path(item.path))}"/ # double escaping it
-      assert_equal false, regexp.match(rules_array[start+2]).nil?, "Third line is not correct" 
+      assert_equal false, regexp.match(rules_array[start_rule+1]).nil?, "Second line of rule is not correct" 
 
-      # start + 3 has to be empty
-      assert_equal false, /^$/.match(rules_array[start+3]).nil?, "Fourth line (delimiter) of rule is not empty" 
+      # start_rule + 2 has to be empty
+      assert_equal false, /^$/.match(rules_array[start_rule+2]).nil?, "Third line of rule (delimiter) of rule is not empty" 
 
     end
 

@@ -21,6 +21,7 @@ def generate(request=nil, version=nil)
     append_file(file, prepend_filename, request, version)
 
     requests.each do |r|
+      file.puts "# #{r.remarks}" unless r.remarks.nil?
       file.puts "# allow: #{r.http_method} #{r.path}"
       file.puts "SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"chain,allow,nolog,id:#{r.id}\""
       file.puts "SecRule REQUEST_URI \"#{escape_path r.path}\""
