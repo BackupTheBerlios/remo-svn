@@ -162,8 +162,8 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select "table#requestitem-submittable > tr", 1
     assert_select "table#requestitem-submittable input[value='Add request']"
-    assert_select "table#requestitem-submittable input[value='Clear']", 0
-    assert_select "table#requestitem-submittable input[value='Update request']", 0
+    assert_select "table#requestitem-submittable input[value='Clear form']", 0
+    assert_select "table#requestitem-submittable input[value='Save request']", 0
     assert_select "table#requestitem-submittable input[value='Delete request']", 0
 
     assert_select "table#requestitem-requesttable > tr ", 2
@@ -189,8 +189,8 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select "table#requestitem-submittable > tr", 3
     assert_select "table#requestitem-submittable input[value='Add request']", 0
-    assert_select "table#requestitem-submittable input[value='Clear']", 1
-    assert_select "table#requestitem-submittable input[value='Update request']", 1
+    assert_select "table#requestitem-submittable input[value='Clear form']", 1
+    assert_select "table#requestitem-submittable input[value='Save request']", 1
     assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
     assert_select "table#requestitem-requesttable > tr ", 2
@@ -219,8 +219,8 @@ class MainControllerTest < Test::Unit::TestCase
 
       assert_select "table#requestitem-submittable > tr", 3
       assert_select "table#requestitem-submittable input[value='Add request']", 0
-      assert_select "table#requestitem-submittable input[value='Clear']", 1
-      assert_select "table#requestitem-submittable input[value='Update request']", 1
+      assert_select "table#requestitem-submittable input[value='Clear form']", 1
+      assert_select "table#requestitem-submittable input[value='Save request']", 1
       assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
       assert_select "table#requestitem-requesttable > tr ", 2
@@ -257,8 +257,8 @@ class MainControllerTest < Test::Unit::TestCase
 
       assert_select "table#requestitem-submittable > tr", 1
       assert_select "table#requestitem-submittable input[value='Add request']"
-      assert_select "table#requestitem-submittable input[value='Clear']", 0
-      assert_select "table#requestitem-submittable input[value='Update request']", 0
+      assert_select "table#requestitem-submittable input[value='Clear form']", 0
+      assert_select "table#requestitem-submittable input[value='Save request']", 0
       assert_select "table#requestitem-submittable input[value='Delete request']", 0
 
       assert_select "table#requestitem-requesttable > tr ", 2
@@ -290,8 +290,8 @@ class MainControllerTest < Test::Unit::TestCase
 
       assert_select "table#requestitem-submittable > tr", 3
       assert_select "table#requestitem-submittable input[value='Add request']", 0
-      assert_select "table#requestitem-submittable input[value='Clear']", 1
-      assert_select "table#requestitem-submittable input[value='Update request']", 1
+      assert_select "table#requestitem-submittable input[value='Clear form']", 1
+      assert_select "table#requestitem-submittable input[value='Save request']", 1
       assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
       assert_select "table#requestitem-requesttable > tr ", 2
