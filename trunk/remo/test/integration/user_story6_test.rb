@@ -12,20 +12,21 @@ class UserStory6Test < ActionController::IntegrationTest
 
       end
 
-      def user.adds_request(http_method, path)
-        post "/main/submit_detailarea", :actionflag => "add", :update_http_method => http_method, :update_path => path
+      def user.adds_request(http_method, path, remarks)
+        post "/main/submit_detailarea", :actionflag => "add", :update_http_method => http_method, :update_path => path, :update_remarks => remarks
         assert_response :success
         assert_template "submit_detailarea"
-        # the rest od display is tested in the controller test
+        # the rest of display is tested in the controller test
 
         # checking for existence of new request
         request = Request.find(:first, :conditions => ["path = ?", path], :order => "weight DESC") # this should work even with multiple requests of the same path
-        assert_equal http_method,		request.http_method
-        assert_equal path,			request.path
+        assert_equal http_method,     request.http_method
+        assert_equal path,	      request.path
+        assert_equal remarks,	      request.remarks
       end
 
-      def user.updates_request(id, http_method, path)
-        post "/main/submit_detailarea", :actionflag => "save", :update_id => id, :update_http_method => http_method, :update_path => path
+      def user.updates_request(id, http_method, path, remarks)
+        post "/main/submit_detailarea", :actionflag => "save", :update_id => id, :update_http_method => http_method, :update_path => path, :update_remarks => remarks
         assert_response :success
         assert_template "submit_detailarea"
         # the rest of display is tested in the controller test
@@ -34,8 +35,9 @@ class UserStory6Test < ActionController::IntegrationTest
         assert_equal 1, Request.find(:all, :conditions => ["id = ?", id]).size
 
         request = Request.find(:first, :conditions => ["id = ?", id])
-        assert_equal http_method, request.http_method
-        assert_equal path,	  request.path
+        assert_equal http_method,     request.http_method
+        assert_equal path,	      request.path
+        assert_equal remarks,	      request.remarks
       end
 
       def user.deletes_request(id)
@@ -99,10 +101,10 @@ class UserStory6Test < ActionController::IntegrationTest
     colin = regular_user
 
     colin.clicks_clear
-    colin.adds_request("GET", "/index.html")
-    colin.adds_request("POST", "/index.php")
-    colin.adds_request("GET", "/index.cgi")
-    colin.adds_request("GET", "/start.html")
+    colin.adds_request("GET", "/index.html", "foo")
+    colin.adds_request("POST", "/index.php", "bar")
+    colin.adds_request("GET", "/index.cgi", "")
+    colin.adds_request("GET", "/start.html", "")
 
     colin.requests_detailarea(4)
     colin.rearranges_requests(["4", "1", "2", "3"])
@@ -115,9 +117,9 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.rearranges_requests(["3", "1", "4"])
     colin.deletes_request(1)
 
-    colin.updates_request(3, "POST", "/info.html")
+    colin.updates_request(3, "POST", "/info.html", "foo")
     colin.clicks_clear
-    colin.updates_request(4, "GET", "/start2.html")
+    colin.updates_request(4, "GET", "/start2.html", "bar foobar")
     colin.clicks_clear
     colin.deletes_request(3)
     colin.clicks_clear

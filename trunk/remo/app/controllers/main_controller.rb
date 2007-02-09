@@ -81,7 +81,8 @@ class MainController < ApplicationController
       end
       @detail_request = Request.new(:http_method => params[:update_http_method],
                                     :path => params[:update_path],
-                                    :weight => new_weight) # max(weight) + 1
+                                    :weight => new_weight, # max(weight) + 1
+                                    :remarks => params[:update_remarks])
       begin
         @detail_request.save!
       rescue => err
@@ -94,6 +95,8 @@ class MainController < ApplicationController
         @detail_request = Request.find(params[:update_id])
         @detail_request.http_method = params[:update_http_method] 
         @detail_request.path = params[:update_path]
+        @detail_request.remarks = params[:update_remarks]
+        logger.error("#{params[:update_remarks]}")
         @detail_request.save!
       rescue ActiveRecord::RecordNotFound
         logger.error("Attempt to access invalid request record #{params[:update_id]}")

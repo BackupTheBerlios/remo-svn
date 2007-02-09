@@ -4,8 +4,10 @@ valid_get:
   http_method: "GET"
   path: "/index.html"
   weight: 3
+  remarks: "Basic get request"
 valid_post:
   id: 2
   http_method: "POST"
   path: "/action/post.php"
   weight: 4
+  remarks: "Basic post request"

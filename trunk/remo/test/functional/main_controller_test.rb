@@ -13,20 +13,22 @@ class MainControllerTest < Test::Unit::TestCase
     @response   = ActionController::TestResponse.new
 
     # setup the test data in the database. This will be deleted automatically after the test
-    list = [[1, "GET",  "/myindex.html", 1],
-                [2, "POST", "/action/post.php", 2],
-                [3, "GET",  "/detail.html",   3],
-                [4, "GET",  "/view,html",     4],
-                [5, "GET",  "/detail.html",   5],
-                [6, "GET",  "/index.html",    6],
-                [7, "GET",  "/info.html",     7],
-                [8, "POST", "/action/delete.php", 8]]
+    list = [[1, "GET",  "/myindex.html", 1, "bla bla"],
+                [2, "POST", "/action/post.php", 2, "none"],
+                [3, "GET",  "/detail.html",   3, ""],
+                [4, "GET",  "/view,html",     4, "some comment\nadditional comment"],
+                [5, "GET",  "/detail.html",   5, "some comment
+                                                  more comment"],
+                [6, "GET",  "/index.html",    6, ""],
+                [7, "GET",  "/info.html",     7, ""],
+                [8, "POST", "/action/delete.php", 8, ""]]
 
     list.each do |item|
                 r = Request.create(:id           => item[0],
                                    :http_method  => item[1],
                                    :path         => item[2],
-                                   :weight       => item[3])
+                                   :weight       => item[3],
+                                   :remarks      => item[4])
                 r.save!
     end
 
@@ -166,9 +168,10 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "table#requestitem-submittable input[value='Save request']", 0
     assert_select "table#requestitem-submittable input[value='Delete request']", 0
 
-    assert_select "table#requestitem-requesttable > tr ", 2
+    assert_select "table#requestitem-requesttable > tr ", 3
     assert_select "table#requestitem-requesttable input[id='update_http_method']"
     assert_select "table#requestitem-requesttable input[id='update_path']"
+    assert_select "table#requestitem-requesttable input[id='update_remarks']"
 
   end
 
@@ -193,9 +196,10 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "table#requestitem-submittable input[value='Save request']", 1
     assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
-    assert_select "table#requestitem-requesttable > tr ", 2
+    assert_select "table#requestitem-requesttable > tr ", 3
     assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
     assert_select "table#requestitem-requesttable input[id='update_path'][value$='index.html']"
+    assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='bla bla']"
 
   end
 
@@ -223,9 +227,10 @@ class MainControllerTest < Test::Unit::TestCase
       assert_select "table#requestitem-submittable input[value='Save request']", 1
       assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
-      assert_select "table#requestitem-requesttable > tr ", 2
+      assert_select "table#requestitem-requesttable > tr ", 3
       assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
       assert_select "table#requestitem-requesttable input[id='update_path'][value$='index.html']"
+      assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='bla bla']"
     end
 
     # checking for highlight (select) statements
@@ -261,9 +266,10 @@ class MainControllerTest < Test::Unit::TestCase
       assert_select "table#requestitem-submittable input[value='Save request']", 0
       assert_select "table#requestitem-submittable input[value='Delete request']", 0
 
-      assert_select "table#requestitem-requesttable > tr ", 2
+      assert_select "table#requestitem-requesttable > tr ", 3
       assert_select "table#requestitem-requesttable input[id='update_http_method']"
       assert_select "table#requestitem-requesttable input[id='update_path']"
+      assert_select "table#requestitem-requesttable input[id='update_remarks']"
     end
 
     # statusarea
@@ -274,7 +280,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_display_detailarea_add_successful
-    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "1000"
+    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "1000", :update_remarks => "foo"
     assert_response :success
 
     assert_template "submit_detailarea"
@@ -294,9 +300,10 @@ class MainControllerTest < Test::Unit::TestCase
       assert_select "table#requestitem-submittable input[value='Save request']", 1
       assert_select "table#requestitem-submittable input[value='Delete request']", 1
 
-      assert_select "table#requestitem-requesttable > tr ", 2
+      assert_select "table#requestitem-requesttable > tr ", 3
       assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
       assert_select "table#requestitem-requesttable input[id='update_path'][value$='detail2.html']"
+      assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='foo']"
     end
 
     # mainarea
@@ -313,7 +320,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_display_detailarea_add_failure
-    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "1000"
+    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "1000", :update_remarks => "bar"
     assert_response :success
 
     assert_template "submit_detailarea"
@@ -330,7 +337,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_display_detailarea_update_successful
-    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3"
+    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3", :update_remarks => "bar"
     assert_response :success
 
     assert_template "submit_detailarea"
@@ -343,7 +350,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_display_detailarea_update_failure
-    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3"
+    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3", :update_remarks => "bar"
     assert_response :success
 
     assert_template "submit_detailarea"

@@ -9,6 +9,8 @@
                     <%= text_field_tag("update_http_method", h(request_rules_detailarea_detailrequest.http_method)) -%></div></td></tr>
                   <tr><td><div id="label_path">Path: </div></td><td><div id="path">
                     <%= text_field_tag("update_path", h(request_rules_detailarea_detailrequest.path), :size => "35" ) -%></div></td></tr>
+                  <tr><td><div id="label_remarks">Remarks: </div></td><td><div id="remarks">
+                    <%= text_field_tag("update_remarks", h(request_rules_detailarea_detailrequest.remarks), :size => "35" ) -%></div></td></tr>
 	        </table>
                 </td><td>
 	        <table id="requestitem-submittable">

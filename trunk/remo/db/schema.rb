@@ -2,12 +2,13 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 4) do
+ActiveRecord::Schema.define(:version => 5) do
 
   create_table "requests", :force => true do |t|
     t.column "http_method", :string,  :limit => 10, :default => "", :null => false
     t.column "path",        :text,                  :default => "", :null => false
     t.column "weight",      :integer,               :default => 0,  :null => false
+    t.column "remarks",     :text,                  :default => ""
   end
 
 end

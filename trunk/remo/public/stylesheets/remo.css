@@ -170,13 +170,13 @@ li {
   float: left;
   width: 79%;
 }
-.detailarea #requestitem #label_weight{
+.detailarea #requestitem #label_remarks{
   color: #494949;
   padding-left: 1%;
   float: left;
   width: 20%;
 }
-.detailarea #requestitem #weight{
+.detailarea #requestitem #remarks{
   float: left;
   width: 50%;
 }
