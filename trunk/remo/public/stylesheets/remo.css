@@ -197,10 +197,14 @@ li {
 /* The rules request list */
 
 .listitem {
-  padding-left: 4px;
+  padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
+  		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
+  		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
 }
 .listitem-selected {
-  padding-left: 4px;
+  padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
+  		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
+  		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
   background: #d4ebf9;
 }
 .requesthead {

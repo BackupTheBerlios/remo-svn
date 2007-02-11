@@ -29,18 +29,16 @@ statusmessage = flash[:notice]
 
 case params[:actionflag]
 when "clear"
-  statusmessage = "Status: active" if flash[:notice].nil?
-
   unselect_listitem page, 'listitem'
-
+  statusmessage = "Status: active" if flash[:notice].nil?
 when "add"
-  statusmessage = "Successfully added new item!" if flash[:notice].nil?
+  page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @detail_request)
+  page.replace_html("rules-statusarea", "<div>Successfully added new item!</div>" ) if flash[:notice].nil?
 when "save"
-  statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
+  page.replace_html("request-item_#{params[:update_id]}", :partial => "request", :object => @detail_request)
+  page.replace_html("rules-statusarea", "<div>Successfully saved item #{params[:update_id]}!</div>" ) if flash[:notice].nil?
 when "delete"
-  statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
+  page.remove "request-item_#{params[:update_id]}"
+  page.replace_html("rules-statusarea", "<div>Successfully deleted item #{params[:update_id]}!</div>" ) if flash[:notice].nil?
 end
 
-page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
-page.replace_html("rules-mainarea-sortlist", :partial => "request", :collection => @requests) unless params[:actionflag] == "clear"
-page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} unless params[:actionflag] == "clear"
