@@ -110,23 +110,26 @@ class MainControllerTest < Test::Unit::TestCase
 
     1.upto(8) do |n|
     	elements << "li#request-item_#{n}"
-    	elements << "div#request-item-#{n}-http_method"
-    	elements << "div#request-item-#{n}-path"
+    	elements << "div#request-item_#{n}-head"
+    	elements << "div#request-item_#{n}-details"
     end
     assert_exist_elementlist elements
 
 
-
     # request list: testing content of the first data item
-    assert_select "div#request-item-1-lens a[href=/main/index/1]", 1
-    assert_select "div#request-item-1-http_method", 'GET'
-    assert_select "div#request-item-1-path", '/myindex.html'
+    assert_select "li#request-item_1 > div#request-item_1-head", 1
+    assert_select "div#request-item_1-head > a", 4
+    assert_select "div#request-item_1-head > a[id=request-item_1-collapsed]", 1
+    assert_select "a[id=request-item_1-collapsed] > img[src=/collapsed.gif]", 1
+    assert_select "a[id=request-item_1-expanded] > img[src=/expanded.gif]", 1
+    assert_select "div#request-item_1-head > a:nth-child(3)", 'GET'
+    assert_select "div#request-item_1-head > a:nth-child(3)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
+    assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "li#request-item_1 > div#request-item_1-details", 1
+    assert_select "div#request-item_1-details > div", 1
+    assert_select "div#request-item_1-details > div#request-item_1-remarks", "remarks: bla bla"
 
-    # test for existence of javascript onclick link: we search for exactly 1 occurrence of a link with the 
-    # onclick value matching the html sourcecode expected.
-    # testing a http_method item and a path item will do
-    assert_select "div#request-item-1-http_method a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
-    assert_select "div#request-item-1-path a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
 
   end
 
@@ -234,10 +237,10 @@ class MainControllerTest < Test::Unit::TestCase
     end
 
     # checking for highlight (select) statements
-    assert_match /addClassName\("request-item-1-http_method", "http_method-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item-1-http_method", "http_method"\)/, @response.body
-    assert_match /addClassName\("request-item-1-path", "path-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item-1-path", "path"\)/, @response.body
+    assert_match /addClassName\("request-item_1-head", "requesthead-selected"\)/, @response.body
+    assert_match /removeClassName\("request-item_1-head", "requesthead"\)/, @response.body
+    assert_match /addClassName\("request-item_1-details", "requestdetails-selected"\)/, @response.body
+    assert_match /removeClassName\("request-item_1-details", "requestdetails"\)/, @response.body
     
     #statusarea
     assert_select_rjs "rules-statusarea" do
@@ -308,8 +311,8 @@ class MainControllerTest < Test::Unit::TestCase
 
     # mainarea
     assert_select_rjs "rules-mainarea-sortlist" do
-      assert_select "li > div.http_method-selected > a", :text => "GET" # item we just inserted
-      assert_select "li > div.path-selected > a", :text => /detail2.html/ 
+      #assert_select "li > div.http_method-selected > a", :text => "GET" # item we just inserted
+      #assert_select "li > div.path-selected > a", :text => /detail2.html/ 
     end
 
     # statusarea
