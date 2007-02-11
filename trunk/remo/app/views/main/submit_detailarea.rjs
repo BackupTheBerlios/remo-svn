@@ -31,9 +31,7 @@ case params[:actionflag]
 when "clear"
   statusmessage = "Status: active" if flash[:notice].nil?
 
-  unselect_listitem page, 'lens'
-  unselect_listitem page, 'http_method'
-  unselect_listitem page, 'path'
+  unselect_listitem page, 'listitem'
 
 when "add"
   statusmessage = "Successfully added new item!" if flash[:notice].nil?
