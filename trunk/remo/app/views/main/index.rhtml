@@ -1,4 +1,4 @@
-<ul id="rules-mainarea-sortlist">
-  <%= render(:partial => "request", :collection => @requests) -%>
-</ul>
-<%= sortable_element 'rules-mainarea-sortlist', :url => {:action => 'rearrange_requests'} %>
+  <ul id="rules-mainarea-sortlist">
+<%= render(:partial => "request", :collection => @requests) -%>
+        </ul>
+<%= sortable_element 'rules-mainarea-sortlist', :url => {:action => 'rearrange_requests'} -%>

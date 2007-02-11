@@ -7,11 +7,9 @@ page.replace_html("rules-statusarea", "<div>Selected request item #{@detail_requ
 
 page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
 
-unselect_listitem page, 'lens'
-unselect_listitem page, 'http_method'
-unselect_listitem page, 'path'
+unselect_listitem page, 'requesthead'
+unselect_listitem page, 'requestdetails'
 
-select_listitem page, "request-item-#{@detail_request.id}-lens", 'lens'
-select_listitem page, "request-item-#{@detail_request.id}-http_method", 'http_method'
-select_listitem page, "request-item-#{@detail_request.id}-path", 'path'
-
+select_listitem page, "request-item_#{@detail_request.id}-head", 'requesthead'
+select_listitem page, "request-item_#{@detail_request.id}-details", 'requestdetails'
+                       

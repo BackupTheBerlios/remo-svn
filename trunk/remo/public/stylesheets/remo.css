@@ -197,39 +197,25 @@ li {
 /* The rules request list */
 
 .listitem {
-  padding-left: 2px;
+  padding-left: 4px;
 }
-.lens {
-  float: left;
-  width: 5%;
+.requesthead {
 }
-.http_method {
-  white-space: nowrap;
-  float: left;
-  width: 10%;
-}
-.path {
-  white-space: nowrap;
-  float: left;
-  width: 85%;
-}
-.lens-selected {
+.requesthead-selected {
   background: #d4ebf9;
-  float: left;
-  width: 5%;
 }
-.http_method-selected {
+.requestdetails {
+}
+.requestdetails-selected {
   background: #d4ebf9;
-  white-space: nowrap;
-  float: left;
-  width: 10%;
 }
-.path-selected {
-  background: #d4ebf9;
+.remarks {
   white-space: nowrap;
-  float: left;
-  width: 85%;
+  padding-left: 20px;
+  color: gray;
+  font-size: small;
 }
+
 
 
 /* The error box */

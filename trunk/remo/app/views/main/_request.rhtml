@@ -1,6 +1,10 @@
-<li id="request-item_<%= request.id-%>">
-<div id="request-item-<%= request.id-%>-lens" class="lens<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><a href="/main/index/<%= request.id -%>"><img src="/lens.png" alt="v"></a></div>
-<div id="request-item-<%= request.id-%>-http_method" class="http_method<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%></div>
-<div id="request-item-<%= request.id-%>-path" class="path<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>"><%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } -%></div>
-<br />
-</li>
+          <li id="request-item_<%= request.id-%>" class="listitem">
+            <div id="request-item_<%= request.id-%>-head" class="requesthead<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
+              <%= link_to_function "<img src=\"/expanded.gif\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-collapsed", :style => "display: none;"%>
+              <%= link_to_function "<img src=\"/collapsed.gif\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-expanded"%>
+              &nbsp;<%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;<%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } %>
+            </div>
+            <div id="request-item_<%= request.id-%>-details" class="requestdetails<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>" style="display: none;" >
+              <div id="request-item_<%= request.id-%>-remarks" class="remarks" >remarks: <%= request.remarks -%></div>
+            </div>
+          </li>
