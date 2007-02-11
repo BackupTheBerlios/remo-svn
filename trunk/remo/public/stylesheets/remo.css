@@ -199,15 +199,13 @@ li {
 .listitem {
   padding-left: 4px;
 }
+.listitem-selected {
+  padding-left: 4px;
+  background: #d4ebf9;
+}
 .requesthead {
 }
-.requesthead-selected {
-  background: #d4ebf9;
-}
 .requestdetails {
-}
-.requestdetails-selected {
-  background: #d4ebf9;
 }
 .remarks {
   white-space: nowrap;
@@ -215,7 +213,6 @@ li {
   color: gray;
   font-size: small;
 }
-
 
 
 /* The error box */

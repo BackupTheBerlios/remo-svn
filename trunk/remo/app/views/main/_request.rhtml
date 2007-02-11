@@ -1,10 +1,10 @@
-          <li id="request-item_<%= request.id-%>" class="listitem">
-            <div id="request-item_<%= request.id-%>-head" class="requesthead<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
+          <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
+            <div id="request-item_<%= request.id-%>-head" class="requesthead">
               <%= link_to_function "<img src=\"/collapsed.gif\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-collapsed"%>
               <%= link_to_function "<img src=\"/expanded.gif\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-expanded", :style => "display: none;"%>
               &nbsp;<%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;<%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } %>
             </div>
-            <div id="request-item_<%= request.id-%>-details" class="requestdetails<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>" style="display: none;" >
+            <div id="request-item_<%= request.id-%>-details" class="requestdetails" style="display: none;" >
               <div id="request-item_<%= request.id-%>-remarks" class="remarks" >remarks: <%= request.remarks -%></div>
             </div>
           </li>

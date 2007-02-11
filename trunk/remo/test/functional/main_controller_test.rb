@@ -237,10 +237,8 @@ class MainControllerTest < Test::Unit::TestCase
     end
 
     # checking for highlight (select) statements
-    assert_match /addClassName\("request-item_1-head", "requesthead-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item_1-head", "requesthead"\)/, @response.body
-    assert_match /addClassName\("request-item_1-details", "requestdetails-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item_1-details", "requestdetails"\)/, @response.body
+    assert_match /addClassName\("request-item_1", "listitem-selected"\)/, @response.body
+    assert_match /removeClassName\("request-item_1", "listitem"\)/, @response.body
     
     #statusarea
     assert_select_rjs "rules-statusarea" do
