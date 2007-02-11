@@ -120,8 +120,8 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "li#request-item_1 > div#request-item_1-head", 1
     assert_select "div#request-item_1-head > a", 4
     assert_select "div#request-item_1-head > a[id=request-item_1-collapsed]", 1
-    assert_select "a[id=request-item_1-collapsed] > img[src=/collapsed.gif]", 1
-    assert_select "a[id=request-item_1-expanded] > img[src=/expanded.gif]", 1
+    assert_select "a[id=request-item_1-collapsed] > img[src=/collapsed.png]", 1
+    assert_select "a[id=request-item_1-expanded] > img[src=/expanded.png]", 1
     assert_select "div#request-item_1-head > a:nth-child(3)", 'GET'
     assert_select "div#request-item_1-head > a:nth-child(3)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
@@ -309,8 +309,9 @@ class MainControllerTest < Test::Unit::TestCase
 
     # mainarea
     assert_select_rjs "rules-mainarea-sortlist" do
-      #assert_select "li > div.http_method-selected > a", :text => "GET" # item we just inserted
-      #assert_select "li > div.path-selected > a", :text => /detail2.html/ 
+      assert_select "li > div", 2                    # head and details
+      assert_select "li > div:nth-child(2) > div", 1 # remarks field within the details
+      # with this we are quite sure we got a real request item 
     end
 
     # statusarea
@@ -343,6 +344,13 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_template "submit_detailarea"
 
+    # mainarea
+    assert_select_rjs "request-item_3" do
+      assert_select "li > div", 2                    # head and details
+      assert_select "li > div:nth-child(2) > div", 1 # remarks field within the details
+      # with this we are quite sure we got a real request item 
+    end
+
     # statusarea
     assert_select_rjs "rules-statusarea" do
       assert_select "div", /Successfully saved item 3!/
@@ -373,6 +381,9 @@ class MainControllerTest < Test::Unit::TestCase
     assert_response :success
 
     assert_template "submit_detailarea"
+
+    # mainarea
+    assert_match /Element.remove\("request-item_1"\)/, @response.body
 
     # statusarea
     assert_select_rjs "rules-statusarea" do

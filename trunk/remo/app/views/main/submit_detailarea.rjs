@@ -33,12 +33,14 @@ when "clear"
   statusmessage = "Status: active" if flash[:notice].nil?
 when "add"
   page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @detail_request)
-  page.replace_html("rules-statusarea", "<div>Successfully added new item!</div>" ) if flash[:notice].nil?
+  statusmessage = "Successfully added new item!" if flash[:notice].nil?
 when "save"
   page.replace_html("request-item_#{params[:update_id]}", :partial => "request", :object => @detail_request)
-  page.replace_html("rules-statusarea", "<div>Successfully saved item #{params[:update_id]}!</div>" ) if flash[:notice].nil?
+  statusmessage = "Successfully saved item #{params[:update_id]}!" if flash[:notice].nil?
 when "delete"
   page.remove "request-item_#{params[:update_id]}"
-  page.replace_html("rules-statusarea", "<div>Successfully deleted item #{params[:update_id]}!</div>" ) if flash[:notice].nil?
+  statusmessage = "Successfully deleted item #{params[:update_id]}!" if flash[:notice].nil?
 end
 
+page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
+page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} unless params[:actionflag] == "clear"
