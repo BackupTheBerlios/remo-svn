@@ -197,11 +197,13 @@ li {
 /* The rules request list */
 
 .listitem {
+  clear: both;
   padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
   		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
   		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
 }
 .listitem-selected {
+  clear: both;
   padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
   		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
   		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
@@ -211,11 +213,31 @@ li {
 }
 .requestdetails {
 }
-.remarks {
+.request-fieldlabel {
   white-space: nowrap;
+  float: left;
   padding-left: 24px;
   color: gray;
   font-size: small;
+}
+.request-fieldedit{
+  white-space: nowrap;
+  float: left;
+  color: gray;
+  font-size: small;
+}
+
+/* rails helper: inplace editor */
+.inplaceeditor-form input[type="text"] { 
+  width: 100%;
+}
+.editor_ok_button { /* this is a button by default */
+  color: #2eaeff;
+  background: white;
+  border-color: blue;
+  border-style: none;
+}
+.editor_cancel { 
 }
 
 

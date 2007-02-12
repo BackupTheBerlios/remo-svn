@@ -1,3 +1,4 @@
+<% @request = request # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 %>
           <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
             <div id="request-item_<%= request.id-%>-head" class="requesthead">
               <%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-collapsed"%>
@@ -5,6 +6,7 @@
               &nbsp;<%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;<%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } %>
             </div>
             <div id="request-item_<%= request.id-%>-details" class="requestdetails" style="display: none;" >
-              <div id="request-item_<%= request.id-%>-remarks" class="remarks" >remarks: <%= request.remarks -%></div>
+              <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">remarks:&nbsp;</div>
+              <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
             </div>
           </li>

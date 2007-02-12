@@ -10,4 +10,3 @@ page.replace_html("requestitem", :partial => "request_rules_detailarea_detailreq
 unselect_listitem page, 'listitem'
 
 select_listitem page, "request-item_#{@detail_request.id}", 'listitem'
-                       

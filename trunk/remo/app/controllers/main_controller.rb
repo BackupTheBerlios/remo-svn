@@ -10,6 +10,10 @@ class MainController < ApplicationController
         "generate ruleset" ]      # title
   ]
 
+  Request.content_columns.each do |column|
+    in_place_edit_for :request, column.name
+  end 
+  
   def index
     @requests = Request.find_requests
 
