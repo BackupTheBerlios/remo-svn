@@ -92,6 +92,16 @@ class UserStory6Test < ActionController::IntegrationTest
         # do not know how to look into file. So this will have to do.
 
       end
+
+      def user.uses_inline_editor(id, fieldname, value)
+        # save the inline editor form for the field:fieldname in record id:record and set the field to value:value.
+        post "/main/set_request_#{fieldname}/#{id}", "value" => value
+        assert_response :success
+
+        request = Request.find(id)
+        assert_equal request[fieldname], value
+      end
+
     end
   end
 
@@ -110,6 +120,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.requests_detailarea(3)
     colin.generates_ruleset
+    colin.uses_inline_editor(3, "remarks", "foobar")
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)

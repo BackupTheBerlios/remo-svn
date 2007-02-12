@@ -128,9 +128,11 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "li#request-item_1 > div#request-item_1-details", 1
     assert_select "div#request-item_1-details > div", 1
-    assert_select "div#request-item_1-details > div#request-item_1-remarks", "remarks: bla bla"
-
-
+    assert_select "div#request-item_1-details > div#request-item_1-remarks", 1
+    assert_select "div#request-item_1-remarks > div", 2
+    assert_select "div#request-item_1-remarks > div#request-item_1-remarks-label", "remarks:&nbsp;"
+    assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /bla bla/
+    assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /request_remarks_1_in_place_editor/
   end
 
   def test_index_rules_toolsetarea
@@ -409,7 +411,7 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
-  def test_rearrange_requests
+  def test_rearrange_requests_success
 
     post :rearrange_requests, "rules-mainarea-sortlist" => ["8", "1", "2", "3", "4", "5", "6", "7"]
     assert_response :success
@@ -423,6 +425,13 @@ class MainControllerTest < Test::Unit::TestCase
       assert_select "div", /Rearranged items./
     end
 
+  end
+
+  def test_set_request_remarks_success
+    post :set_request_remarks, :id => "3", :value => "foobar"
+    assert_response :success
+    
+    assert_template nil
   end
 
   def test_generate_ruleset

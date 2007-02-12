@@ -6,7 +6,9 @@
               &nbsp;<%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;<%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } %>
             </div>
             <div id="request-item_<%= request.id-%>-details" class="requestdetails" style="display: none;" >
-              <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">remarks:&nbsp;</div>
-              <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
+              <div id="request-item_<%= request.id-%>-remarks" class="request-field" >
+                <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">remarks:&nbsp;</div>
+                <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
+              </div>
             </div>
           </li>
