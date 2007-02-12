@@ -126,6 +126,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.requests_detailarea(2)
     colin.deletes_request(2)
     colin.rearranges_requests(["3", "1", "4"])
+    colin.uses_inline_editor(4, "remarks", "ooo\nxxx")
     colin.deletes_request(1)
 
     colin.updates_request(3, "POST", "/info.html", "foo")
