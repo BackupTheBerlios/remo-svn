@@ -114,7 +114,7 @@ li {
 .mainarea {
   background: white;
   margin-top: 2px;
-  height: 355px;
+  height: 555px;
   border-left: 1px dotted gray;
   border-right: 1px dotted gray;
 }
@@ -202,16 +202,15 @@ li {
   		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
   		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
 }
-.listitem-selected {
-  clear: both;
-  padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
-  		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
-  		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
-  background: #d4ebf9;
-}
 .requesthead {
 }
+.requesthead-selected {
+  background: #d4ebf9;
+}
 .requestdetails {
+}
+.request-field {
+  clear: both;
 }
 .request-fieldlabel {
   white-space: nowrap;
@@ -219,22 +218,30 @@ li {
   padding-left: 24px;
   color: gray;
   font-size: small;
+  margin-bottom: 1px;
 }
 .request-fieldedit{
   white-space: nowrap;
   float: left;
   color: gray;
   font-size: small;
+  margin-bottom: 1px;
 }
 
 /* rails helper: inplace editor */
 .inplaceeditor-form input[type="text"] { 
   width: 100%;
 }
+.editor_field { 
+  font-size: small;
+  border-color: #2eaeff;
+  border-style: none;
+  padding-top: 0;
+  padding-bottom: 0;
+}
 .editor_ok_button { /* this is a button by default */
   color: #2eaeff;
   background: white;
-  border-color: blue;
   border-style: none;
 }
 .editor_cancel { 

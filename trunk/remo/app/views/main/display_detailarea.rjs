@@ -7,6 +7,6 @@ page.replace_html("rules-statusarea", "<div>Selected request item #{@detail_requ
 
 page.replace_html("requestitem", :partial => "request_rules_detailarea_detailrequest", :object => @detail_request)
 
-unselect_listitem page, 'listitem'
+unselect_listitem page, 'requesthead'
 
-select_listitem page, "request-item_#{@detail_request.id}", 'listitem'
+select_listitem page, "request-item_#{@detail_request.id}-head", 'requesthead'

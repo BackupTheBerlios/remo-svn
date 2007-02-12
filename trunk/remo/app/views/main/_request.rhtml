@@ -2,13 +2,18 @@
           <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
             <div id="request-item_<%= request.id-%>-head" class="requesthead">
               <%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-collapsed"%>
-              <%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-expanded", :style => "display: none;"%>
-              &nbsp;<%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;<%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } %>
+              <%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})", :id => "request-item_#{request.id}-expanded", :style => "display: none;"%>&nbsp;
+              <%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;
+              <%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } -%>
             </div>
-            <div id="request-item_<%= request.id-%>-details" class="requestdetails" style="display: none;" >
-              <div id="request-item_<%= request.id-%>-remarks" class="request-field" >
-                <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">remarks:&nbsp;</div>
-                <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
+            <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
+<%           Request.content_columns.each do |column| -%>
+<%            if %w[http_method path weight].grep(/#{column.name}/).size == 0 -%>
+              <div id="request-item_<%= request.id-%>-<%= column.name -%>" class="request-field">
+                <div id="request-item_<%= request.id-%>-<%= column.name -%>-label" class="request-fieldlabel"><%= column.name -%>:&nbsp;</div>
+                <div id="request-item_<%= request.id-%>-<%= column.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, column.name, {}, :save_text => "save" -%></div>
               </div>
+<%            end -%>
+<%           end -%>
             </div>
           </li>
