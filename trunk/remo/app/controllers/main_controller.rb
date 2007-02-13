@@ -10,6 +10,24 @@ class MainController < ApplicationController
         "generate ruleset" ]      # title
   ]
 
+  REQUEST_DETAIL_FIELDS = [
+    { "host" => "Host" },
+    { "user_agent" => "User-Agent"},
+    { "referer" => "Referer"},
+    { "accept" => "Accept"},
+    { "accept_language" => "Accept-Language"},
+    { "accept_encoding" => "Accept-Encoding"},
+    { "accept_charset" => "Accept-Charset"},
+    { "keep_alive" => "Keep-Alive"},
+    { "guiprefix_connection" => "Connection"},
+    { "content_type" => "Content-Type"},
+    { "content_length" => "Content-Length"},
+    { "cookie" => "Cookie"},
+    { "pragma" => "Pragma"},
+    { "cache_control" => "Cache-Control"},
+    { "remarks" => "Remarks"}
+  ]
+
   Request.content_columns.each do |column|
     in_place_edit_for :request, column.name
   end 
@@ -39,6 +57,7 @@ class MainController < ApplicationController
     end
 
     @rules_toolset_buttons = RULES_TOOLSET_BUTTONS
+    @request_detail_fields = REQUEST_DETAIL_FIELDS
 
   end
 

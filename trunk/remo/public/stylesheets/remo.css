@@ -202,18 +202,23 @@ li {
   		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
   		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
 }
+.foldhandle{
+  float: left;
+  padding-top: 5px;
+}
 .requesthead {
 }
 .requesthead-selected {
   background: #d4ebf9;
 }
 .requestdetails {
+  float: left;
+  margin-bottom: 10px;
 }
 .request-field {
   clear: both;
 }
 .request-fieldlabel {
-  white-space: nowrap;
   float: left;
   padding-left: 24px;
   color: gray;
@@ -221,8 +226,8 @@ li {
   margin-bottom: 1px;
 }
 .request-fieldedit{
-  white-space: nowrap;
   float: left;
+  white-space: nowrap;
   color: gray;
   font-size: small;
   margin-bottom: 1px;
