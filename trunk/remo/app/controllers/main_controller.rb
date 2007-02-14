@@ -32,6 +32,11 @@ class MainController < ApplicationController
     in_place_edit_for :request, column.name
   end 
   
+  before_filter :set_request_detail_fields  # this sets the @request_detail_fields variable 
+                                            # needed inside the _request partial. This is the
+                                            # preferred way of passing it.
+                                                
+
   def index
     @requests = Request.find_requests
 
@@ -57,7 +62,6 @@ class MainController < ApplicationController
     end
 
     @rules_toolset_buttons = RULES_TOOLSET_BUTTONS
-    @request_detail_fields = REQUEST_DETAIL_FIELDS
 
   end
 
@@ -177,4 +181,16 @@ class MainController < ApplicationController
     filename = generate(request, REMO_VERSION)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
+
+
+  private
+
+
+    def set_request_detail_fields
+      # this sets the @request_detail_fields variable 
+      # needed inside the _request partial. This is the
+      # preferred way of passing it.
+      @request_detail_fields = REQUEST_DETAIL_FIELDS
+    end
+
 end

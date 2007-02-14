@@ -118,19 +118,23 @@ class MainControllerTest < Test::Unit::TestCase
 
     # request list: testing content of the first data item
     assert_select "li#request-item_1 > div#request-item_1-head", 1
-    assert_select "div#request-item_1-head > a", 4
-    assert_select "div#request-item_1-head > a[id=request-item_1-collapsed]", 1
-    assert_select "a[id=request-item_1-collapsed] > img[src=/collapsed.png]", 1
-    assert_select "a[id=request-item_1-expanded] > img[src=/expanded.png]", 1
+    assert_select "div#request-item_1-head > div#request-item_1-expanded", 1
+    assert_select "div#request-item_1-head > div#request-item_1-collapsed", 1
+    assert_select "div#request-item_1-head > div#request-item_1-expanded > a", 1
+    assert_select "div#request-item_1-head > div#request-item_1-collapsed > a", 1
+    assert_select "div#request-item_1-head > div#request-item_1-expanded > a > img[src=/expanded.png]", 1
+    assert_select "div#request-item_1-head > div#request-item_1-collapsed > a > img[src=/collapsed.png]", 1
     assert_select "div#request-item_1-head > a:nth-child(3)", 'GET'
     assert_select "div#request-item_1-head > a:nth-child(3)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
     assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "li#request-item_1 > div#request-item_1-details", 1
-    assert_select "div#request-item_1-details > div", 1
+    assert_select "div#request-item_1-details > div", 15 # number of detail fields on display
+    
+    # testing just one of the detail fields
     assert_select "div#request-item_1-details > div#request-item_1-remarks", 1
     assert_select "div#request-item_1-remarks > div", 2
-    assert_select "div#request-item_1-remarks > div#request-item_1-remarks-label", "remarks:&nbsp;"
+    assert_select "div#request-item_1-remarks > div#request-item_1-remarks-label", "Remarks:&nbsp;"
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /bla bla/
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /request_remarks_1_in_place_editor/
   end
@@ -239,8 +243,8 @@ class MainControllerTest < Test::Unit::TestCase
     end
 
     # checking for highlight (select) statements
-    assert_match /addClassName\("request-item_1", "listitem-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item_1", "listitem"\)/, @response.body
+    assert_match /addClassName\("request-item_1-head", "requesthead-selected"\)/, @response.body
+    assert_match /removeClassName\("request-item_1-head", "requesthead"\)/, @response.body
     
     #statusarea
     assert_select_rjs "rules-statusarea" do
@@ -312,7 +316,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "rules-mainarea-sortlist" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 1 # remarks field within the details
+      assert_select "li > div:nth-child(2) > div", 15 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 
@@ -349,7 +353,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "request-item_3" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 1 # remarks field within the details
+      assert_select "li > div:nth-child(2) > div", 15 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 
