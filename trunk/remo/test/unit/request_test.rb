@@ -5,6 +5,7 @@ class RequestTest < Test::Unit::TestCase
 
   def test_valid_request_save
     # save request to database
+    
     request = Request.new(:http_method  => requests(:valid_get).http_method,
     			  :path   	=> requests(:valid_get).path,
     			  :weight  	=> 1000,  # has to be unique
@@ -17,13 +18,14 @@ class RequestTest < Test::Unit::TestCase
                           :accept_encoding  => requests(:valid_get).accept_encoding,
                           :accept_charset   => requests(:valid_get).accept_charset,
                           :keep_alive	=> requests(:valid_get).keep_alive,
-                          :guiprefix_connection	=> requests(:valid_get).connection,
+                          :guiprefix_connection	=> requests(:valid_get).guiprefix_connection,
                           :content_type	=> requests(:valid_get).content_type,
                           :content_length => requests(:valid_get).content_length,
                           :cookie	=> requests(:valid_get).cookie,
                           :pragma	=> requests(:valid_get).pragma,
                           :cache_control  => requests(:valid_get).cache_control)
     assert request.save
+    
     request = Request.new(:http_method  => requests(:valid_post).http_method,
     			  :path   	=> requests(:valid_post).path,
     			  :weight  	=> 1001,  # has to be unique
@@ -36,13 +38,14 @@ class RequestTest < Test::Unit::TestCase
                           :accept_encoding  => requests(:valid_post).accept_encoding,
                           :accept_charset   => requests(:valid_post).accept_charset,
                           :keep_alive	=> requests(:valid_post).keep_alive,
-                          :guiprefix_connection	=> requests(:valid_post).connection,
+                          :guiprefix_connection	=> requests(:valid_post).guiprefix_connection,
                           :content_type	=> requests(:valid_post).content_type,
                           :content_length => requests(:valid_post).content_length,
                           :cookie	=> requests(:valid_post).cookie,
                           :pragma	=> requests(:valid_post).pragma,
                           :cache_control  => requests(:valid_post).cache_control)
     assert request.save
+
   end
   def test_invalid_request_save
     # save request to database
