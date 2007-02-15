@@ -89,7 +89,8 @@ class UserStory6Test < ActionController::IntegrationTest
         assert_equal "attachment; filename=\"rulefile.conf\"", headers["content-disposition"][0]
         assert headers["content-length"][0].to_i > 300    # 300 bytes seems to be a reasonable minimum value.
 
-        # do not know how to look into file. So this will have to do.
+        # do not know how to look into file. So this will have to do. 
+        # actually, the file is checked in seperate functional tests.
 
       end
 
@@ -119,7 +120,6 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.requests_detailarea(4)
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.requests_detailarea(3)
-    colin.generates_ruleset
     colin.uses_inline_editor(3, "remarks", "foobar")
     colin.uses_inline_editor(3, "accept", "")
     colin.uses_inline_editor(3, "accept", "foo")
@@ -127,6 +127,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.uses_inline_editor(3, "accept", ".*")
     colin.uses_inline_editor(3, "accept", ".*\"*")
     colin.uses_inline_editor(3, "accept", "'`\".*+?!&$")
+    colin.generates_ruleset
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)
