@@ -43,8 +43,7 @@ def generate(request=nil, version=nil, request_detail_fields=[])
     # remo gui should allow regexes on this field.
     #
     file.puts "  # Checking request method"
-    file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,setvar:TX.INVALID=1,pass\""
-    file.puts "  SecRule \"TX:INVALID\" \"^1$\" \"deny,id:#{id},t:none,status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
+    file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},t:none,status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
   end
 
   def add_check_strict_headers (file, request_detail_fields, id)
@@ -72,8 +71,7 @@ def generate(request=nil, version=nil, request_detail_fields=[])
     end
 
     file.puts "  # Strict headercheck (make sure the request contains only predefined request headers)"
-    file.puts "  SecRule REQUEST_HEADERS_NAMES \"!^(#{header_string})$\" \"setvar:TX.INVALID=1,t:none,pass\""
-    file.puts "  SecRule \"TX:INVALID\" \"^1$\" \"deny,id:#{id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'\""
+    file.puts "  SecRule REQUEST_HEADERS_NAMES \"!^(#{header_string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'\""
 
   end
 
@@ -82,9 +80,8 @@ def generate(request=nil, version=nil, request_detail_fields=[])
     # the header is optional
     # but it is in the request, then it is checked
     file.puts "  # Checking request header \"#{name}\""
-    file.puts "  SecRule &HTTP_#{name} \"!^0$\" \"chain,t:none,pass\""
-    file.puts "  SecRule HTTP_#{name} \"!^(#{value})$\" \"t:none,setvar:TX.INVALID=1\""
-    file.puts "  SecRule \"TX:INVALID\" \"^1$\" \"deny,id:#{id},t:none,status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
+    file.puts "  SecRule &HTTP_#{name} \"!^0$\" \"chain,deny,id:#{id},t:none,status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
+    file.puts "  SecRule HTTP_#{name} \"!^(#{value})$\" \"t:none\""
   end
 
 
