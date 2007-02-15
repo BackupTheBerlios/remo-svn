@@ -46,33 +46,33 @@ class RulesGeneratorTest < Test::Unit::TestCase
 
       # Example rule group should look as follows:
 
-      #  0 |# allow: GET /info.html
+      #  0 |# allow: GET /info.html (request id / rule group 6)
       #  1 |# Basic get request
       #  2 |<LocationMatch "^/info.html$">
       #  3 |  # Checking request method
       #  4 |  SecRule REQUEST_METHOD "!^GET$" "t:none,setvar:tx.invalid=1,pass"
-      #  5 |  SecRule "TX:INVALID" "^1$" "deny,t:none,status:501,severity:3,msg:'Request method wrong (it is not GET).'"
+      #  5 |  SecRule "TX:INVALID" "^1$" "deny,id:6,t:none,status:501,severity:3,msg:'Request method wrong (it is not GET).'"
       #  6 |
       #  7 |  # Strict headercheck (make sure the request contains only predefined request headers)
       #  8 |  SecRule REQUEST_HEADERS_NAMES "!^(Host|User-Agent|...)$" "setvar:tx.invalid=1,t:none,pass"
-      #  9 |  SecRule "TX:INVALID" "^1$" "deny,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
+      #  9 |  SecRule "TX:INVALID" "^1$" "deny,id:6,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
       # 10 |
       # 11 |  # Checking request header "Host"
       # 12 |  SecRule &HTTP_Host "!^0$" "chain,t:none,pass"
       # 13 |  SecRule HTTP_Host "!^(railsmachine)$" "t:none,setvar:tx.invalid=1"
-      # 14 |  SecRule "TX:INVALID" "^1$" "deny,t:none,status:501,severity:3,msg:'Request header Host failed validity check.'"
+      # 14 |  SecRule "TX:INVALID" "^1$" "deny,id:6,t:none,status:501,severity:3,msg:'Request header Host failed validity check.'"
       # 15 |  # Checking request header "User-Agent"
       # 16 |  ...
       #
       # n  |
       # n+1|  # All checks passed for this path. Request is allowed.
-      # n+2|  SecAction "allow,t:none,id:6,msg:'Request passed all checks, it is thus allowed.'"
+      # n+2|  SecAction "allow,id:6,t:none,msg:'Request passed all checks, it is thus allowed.'"
       # n+3|</LocationMatch>
 
 
       # Check start of rule group
       assert_rule_line rules_array, startline + 0,
-        /^# allow/, "Rule start does not start with '# allow'" 
+        /^# allow: #{item.http_method} #{item.path} \(request id \/ rule group #{item.id}\)$/, "Rule start does not start with '# allow'" 
       assert_rule_line rules_array, startline + 1,
         /^# #{item.remarks}/, "Remarks comment does not match the remarks field"
       assert_rule_line rules_array, startline + 2,
@@ -83,7 +83,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
         /^  SecRule REQUEST_METHOD "!\^#{item.http_method}\$" "t:none,setvar:tx.invalid=1,pass"$/, 
         "Request method check faulty"
       assert_rule_line rules_array, startline + 5, 
-        /^  SecRule "TX:INVALID" "\^1\$" "deny,t:none,status:501,severity:3,msg:'Request method wrong \(it is not #{item.http_method}\).'"$/,
+        /^  SecRule "TX:INVALID" "\^1\$" "deny,id:#{item.id},t:none,status:501,severity:3,msg:'Request method wrong \(it is not #{item.http_method}\).'"$/,
         "Request method check faulty"
       assert_rule_line rules_array, startline + 6, 
         /^$/, "Line not empty"
@@ -103,7 +103,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
         /^  SecRule REQUEST_HEADERS_NAMES "!\^\(#{header_string}\)\$" "setvar:tx.invalid=1,t:none,pass"$/,
         "\"Strict headercheck\" not correct"
       assert_rule_line rules_array, startline + 9,
-        /^  SecRule "TX:INVALID" "\^1\$" "deny,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"$/, 
+        /^  SecRule "TX:INVALID" "\^1\$" "deny,id:#{item.id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"$/, 
         "\"Strict headercheck\" not correct"
 
       # Loop and check every headercheck of the rule group
@@ -122,7 +122,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
             /^  SecRule HTTP_#{map_dbname_httpname(requestitem.keys[0])} "!\^\(#{item[requestitem.keys[0]]}\)\$" "t:none,setvar:tx.invalid=1"$/,
             "Request header check first line for header #{map_dbname_httpname(requestitem.keys[0])} is not correct"
           assert_rule_line rules_array, startline + n + 3,
-            /^  SecRule "TX:INVALID" "\^1\$" "deny,t:none,status:501,severity:3,msg:'Request header #{map_dbname_httpname(requestitem.keys[0])} failed validity check.'"$/,
+            /^  SecRule "TX:INVALID" "\^1\$" "deny,id:#{item.id},t:none,status:501,severity:3,msg:'Request header #{map_dbname_httpname(requestitem.keys[0])} failed validity check.'"$/,
             "Request header check first line for header #{map_dbname_httpname(requestitem.keys[0])} is not correct"
           n += 4
         end
@@ -135,7 +135,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
         /^  # All checks passed for this path. Request is allowed.$/, 
         "Final comment for request not correct"
       assert_rule_line rules_array, startline + n + 2, 
-        /^  SecAction "allow,t:none,id:#{item.id},msg:'Request passed all checks, it is thus allowed.'"$/, 
+        /^  SecAction "allow,id:#{item.id},t:none,msg:'Request passed all checks, it is thus allowed.'"$/, 
         "Rule allowing request not correct."
       assert_rule_line rules_array, startline + n + 3, 
         /^<\/LocationMatch>$/, "Closing LocationMatch is not correct."
