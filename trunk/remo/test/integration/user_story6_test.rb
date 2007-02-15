@@ -121,6 +121,12 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.requests_detailarea(3)
     colin.generates_ruleset
     colin.uses_inline_editor(3, "remarks", "foobar")
+    colin.uses_inline_editor(3, "accept", "")
+    colin.uses_inline_editor(3, "accept", "foo")
+    colin.uses_inline_editor(3, "accept", "foo bar")
+    colin.uses_inline_editor(3, "accept", ".*")
+    colin.uses_inline_editor(3, "accept", ".*\"*")
+    colin.uses_inline_editor(3, "accept", "'`\".*+?!&$")
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)

@@ -178,7 +178,7 @@ class MainController < ApplicationController
   def generate_ruleset
     require "rules_generator/main"
 
-    filename = generate(request, REMO_VERSION)
+    filename = generate(request, REMO_VERSION, REQUEST_DETAIL_FIELDS)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
 
