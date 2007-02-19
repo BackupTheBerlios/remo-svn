@@ -34,22 +34,8 @@ class MainControllerTest < Test::Unit::TestCase
                 r.save!
     end
 
-    list = {
-         "Host" => ".*",
-         "User-Agent" => ".*",
-         "Accept" => ".*",
-         "Accept-Language" => ".*",
-         "Accept-Encoding" => ".*",
-         "Accept-Charset" => ".*",
-         "Keep-Alive" => "*",
-         "Referer" => ".*",
-         "Cookie" => ".*",
-         "If-Modified-Since" => ".*",
-         "If-None-Match" => ".*",
-         "Cache-Control" => ".*"}
-
     8.times do |i|
-      list.each do |name,domain|
+      DEFAULT_HEADERS.each do |name,domain|
         h = Header.new(:request_id  => i,
                        :name        => name,
                        :domain      => domain)
@@ -153,7 +139,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
     assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "li#request-item_1 > div#request-item_1-details", 1
-    assert_select "div#request-item_1-details > div", 13 # number of detail fields on display per default
+    assert_select "div#request-item_1-details > div", DEFAULT_HEADERS.size + 1 # number of detail fields on display per default
     
 
     # testing just one of the detail fields
@@ -342,7 +328,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "rules-mainarea-sortlist" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 13 # number of detail fields
+      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 
@@ -379,7 +365,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "request-item_3" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 13 # number of detail fields
+      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 

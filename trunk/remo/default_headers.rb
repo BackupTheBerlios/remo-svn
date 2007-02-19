@@ -13,4 +13,10 @@ DEFAULT_HEADERS = {
   "Cookie" => ".*",
   "If-Modified-Since" => ".*",
   "If-None-Match" => ".*",
-  "Cache-Control" => ".*"}
+  "Cache-Control" => ".*",
+  "From" => ".*",
+  "Content-Length" => ".*",
+  "Content-Type" => ".*",
+  "Via" => ".*",
+  "X-Forwarded-For" => ".*"}
+

@@ -10,6 +10,8 @@ class MainController < ApplicationController
         "generate ruleset" ]      # title
   ]
 
+  require File.dirname(__FILE__) + '/../../default_headers'
+
   Request.content_columns.each do |column|
     in_place_edit_for :request, column.name
   end 
@@ -185,7 +187,6 @@ class MainController < ApplicationController
   private
 
     def add_standard_headers (request_id)
-      require File.dirname(__FILE__) + '/../../default_headers'
 
       DEFAULT_HEADERS.each do |key, value|
         @header = Header.new(:request_id => request_id, 
