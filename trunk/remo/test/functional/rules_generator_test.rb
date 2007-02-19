@@ -3,23 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'rules_generator/main'
 require 'helpers/various'
 
-REQUEST_DETAIL_FIELDS = [
-    { "host" => "Host" },
-    { "user_agent" => "User-Agent"},
-    { "referer" => "Referer"},
-    { "accept" => "Accept"},
-    { "accept_language" => "Accept-Language"},
-    { "accept_encoding" => "Accept-Encoding"},
-    { "accept_charset" => "Accept-Charset"},
-    { "keep_alive" => "Keep-Alive"},
-    { "guiprefix_connection" => "Connection"},
-    { "content_type" => "Content-Type"},
-    { "content_length" => "Content-Length"},
-    { "cookie" => "Cookie"},
-    { "pragma" => "Pragma"},
-    { "cache_control" => "Cache-Control"},
-    { "remarks" => "Remarks"}
-]
 
 def get_startline(rules_array, path)
   # return the line within a ruleset where the rule regarding the 
@@ -38,7 +21,7 @@ end
 
 class RulesGeneratorTest < Test::Unit::TestCase
   def test_main
-    filename = generate(nil, nil, REQUEST_DETAIL_FIELDS)  
+    filename = generate(nil, nil)  
     rules_array = IO.readlines(filename)
 
     Request.find(:all).each do |item|
