@@ -10,24 +10,6 @@ class MainController < ApplicationController
         "generate ruleset" ]      # title
   ]
 
-  REQUEST_DETAIL_FIELDS = [
-    { "host" => "Host" },
-    { "user_agent" => "User-Agent"},
-    { "referer" => "Referer"},
-    { "accept" => "Accept"},
-    { "accept_language" => "Accept-Language"},
-    { "accept_encoding" => "Accept-Encoding"},
-    { "accept_charset" => "Accept-Charset"},
-    { "keep_alive" => "Keep-Alive"},
-    { "guiprefix_connection" => "Connection"},
-    { "content_type" => "Content-Type"},
-    { "content_length" => "Content-Length"},
-    { "cookie" => "Cookie"},
-    { "pragma" => "Pragma"},
-    { "cache_control" => "Cache-Control"},
-    { "remarks" => "Remarks"}
-  ]
-
   Request.content_columns.each do |column|
     in_place_edit_for :request, column.name
   end 
@@ -36,10 +18,9 @@ class MainController < ApplicationController
     in_place_edit_for :header, column.name
   end  
 
-  before_filter :set_request_detail_fields  # this sets the @request_detail_fields variable 
-                                            # needed inside the _request partial. This is the
-                                            # preferred way of passing it.
-                                                
+
+
+
 
   def index
     @requests = Request.find_requests
@@ -57,6 +38,7 @@ class MainController < ApplicationController
     end
 
     @rules_status = nil
+
     if flash[:notice]
       @rules_status = flash[:notice]
     elsif not params[:id].nil?
@@ -216,19 +198,8 @@ class MainController < ApplicationController
   def generate_ruleset
     require "rules_generator/main"
 
-    filename = generate(request, REMO_VERSION, REQUEST_DETAIL_FIELDS)
+    filename = generate(request, REMO_VERSION)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
-
-
-  private
-
-
-    def set_request_detail_fields
-      # this sets the @request_detail_fields variable 
-      # needed inside the _request partial. This is the
-      # preferred way of passing it.
-      @request_detail_fields = REQUEST_DETAIL_FIELDS
-    end
 
 end

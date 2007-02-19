@@ -1,6 +1,6 @@
 require 'helpers/various'
 
-def generate(request=nil, version=nil, request_detail_fields=[])
+def generate(request=nil, version=nil)
   filename = "rulefile.conf"
   prepend_filename= "prepend-file.conf"
   append_filename= "append-file.conf"
