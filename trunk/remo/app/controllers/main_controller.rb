@@ -97,28 +97,6 @@ class MainController < ApplicationController
                                     :weight => new_weight, # max(weight) + 1
                                     :remarks => params[:update_remarks])
 
-      def add_standard_headers (request_id)
-          std_headers = {
-            "Host"  => ".*",
-            "User-Agent" => ".*",
-            "Accept" => ".*",
-            "Accept-Language" => ".*",
-            "Accept-Encoding" => ".*",
-            "Accept-Charset" => ".*",
-            "Keep-Alive" => "\\d*",# -> \d* escaped
-            "Referer" => ".*",
-            "Cookie" => ".*",
-            "If-Modified-Since" => ".*",
-            "If-None-Match" => ".*",
-            "Cache-Control" => ".*"}
-
-          std_headers.each do |key, value|
-            @header = Header.new(:request_id => request_id, 
-                           :name => key,
-                           :domain => value)
-            @header.save!
-          end
-      end
 
       begin
         @detail_request.save!
@@ -201,5 +179,20 @@ class MainController < ApplicationController
     filename = generate(request, REMO_VERSION)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
   end
+
+
+
+  private
+
+    def add_standard_headers (request_id)
+      require File.dirname(__FILE__) + '/../../default_headers'
+
+      DEFAULT_HEADERS.each do |key, value|
+        @header = Header.new(:request_id => request_id, 
+                       :name => key,
+                       :domain => value)
+        @header.save!
+      end
+    end
 
 end
