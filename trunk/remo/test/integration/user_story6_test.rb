@@ -94,13 +94,22 @@ class UserStory6Test < ActionController::IntegrationTest
 
       end
 
-      def user.uses_inline_editor(id, fieldname, value)
-        # save the inline editor form for the field:fieldname in record id:record and set the field to value:value.
-        post "/main/set_request_#{fieldname}/#{id}", "value" => value
-        assert_response :success
+      def user.uses_inline_editor(id, fieldname, savevalue)
+        # save the inline editor form for the field:fieldname; set the field to savevalue.
 
-        request = Request.find(id)
-        assert_equal request[fieldname], value
+        if fieldname == "remarks"
+          post "/main/set_request_remarks/#{id}", "value" => savevalue
+          assert_response :success
+          dbvalue = Request.find(id).remarks
+        else
+          header_id = Header.find(:first, :conditions => "request_id = #{id} AND name = '#{fieldname}'").id
+          post "/main/set_header_domain/#{header_id}", "value" => savevalue
+          assert_response :success
+          dbvalue = Header.find(header_id).domain
+        end
+
+        assert_equal savevalue, dbvalue
+
       end
 
     end
@@ -121,12 +130,12 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.requests_detailarea(3)
     colin.uses_inline_editor(3, "remarks", "foobar")
-    colin.uses_inline_editor(3, "accept", "")
-    colin.uses_inline_editor(3, "accept", "foo")
-    colin.uses_inline_editor(3, "accept", "foo bar")
-    colin.uses_inline_editor(3, "accept", ".*")
-    colin.uses_inline_editor(3, "accept", ".*\"*")
-    colin.uses_inline_editor(3, "accept", "'`\".*+?!&$")
+    colin.uses_inline_editor(3, "Accept", "")
+    colin.uses_inline_editor(3, "Accept", "foo")
+    colin.uses_inline_editor(3, "Accept", "foo bar")
+    colin.uses_inline_editor(3, "Accept", ".*")
+    colin.uses_inline_editor(3, "Accept", ".*\"*")
+    colin.uses_inline_editor(3, "Accept", "'`\".*+?!&$")
     colin.generates_ruleset
     colin.clicks_clear
     colin.requests_detailarea(1)

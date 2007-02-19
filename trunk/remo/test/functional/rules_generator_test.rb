@@ -87,11 +87,9 @@ class RulesGeneratorTest < Test::Unit::TestCase
         /^  # Strict headercheck \(make sure the request contains only predefined request headers\)$/, 
         "Comment \"Strict headercheck\" not correct"
       header_string = ""
-      REQUEST_DETAIL_FIELDS.each do |requestitem|
-        unless requestitem.keys[0] == "remarks"
-          header_string += "\\|" unless header_string.size == 0
-          header_string += map_dbname_httpname(requestitem.keys[0])
-        end
+      Header.find(:all, :conditions => "request_id = #{item.id}").each do |header|
+          header_string += "|" unless header_string.size == 0
+          header_string += header.name
       end
       assert_rule_line rules_array, startline + 7,
         /^  SecRule REQUEST_HEADERS_NAMES "!\^\(#{header_string}\)\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"$/,
@@ -101,19 +99,17 @@ class RulesGeneratorTest < Test::Unit::TestCase
       assert_rule_line rules_array, startline + 8,
         /^$/, "Line not empty"
       n = 9
-      REQUEST_DETAIL_FIELDS.each do |requestitem|
-        unless requestitem.keys[0] == "remarks"
-          assert_rule_line rules_array, startline + n, 
-            /^  # Checking request header "#{map_dbname_httpname(requestitem.keys[0])}"$/,
-            "Request header check comment for header #{map_dbname_httpname(requestitem.keys[0])} is not correct"
-          assert_rule_line rules_array, startline + n + 1, 
-            /^  SecRule &HTTP_#{map_dbname_httpname(requestitem.keys[0])} "!\^0\$" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request header #{map_dbname_httpname(requestitem.keys[0])} failed validity check.'\"$/,
-            "Request header check first line for header #{map_dbname_httpname(requestitem.keys[0])} is not correct"
-          assert_rule_line rules_array, startline + n + 2, 
-            /^  SecRule HTTP_#{map_dbname_httpname(requestitem.keys[0])} "!\^\(#{item[requestitem.keys[0]]}\)\$" "t:none"$/,
-            "Request header check first line for header #{map_dbname_httpname(requestitem.keys[0])} is not correct"
-          n += 3
-        end
+      Header.find(:all, :conditions => "request_id = #{item.id}").each do |header|
+        assert_rule_line rules_array, startline + n, 
+          /^  # Checking request header "#{header.name}"$/,
+          "Request header check comment for header #{header.name} is not correct"
+        assert_rule_line rules_array, startline + n + 1, 
+          /^  SecRule &HTTP_#{header.name} "!\^0\$" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request header #{header.name} failed validity check.'\"$/,
+          "Request header check first line for header #{header.name} is not correct"
+        assert_rule_line rules_array, startline + n + 2, 
+          /^  SecRule HTTP_#{header.name} "!\^\(#{header.domain}\)\$" "t:none"$/,
+          "Request header check 2nd line for header #{header.name} is not correct"
+        n += 3
       end
 
       # Check the end of the rule group

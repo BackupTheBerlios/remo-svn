@@ -1,0 +1,112 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+ra1:
+  id: 1
+  request_id: 1
+  name: "Host"
+  domain: ".*"
+ra2: 
+  id: 2
+  request_id: 1
+  name: "Accept"
+  domain: ".*"
+ra3:
+  id: 3
+  request_id: 1
+  name: "Accept-Language"
+  domain: ".*"
+ra4:
+  id: 4
+  request_id: 1
+  name: "Accept-Encoding"
+  domain: ".*"
+ra5:
+  id: 5
+  request_id: 1
+  name: "Accept-Charset"
+  domain: ".*"
+ra6:
+  id: 6
+  request_id: 1
+  name: "Keep-Alive"
+  domain: ".*"
+ra7:
+  id: 7
+  request_id: 1
+  name: "Referer"
+  domain: ".*"
+ra8:
+  id: 8
+  request_id: 1
+  name: "Cookie"
+  domain: ".*"
+ra9:
+  id: 9
+  request_id: 1
+  name: "If-Modified-Since"
+  domain: ".*"
+ra10:
+  id: 10
+  request_id: 1
+  name: "If-None-Match"
+  domain: ".*"
+ra11:
+  id: 11
+  request_id: 1
+  name: "Cache-Control"
+  domain: ".*"
+
+rb1:
+  id: 21
+  request_id: 2
+  name: "Host"
+  domain: ".*"
+rb2: 
+  id: 22
+  request_id: 2
+  name: "Accept"
+  domain: ".*"
+rb3:
+  id: 23
+  request_id: 2
+  name: "Accept-Language"
+  domain: ".*"
+rb4:
+  id: 24
+  request_id: 2
+  name: "Accept-Encoding"
+  domain: ".*"
+rb5:
+  id: 25
+  request_id: 2
+  name: "Accept-Charset"
+  domain: ".*"
+rb6:
+  id: 26
+  request_id: 2
+  name: "Keep-Alive"
+  domain: ".*"
+rb7:
+  id: 27
+  request_id: 2
+  name: "Referer"
+  domain: ".*"
+rb8:
+  id: 28
+  request_id: 2
+  name: "Cookie"
+  domain: ".*"
+rb9:
+  id: 29
+  request_id: 2
+  name: "If-Modified-Since"
+  domain: ".*"
+rb10:
+  id: 30
+  request_id: 2
+  name: "If-None-Match"
+  domain: ".*"
+rb11:
+  id: 31
+  request_id: 2
+  name: "Cache-Control"
+  domain: ".*"

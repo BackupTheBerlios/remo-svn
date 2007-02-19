@@ -7,11 +7,16 @@
               <%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } -%>
             </div>
             <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
-<%           @request_detail_fields.each do |item|; item.each do |key, value| -%>
-              <div id="request-item_<%= request.id-%>-<%= key -%>" class="request-field">
-                <div id="request-item_<%= request.id-%>-<%= key -%>-label" class="request-fieldlabel"><%= value -%>:&nbsp;</div>
-                <div id="request-item_<%= request.id-%>-<%= key -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, key, {}, :save_text => "save" -%></div>
+              <div id="request-item_<%= request.id-%>-remarks" class="request-field">
+                <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">Remarks:&nbsp;</div>
+                <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
               </div>
-<%           end; end -%>
+<%           @request.headers.each do |header| -%>
+              <% @header = header # prepare for in_place_editor_field. See above. -%>
+              <div id="request-item_<%= request.id-%>-<%= header.name -%>" class="request-field">
+                <div id="request-item_<%= request.id-%>-<%= header.name -%>-label" class="request-fieldlabel"><%= header.name -%>:&nbsp;</div>
+                <div id="request-item_<%= request.id-%>-<%= header.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :header, "domain", {}, :save_text => "save" -%></div>
+              </div>
+<%           end -%>
             </div>
           </li>

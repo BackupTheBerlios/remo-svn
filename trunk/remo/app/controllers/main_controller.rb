@@ -31,7 +31,11 @@ class MainController < ApplicationController
   Request.content_columns.each do |column|
     in_place_edit_for :request, column.name
   end 
-  
+
+  Header.content_columns.each do |column|
+    in_place_edit_for :header, column.name
+  end  
+
   before_filter :set_request_detail_fields  # this sets the @request_detail_fields variable 
                                             # needed inside the _request partial. This is the
                                             # preferred way of passing it.
@@ -110,10 +114,43 @@ class MainController < ApplicationController
                                     :path => params[:update_path],
                                     :weight => new_weight, # max(weight) + 1
                                     :remarks => params[:update_remarks])
+
+      def add_standard_headers (request_id)
+          std_headers = {
+            "Host"  => ".*",
+            "User-Agent" => ".*",
+            "Accept" => ".*",
+            "Accept-Language" => ".*",
+            "Accept-Encoding" => ".*",
+            "Accept-Charset" => ".*",
+            "Keep-Alive" => "\\d*",# -> \d* escaped
+            "Referer" => ".*",
+            "Cookie" => ".*",
+            "If-Modified-Since" => ".*",
+            "If-None-Match" => ".*",
+            "Cache-Control" => ".*"}
+
+          std_headers.each do |key, value|
+            @header = Header.new(:request_id => request_id, 
+                           :name => key,
+                           :domain => value)
+            @header.save!
+          end
+      end
+
       begin
         @detail_request.save!
       rescue => err
         flash[:notice] = "Adding failed! " + err
+      end
+
+      unless @detail_request.id.nil?
+        begin
+          add_standard_headers(@detail_request.id)
+        rescue => err
+          flash[:notice] = "Adding failed! " + err
+          Request.delete(@detail_request.id)
+        end
       end
 
     when "save"
@@ -137,12 +174,13 @@ class MainController < ApplicationController
       begin
         @detail_request = Request.find(params[:update_id])
         Request.delete(params[:update_id])
+        Header.delete_all(['request_id = ?' , params[:update_id]])
       rescue => err
         logger.error("Attempt to access invalid request record #{params[:update_id]}")
         flash[:notice] = "Removing failed! " + err
       end
 
-    @detail_request = Request.new(:weight => "")
+      @detail_request = Request.new(:weight => "")
 
     end
 

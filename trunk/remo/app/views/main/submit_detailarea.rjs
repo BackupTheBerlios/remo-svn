@@ -32,7 +32,7 @@ when "clear"
   unselect_listitem page, 'listitem'
   statusmessage = "Status: active" if flash[:notice].nil?
 when "add"
-  page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @detail_request)
+  page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @detail_request) if flash[:notice].nil?
   statusmessage = "Successfully added new item!" if flash[:notice].nil?
 when "save"
   page.replace_html("request-item_#{params[:update_id]}", :partial => "request", :object => @detail_request)

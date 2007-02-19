@@ -7,21 +7,23 @@ class MainController; def rescue_action(e) raise e end; end
 class MainControllerTest < Test::Unit::TestCase
   def setup
     Request.delete_all
+    Header.delete_all
 
     @controller = MainController.new
     @request    = ActionController::TestRequest.new
     @response   = ActionController::TestResponse.new
 
     # setup the test data in the database. This will be deleted automatically after the test
+    # working with fixtures seems to be just as complicated
     list = [[1, "GET",  "/myindex.html", 1, "bla bla"],
-                [2, "POST", "/action/post.php", 2, "none"],
-                [3, "GET",  "/detail.html",   3, ""],
-                [4, "GET",  "/view,html",     4, "some comment\nadditional comment"],
-                [5, "GET",  "/detail.html",   5, "some comment
-                                                  more comment"],
-                [6, "GET",  "/index.html",    6, ""],
-                [7, "GET",  "/info.html",     7, ""],
-                [8, "POST", "/action/delete.php", 8, ""]]
+            [2, "POST", "/action/post.php", 2, "none"],
+            [3, "GET",  "/detail.html",   3, ""],
+            [4, "GET",  "/view,html",     4, "some comment\nadditional comment"],
+            [5, "GET",  "/detail.html",   5, "some comment
+                                              more comment"],
+            [6, "GET",  "/index.html",    6, ""],
+            [7, "GET",  "/info.html",     7, ""],
+            [8, "POST", "/action/delete.php", 8, ""]]
 
     list.each do |item|
                 r = Request.create(:id           => item[0],
@@ -30,6 +32,29 @@ class MainControllerTest < Test::Unit::TestCase
                                    :weight       => item[3],
                                    :remarks      => item[4])
                 r.save!
+    end
+
+    list = {
+         "Host" => ".*",
+         "User-Agent" => ".*",
+         "Accept" => ".*",
+         "Accept-Language" => ".*",
+         "Accept-Encoding" => ".*",
+         "Accept-Charset" => ".*",
+         "Keep-Alive" => "*",
+         "Referer" => ".*",
+         "Cookie" => ".*",
+         "If-Modified-Since" => ".*",
+         "If-None-Match" => ".*",
+         "Cache-Control" => ".*"}
+
+    8.times do |i|
+      list.each do |name,domain|
+        h = Header.new(:request_id  => i,
+                       :name        => name,
+                       :domain      => domain)
+        h.save!
+      end
     end
 
   end
@@ -115,7 +140,6 @@ class MainControllerTest < Test::Unit::TestCase
     end
     assert_exist_elementlist elements
 
-
     # request list: testing content of the first data item
     assert_select "li#request-item_1 > div#request-item_1-head", 1
     assert_select "div#request-item_1-head > div#request-item_1-expanded", 1
@@ -129,10 +153,12 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
     assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
     assert_select "li#request-item_1 > div#request-item_1-details", 1
-    assert_select "div#request-item_1-details > div", 15 # number of detail fields on display
+    assert_select "div#request-item_1-details > div", 13 # number of detail fields on display per default
     
+
     # testing just one of the detail fields
     assert_select "div#request-item_1-details > div#request-item_1-remarks", 1
+    id="request-item6-remarks"
     assert_select "div#request-item_1-remarks > div", 2
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-label", "Remarks:&nbsp;"
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /bla bla/
@@ -316,7 +342,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "rules-mainarea-sortlist" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 15 # number of detail fields
+      assert_select "li > div:nth-child(2) > div", 13 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 
@@ -353,7 +379,7 @@ class MainControllerTest < Test::Unit::TestCase
     # mainarea
     assert_select_rjs "request-item_3" do
       assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", 15 # number of detail fields
+      assert_select "li > div:nth-child(2) > div", 13 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 
@@ -390,6 +416,8 @@ class MainControllerTest < Test::Unit::TestCase
 
     # mainarea
     assert_match /Element.remove\("request-item_1"\)/, @response.body
+
+    assert_equal Header.find(:all, :conditions => "'request_id' = 1").size, 0
 
     # statusarea
     assert_select_rjs "rules-statusarea" do

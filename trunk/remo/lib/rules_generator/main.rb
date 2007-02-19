@@ -46,7 +46,7 @@ def generate(request=nil, version=nil, request_detail_fields=[])
     file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},t:none,status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
   end
 
-  def add_check_strict_headers (file, request_detail_fields, id)
+  def add_check_strict_headers (file, id)
     # "strict headercheck" is a modsecurity construct.
     # it guarantees that only known headers are accepted.
     # every path can have it's own strict headerset.
@@ -63,11 +63,9 @@ def generate(request=nil, version=nil, request_detail_fields=[])
     # FIXME: Check for empty headerlist
 
     header_string = ""
-    request_detail_fields.each do |item|
-      unless item.keys[0] == "remarks"
+    Header.find(:all, :conditions => "request_id = #{id}").each do |header|
         header_string += "|" unless header_string.size == 0
-        header_string += map_dbname_httpname(item.keys[0])
-      end
+        header_string += header.name
     end
 
     file.puts "  # Strict headercheck (make sure the request contains only predefined request headers)"
@@ -100,14 +98,12 @@ def generate(request=nil, version=nil, request_detail_fields=[])
       file.puts ""
   
       # check names of the headers
-      add_check_strict_headers(file, request_detail_fields, r.id)
+      add_check_strict_headers(file, r.id)
       file.puts ""
 
       # check individual headers
-      request_detail_fields.each do |item|; 
-        unless item.keys[0] == "remarks"
-          add_check_individual_header(file, map_dbname_httpname(item.keys[0]), r[item.keys[0]], r.id) 
-        end
+      Header.find(:all, :conditions => "request_id = #{r.id}").each do |header|
+        add_check_individual_header(file, header.name, header.domain, r.id) 
       end
       file.puts ""
 

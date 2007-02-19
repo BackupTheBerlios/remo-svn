@@ -1,6 +1,8 @@
 class Request < ActiveRecord::Base
   VALID_HTTP_METHODS = ["GET", "POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"]
 
+  has_many :headers
+
   attr_accessible :http_method, :path, :weight, :remarks
 
   validates_presence_of :http_method, :path, :weight
