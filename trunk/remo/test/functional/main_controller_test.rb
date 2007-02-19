@@ -157,15 +157,37 @@ class MainControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "index"	
 
-    assert_select "div#rules-toolsetarea > div.toolbutton", 1
-    assert_select "div#rules-toolsetarea > div#generate_ruleset > [href=generate_ruleset]", 1
+    # add_request POST ajax form
+    assert_select "div#rules-toolsetarea > div#add_request", 1
+    assert_select "div#rules-toolsetarea > div#add_request > form > input" do
+      assert_select "input", 1
+      assert_select "input[title]", 1, "Image without title."
+      assert_select "input[title=""]", 0, "Title tag of image is empty."
+      assert_select "input[alt]", 1, "Image without alt tag."
+      assert_select "input[alt=""]", 0, "Alt tag of image is empty."
+    end
 
-    assert_select "div#rules-toolsetarea > div" do
+    # generate_ruleset GET link
+    assert_select "div#rules-toolsetarea > div#generate_ruleset", 1
+    assert_select "div#rules-toolsetarea > div#generate_ruleset" do
       assert_select "img", 1
       assert_select "img[title]", 1, "Image without title."
       assert_select "img[title=""]", 0, "Title tag of image is empty."
       assert_select "img[alt]", 1, "Image without alt tag."
       assert_select "img[alt=""]", 0, "Alt tag of image is empty."
+    end
+  end
+
+  def test_add_request
+    get :add_request
+    assert_response :success
+    assert_template "add_request"	
+
+    # add_request javascript reply
+    assert_select_rjs "rules-mainarea-sortlist" do
+      assert_select "li > div", 2                    # head and details
+      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
+      # with this we are quite sure we got a real request item 
     end
 
   end

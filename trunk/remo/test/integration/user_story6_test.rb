@@ -12,6 +12,23 @@ class UserStory6Test < ActionController::IntegrationTest
 
       end
 
+      def user.adds_request_new()
+        count_pre = Request.find(:all).size
+
+        post "/main/add_request"
+        assert_response :success
+        assert_template "add_request"
+        # the rest of display is tested in the controller test
+
+        # checking for existence of new request
+        request = Request.find(:first, :order => "weight DESC") 
+        assert_equal "GET",     request.http_method
+        assert_equal "Click to edit",	      request.path
+        assert_equal "Click to edit",	      request.remarks
+
+        assert_equal Request.find(:all).size, count_pre + 1
+      end
+
       def user.adds_request(http_method, path, remarks)
         post "/main/submit_detailarea", :actionflag => "add", :update_http_method => http_method, :update_path => path, :update_remarks => remarks
         assert_response :success
@@ -125,6 +142,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.adds_request("POST", "/index.php", "bar")
     colin.adds_request("GET", "/index.cgi", "")
     colin.adds_request("GET", "/start.html", "")
+    colin.adds_request_new
 
     colin.requests_detailarea(4)
     colin.rearranges_requests(["4", "1", "2", "3"])

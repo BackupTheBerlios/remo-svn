@@ -189,9 +189,9 @@ class MainController < ApplicationController
         new_weight = 1
       end
       @request = Request.new(:http_method => "GET",
-                                    :path => "click to edit",
-                                    :weight => new_weight, # max(weight) + 1
-                                    :remarks => "click to edit")
+                             :path => "Click to edit",
+                             :weight => new_weight, # max(weight) + 1
+                             :remarks => "Click to edit")
 
 
       begin
