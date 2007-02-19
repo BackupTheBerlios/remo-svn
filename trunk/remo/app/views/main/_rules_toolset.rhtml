@@ -1,1 +1,5 @@
+<% if rules_toolset[4] # if ajaxrequest -%>
+<div id="<%= rules_toolset[0] -%>" class="toolbutton"><%= link_to_remote "<img src=\"#{rules_toolset[2]}\" alt=\"image: #{rules_toolset[2]}\" title=\"#{rules_toolset[3]}\"/>", :url => {:action => rules_toolset[1]} -%></div>
+<% else -%>
 <div id="<%= rules_toolset[0] -%>" class="toolbutton"><a href="<%= rules_toolset[1] -%>"><img src="<%= rules_toolset[2] -%>" alt="image: <%= rules_toolset[2] -%>" title="<%= rules_toolset[3] -%>" /></a></div>
+<% end %>

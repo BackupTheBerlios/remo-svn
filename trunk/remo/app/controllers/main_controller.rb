@@ -4,10 +4,17 @@ class MainController < ApplicationController
   RULES_TOOLSET_BUTTONS = [
       # the partial display does not work with the form: array[ hash1, hash2, ...]
       # so we are using array[array1, array2, ...]
+      [ "add_request",            # htmlid
+        "add_request",            # link
+        "/add_request.png",       # image path
+        "add http request",       # tooltip
+        true],                     # ajax request (inline display of javascript result)
+
       [ "generate_ruleset",       # htmlid
         "generate_ruleset",       # link
         "/generate.png",          # image path
-        "generate ruleset" ]      # title
+        "generate ruleset",       # tooltip
+        false]                    # ajax request (inline display of javascript result)
   ]
 
   require File.dirname(__FILE__) + '/../../default_headers'
@@ -172,6 +179,35 @@ class MainController < ApplicationController
         @rearrangefail = true
       end
     end
+
+  end
+
+  def add_request
+      begin
+        new_weight = Request.find(:first, :order => "weight DESC").weight + 1
+      rescue
+        new_weight = 1
+      end
+      @request = Request.new(:http_method => "GET",
+                                    :path => "click to edit",
+                                    :weight => new_weight, # max(weight) + 1
+                                    :remarks => "click to edit")
+
+
+      begin
+        @request.save!
+      rescue => err
+        flash[:notice] = "Adding failed! " + err
+      end
+
+      unless @request.id.nil?
+        begin
+          add_standard_headers(@request.id)
+        rescue => err
+          flash[:notice] = "Adding failed! " + err
+          Request.delete(@request.id)
+        end
+      end
 
   end
 
