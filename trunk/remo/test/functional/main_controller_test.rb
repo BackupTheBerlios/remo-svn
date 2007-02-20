@@ -118,24 +118,24 @@ class MainControllerTest < Test::Unit::TestCase
 
     1.upto(8) do |n|
     	elements << "li#request-item_#{n}"
-    	elements << "div#request-item_#{n}-head"
+    	elements << "table#request-item_#{n}-head"
     	elements << "div#request-item_#{n}-details"
     end
     assert_exist_elementlist elements
 
     # request list: testing content of the first data item
-    assert_select "li#request-item_1 > div#request-item_1-head", 1
-    assert_select "div#request-item_1-head > div#request-item_1-expanded", 1
-    assert_select "div#request-item_1-head > div#request-item_1-collapsed", 1
-    assert_select "div#request-item_1-head > div#request-item_1-expanded > a", 1
-    assert_select "div#request-item_1-head > div#request-item_1-collapsed > a", 1
-    assert_select "div#request-item_1-head > div#request-item_1-expanded > a > img[src=/expanded.png]", 1
-    assert_select "div#request-item_1-head > div#request-item_1-collapsed > a > img[src=/collapsed.png]", 1
-    assert_select "div#request-item_1-head > div:nth-child(3)", 'GET&nbsp;'
-    assert_select "div#request-item_1-head > div:nth-child(4)", '/myindex.html&nbsp;'
-    assert_select "div#request-item_1-head > div:nth-child(5) > form"
-    assert_select "div#request-item_1-head > div:nth-child(5) > form > input[src^=/trash.png]"
-    assert_select "li#request-item_1 > div#request-item_1-details", 1
+    assert_select "li#request-item_1 > table#request-item_1-head", 1
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-expanded"
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-collapsed"
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-expanded > a"
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-collapsed > a"
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-expanded > a > img[src=/expanded.png]"
+    assert_select "table#request-item_1-head > tr > td > div#request-item_1-collapsed > a > img[src=/collapsed.png]"
+    assert_select "table#request-item_1-head > tr > td:nth-child(2) > span.in_place_editor_field", 'GET'
+    assert_select "table#request-item_1-head > tr > td:nth-child(3) > span.in_place_editor_field", '/myindex.html'
+    assert_select "table#request-item_1-head > tr > td:nth-child(4) > form"
+    assert_select "table#request-item_1-head > tr > td:nth-child(4) > form > input[src^=/trash.png]"
+    assert_select "li#request-item_1 > div#request-item_1-details"
     assert_select "div#request-item_1-details > div", DEFAULT_HEADERS.size + 1 # number of detail fields on display per default
     
 
@@ -182,8 +182,9 @@ class MainControllerTest < Test::Unit::TestCase
 
     # add_request javascript reply
     assert_select_rjs "rules-mainarea-sortlist" do
-      assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
+      assert_select "li > table", 1                  # head 
+      assert_select "li > div", 1                    # details
+      assert_select "li > div > div", DEFAULT_HEADERS.size + 1 # number of detail fields
       # with this we are quite sure we got a real request item 
     end
 

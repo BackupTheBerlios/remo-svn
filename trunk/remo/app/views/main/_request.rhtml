@@ -1,6 +1,6 @@
 <% @request = request # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
         <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
-          <table class="requesthead">
+        <table id="request-item_<%= request.id -%>-head" class="requesthead">
             <tr>
               <td><div id="request-item_<%= request.id -%>-collapsed" class="foldhandle"><%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})" -%></div>
                 <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div></td>
