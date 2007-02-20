@@ -45,19 +45,6 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
-  def test_flash_notice
-
-    get :index
-    assert_equal nil, flash[:notice]
-    assert_select "div.flash-nok", 1  # it is nok by default
-    assert_select "div#rules-statusarea", "Status: active"
-
-    get :index, :id => "500011100"
-    assert_equal "Attempt to access invalid request record 500011100", flash[:notice]
-    assert_select "div.flash-nok", 1 
-
-  end
-
   def test_index
     # test layout index view without any parameters
 
@@ -221,6 +208,45 @@ class MainControllerTest < Test::Unit::TestCase
     assert_response :success
     
     assert_template nil
+  end
+
+  def test_add_header
+    post :add_header, :id => 3
+    assert_response :success
+    assert_template "add_header"	
+
+    # add_request javascript reply
+    assert_select_rjs "request-item_3-details" do
+      assert_select "div", 1 
+      assert_select "div > div", 4 
+      # with this we are quite sure we got a real header item. so this will do
+    end
+  end
+
+  def test_remove_header
+    post :remove_header, :id => 1 # this is the header id
+    assert_response :success
+    assert_template "remove_header"	
+
+    assert_match /Element.remove\("request-item_0-X-Forwarded-For-1"\)/, @response.body
+  end
+
+  def test_set_header_name
+    post :add_header, :id => 3
+    id = Header.find(:first, :order => "id DESC").id # get the record id of the header just inserted
+
+    post :set_header_name, :id => id, :value => "foo"
+    assert_response :success
+    assert_template "set_header_name"	
+    
+    assert_match /Element.remove\("request-item_3-click-to-edit-#{id}"\)/, @response.body
+
+    assert_select_rjs "request-item_3-details" do
+      assert_select "div", 1 
+      assert_select "div > div", 4 
+      # with this we are quite sure we got a real header item. so this will do
+    end
+
   end
 
   def test_generate_ruleset

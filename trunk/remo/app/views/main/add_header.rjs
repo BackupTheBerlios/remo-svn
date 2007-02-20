@@ -12,12 +12,12 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.remove "request-item_#{params[:id]}" 
-  statusmessage = "Successfully removed item #{params[:id]}!" if flash[:notice].nil?
+  page.insert_html(:bottom, "request-item_#{params[:id]}-details",  :partial => "header", :object => @header)
+  page["request-item_#{params[:id]}"].visual_effect :highlight
+  statusmessage = "Successfully added new header"
 else
   statusmessage = flash[:notice]
 end
 
 page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
 
-page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} 

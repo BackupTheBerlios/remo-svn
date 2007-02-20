@@ -12,8 +12,8 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.remove "request-item_#{params[:id]}" 
-  statusmessage = "Successfully removed item #{params[:id]}!" if flash[:notice].nil?
+  page.remove "request-item_#{@request_id}-#{@name}-#{params[:id]}" if flash[:notice].nil?
+  statusmessage = "Successfully removed header item #{@request_id}, #{@name}!" 
 else
   statusmessage = flash[:notice]
 end

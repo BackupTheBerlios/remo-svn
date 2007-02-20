@@ -176,8 +176,18 @@ li {
   margin-bottom: 10px;
   clear: both;
 }
+
+.add-header {
+  padding-left: 10px;
+}
+
 .request-field {
   clear: both;
+}
+.request-fieldcolon { /* has to be in a sperate div, otherwise the label inline editor (click-to-edit) wraps */
+  float: left;
+  color: gray;
+  font-size: small;
 }
 .request-fieldlabel {
   float: left;
@@ -192,6 +202,10 @@ li {
   color: gray;
   font-size: small;
   margin-bottom: 1px;
+}
+.request-remove-header{
+  float: left;
+  padding-left: 20px;
 }
 
 /* rails helper: inplace editor */

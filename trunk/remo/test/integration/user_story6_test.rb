@@ -72,21 +72,58 @@ class UserStory6Test < ActionController::IntegrationTest
       def user.uses_inline_editor(id, fieldname, savevalue)
         # save the inline editor form for the field:fieldname; set the field to savevalue.
 
-        if fieldname == "remarks"
-          post "/main/set_request_remarks/#{id}", "value" => savevalue
+        if ( fieldname == "http_method" ||
+             fieldname == "path" ||
+             fieldname == "remarks" )
+          post "/main/set_request_#{fieldname}/#{id}", "value" => savevalue
           assert_response :success
-          dbvalue = Request.find(id).remarks
+          dbvalue = Request.find(id)[fieldname]
         else
           header_id = Header.find(:first, :conditions => "request_id = #{id} AND name = '#{fieldname}'").id
-          post "/main/set_header_domain/#{header_id}", "value" => savevalue
-          assert_response :success
-          dbvalue = Header.find(header_id).domain
+          unless fieldname == "click-to-edit" 
+            post "/main/set_header_domain/#{header_id}", "value" => savevalue
+            assert_response :success
+            dbvalue = Header.find(header_id).domain
+          else # setting the name of a new header (default-name is "click-to-edit")
+            post "/main/set_header_name/#{header_id}", "value" => savevalue
+            assert_response :success
+            dbvalue = Header.find(header_id).name
+          end
         end
 
         assert_equal savevalue, dbvalue
 
       end
 
+      def user.adds_header(id)
+        # add a header to the request #id
+        # the header will have the name "click-to-edit" per default
+
+        count_pre = Header.find(:all).size
+
+        post "/main/add_header", :id => id
+        assert_response :success
+        
+        assert_equal Header.find(:all).size, count_pre + 1 
+
+        assert_equal Header.find(:first, :order => "id DESC").name, "click-to-edit"
+
+      end
+
+      def user.removes_header(id, headername)
+        # add a header to the request #id
+        # the header will have the name "click-to-edit" per default
+
+        count_pre = Header.find(:all).size
+
+        header_id = Header.find(:first, :conditions => "request_id = #{id} AND name = '#{headername}'").id
+
+        post "/main/remove_header", :id => header_id
+        assert_response :success
+        
+        assert_equal Header.find(:all).size, count_pre - 1 
+
+      end
     end
   end
 
@@ -95,23 +132,37 @@ class UserStory6Test < ActionController::IntegrationTest
 
     colin = regular_user
 
-    #colin.adds_request("GET", "/index.html", "foo")
-    #colin.adds_request("POST", "/index.php", "bar")
-    #colin.adds_request("GET", "/index.cgi", "")
-    #colin.adds_request("GET", "/start.html", "")
     colin.adds_request
+    colin.uses_inline_editor(id=1, "http_method", "GET")
+    colin.uses_inline_editor(id=1, "path", "/index.html")
+    colin.uses_inline_editor(id=1, "remarks", "foo")
     colin.adds_request
+    colin.uses_inline_editor(id=2, "http_method", "POST")
+    colin.uses_inline_editor(id=2, "path", "/index.php")
+    colin.uses_inline_editor(id=2, "remarks", "bar")
     colin.adds_request
+    colin.uses_inline_editor(id=3, "http_method", "GET")
+    colin.uses_inline_editor(id=3, "path", "/index.cgi")
+    colin.uses_inline_editor(id=3, "remarks", "")
     colin.adds_request
+    colin.uses_inline_editor(id=4, "http_method", "GET")
+    colin.uses_inline_editor(id=4, "path", "/start.html")
+    colin.uses_inline_editor(id=4, "remarks", "")
 
     colin.rearranges_requests(["4", "1", "2", "3"])
-    colin.uses_inline_editor(3, "remarks", "foobar")
-    colin.uses_inline_editor(3, "Accept", "")
-    colin.uses_inline_editor(3, "Accept", "foo")
-    colin.uses_inline_editor(3, "Accept", "foo bar")
-    colin.uses_inline_editor(3, "Accept", ".*")
-    colin.uses_inline_editor(3, "Accept", ".*\"*")
-    colin.uses_inline_editor(3, "Accept", "'`\".*+?!&$")
+
+    colin.uses_inline_editor(1, "Accept", ".*")
+    colin.uses_inline_editor(1, "Accept", ".*\"*")
+    colin.uses_inline_editor(1, "Accept", "'`\".*+?!&$")
+
+    colin.adds_header(1)
+    colin.uses_inline_editor(id=1, "click-to-edit", "foobar")
+    colin.uses_inline_editor(id=1, "foobar", "\d*")
+    colin.removes_header(id=1, "foobar")
+
+    colin.adds_header(1)
+    colin.uses_inline_editor(id=1, "click-to-edit", "bar")
+
     colin.generates_ruleset
     colin.removes_request(2)
     colin.rearranges_requests(["3", "1", "4"])
@@ -120,6 +171,7 @@ class UserStory6Test < ActionController::IntegrationTest
 
     colin.removes_request(3)
     colin.removes_request(4)
+
   end
 
 end

@@ -1,0 +1,10 @@
+<% @header = header # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
+<div id="request-item_<%= header.request_id -%>-<%= header.name -%>-<%= header.id -%>" class="request-field">
+              <div id="request-item_<%= header.request_id -%>-<%= header.name -%>-label" class="request-fieldlabel"><%= if @header.name == "click-to-edit" 
+                                                                                                          in_place_editor_field :header, "name", {}, :save_text => "save" 
+                                                                                                        else
+                                                                                                          @header.name
+                                                                                                          end -%></div><div class="request-fieldcolon">:&nbsp;</div>
+              <div id="request-item_<%= header.request_id -%>-<%= header.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :header, "domain", {}, :save_text => "save" -%></div>
+              <div class="request-remove-header"><% form_remote_tag :url => { :action => :remove_header, :id => header.id } do -%><%= image_submit_tag "/trash_small.png", { :alt => "image: trash.png", :title => "remove header"} -%><% end -%></div>
+            </div>

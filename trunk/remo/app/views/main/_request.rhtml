@@ -7,6 +7,7 @@
               <td class="request_http_method"><%= in_place_editor_field :request, :http_method, {}, :save_text => "save" -%>&nbsp;</td>
               <td class="request_path"><%= in_place_editor_field :request, :path, {}, :save_text => "save", :cancel_text => "cancel" -%>&nbsp;</td>
               <td class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></td>
+              <td class="add-header"><% form_remote_tag :url => { :action => :add_header, :id => request } do -%><%= image_submit_tag "/add_header.png", { :alt => "image: add_header.png", :title => "add header"} -%><% end -%></td>
             </tr>
           </table>
           <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
@@ -15,11 +16,8 @@
               <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
             </div>
 <%         @request.headers.each do |header| -%>
-            <% @header = header # prepare for in_place_editor_field. See above. -%>
-            <div id="request-item_<%= request.id-%>-<%= header.name -%>" class="request-field">
-              <div id="request-item_<%= request.id-%>-<%= header.name -%>-label" class="request-fieldlabel"><%= header.name -%>:&nbsp;</div>
-              <div id="request-item_<%= request.id-%>-<%= header.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :header, "domain", {}, :save_text => "save" -%></div>
-            </div>
+            <%= render(:partial => "header", 
+                        :object => header) -%>
 <%         end -%>
           </div>
         </li>
