@@ -1,23 +1,26 @@
-<% @request = request # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 %>
-          <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
-            <div id="request-item_<%= request.id-%>-head" class="requesthead">
-              <div id="request-item_<%= request.id -%>-collapsed" class="foldhandle"><%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})" -%>&nbsp;</div>
-              <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%>&nbsp;</div>
-              <div><%= link_to_remote request.http_method, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;</div>
-              <div><%= link_to_remote request.path, :url => { :action => :display_detailarea, :id => request } -%>&nbsp;</div>
-              <div class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></div>
+<% @request = request # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
+        <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
+          <table class="requesthead">
+            <tr>
+              <td><div id="request-item_<%= request.id -%>-collapsed" class="foldhandle"><%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})" -%></div>
+                <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div></td>
+              <td class="request_http_method"><%= in_place_editor_field :request, :http_method, {}, :save_text => "save" -%>&nbsp;</td>
+              <td class="request_path"><%= in_place_editor_field :request, :path, {}, :save_text => "save", :cancel_text => "cancel" -%>&nbsp;</td>
+              <td class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></td>
+            </tr>
+          </table>
+          <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
+            <div id="request-item_<%= request.id-%>-remarks" class="request-field">
+              <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">Remarks:&nbsp;</div>
+              <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
             </div>
-            <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
-              <div id="request-item_<%= request.id-%>-remarks" class="request-field">
-                <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">Remarks:&nbsp;</div>
-                <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
-              </div>
-<%           @request.headers.each do |header| -%>
-              <% @header = header # prepare for in_place_editor_field. See above. -%>
-              <div id="request-item_<%= request.id-%>-<%= header.name -%>" class="request-field">
-                <div id="request-item_<%= request.id-%>-<%= header.name -%>-label" class="request-fieldlabel"><%= header.name -%>:&nbsp;</div>
-                <div id="request-item_<%= request.id-%>-<%= header.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :header, "domain", {}, :save_text => "save" -%></div>
-              </div>
-<%           end -%>
+<%         @request.headers.each do |header| -%>
+            <% @header = header # prepare for in_place_editor_field. See above. -%>
+            <div id="request-item_<%= request.id-%>-<%= header.name -%>" class="request-field">
+              <div id="request-item_<%= request.id-%>-<%= header.name -%>-label" class="request-fieldlabel"><%= header.name -%>:&nbsp;</div>
+              <div id="request-item_<%= request.id-%>-<%= header.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field :header, "domain", {}, :save_text => "save" -%></div>
             </div>
-          </li>
+<%         end -%>
+          </div>
+        </li>
+

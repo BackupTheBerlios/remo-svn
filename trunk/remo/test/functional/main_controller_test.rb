@@ -76,7 +76,6 @@ class MainControllerTest < Test::Unit::TestCase
     # make sure we have the correct set of page elements
     #   classes
     elements = ["div.maincolumn",
-    		"div.detailarea", 
 		"div.mainarea", 
 		"div.statusarea"]
     assert_exist_elementlist elements, 2
@@ -94,12 +93,10 @@ class MainControllerTest < Test::Unit::TestCase
 		"div#maindiv",
 		"div#source",
 		"div#source-toolsetarea",
-		"div#source-detailarea",
 		"div#source-mainarea",
 		"div#source-statusarea",
 		"div#rules",
 		"div#rules-toolsetarea",
-		"div#rules-detailarea",
 		"div#rules-mainarea",
 		"div#rules-statusarea", 
 		"div#rules-statusarea"]
@@ -134,10 +131,8 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-head > div#request-item_1-collapsed > a", 1
     assert_select "div#request-item_1-head > div#request-item_1-expanded > a > img[src=/expanded.png]", 1
     assert_select "div#request-item_1-head > div#request-item_1-collapsed > a > img[src=/collapsed.png]", 1
-    assert_select "div#request-item_1-head > div:nth-child(3) > a", 'GET'
-    assert_select "div#request-item_1-head > div:nth-child(3) > a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
-    assert_select "div#request-item_1-head > div:nth-child(4) > a", '/myindex.html'
-    assert_select "div#request-item_1-head > div:nth-child(4) > a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item_1-head > div:nth-child(3)", 'GET&nbsp;'
+    assert_select "div#request-item_1-head > div:nth-child(4)", '/myindex.html&nbsp;'
     assert_select "div#request-item_1-head > div:nth-child(5) > form"
     assert_select "div#request-item_1-head > div:nth-child(5) > form > input[src^=/trash.png]"
     assert_select "li#request-item_1 > div#request-item_1-details", 1
@@ -202,265 +197,6 @@ class MainControllerTest < Test::Unit::TestCase
     # add_request javascript reply
     assert_match /Element.remove\("request-item_1"\)/, @response.body
     assert_match /Element.update\("rules-statusarea", "<div>Successfully removed item 1!<\/div>"\)/, @response.body
-  end
-
-  def test_index_detailarea
-    # plain index call, checking the detailarea seperately
-    get :index
-    assert_response :success
-    assert_template "index"	
-
-    assert_select "div#rules-detailarea > div#requestitem > form[action=/main/submit_detailarea]"
-    assert_select "div#requestitem input#actionflag[value=add]"
-    assert_select "div#requestitem input#update_id"
-    assert_select "div#requestitem table#requestitem-maintable"
-    assert_select "table#requestitem-maintable table#requestitem-requesttable"
-    assert_select "table#requestitem-maintable table#requestitem-submittable"
-
-    assert_select "table#requestitem-submittable > tr", 1
-    assert_select "table#requestitem-submittable input[value='Add request']"
-    assert_select "table#requestitem-submittable input[value='Clear form']", 0
-    assert_select "table#requestitem-submittable input[value='Save request']", 0
-    assert_select "table#requestitem-submittable input[value='Delete request']", 0
-
-    assert_select "table#requestitem-requesttable > tr ", 3
-    assert_select "table#requestitem-requesttable input[id='update_http_method']"
-    assert_select "table#requestitem-requesttable input[id='update_path']"
-    assert_select "table#requestitem-requesttable input[id='update_remarks']"
-
-  end
-
-  def test_index_detailarea_selected
-    # index call with GET parameter id=1
-    #  -> by clicking on the lens in request list, thus loading view again with id parameter
-    get :index, :id => 1
-    assert_response :success
-
-    assert_template "index"
-    
-    assert_select "div#rules-detailarea > div#requestitem > form[action=/main/submit_detailarea]"
-    assert_select "div#requestitem input#actionflag[value=save]"
-    assert_select "div#requestitem input#update_id"
-    assert_select "div#requestitem table#requestitem-maintable"
-    assert_select "table#requestitem-maintable table#requestitem-requesttable"
-    assert_select "table#requestitem-maintable table#requestitem-submittable"
-
-    assert_select "table#requestitem-submittable > tr", 3
-    assert_select "table#requestitem-submittable input[value='Add request']", 0
-    assert_select "table#requestitem-submittable input[value='Clear form']", 1
-    assert_select "table#requestitem-submittable input[value='Save request']", 1
-    assert_select "table#requestitem-submittable input[value='Delete request']", 1
-
-    assert_select "table#requestitem-requesttable > tr ", 3
-    assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
-    assert_select "table#requestitem-requesttable input[id='update_path'][value$='index.html']"
-    assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='bla bla']"
-
-  end
-
-  def test_display_detailarea
-    # test display_detailarea ajax request
-    get :display_detailarea, :id => 1
-    assert_response :success
-
-    assert_template "display_detailarea"
-
-    body = @response.body
-
-    #detailarea
-    assert_select_rjs "requestitem" do
-      assert_select "form[action=/main/submit_detailarea]"
-      assert_select "div#requestitem input#actionflag[value=save]"
-      assert_select "div#requestitem input#update_id"
-      assert_select "div#requestitem table#requestitem-maintable"
-      assert_select "table#requestitem-maintable table#requestitem-requesttable"
-      assert_select "table#requestitem-maintable table#requestitem-submittable"
-
-      assert_select "table#requestitem-submittable > tr", 3
-      assert_select "table#requestitem-submittable input[value='Add request']", 0
-      assert_select "table#requestitem-submittable input[value='Clear form']", 1
-      assert_select "table#requestitem-submittable input[value='Save request']", 1
-      assert_select "table#requestitem-submittable input[value='Delete request']", 1
-
-      assert_select "table#requestitem-requesttable > tr ", 3
-      assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
-      assert_select "table#requestitem-requesttable input[id='update_path'][value$='index.html']"
-      assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='bla bla']"
-    end
-
-    # checking for highlight (select) statements
-    assert_match /addClassName\("request-item_1-head", "requesthead-selected"\)/, @response.body
-    assert_match /removeClassName\("request-item_1-head", "requesthead"\)/, @response.body
-    
-    #statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Selected request item 1/
-    end
-  end
-
-  def test_display_detailarea_clear
-    post :submit_detailarea, :actionflag => "clear"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # detailarea
-    assert_select_rjs "requestitem" do
-      assert_select "form[action=/main/submit_detailarea]"
-      assert_select "div#requestitem input#actionflag[value=add]"
-      assert_select "div#requestitem input#update_id"
-      assert_select "div#requestitem table#requestitem-maintable"
-      assert_select "table#requestitem-maintable table#requestitem-requesttable"
-      assert_select "table#requestitem-maintable table#requestitem-submittable"
-
-      assert_select "table#requestitem-submittable > tr", 1
-      assert_select "table#requestitem-submittable input[value='Add request']"
-      assert_select "table#requestitem-submittable input[value='Clear form']", 0
-      assert_select "table#requestitem-submittable input[value='Save request']", 0
-      assert_select "table#requestitem-submittable input[value='Delete request']", 0
-
-      assert_select "table#requestitem-requesttable > tr ", 3
-      assert_select "table#requestitem-requesttable input[id='update_http_method']"
-      assert_select "table#requestitem-requesttable input[id='update_path']"
-      assert_select "table#requestitem-requesttable input[id='update_remarks']"
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Status: active/
-    end
-
-  end
-
-  def test_display_detailarea_add_successful
-    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "1000", :update_remarks => "foo"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # detailarea
-    assert_select_rjs "requestitem" do
-      assert_select "form[action=/main/submit_detailarea]"
-      assert_select "div#requestitem input#actionflag[value=save]"
-      assert_select "div#requestitem input#update_id"
-      assert_select "div#requestitem table#requestitem-maintable"
-      assert_select "table#requestitem-maintable table#requestitem-requesttable"
-      assert_select "table#requestitem-maintable table#requestitem-submittable"
-
-      assert_select "table#requestitem-submittable > tr", 3
-      assert_select "table#requestitem-submittable input[value='Add request']", 0
-      assert_select "table#requestitem-submittable input[value='Clear form']", 1
-      assert_select "table#requestitem-submittable input[value='Save request']", 1
-      assert_select "table#requestitem-submittable input[value='Delete request']", 1
-
-      assert_select "table#requestitem-requesttable > tr ", 3
-      assert_select "table#requestitem-requesttable input[id='update_http_method'][value='GET']"
-      assert_select "table#requestitem-requesttable input[id='update_path'][value$='detail2.html']"
-      assert_select "table#requestitem-requesttable input[id='update_remarks'][value$='foo']"
-    end
-
-    # mainarea
-    assert_select_rjs "rules-mainarea-sortlist" do
-      assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
-      # with this we are quite sure we got a real request item 
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Successfully added new item/
-    end
-
-  end
-
-  def test_display_detailarea_add_failure
-    post :submit_detailarea, :actionflag => "add", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "1000", :update_remarks => "bar"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # flash-notice
-    assert_select_rjs "flash-notice" do
-      assert_select "div", /Adding failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Adding failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
-    end
-  end
-
-  def test_display_detailarea_update_successful
-    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET", :update_path => "/detail2.html", :update_weight => "3", :update_remarks => "bar"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # mainarea
-    assert_select_rjs "request-item_3" do
-      assert_select "li > div", 2                    # head and details
-      assert_select "li > div:nth-child(2) > div", DEFAULT_HEADERS.size + 1 # number of detail fields
-      # with this we are quite sure we got a real request item 
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Successfully saved item 3!/
-    end
-
-  end
-
-  def test_display_detailarea_update_failure
-    post :submit_detailarea, :actionflag => "save", :update_id => "3", :update_http_method => "GET_XXX", :update_path => "/detail2.html", :update_weight => "3", :update_remarks => "bar"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # flash-notice
-    assert_select_rjs "flash-notice" do
-      assert_select "div", /Saving failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Saving failed! Validation failed: Http method has to be a valid http method, i.e. GET, PUT, etc./
-    end
-
-  end
-
-  def test_display_detailarea_delete_successful
-    post :submit_detailarea, :actionflag => "delete", :update_id => "1"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # mainarea
-    assert_match /Element.remove\("request-item_1"\)/, @response.body
-
-    assert_equal Header.find(:all, :conditions => "'request_id' = 1").size, 0
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Successfully deleted item 1!/
-    end
-  end
-
-  def test_display_detailarea_delete_failure
-    post :submit_detailarea, :actionflag => "delete", :update_id => "24"
-    assert_response :success
-
-    assert_template "submit_detailarea"
-
-    # flash-notice
-    assert_select_rjs "flash-notice" do
-      assert_select "div", /Removing failed! Couldn't find Request with ID=24/
-    end
-
-    # statusarea
-    assert_select_rjs "rules-statusarea" do
-      assert_select "div", /Removing failed! Couldn't find Request with ID=24/
-    end
-
   end
 
   def test_rearrange_requests_success

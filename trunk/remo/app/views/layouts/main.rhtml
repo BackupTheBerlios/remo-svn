@@ -32,9 +32,6 @@ function toggleRequestDetails(id)
       <div id="source-toolsetarea" class="toolsetarea">
         area will be used later
       </div>
-      <div id="source-detailarea" class="detailarea">
-        area will be used later
-      </div>
       <div id="source-mainarea" class="mainarea">
         area will be used later
       </div>
@@ -45,13 +42,6 @@ function toggleRequestDetails(id)
     <div id="rules" class="maincolumn">
       <div id="rules-toolsetarea" class="toolsetarea">
         <%= render(:partial => "rules_toolset", :collection => @rules_toolset_buttons) -%>
-      </div>
-      <div id="rules-detailarea" class="detailarea">
-        <%= if params[:id].nil?
-              render(:partial => "request_rules_detailarea_empty", :object => @detail_request) 
-            else
-              render(:partial => "request_rules_detailarea_detailrequest", :object => @detail_request) 
-            end -%>
       </div>
       <div id="rules-mainarea" class="mainarea">
       <%= yield :layout %>

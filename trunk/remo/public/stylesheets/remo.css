@@ -99,15 +99,9 @@ li {
 
 .toolsetarea {
   background: #d4ebf9;
-  height: 34px;
+  height: 37px;
   border-top: 1px dotted gray;
-  border-left: 1px dotted gray;
-  border-right: 1px dotted gray;
-}
-.detailarea {
-  background: #49a6e0;
-  margin-top: 2px;
-  height: 100px;
+  border-bottom: 1px dotted gray;
   border-left: 1px dotted gray;
   border-right: 1px dotted gray;
 }
@@ -127,16 +121,12 @@ li {
 
 #source-toolsetarea {
 }
-#source-detailarea {
-}
 #source-mainarea {
 }
 #source-statusarea {
 }
 
 #rules-toolsetarea {
-}
-#rules-detailarea {
 }
 #rules-mainarea {
 }
@@ -149,52 +139,6 @@ li {
   float: left;
 }
 
-/* The rules detailarea requestitem */
-
-.detailarea #requestitem #label_http_method{
-  color: #494949;
-  padding-left: 1%;
-  float: left;
-  width: 20%;
-}
-.detailarea #requestitem #http_method{
-  float: left;
-  width: 50%;
-}
-.detailarea #requestitem #label_path{
-  color: #494949;
-  padding-left: 1%;
-  float: left;
-  width: 20%;
-}
-.detailarea #requestitem #path{
-  float: left;
-  width: 79%;
-}
-.detailarea #requestitem #label_remarks{
-  color: #494949;
-  padding-left: 1%;
-  float: left;
-  width: 20%;
-}
-.detailarea #requestitem #remarks{
-  float: left;
-  width: 50%;
-}
-
-.detailarea .submit {
-  background-image: url("bg-button.png");
-  background-repeat: repeat-x;
-  color: white;
-  font-weight: bold;
-  float: left;
-  width: 100%;
-  margin-top: 1px;
-  margin-left: 5px;
-  border: 1px solid white;
-}
-
-
 /* The rules request list */
 
 .listitem {
@@ -205,17 +149,27 @@ li {
 }
 .foldhandle{
   float: left;
+  padding-top: 5px;
+  padding-right: 4px;
 }
-.requesthead {
+.requesthead table{
 }
-.requesthead-selected {
-  background: #d4ebf9;
+.request_http_method .inplaceeditor-form{
+  float: left; /* prevent form from pushing request details down */
 }
-.requesthead div, .requesthead-selected div{
-  float: left;
+.request_http_method .inplaceeditor-form input[type="text"] { 
+  width: 100px; /* Limiting the width a bit */
 }
-.requesthead .remove-request, .requesthead-selected .remove-request {
-  padding-left: 10px;
+.request_path .inplaceeditor-form{
+  float: left; /* prevent form from pushing request details down */
+}
+
+
+.request_http_method {
+  color: #2eaeff;
+}
+.request_path {
+  color: #2eaeff;
 }
 .requestdetails {
   float: left;
@@ -242,7 +196,6 @@ li {
 
 /* rails helper: inplace editor */
 .inplaceeditor-form input[type="text"] { 
-  width: 100%;
 }
 .editor_field { 
   font-size: small;
@@ -251,14 +204,15 @@ li {
   padding-top: 0;
   padding-bottom: 0;
 }
-.editor_ok_button { /* this is a button by default */
+.editor_ok_button { /* this is a button by default, this way we replace it with a text link */
   color: #2eaeff;
   background: white;
   border-style: none;
 }
 .editor_cancel { 
+  font-size: small;
+  padding-right: 10px;
 }
-
 
 /* The error box */
 
