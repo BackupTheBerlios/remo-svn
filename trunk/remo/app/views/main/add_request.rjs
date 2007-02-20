@@ -11,9 +11,12 @@ end
 
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
-page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @request) if flash[:notice].nil?
+if flash[:notice].nil?
+  page.insert_html(:bottom, "rules-mainarea-sortlist", :partial => "request", :object => @request)
+  page["request-item_#{@request.id}"].visual_effect :highlight
+  statusmessage = "Successfully added new item!"
+end
 
-statusmessage = "Successfully added new item!" if flash[:notice].nil?
 page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
 
 page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"}
