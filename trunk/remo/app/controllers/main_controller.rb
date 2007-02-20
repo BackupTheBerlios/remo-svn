@@ -189,10 +189,9 @@ class MainController < ApplicationController
         new_weight = 1
       end
       @request = Request.new(:http_method => "GET",
-                             :path => "Click to edit",
+                             :path => "click-to-edit",
                              :weight => new_weight, # max(weight) + 1
-                             :remarks => "Click to edit")
-
+                             :remarks => "click-to-edit")
 
       begin
         @request.save!
@@ -208,6 +207,21 @@ class MainController < ApplicationController
           Request.delete(@request.id)
         end
       end
+
+  end
+
+  def remove_request
+
+    begin
+      Request.delete(params[:id])
+      Header.delete_all(['request_id = ?' , params[:id]])
+    rescue => err
+      logger.error("Attempt to access invalid request record #{params[:id]}")
+      flash[:notice] = "Removing failed! " + err
+    end
+
+    @detail_request = Request.new(:weight => "")
+
 
   end
 

@@ -205,16 +205,22 @@ li {
 }
 .foldhandle{
   float: left;
-  padding-top: 5px;
 }
 .requesthead {
 }
 .requesthead-selected {
   background: #d4ebf9;
 }
+.requesthead div, .requesthead-selected div{
+  float: left;
+}
+.requesthead .remove-request, .requesthead-selected .remove-request {
+  padding-left: 10px;
+}
 .requestdetails {
   float: left;
   margin-bottom: 10px;
+  clear: both;
 }
 .request-field {
   clear: both;

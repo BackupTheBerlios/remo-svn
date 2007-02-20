@@ -23,10 +23,23 @@ class UserStory6Test < ActionController::IntegrationTest
         # checking for existence of new request
         request = Request.find(:first, :order => "weight DESC") 
         assert_equal "GET",     request.http_method
-        assert_equal "Click to edit",	      request.path
-        assert_equal "Click to edit",	      request.remarks
+        assert_equal "click-to-edit",	      request.path
+        assert_equal "click-to-edit",	      request.remarks
 
         assert_equal Request.find(:all).size, count_pre + 1
+      end
+
+      def user.removes_request_new(id)
+        count_pre = Request.find(:all).size
+
+        post "/main/remove_request", :id => id
+        assert_response :success
+        assert_template "remove_request"
+        # the rest of display is tested in the controller test
+
+        assert_equal Request.find(:all).size, count_pre - 1 
+        assert_equal Request.find(:all, :conditions => "id = #{id}").size, 0
+        assert_equal Header.find(:all, :conditions => "request_id = #{id}").size, 0
       end
 
       def user.adds_request(http_method, path, remarks)
@@ -73,7 +86,6 @@ class UserStory6Test < ActionController::IntegrationTest
         assert_response :success
         assert_template "display_detailarea"
         # the rest of display is tested in the controller test
-
       end
 
       def user.rearranges_requests(order)
@@ -158,7 +170,7 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.clicks_clear
     colin.requests_detailarea(1)
     colin.requests_detailarea(2)
-    colin.deletes_request(2)
+    colin.removes_request_new(2)
     colin.rearranges_requests(["3", "1", "4"])
     colin.uses_inline_editor(4, "remarks", "ooo\nxxx")
     colin.deletes_request(1)

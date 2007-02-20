@@ -134,10 +134,12 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-head > div#request-item_1-collapsed > a", 1
     assert_select "div#request-item_1-head > div#request-item_1-expanded > a > img[src=/expanded.png]", 1
     assert_select "div#request-item_1-head > div#request-item_1-collapsed > a > img[src=/collapsed.png]", 1
-    assert_select "div#request-item_1-head > a:nth-child(3)", 'GET'
-    assert_select "div#request-item_1-head > a:nth-child(3)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
-    assert_select "div#request-item_1-head > a:nth-child(4)", '/myindex.html'
-    assert_select "div#request-item_1-head > a:nth-child(4)[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item_1-head > div:nth-child(3) > a", 'GET'
+    assert_select "div#request-item_1-head > div:nth-child(3) > a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item_1-head > div:nth-child(4) > a", '/myindex.html'
+    assert_select "div#request-item_1-head > div:nth-child(4) > a[onclick=new Ajax.Request('/main/display_detailarea/1', {asynchronous:true, evalScripts:true}); return false;]", 1
+    assert_select "div#request-item_1-head > div:nth-child(5) > form"
+    assert_select "div#request-item_1-head > div:nth-child(5) > form > input[src^=/trash.png]"
     assert_select "li#request-item_1 > div#request-item_1-details", 1
     assert_select "div#request-item_1-details > div", DEFAULT_HEADERS.size + 1 # number of detail fields on display per default
     
@@ -179,7 +181,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_add_request
-    get :add_request
+    post :add_request
     assert_response :success
     assert_template "add_request"	
 
@@ -190,6 +192,16 @@ class MainControllerTest < Test::Unit::TestCase
       # with this we are quite sure we got a real request item 
     end
 
+  end
+
+  def test_remove_request
+    post :remove_request, :id => 1
+    assert_response :success
+    assert_template "remove_request"	
+
+    # add_request javascript reply
+    assert_match /Element.remove\("request-item_1"\)/, @response.body
+    assert_match /Element.update\("rules-statusarea", "<div>Successfully removed item 1!<\/div>"\)/, @response.body
   end
 
   def test_index_detailarea
