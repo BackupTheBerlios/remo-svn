@@ -8,12 +8,14 @@ class MainController < ApplicationController
         "add_request",            # link
         "/add_request.png",       # image path
         "add http request",       # tooltip
-        true],                     # ajax request (inline display of javascript result)
+        "new request",                    # button label
+        true],                    # ajax request (inline display of javascript result)
 
       [ "generate_ruleset",       # htmlid
         "generate_ruleset",       # link
         "/generate.png",          # image path
         "generate ruleset",       # tooltip
+        "generate",               # button label
         false]                    # ajax request (inline display of javascript result)
   ]
 

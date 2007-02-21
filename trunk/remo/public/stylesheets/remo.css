@@ -99,7 +99,7 @@ li {
 
 .toolsetarea {
   background: #d4ebf9;
-  height: 37px;
+  height: 48px;
   border-top: 1px dotted gray;
   border-bottom: 1px dotted gray;
   border-left: 1px dotted gray;
@@ -137,6 +137,14 @@ li {
 .toolbutton {
   padding: 2px 2px 0px 2px;
   float: left;
+  font-size: xx-small;
+  text-align: center;
+}
+.toolbutton input { 
+  border-style: none; /* This is a button by default. This way we make it into a text link.*/
+  font-size: xx-small;
+  color: #2eaeff;
+  background: none;
 }
 
 /* The rules request list */

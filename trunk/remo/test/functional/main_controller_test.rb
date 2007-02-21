@@ -144,11 +144,11 @@ class MainControllerTest < Test::Unit::TestCase
     # add_request POST ajax form
     assert_select "div#rules-toolsetarea > div#add_request", 1
     assert_select "div#rules-toolsetarea > div#add_request > form > input" do
-      assert_select "input", 1
-      assert_select "input[title]", 1, "Image without title."
-      assert_select "input[title=""]", 0, "Title tag of image is empty."
-      assert_select "input[alt]", 1, "Image without alt tag."
-      assert_select "input[alt=""]", 0, "Alt tag of image is empty."
+      assert_select "input", 2  # image submit button and text submit button
+      assert_select "input[title]", 1
+      assert_select "input[title=""]", 0
+      assert_select "input[alt]", 1
+      assert_select "input[alt=""]", 0
     end
 
     # generate_ruleset GET link

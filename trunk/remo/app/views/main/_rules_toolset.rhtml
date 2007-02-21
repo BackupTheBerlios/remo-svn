@@ -1,5 +1,5 @@
-<% if rules_toolset[4] # if ajaxrequest -%>
-<div id="<%= rules_toolset[0] -%>" class="toolbutton"><% form_remote_tag :url => {:action => rules_toolset[1]} do -%><%= image_submit_tag rules_toolset[2], { :alt => "image: #{rules_toolset[2]}", :title => "#{rules_toolset[3]}"} -%><% end -%></div>
+<% if rules_toolset[5] # if ajaxrequest -%>
+<div id="<%= rules_toolset[0] -%>" class="toolbutton"><% form_remote_tag :url => {:action => rules_toolset[1]} do -%><%= image_submit_tag rules_toolset[2], { :alt => "image: #{rules_toolset[2]}", :title => "#{rules_toolset[3]}"} -%><br /><%= submit_tag rules_toolset[4] -%><% end -%></div>
 <% else -%>
-        <div id="<%= rules_toolset[0] -%>" class="toolbutton"><a href="<%= rules_toolset[1] -%>"><img src="<%= rules_toolset[2] -%>" alt="image: <%= rules_toolset[2] -%>" title="<%= rules_toolset[3] -%>" /></a></div>
+        <div id="<%= rules_toolset[0] -%>" class="toolbutton" style="font-size: xx-small; text-align: center;"><a href="<%= rules_toolset[1] -%>"><img src="<%= rules_toolset[2] -%>" alt="image: <%= rules_toolset[2] -%>" title="<%= rules_toolset[3] -%>" /><br /><%= rules_toolset[4] -%></a></div>
 <% end -%>
