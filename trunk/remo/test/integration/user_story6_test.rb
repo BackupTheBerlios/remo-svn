@@ -150,7 +150,6 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.uses_inline_editor(id=4, "remarks", "")
 
     colin.rearranges_requests(["4", "1", "2", "3"])
-
     colin.uses_inline_editor(1, "Accept", ".*")
     colin.uses_inline_editor(1, "Accept", ".*\"*")
     colin.uses_inline_editor(1, "Accept", "'`\".*+?!&$")
@@ -159,7 +158,6 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.uses_inline_editor(id=1, "click-to-edit", "foobar")
     colin.uses_inline_editor(id=1, "foobar", "\d*")
     colin.removes_header(id=1, "foobar")
-
     colin.adds_header(1)
     colin.uses_inline_editor(id=1, "click-to-edit", "bar")
 

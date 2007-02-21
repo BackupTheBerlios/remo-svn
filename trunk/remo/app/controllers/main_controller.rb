@@ -173,10 +173,10 @@ class MainController < ApplicationController
 
     def add_standard_headers (request_id)
 
-      DEFAULT_HEADERS.each do |key, value|
+      DEFAULT_HEADERS.each do |item|
         @header = Header.new(:request_id => request_id, 
-                       :name => key,
-                       :domain => value)
+                       :name => item.keys[0],
+                       :domain => item.values[0])
         @header.save!
       end
 

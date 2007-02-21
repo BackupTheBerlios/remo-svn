@@ -35,10 +35,10 @@ class MainControllerTest < Test::Unit::TestCase
     end
 
     8.times do |i|
-      DEFAULT_HEADERS.each do |name,domain|
+      DEFAULT_HEADERS.each do |item|
         h = Header.new(:request_id  => i,
-                       :name        => name,
-                       :domain      => domain)
+                       :name        => item.keys[0],
+                       :domain      => item.values[0])
         h.save!
       end
     end
@@ -228,7 +228,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_response :success
     assert_template "remove_header"	
 
-    assert_match /Element.remove\("request-item_0-X-Forwarded-For-1"\)/, @response.body
+    assert_match /Element.remove\("request-item_0-Host-1"\)/, @response.body
   end
 
   def test_set_header_name
