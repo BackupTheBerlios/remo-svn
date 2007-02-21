@@ -1,5 +1,3 @@
-require 'helpers/various'
-
 def generate(request=nil, version=nil)
   filename = "rulefile.conf"
   prepend_filename= "prepend-file.conf"

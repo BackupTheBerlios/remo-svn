@@ -10,3 +10,6 @@ def escape_path(path)
   return path
 end
 
+def get_release_version
+  return REMO_RELEASE_VERSION
+end

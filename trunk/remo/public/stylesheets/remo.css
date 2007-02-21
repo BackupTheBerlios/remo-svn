@@ -44,12 +44,12 @@ li {
 #banner {
   float: left;
   width: 100%;
+  height: 70px;
   background: #d4ebf9;
   border: 1px solid white;
   font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
   color: #494949;
 }
-
 
 #title {
   float: left;
@@ -58,7 +58,16 @@ li {
   white-space: nowrap;
 }
 
-      
+#title h1{
+  margin-bottom: 5px;
+  padding-bottom: 0;
+}
+
+.remo-version {
+  color: gray; 
+  font-size: small; 
+}  
+
 #logodiv {
   float: left;
   width: 49%;

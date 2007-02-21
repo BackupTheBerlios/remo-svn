@@ -1,5 +1,10 @@
+require File.dirname(__FILE__) + '/../../remo_config'
+require 'helpers/various'
+require "rules_generator/main"
+
+
 class MainController < ApplicationController
-  REMO_VERSION = "0.0.1"
+
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
   RULES_TOOLSET_BUTTONS = [
       # the partial display does not work with the form: array[ hash1, hash2, ...]
@@ -19,7 +24,6 @@ class MainController < ApplicationController
         false]                    # ajax request (inline display of javascript result)
   ]
 
-  require File.dirname(__FILE__) + '/../../default_headers'
 
   Request.content_columns.each do |column|
     in_place_edit_for :request, column.name
@@ -28,10 +32,6 @@ class MainController < ApplicationController
   Header.content_columns.each do |column|
     in_place_edit_for :header, column.name
   end  
-
-
-
-
 
   def index
 
@@ -164,9 +164,7 @@ class MainController < ApplicationController
 
   def generate_ruleset
     
-    require "rules_generator/main"
-
-    filename = generate(request, REMO_VERSION)
+    filename = generate(request, get_release_version)
     send_file(filename, :type => "text/ascii") if FileTest::exists?(filename)
 
   end

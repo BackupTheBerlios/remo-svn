@@ -133,6 +133,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-label", "Remarks:&nbsp;"
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /bla bla/
     assert_select "div#request-item_1-remarks > div#request-item_1-remarks-fieldedit", /request_remarks_1_in_place_editor/
+
   end
 
   def test_index_rules_toolsetarea

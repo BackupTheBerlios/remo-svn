@@ -9,4 +9,8 @@ class LibVariousTest < Test::Unit::TestCase
     assert_equal escape_path(path), expected_result, "Escaping of path did not work our correctly."
   end
 
+  def test_get_release_version
+    assert_match /0\.\d\.\d.*/, get_release_version
+  end
+
 end
