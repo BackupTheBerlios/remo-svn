@@ -2,7 +2,6 @@ require File.dirname(__FILE__) + '/../../remo_config'
 require 'helpers/various'
 require "rules_generator/main"
 
-
 class MainController < ApplicationController
 
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
@@ -26,12 +25,14 @@ class MainController < ApplicationController
 
 
   Request.content_columns.each do |column|
-    in_place_edit_for :request, column.name
+    extended_in_place_edit_for :request, column.name
   end 
 
   Header.content_columns.each do |column|
-    in_place_edit_for :header, column.name
+    extended_in_place_edit_for :header, column.name
   end  
+
+
 
   def index
 

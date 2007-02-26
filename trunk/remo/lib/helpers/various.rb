@@ -13,3 +13,23 @@ end
 def get_release_version
   return REMO_RELEASE_VERSION
 end
+
+def extended_in_place_edit_for (object, attribute, options = {})
+  # this is an extended version of in_place_edit_for
+  # it accepts only post requests, uses validation and checks for empty values (which are dropped)
+
+  define_method("set_#{object}_#{attribute}") do
+    @item = object.to_s.camelize.constantize.find(params[:id])
+
+    if request.post? and not params[:value].nil? and params[:value].size > 0 
+      previous_value = @item[attribute]
+      @item[attribute] = params[:value]
+      unless @item.save # save does validation and returns true if successfully saved
+        @item[attribute] = previous_value
+        logger.error "Request could not be saved. A db or validation error is likely."
+      end
+    end
+
+    render :text => @item.send(attribute)
+  end
+end
