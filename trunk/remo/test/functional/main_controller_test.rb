@@ -17,7 +17,7 @@ class MainControllerTest < Test::Unit::TestCase
     # working with fixtures seems to be just as complicated
     list = [[1, "GET",  "/myindex.html", 1, "bla bla"],
             [2, "POST", "/action/post.php", 2, "none"],
-            [3, "GET",  "/detail.html",   3, ""],
+            [3, "GET",  "/detail.html",   3, "foo"],
             [4, "GET",  "/view,html",     4, "some comment\nadditional comment"],
             [5, "GET",  "/detail.html",   5, "some comment
                                               more comment"],
@@ -210,6 +210,25 @@ class MainControllerTest < Test::Unit::TestCase
     
     assert_template nil
   end
+  
+  def test_extended_in_place_edit_for
+    def mytest (request_method, path, id, value, return_value)
+      if request_method == :post
+        post path, :id => id, :value => value
+      elsif request_method == :get
+        get path, :id => id, :value => value
+      end
+      assert_response :success
+      assert_match /#{return_value}/, @response.body
+    end
+
+
+    mytest :post, :set_request_remarks, 3, "", Request.find(3).remarks
+    mytest :get, :set_request_remarks, 3, "foo", Request.find(3).remarks
+    mytest :post, :set_request_http_method, 3, "HEAD", "HEAD"
+    mytest :post, :set_request_http_method, 3, "GOT", Request.find(3).http_method
+
+  end
 
   def test_add_header
     post :add_header, :id => 3
@@ -247,7 +266,6 @@ class MainControllerTest < Test::Unit::TestCase
       assert_select "div > div", 4 
       # with this we are quite sure we got a real header item. so this will do
     end
-
   end
 
   def test_generate_ruleset
