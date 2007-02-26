@@ -143,11 +143,11 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.adds_request
     colin.uses_inline_editor(id=3, "http_method", "GET")
     colin.uses_inline_editor(id=3, "path", "/index.cgi")
-    colin.uses_inline_editor(id=3, "remarks", "")
+    colin.uses_inline_editor(id=3, "remarks", "foo")
     colin.adds_request
     colin.uses_inline_editor(id=4, "http_method", "GET")
     colin.uses_inline_editor(id=4, "path", "/start.html")
-    colin.uses_inline_editor(id=4, "remarks", "")
+    colin.uses_inline_editor(id=4, "remarks", "foobar")
 
     colin.rearranges_requests(["4", "1", "2", "3"])
     colin.uses_inline_editor(1, "Accept", ".*")

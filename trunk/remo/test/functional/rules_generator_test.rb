@@ -33,7 +33,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
       #  1 |# Basic get request
       #  2 |<LocationMatch "^/info.html$">
       #  3 |  # Checking request method
-      #  4 |  SecRule REQUEST_METHOD "!^GET$" "t:none,deny,id:6,t:none,status:501,severity:3,msg:'Request method wrong (it is not GET).'"
+      #  4 |  SecRule REQUEST_METHOD "!^GET$" "t:none,deny,id:6,status:501,severity:3,msg:'Request method wrong (it is not GET).'"
       #  5 |
       #  6 |  # Strict headercheck (make sure the request contains only predefined request headers)
       #  7 |  SecRule REQUEST_HEADERS_NAMES "!^(Host|User-Agent|...)$" "t:none,deny,id:6,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
@@ -60,7 +60,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
       assert_rule_line rules_array, startline + 3, 
         /^  # Checking request method$/, "Comment \"request method\" not correct"
       assert_rule_line rules_array, startline + 4, 
-        /^  SecRule REQUEST_METHOD "!\^#{item.http_method}\$" "t:none,deny,id:#{item.id},t:none,status:501,severity:3,msg:'Request method wrong \(it is not #{item.http_method}\).'"$/, 
+        /^  SecRule REQUEST_METHOD "!\^#{item.http_method}\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request method wrong \(it is not #{item.http_method}\).'"$/, 
         "Request method check faulty"
       assert_rule_line rules_array, startline + 5, 
         /^$/, "Line not empty"

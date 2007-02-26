@@ -41,7 +41,7 @@ def generate(request=nil, version=nil)
     # remo gui should allow regexes on this field.
     #
     file.puts "  # Checking request method"
-    file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},t:none,status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
+    file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
   end
 
   def add_check_strict_headers (file, id)
