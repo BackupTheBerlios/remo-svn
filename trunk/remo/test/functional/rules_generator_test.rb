@@ -39,8 +39,8 @@ class RulesGeneratorTest < Test::Unit::TestCase
       #  7 |  SecRule REQUEST_HEADERS_NAMES "!^(Host|User-Agent|...)$" "t:none,deny,id:6,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
       #  8 |
       #  9 |  # Checking request header "Host"
-      # 10 |  SecRule &HTTP_User-Agent "!^0$" "chain,t:none,deny,id:6,status:501,severity:3,msg:'Request header User-Agent failed validity check.'"
-      # 11 |  SecRule HTTP_User-Agent "!^(curl.*)$" "t:none,"
+      # 10 |  SecRule &REQUEST_HEADERS:User-Agent "!@eq 0" "chain,t:none,deny,id:6,status:501,severity:3,msg:'Request header User-Agent failed validity check.'"
+      # 11 |  SecRule REQUEST_HEADERS:User-Agent "!^(curl.*)$" "t:none,"
       # 12 |  # Checking request header "User-Agent"
       # 13 |  ...
       #
@@ -87,10 +87,10 @@ class RulesGeneratorTest < Test::Unit::TestCase
           /^  # Checking request header "#{header.name}"$/,
           "Request header check comment for header #{header.name} is not correct"
         assert_rule_line rules_array, startline + n + 1, 
-          /^  SecRule &HTTP_#{header.name} "!\^0\$" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request header #{header.name} failed validity check.'\"$/,
+          /^  SecRule &REQUEST_HEADERS:#{header.name} "!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request header #{header.name} failed validity check.'\"$/,
           "Request header check first line for header #{header.name} is not correct"
         assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule HTTP_#{header.name} "!\^\(#{header.domain}\)\$" "t:none"$/,
+          /^  SecRule REQUEST_HEADERS:#{header.name} "!\^\(#{header.domain}\)\$" "t:none"$/,
           "Request header check 2nd line for header #{header.name} is not correct"
         n += 3
       end
