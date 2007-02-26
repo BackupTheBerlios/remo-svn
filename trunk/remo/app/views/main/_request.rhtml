@@ -19,6 +19,10 @@
             <%= render(:partial => "header", 
                         :object => header) -%>
 <%         end -%>
+<%         @request.postparameters.each do |postparameter| -%>
+            <%= render(:partial => "postparameter", 
+                        :object => postparameter) -%>
+<%         end -%>
           </div>
         </li>
 
