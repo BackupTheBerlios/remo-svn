@@ -32,6 +32,9 @@ class MainController < ApplicationController
     extended_in_place_edit_for :header, column.name
   end  
 
+  Postparameter.content_columns.each do |column|
+    extended_in_place_edit_for :postparameter, column.name
+  end  
 
 
   def index
