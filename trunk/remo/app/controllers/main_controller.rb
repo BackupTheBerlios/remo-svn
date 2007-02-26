@@ -146,6 +146,7 @@ class MainController < ApplicationController
   end
 
   def set_header_name
+    # the header name is "click-to-edit" by default. It can be updated to a real name. But only once.
     
     @header = Header.find(params[:id])
     @name_save = @header.name

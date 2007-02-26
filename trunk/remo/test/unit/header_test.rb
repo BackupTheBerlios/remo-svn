@@ -3,7 +3,6 @@ require File.dirname(__FILE__) + '/../test_helper'
 class HeaderTest < Test::Unit::TestCase
   fixtures :headers
 
-  # Replace this with your real tests.
   def test_valid_save
 
     header = Header.new(:request_id     => 1,

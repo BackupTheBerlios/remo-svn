@@ -14,6 +14,7 @@ require "./test/functional/rules_generator_test"
 # models
 require "./test/unit/request_test"
 require "./test/unit/header_test"
+require "./test/unit/postparameter_test"
 
 # views / controller
 require "./test/functional/main_controller_test"
