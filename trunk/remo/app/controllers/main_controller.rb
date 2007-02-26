@@ -147,18 +147,17 @@ class MainController < ApplicationController
 
   def set_header_name
     
-    unless params[:value].nil?
+    @header = Header.find(params[:id])
+    @name_save = @header.name
+    unless params[:value].nil? || params[:value].size == 0
       begin
-        @header = Header.find(params[:id])
-        @name_save = @header.name
         @header.name = params[:value] 
 
         @header.save!
       rescue => err
         flash[:notice] = "Setting name failed! " + err
+        @header.name = @name_save
       end
-    else
-      flash[:notice] = "No value submitted!"
     end
 
   end
@@ -172,15 +171,15 @@ class MainController < ApplicationController
 
   private
 
-    def add_standard_headers (request_id)
+  def add_standard_headers (request_id)
 
-      DEFAULT_HEADERS.each do |item|
-        @header = Header.new(:request_id => request_id, 
-                       :name => item.keys[0],
-                       :domain => item.values[0])
-        @header.save!
-      end
-
+    DEFAULT_HEADERS.each do |item|
+      @header = Header.new(:request_id => request_id, 
+                           :name => item.keys[0],
+                           :domain => item.values[0])
+      @header.save!
     end
+
+  end
 
 end
