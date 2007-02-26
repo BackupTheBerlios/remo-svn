@@ -76,8 +76,10 @@ def generate(request=nil, version=nil)
     # the header is optional
     # but it is in the request, then it is checked
     file.puts "  # Checking request header \"#{name}\""
-    file.puts "  SecRule &HTTP_#{name} \"!^0$\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
-    file.puts "  SecRule HTTP_#{name} \"!^(#{value})$\" \"t:none\""
+    file.puts "  SecRule &REQUEST_HEADERS:#{name} \"!^0$\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
+    #file.puts "  SecRule &HTTP_#{name} \"!^0$\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
+    file.puts "  SecRule REQUEST_HEADERS:#{name} \"!^(#{value})$\" \"t:none\""
+    #file.puts "  SecRule HTTP_#{name} \"!^(#{value})$\" \"t:none\""
   end
 
 
