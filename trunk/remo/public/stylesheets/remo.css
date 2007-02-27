@@ -220,7 +220,7 @@ li {
   font-size: small;
   margin-bottom: 1px;
 }
-.request-remove-header{
+.request-remove-header, .request-remove-postparameter{
   float: left;
   padding-left: 20px;
 }

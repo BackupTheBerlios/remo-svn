@@ -1,0 +1,23 @@
+require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+# handle flash notice div. flash[:before] is written in the main controller
+if flash[:notice].nil? and ! flash[:before].nil?        
+  page["flash-notice"].visual_effect :blind_up        # no error anymore
+elsif ! flash[:notice].nil? and flash[:before].nil?  
+  page["flash-notice"].visual_effect :blind_down      # new error
+elsif ! flash[:notice].nil? and ! flash[:before].nil? 
+  page["flash-notice"].visual_effect :highlight      # new error
+end
+
+page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
+
+if flash[:notice].nil?
+  page.insert_html(:bottom, "request-item_#{params[:id]}-details",  :partial => "postparameter", :object => @postparameter)
+  page["request-item_#{params[:id]}"].visual_effect :highlight
+  statusmessage = "Successfully added new postparameter"
+else
+  statusmessage = flash[:notice]
+end
+
+page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
+

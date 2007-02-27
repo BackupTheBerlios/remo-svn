@@ -8,6 +8,7 @@
               <td class="request_path"><%= in_place_editor_field :request, :path, {}, :save_text => "save", :cancel_text => "cancel" -%>&nbsp;</td>
               <td class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></td>
               <td class="add-header"><% form_remote_tag :url => { :action => :add_header, :id => request } do -%><%= image_submit_tag "/add_header.png", { :alt => "image: add_header.png", :title => "add header"} -%><% end -%></td>
+              <td class="add-postparameter"><% form_remote_tag :url => { :action => :add_postparameter, :id => request } do -%><%= image_submit_tag "/add_postparameter.png", { :alt => "image: add_postparameter.png", :title => "add post parameter"} -%><% end -%></td>
             </tr>
           </table>
           <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">

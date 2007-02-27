@@ -166,6 +166,56 @@ class MainController < ApplicationController
 
   end
 
+
+  def add_postparameter
+
+    if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
+      @postparameter = Postparameter.new(:request_id => params[:id], 
+                           :name => "click-to-edit", 
+                           :domain => ".*")
+      begin
+        @postparameter.save!
+      rescue => err
+        flash[:notice] = "Adding postparameter failed! " + err
+      end
+
+    else
+        flash[:notice] = "Adding postparameter failed! Request #{params[:id]} is not existing." 
+    end
+
+  end
+
+  def remove_postparameter
+
+    begin
+      @request_id = Postparameter.find(params[:id]).request_id
+      @name = Postparameter.find(params[:id]).name
+      Postparameter.delete(params[:id])
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+
+  end
+
+  def set_postparameter_name
+    # the postparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+    
+    @postparameter = Postparameter.find(params[:id])
+    @name_save = @postparameter.name
+    unless params[:value].nil? || params[:value].size == 0
+      begin
+        @postparameter.name = params[:value] 
+
+        @postparameter.save!
+      rescue => err
+        flash[:notice] = "Setting name failed! " + err
+        @postparameter.name = @name_save
+      end
+    end
+
+  end
+
+
   def generate_ruleset
     
     filename = generate(request, get_release_version)
