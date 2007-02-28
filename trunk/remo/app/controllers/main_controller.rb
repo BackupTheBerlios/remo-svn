@@ -134,17 +134,13 @@ class MainController < ApplicationController
         flash[:notice] = "Adding header failed! Request #{params[:id]} is not existing." 
     end
 
+    render_add_requestparameter @header, "header"
+
   end
 
   def remove_header
 
-    begin
-      @request_id = Header.find(params[:id]).request_id
-      @name = Header.find(params[:id]).name
-      Header.delete(params[:id])
-    rescue => err
-      flash[:notice] = "Removing failed! " + err
-    end
+    remove_requestparameter Header, params[:id]
 
   end
 
@@ -163,6 +159,8 @@ class MainController < ApplicationController
         @header.name = @name_save
       end
     end
+
+    render_set_requestparameter_name @header, "header", @name_save
 
   end
 
@@ -183,17 +181,13 @@ class MainController < ApplicationController
         flash[:notice] = "Adding postparameter failed! Request #{params[:id]} is not existing." 
     end
 
+    render_add_requestparameter @postparameter, "postparameter"
+
   end
 
   def remove_postparameter
 
-    begin
-      @request_id = Postparameter.find(params[:id]).request_id
-      @name = Postparameter.find(params[:id]).name
-      Postparameter.delete(params[:id])
-    rescue => err
-      flash[:notice] = "Removing failed! " + err
-    end
+    remove_requestparameter Postparameter, params[:id]
 
   end
 
@@ -213,6 +207,7 @@ class MainController < ApplicationController
       end
     end
 
+    render_set_requestparameter_name @postparameter, "postparameter", @name_save
   end
 
 
@@ -223,7 +218,9 @@ class MainController < ApplicationController
 
   end
 
+
   private
+
 
   def add_standard_headers (request_id)
 
@@ -232,6 +229,116 @@ class MainController < ApplicationController
                            :name => item.keys[0],
                            :domain => item.values[0])
       @header.save!
+    end
+
+  end
+
+  def remove_requestparameter (model, id)
+    # this is a generic function to remove a request parameter
+    # i tried to do the same with the "add" and the "set_name" too, but it would not work 
+    # due to scope problems with partials and such (page_insert is the problem)
+    # as remove does not need a page_insert code can here be simplified and a
+    # generic routine can be used.
+    begin
+      request_id = model.find(id).request_id
+      name = model.find(id).name
+      model.delete(id)
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+    
+    render_remove_requestparameter request_id, id, name, model.name.downcase
+
+  end
+
+  def render_add_requestparameter (requestparameter, requestparametername)
+
+    require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+    render(:update) do |page|
+
+      # handle flash notice div. flash[:before] is written in the main controller
+      if flash[:notice].nil? and ! flash[:before].nil?        
+        page["flash-notice"].visual_effect :blind_up        # no error anymore
+      elsif ! flash[:notice].nil? and flash[:before].nil?  
+        page["flash-notice"].visual_effect :blind_down      # new error
+      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
+        page["flash-notice"].visual_effect :highlight      # new error
+      end
+
+      if flash[:notice].nil?
+        page.insert_html(:bottom, "request-item_#{requestparameter.request_id}_#{requestparametername}s",  :partial => "requestparameter", :object => requestparameter, :locals => { :requestparametername => requestparametername})
+        page["request-item_#{requestparameter.request_id}_#{requestparametername}s_header"].visual_effect :highlight
+        statusmessage = "Successfully added new #{requestparametername}"
+      else
+        statusmessage = flash[:notice]
+      end
+      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
+    end
+
+  end
+
+  def render_remove_requestparameter (request_id, item_id, name, requestparametername)
+
+    require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+    render(:update) do |page|
+
+      # handle flash notice div. flash[:before] is written in the main controller
+      if flash[:notice].nil? and ! flash[:before].nil?        
+        page["flash-notice"].visual_effect :blind_up        # no error anymore
+      elsif ! flash[:notice].nil? and flash[:before].nil?  
+        page["flash-notice"].visual_effect :blind_down      # new error
+      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
+        page["flash-notice"].visual_effect :highlight      # new error
+      end
+
+      page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
+
+      if flash[:notice].nil?
+        page.remove "request-item_#{request_id}-#{name}-#{item_id}" if flash[:notice].nil?
+        statusmessage = "Successfully removed #{requestparametername} item #{request_id}, #{name}!" 
+      else
+        statusmessage = flash[:notice]
+      end
+
+      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
+
+      page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} 
+
+    end
+  end
+
+  def render_set_requestparameter_name (requestparameter, requestparametername, name_save)
+
+    require "#{RAILS_ROOT}/app/views/main/lib/display"
+
+    render(:update) do |page|
+
+
+      # handle flash notice div. flash[:before] is written in the main controller
+      if flash[:notice].nil? and ! flash[:before].nil?        
+        page["flash-notice"].visual_effect :blind_up        # no error anymore
+      elsif ! flash[:notice].nil? and flash[:before].nil?  
+        page["flash-notice"].visual_effect :blind_down      # new error
+      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
+        page["flash-notice"].visual_effect :highlight      # new error
+      end
+
+      page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
+
+      if flash[:notice].nil?
+        page.remove("request-item_#{requestparameter.request_id}-#{name_save}-#{requestparameter.id}")
+        page.insert_html(:bottom, "request-item_#{requestparameter.request_id}_#{requestparametername}s",  :partial => "requestparameter", :object => requestparameter, :locals => { :requestparametername => requestparametername})
+        statusmessage = "Successfully updated #{requestparametername} name #{requestparameter.request_id}, #{name_save} to #{requestparameter.name}!" 
+      else
+        statusmessage = flash[:notice]
+      end
+
+      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
+
+      page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} 
+
     end
 
   end
