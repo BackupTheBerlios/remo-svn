@@ -123,7 +123,7 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "table#request-item_1-head > tr > td:nth-child(4) > form"
     assert_select "table#request-item_1-head > tr > td:nth-child(4) > form > input[src^=/trash.png]"
     assert_select "li#request-item_1 > div#request-item_1-details"
-    assert_select "div#request-item_1-details > div", DEFAULT_HEADERS.size + 1 # number of detail fields on display per default
+    assert_select "li#request-item_1 > div.requestdetails > div:nth-child(2) > div > div ", DEFAULT_HEADERS.size  # number of detail fields on display per default
     
 
     # testing just one of the detail fields
@@ -170,10 +170,17 @@ class MainControllerTest < Test::Unit::TestCase
 
     # add_request javascript reply
     assert_select_rjs "rules-mainarea-sortlist" do
-      assert_select "li > table", 1                  # head 
-      assert_select "li > div", 1                    # details
-      assert_select "li > div > div", DEFAULT_HEADERS.size + 1 # number of detail fields
-      # with this we are quite sure we got a real request item 
+      assert_select "li > table", 1                                           # head 
+      assert_select "li > div.requestdetails", 1                              # details
+      assert_select "li > div.requestdetails > div", 3                        # remarks + headers + postparameters
+      assert_select "li > div.requestdetails > div.requestparameters", 2      # headers + postparameters
+      assert_select "li > div.requestdetails > div:nth-child(2) > table ", 1  # headers header
+      assert_select "li > div.requestdetails > div:nth-child(3) > table ", 1  # postparameters header
+      assert_select "li > div.requestdetails > div:nth-child(2) > div ", 1    # headers body
+      assert_select "li > div.requestdetails > div:nth-child(3) > div ", 1    # postparameters body
+      assert_select "li > div.requestdetails > div:nth-child(2) > div > div ", DEFAULT_HEADERS.size  # number of headers
+      assert_select "li > div.requestdetails > div:nth-child(3) > div > div ", 0  # number of default post parameters
+      # with this we are sure the request item looks correct
     end
 
   end
@@ -233,12 +240,12 @@ class MainControllerTest < Test::Unit::TestCase
   def test_add_header
     post :add_header, :id => 3
     assert_response :success
-    assert_template "_requestparameter"	
+    assert_template "add_requestparameter"	
 
     # add_request javascript reply
-    assert_select_rjs "request-item_3-details" do
-      assert_select "div", 1 
-      assert_select "div > div", 4 
+    assert_select_rjs do
+      assert_select "div.request-header-field", 1 
+      assert_select "div.request-header-field > div", 4 
       # with this we are quite sure we got a real header item. so this will do
     end
   end
@@ -246,9 +253,9 @@ class MainControllerTest < Test::Unit::TestCase
   def test_remove_header
     post :remove_header, :id => 1 # this is the header id
     assert_response :success
-    assert_template "remove_header"	
+    assert_template "remove_requestparameter"	
 
-    assert_match /Element.remove\("request-item_0-Host-1"\)/, @response.body
+    assert_match /Element.remove\("request-item_0-header-Host-1"\)/, @response.body
   end
 
   def test_set_header_name
@@ -257,25 +264,16 @@ class MainControllerTest < Test::Unit::TestCase
 
     post :set_header_name, :id => id, :value => "foo"
     assert_response :success
-    assert_template "_requestparameter"	
+    assert_template "set_requestparameter_name"	
     
     assert_match /Element.remove\("request-item_3-header-click-to-edit-#{id}"\)/, @response.body
 
-    # as the rendering is done via "render(:update ...", i have problems using assert_select_rjs
-
-    puts @response.body
-
-    assert_select_rjs :insert, :bottom do
-      assert_select "div#?", /request-item_3-header-foo.*/
+    assert_select_rjs do
+      assert_select "div.request-header-field", 1 
+      assert_select "div.request-header-field > div", 4 
+      # with this we are quite sure we got a real header item. so this will do
     end
 
-   # assert_select "div.request-header-field", 1
-
-    #assert_select_rjs "request-item_3-details" do
-    #  assert_select "div", 1 
-    #  assert_select "div > div", 4 
-    #  # with this we are quite sure we got a real header item. so this will do
-    #end
   end
 
   def test_generate_ruleset

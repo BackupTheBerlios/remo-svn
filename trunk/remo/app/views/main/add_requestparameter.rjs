@@ -12,7 +12,7 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.insert_html(:bottom, "request-item_#{@requestparameter.request_id}_#{@requestparametername}s",  :partial => "requestparameter", :object => @requestparameter, :locals => { :requestparametername => @requestparametername})
+  page.insert_html(:bottom, "request-item_#{@requestparameter.request_id}_#{@requestparametername}s_body",  :partial => "requestparameter", :object => @requestparameter, :locals => { :requestparametername => @requestparametername})
   page["request-item_#{@requestparameter.request_id}_#{@requestparametername}s_header"].visual_effect :highlight
   statusmessage = "Successfully added new #{@requestparametername}"
 else

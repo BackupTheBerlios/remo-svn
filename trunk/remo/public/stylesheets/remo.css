@@ -167,7 +167,7 @@ li {
   padding-top: 5px;
   padding-right: 3px;
 }
-.headers table, .postparameters table{
+.requestparameters table {
   margin: 0 0 0 0;
   padding: 0 0 0 0;
   border-spacing: 2px 0;
@@ -194,14 +194,13 @@ li {
   margin-bottom: 10px;
   clear: both;
 }
-.headers {
+.requestparameters {
   float: left;
   padding-left: 20px;
   clear: both;
 }
-.postparameters {
+.requestparameters_body {
   float: left;
-  padding-left: 20px;
   clear: both;
 }
 .branchtitle {
@@ -221,9 +220,15 @@ li {
   color: gray;
   font-size: small;
 }
-.request-fieldlabel {
+.request-fieldlabel-remarks {
   float: left;
   padding-left: 23px;
+  color: gray;
+  font-size: small;
+}
+.request-fieldlabel {
+  float: left;
+  padding-left: 4px;
   color: gray;
   font-size: small;
 }
