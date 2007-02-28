@@ -32,6 +32,7 @@ class UserStory6Test < ActionController::IntegrationTest
         assert_equal Request.find(:all).size, count_pre - 1 
         assert_equal Request.find(:all, :conditions => "id = #{id}").size, 0
         assert_equal Header.find(:all, :conditions => "request_id = #{id}").size, 0
+        assert_equal Postparameter.find(:all, :conditions => "request_id = #{id}").size, 0
       end
 
       def user.rearranges_requests(order)
@@ -69,45 +70,53 @@ class UserStory6Test < ActionController::IntegrationTest
 
       end
 
-      def user.uses_inline_editor(id, fieldname, savevalue)
+      def user.uses_inline_editor(id, model, fieldname, savevalue)
         # save the inline editor form for the field:fieldname; set the field to savevalue.
 
-        if ( fieldname == "http_method" ||
-             fieldname == "path" ||
-             fieldname == "remarks" )
-          post "/main/set_request_#{fieldname}/#{id}", "value" => savevalue
+        if model == Request
+          post "/main/set_#{model.name.downcase}_#{fieldname}/#{id}", "value" => savevalue
           assert_response :success
           dbvalue = Request.find(id)[fieldname]
         else
-          header_id = Header.find(:first, :conditions => "request_id = #{id} AND name = '#{fieldname}'").id
+          id = model.find(:first, :conditions => "request_id = #{id} AND name = '#{fieldname}'").id
+
           unless fieldname == "click-to-edit" 
-            post "/main/set_header_domain/#{header_id}", "value" => savevalue
+            post "/main/set_#{model.name.downcase}_domain/#{id}", "value" => savevalue
             assert_response :success
-            dbvalue = Header.find(header_id).domain
-          else # setting the name of a new header (default-name is "click-to-edit")
-            post "/main/set_header_name/#{header_id}", "value" => savevalue
+            dbvalue = model.find(id).domain
+          else # setting the name of a new postparameter (default-name is "click-to-edit")
+            post "/main/set_#{model.name.downcase}_name/#{id}", "value" => savevalue
             assert_response :success
-            dbvalue = Header.find(header_id).name
+            dbvalue = model.find(id).name
           end
+
         end
 
         assert_equal savevalue, dbvalue
 
       end
 
-      def user.adds_header(id)
+      def user.adds_requestparameter(model, id)
         # add a header to the request #id
         # the header will have the name "click-to-edit" per default
 
-        count_pre = Header.find(:all).size
+        count_pre = model.find(:all).size
 
-        post "/main/add_header", :id => id
+        post "/main/add_#{model.name.downcase}", :id => id
         assert_response :success
         
-        assert_equal Header.find(:all).size, count_pre + 1 
+        assert_equal model.find(:all).size, count_pre + 1 
 
-        assert_equal Header.find(:first, :order => "id DESC").name, "click-to-edit"
+        assert_equal model.find(:first, :order => "id DESC").name, "click-to-edit"
 
+      end
+
+      def user.adds_header(id)
+        adds_requestparameter(Header, id)
+      end
+
+      def user.adds_postparameter(id)
+        adds_requestparameter(Postparameter, id)
       end
 
       def user.removes_header(id, headername)
@@ -133,38 +142,43 @@ class UserStory6Test < ActionController::IntegrationTest
     colin = regular_user
 
     colin.adds_request
-    colin.uses_inline_editor(id=1, "http_method", "GET")
-    colin.uses_inline_editor(id=1, "path", "/index.html")
-    colin.uses_inline_editor(id=1, "remarks", "foo")
+    colin.uses_inline_editor(id=1, Request, "http_method", "GET")
+    colin.uses_inline_editor(id=1, Request, "path", "/index.html")
+    colin.uses_inline_editor(id=1, Request, "remarks", "foo")
     colin.adds_request
-    colin.uses_inline_editor(id=2, "http_method", "POST")
-    colin.uses_inline_editor(id=2, "path", "/index.php")
-    colin.uses_inline_editor(id=2, "remarks", "bar")
+    colin.uses_inline_editor(id=2, Request, "http_method", "POST")
+    colin.uses_inline_editor(id=2, Request, "path", "/index.php")
+    colin.uses_inline_editor(id=2, Request, "remarks", "bar")
     colin.adds_request
-    colin.uses_inline_editor(id=3, "http_method", "GET")
-    colin.uses_inline_editor(id=3, "path", "/index.cgi")
-    colin.uses_inline_editor(id=3, "remarks", "foo")
+    colin.uses_inline_editor(id=3, Request, "http_method", "GET")
+    colin.uses_inline_editor(id=3, Request, "path", "/index.cgi")
+    colin.uses_inline_editor(id=3, Request, "remarks", "foo")
     colin.adds_request
-    colin.uses_inline_editor(id=4, "http_method", "GET")
-    colin.uses_inline_editor(id=4, "path", "/start.html")
-    colin.uses_inline_editor(id=4, "remarks", "foobar")
+    colin.uses_inline_editor(id=4, Request, "http_method", "GET")
+    colin.uses_inline_editor(id=4, Request, "path", "/start.html")
+    colin.uses_inline_editor(id=4, Request, "remarks", "foobar")
 
     colin.rearranges_requests(["4", "1", "2", "3"])
-    colin.uses_inline_editor(1, "Accept", ".*")
-    colin.uses_inline_editor(1, "Accept", ".*\"*")
-    colin.uses_inline_editor(1, "Accept", "'`\".*+?!&$")
+    colin.uses_inline_editor(1, Header, "Accept", ".*")
+    colin.uses_inline_editor(1, Header, "Accept", ".*\"*")
+    colin.uses_inline_editor(1, Header, "Accept", "'`\".*+?!&$")
 
     colin.adds_header(1)
-    colin.uses_inline_editor(id=1, "click-to-edit", "foobar")
-    colin.uses_inline_editor(id=1, "foobar", "\d*")
+    colin.uses_inline_editor(id=1, Header, "click-to-edit", "foobar")
+    colin.uses_inline_editor(id=1, Header, "foobar", "\d*")
     colin.removes_header(id=1, "foobar")
     colin.adds_header(1)
-    colin.uses_inline_editor(id=1, "click-to-edit", "bar")
+    colin.uses_inline_editor(id=1, Header, "click-to-edit", "bar")
+    colin.adds_postparameter(1)
+    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foobar")
+    colin.adds_postparameter(1)
+    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foo")
+    colin.uses_inline_editor(id=1, Postparameter, "foo", "xxx")
 
     colin.generates_ruleset
     colin.removes_request(2)
     colin.rearranges_requests(["3", "1", "4"])
-    colin.uses_inline_editor(4, "remarks", "ooo\nxxx")
+    colin.uses_inline_editor(4, Request, "remarks", "ooo\nxxx")
     colin.removes_request(1)
 
     colin.removes_request(3)

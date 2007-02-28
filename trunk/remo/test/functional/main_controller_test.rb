@@ -233,7 +233,7 @@ class MainControllerTest < Test::Unit::TestCase
   def test_add_header
     post :add_header, :id => 3
     assert_response :success
-    assert_template "add_header"	
+    assert_template "_requestparameter"	
 
     # add_request javascript reply
     assert_select_rjs "request-item_3-details" do
@@ -257,15 +257,25 @@ class MainControllerTest < Test::Unit::TestCase
 
     post :set_header_name, :id => id, :value => "foo"
     assert_response :success
-    assert_template "set_header_name"	
+    assert_template "_requestparameter"	
     
-    assert_match /Element.remove\("request-item_3-click-to-edit-#{id}"\)/, @response.body
+    assert_match /Element.remove\("request-item_3-header-click-to-edit-#{id}"\)/, @response.body
 
-    assert_select_rjs "request-item_3-details" do
-      assert_select "div", 1 
-      assert_select "div > div", 4 
-      # with this we are quite sure we got a real header item. so this will do
+    # as the rendering is done via "render(:update ...", i have problems using assert_select_rjs
+
+    puts @response.body
+
+    assert_select_rjs :insert, :bottom do
+      assert_select "div#?", /request-item_3-header-foo.*/
     end
+
+   # assert_select "div.request-header-field", 1
+
+    #assert_select_rjs "request-item_3-details" do
+    #  assert_select "div", 1 
+    #  assert_select "div > div", 4 
+    #  # with this we are quite sure we got a real header item. so this will do
+    #end
   end
 
   def test_generate_ruleset

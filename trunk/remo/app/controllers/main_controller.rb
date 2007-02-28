@@ -112,6 +112,7 @@ class MainController < ApplicationController
     begin
       Request.delete(params[:id])
       Header.delete_all(['request_id = ?' , params[:id]])
+      Postparameter.delete_all(['request_id = ?' , params[:id]])
     rescue => err
       flash[:notice] = "Removing failed! " + err
     end
@@ -139,8 +140,16 @@ class MainController < ApplicationController
   end
 
   def remove_header
+    id = params[:id]
+    begin
+      @request_id = Header.find(id).request_id
+      @name = Header.find(id).name
+      Header.delete(id)
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
 
-    remove_requestparameter Header, params[:id]
+    remove_requestparameter Header, id
 
   end
 
@@ -186,8 +195,17 @@ class MainController < ApplicationController
   end
 
   def remove_postparameter
+    id = params[:id]
 
-    remove_requestparameter Postparameter, params[:id]
+    begin
+      @request_id = Postparameter.find(id).request_id
+      @name = Postparameter.find(id).name
+      Postparameter.delete(id)
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+
+    remove_requestparameter Postparameter, id
 
   end
 
@@ -234,113 +252,32 @@ class MainController < ApplicationController
   end
 
   def remove_requestparameter (model, id)
-    # this is a generic function to remove a request parameter
-    # i tried to do the same with the "add" and the "set_name" too, but it would not work 
-    # due to scope problems with partials and such (page_insert is the problem)
-    # as remove does not need a page_insert code can here be simplified and a
-    # generic routine can be used.
-    begin
-      request_id = model.find(id).request_id
-      name = model.find(id).name
-      model.delete(id)
-    rescue => err
-      flash[:notice] = "Removing failed! " + err
-    end
-    
-    render_remove_requestparameter request_id, id, name, model.name.downcase
+
+    @requestparametername = model.name.downcase # parameters have to be passed to rjs as instance variables.
+    @id = id
+
+    render(:template => "main/remove_requestparameter") 
 
   end
 
   def render_add_requestparameter (requestparameter, requestparametername)
 
-    require "#{RAILS_ROOT}/app/views/main/lib/display"
+    @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
+    @requestparametername = requestparametername
 
-    render(:update) do |page|
-
-      # handle flash notice div. flash[:before] is written in the main controller
-      if flash[:notice].nil? and ! flash[:before].nil?        
-        page["flash-notice"].visual_effect :blind_up        # no error anymore
-      elsif ! flash[:notice].nil? and flash[:before].nil?  
-        page["flash-notice"].visual_effect :blind_down      # new error
-      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-        page["flash-notice"].visual_effect :highlight      # new error
-      end
-
-      if flash[:notice].nil?
-        page.insert_html(:bottom, "request-item_#{requestparameter.request_id}_#{requestparametername}s",  :partial => "requestparameter", :object => requestparameter, :locals => { :requestparametername => requestparametername})
-        page["request-item_#{requestparameter.request_id}_#{requestparametername}s_header"].visual_effect :highlight
-        statusmessage = "Successfully added new #{requestparametername}"
-      else
-        statusmessage = flash[:notice]
-      end
-      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
-    end
-
+    render(:template => "main/add_requestparameter") 
+  
   end
 
-  def render_remove_requestparameter (request_id, item_id, name, requestparametername)
-
-    require "#{RAILS_ROOT}/app/views/main/lib/display"
-
-    render(:update) do |page|
-
-      # handle flash notice div. flash[:before] is written in the main controller
-      if flash[:notice].nil? and ! flash[:before].nil?        
-        page["flash-notice"].visual_effect :blind_up        # no error anymore
-      elsif ! flash[:notice].nil? and flash[:before].nil?  
-        page["flash-notice"].visual_effect :blind_down      # new error
-      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-        page["flash-notice"].visual_effect :highlight      # new error
-      end
-
-      page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
-
-      if flash[:notice].nil?
-        page.remove "request-item_#{request_id}-#{name}-#{item_id}" if flash[:notice].nil?
-        statusmessage = "Successfully removed #{requestparametername} item #{request_id}, #{name}!" 
-      else
-        statusmessage = flash[:notice]
-      end
-
-      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
-
-      page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} 
-
-    end
-  end
 
   def render_set_requestparameter_name (requestparameter, requestparametername, name_save)
 
-    require "#{RAILS_ROOT}/app/views/main/lib/display"
+    @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
+    @requestparametername = requestparametername
+    @name_save = name_save
 
-    render(:update) do |page|
-
-
-      # handle flash notice div. flash[:before] is written in the main controller
-      if flash[:notice].nil? and ! flash[:before].nil?        
-        page["flash-notice"].visual_effect :blind_up        # no error anymore
-      elsif ! flash[:notice].nil? and flash[:before].nil?  
-        page["flash-notice"].visual_effect :blind_down      # new error
-      elsif ! flash[:notice].nil? and ! flash[:before].nil? 
-        page["flash-notice"].visual_effect :highlight      # new error
-      end
-
-      page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
-
-      if flash[:notice].nil?
-        page.remove("request-item_#{requestparameter.request_id}-#{name_save}-#{requestparameter.id}")
-        page.insert_html(:bottom, "request-item_#{requestparameter.request_id}_#{requestparametername}s",  :partial => "requestparameter", :object => requestparameter, :locals => { :requestparametername => requestparametername})
-        statusmessage = "Successfully updated #{requestparametername} name #{requestparameter.request_id}, #{name_save} to #{requestparameter.name}!" 
-      else
-        statusmessage = flash[:notice]
-      end
-
-      page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
-
-      page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"} 
-
-    end
-
+    render(:template => "main/set_requestparameter_name") 
+ 
   end
 
 end
