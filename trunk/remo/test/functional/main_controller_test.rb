@@ -237,17 +237,24 @@ class MainControllerTest < Test::Unit::TestCase
 
   end
 
-  def test_add_header
-    post :add_header, :id => 3
+  def generic_test_add_requestparameter (name, id)
+    post "add_#{name}", :id => 3
     assert_response :success
     assert_template "add_requestparameter"	
 
     # add_request javascript reply
     assert_select_rjs do
-      assert_select "div.request-header-field", 1 
-      assert_select "div.request-header-field > div", 4 
-      # with this we are quite sure we got a real header item. so this will do
+      assert_select "div.request-#{name}-field", 1 
+      assert_select "div.request-#{name}-field > div", 4 
+      # with this we are quite sure we got a real item. so this will do
     end
+  end
+  def test_add_header
+    generic_test_add_requestparameter "header", 3
+  end
+
+  def test_add_postparameter
+    generic_test_add_requestparameter "postparameter", 3
   end
 
   def test_remove_header
@@ -258,22 +265,49 @@ class MainControllerTest < Test::Unit::TestCase
     assert_match /Element.remove\("request-item_0-header-Host-1"\)/, @response.body
   end
 
-  def test_set_header_name
-    post :add_header, :id => 3
+  def test_remove_postparameter
+    # no need to test. As remove postparameter uses the same routines like remove header
+  end 
+
+  def generic_test_set_header_name (model, name, id, value)
+    post "add_#{name}", :id => id
     id = Header.find(:first, :order => "id DESC").id # get the record id of the header just inserted
 
-    post :set_header_name, :id => id, :value => "foo"
+    post "set_#{name}_name", :id => id, :value => value
     assert_response :success
     assert_template "set_requestparameter_name"	
     
-    assert_match /Element.remove\("request-item_3-header-click-to-edit-#{id}"\)/, @response.body
+    assert_match /Element.remove\("request-item_3-#{name}-click-to-edit-#{id}"\)/, @response.body
 
     assert_select_rjs do
-      assert_select "div.request-header-field", 1 
-      assert_select "div.request-header-field > div", 4 
+      assert_select "div.request-#{name}-field", 1 
+      assert_select "div.request-#{name}-field > div", 4 
       # with this we are quite sure we got a real header item. so this will do
     end
 
+  end
+  def test_set_header_name
+    generic_test_set_header_name Header, "header", 3, "foo"
+  end
+  def test_set_postparameter_name
+    generic_test_set_header_name Postparameter, "postparameter", 3, "foo"
+  end
+
+  def test_set_postparameter_name
+    post :add_postparameter, :id => 3
+    id = Postparameter.find(:first, :order => "id DESC").id # get the record id of the header just inserted
+
+    post :set_postparameter_name, :id => id, :value => "foo"
+    assert_response :success
+    assert_template "set_requestparameter_name"	
+    
+    assert_match /Element.remove\("request-item_3-postparameter-click-to-edit-#{id}"\)/, @response.body
+
+    assert_select_rjs do
+      assert_select "div.request-postparameter-field", 1 
+      assert_select "div.request-postparameter-field > div", 4 
+      # with this we are quite sure we got a real header item. so this will do
+    end
   end
 
   def test_generate_ruleset
