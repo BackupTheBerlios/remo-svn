@@ -12,8 +12,8 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.insert_html(:bottom, "request-item_#{params[:id]}-details",  :partial => "header", :object => @header)
-  page["request-item_#{params[:id]}"].visual_effect :highlight
+  page.insert_html(:bottom, "request-item_#{@header.request_id}_headers",  :partial => "requestparameter", :object => @header, :locals => { :requestparametername => "header"})
+  page["request-item_#{@header.request_id}_headers_header"].visual_effect :highlight
   statusmessage = "Successfully added new header"
 else
   statusmessage = flash[:notice]

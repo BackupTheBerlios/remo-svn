@@ -1,14 +1,12 @@
 <% @request = request # scope problem. When working in partials, @request has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
         <li id="request-item_<%= request.id-%>" class="listitem<%= unless @detail_request.nil? then if request.id == @detail_request.id then "-selected" end; end-%>">
-        <table id="request-item_<%= request.id -%>-head" class="requesthead">
+          <table id="request-item_<%= request.id -%>-head" class="requesthead">
             <tr>
               <td><div id="request-item_<%= request.id -%>-collapsed" class="foldhandle"><%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})" -%></div>
                 <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div></td>
               <td class="request_http_method"><%= in_place_editor_field :request, :http_method, {}, :save_text => "save" -%>&nbsp;</td>
               <td class="request_path"><%= in_place_editor_field :request, :path, {}, :save_text => "save", :cancel_text => "cancel" -%>&nbsp;</td>
               <td class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></td>
-              <td class="add-header"><% form_remote_tag :url => { :action => :add_header, :id => request } do -%><%= image_submit_tag "/add_header.png", { :alt => "image: add_header.png", :title => "add header"} -%><% end -%></td>
-              <td class="add-postparameter"><% form_remote_tag :url => { :action => :add_postparameter, :id => request } do -%><%= image_submit_tag "/add_postparameter.png", { :alt => "image: add_postparameter.png", :title => "add post parameter"} -%><% end -%></td>
             </tr>
           </table>
           <div id="request-item_<%= request.id -%>-details" class="requestdetails" style="display: none;">
@@ -16,14 +14,45 @@
               <div id="request-item_<%= request.id-%>-remarks-label" class="request-fieldlabel">Remarks:&nbsp;</div>
               <div id="request-item_<%= request.id-%>-remarks-fieldedit" class="request-fieldedit"><%= in_place_editor_field :request, :remarks, {}, :save_text => "save" -%></div>
             </div>
-<%         @request.headers.each do |header| -%>
-            <%= render(:partial => "header", 
-                        :object => header) -%>
+
+ 	    <div id="request-item_<%= request.id-%>_headers_header" class="headers">
+              <table>
+                <tr>
+                  <td>
+                    <div id="request-item_<%= request.id-%>_headers-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestHeaders(2); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_headers-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestHeaders(2); return false;"><img src="/expanded.png"></a></div>
+                  </td>
+                  <td id="request-item_<%= request.id-%>_headers-branchtitle" class="branchtitle">Headers</td>
+                  <td class="add-header"><% form_remote_tag :url => { :action => :add_header, :id => request } do -%><%= image_submit_tag "/add_header.png", { :alt => "image: add_header.png", :title => "add header"} -%><% end -%></td>
+                </tr>
+              </table>
+	    </div>
+ 	    <div id="request-item_<%= request.id-%>_headers" style="display: none;">
+<%            @request.headers.each do |@header| -%>
+              <%= render(:partial => "requestparameter", 
+                       :object => @header,
+                       :locals => { :requestparametername => "header"}) -%>
 <%         end -%>
-<%         @request.postparameters.each do |postparameter| -%>
-            <%= render(:partial => "postparameter", 
-                        :object => postparameter) -%>
+            </div>
+
+            <div id="request-item_<%= request.id-%>_postparameters_header" class="postparameters">
+              <table>
+                <tr>
+                  <td>
+                    <div id="request-item_<%= request.id-%>_postparameters-collapsed" class="foldhandle"><a href="#" onclick="toggleRequestPostparameters(2); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_postparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestPostparameters(2); return false;"><img src="/expanded.png"></a></div>
+                  </td>
+                  <td><div id="request-item_<%= request.id-%>_postparameters-branchtitle" class="branchtitle">Post Parameters</div></td>
+                  <td class="add-header"><% form_remote_tag :url => { :action => :add_postparameter, :id => request } do -%><%= image_submit_tag "/add_postparameter.png", { :alt => "image: add_postparameter.png", :title => "add post parameter"} -%><% end -%></td>
+                </tr>
+              </table>
+	    </div>
+ 	    <div id="request-item_<%= request.id-%>_postparameters" style="display: none;">
+<%            @request.postparameters.each do |@postparameter| -%>
+              <%= render(:partial => "requestparameter", 
+                       :object => @postparameter,
+                       :locals => { :requestparametername => "postparameter"}) -%>
 <%         end -%>
+            </div>
           </div>
         </li>
-

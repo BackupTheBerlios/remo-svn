@@ -14,6 +14,21 @@ function toggleRequestDetails(id)
   Element.toggle('request-item_' + id + '-expanded');
   return false;
 }
+function toggleRequestHeaders(id)
+{
+  Element.toggle('request-item_' + id + '_headers');
+  Element.toggle('request-item_' + id + '_headers-collapsed');
+  Element.toggle('request-item_' + id + '_headers-expanded');
+  return false;
+}
+function toggleRequestPostparameters(id)
+{
+  Element.toggle('request-item_' + id + '_postparameters'); 
+  Element.toggle('request-item_' + id + '_postparameters-collapsed');
+  Element.toggle('request-item_' + id + '_postparameters-expanded');
+  return false;
+}
+
 </script>
 </head>
 

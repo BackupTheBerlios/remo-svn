@@ -12,8 +12,8 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.insert_html(:bottom, "request-item_#{params[:id]}-details",  :partial => "postparameter", :object => @postparameter)
-  page["request-item_#{params[:id]}"].visual_effect :highlight
+  page.insert_html(:bottom, "request-item_#{@postparameter.request_id}_postparameters",  :partial => "requestparameter", :object => @postparameter, :locals => { :requestparametername => "postparameter"})
+  page["request-item_#{@postparameter.request_id}_postparameters_header"].visual_effect :highlight
   statusmessage = "Successfully added new postparameter"
 else
   statusmessage = flash[:notice]

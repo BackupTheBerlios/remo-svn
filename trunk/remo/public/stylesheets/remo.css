@@ -160,16 +160,17 @@ li {
 
 .listitem {
   clear: both;
-  padding-left: 0px; /* when adding a left padding of n pixels, the replacement of an updated 
-  		     /* listitem (save)leads to pushing the item to the right by n pixels.*/
-  		     /* Using workaround with expanded/collapsed image with padding pixels on the left. */
+  padding-left: 2px; 
 }
 .foldhandle{
   float: left;
   padding-top: 5px;
-  padding-right: 4px;
+  padding-right: 3px;
 }
-.requesthead table{
+.headers table, .postparameters table{
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+  border-spacing: 2px 0;
 }
 .request_http_method .inplaceeditor-form{
   float: left; /* prevent form from pushing request details down */
@@ -193,9 +194,23 @@ li {
   margin-bottom: 10px;
   clear: both;
 }
+.headers {
+  float: left;
+  padding-left: 20px;
+  clear: both;
+}
+.postparameters {
+  float: left;
+  padding-left: 20px;
+  clear: both;
+}
+.branchtitle {
+  color: gray;
+  font-size: small;
+}
 
 .add-header {
-  padding-left: 10px;
+  padding: 0 0 0 10px;
 }
 
 .request-field {
@@ -208,10 +223,9 @@ li {
 }
 .request-fieldlabel {
   float: left;
-  padding-left: 24px;
+  padding-left: 23px;
   color: gray;
   font-size: small;
-  margin-bottom: 1px;
 }
 .request-fieldedit{
   float: left;
@@ -223,6 +237,11 @@ li {
 .request-remove-header, .request-remove-postparameter{
   float: left;
   padding-left: 20px;
+}
+
+.request-header-field, .request-postparameter-field{
+  padding-left: 16px;
+  clear: both;
 }
 
 /* rails helper: inplace editor */

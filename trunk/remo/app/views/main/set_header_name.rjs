@@ -12,9 +12,8 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.remove("request-item_#{@header.request_id}-#{@name_save}-#{params[:id]}")
-  page.insert_html(:bottom, "request-item_#{@header.request_id}-details",  :partial => "header", :object => @header)
-
+  page.remove("request-item_#{@header.request_id}-#{@name_save}-#{@header.id}")
+  page.insert_html(:bottom, "request-item_#{@header.request_id}_headers",  :partial => "requestparameter", :object => @header, :locals => { :requestparametername => "header"})
   statusmessage = "Successfully updated header name #{@header.request_id}, #{@name_save} to #{@header.name}!" 
 else
   statusmessage = flash[:notice]

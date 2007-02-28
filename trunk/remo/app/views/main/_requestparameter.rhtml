@@ -1,0 +1,10 @@
+<% @requestparameter = requestparameter # scope problem. When working in partials, @requestparameter has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
+<div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-<%= requestparameter.id -%>" class="request-<%= requestparametername -%>-field">
+                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-label" class="request-fieldlabel"><%= if @requestparameter.name == "click-to-edit" 
+                                                                                                          in_place_editor_field requestparametername, "name", {}, :save_text => "save"
+                                                                                                        else
+                                                                                                          @requestparameter.name
+                                                                                                          end -%></div><div class="request-fieldcolon">:&nbsp;</div>
+                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field requestparametername, "domain", {}, :save_text => "save" -%></div>
+                <div class="request-remove-<%= requestparametername -%>"><% form_remote_tag :url => { :action => "remove_#{requestparametername}", :id => requestparameter.id } do -%><%= image_submit_tag "/trash_small.png", { :alt => "image: trash.png", :title => "remove #{requestparametername}"} -%><% end -%></div>
+              </div>

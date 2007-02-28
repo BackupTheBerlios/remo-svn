@@ -12,10 +12,9 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.remove("request-item_#{@postparameter.request_id}-#{@name_save}-#{params[:id]}")
-  page.insert_html(:bottom, "request-item_#{@postparameter.request_id}-details",  :partial => "postparameter", :object => @postparameter)
-
-  statusmessage = "Successfully updated postparameter name #{@postparameter.request_id}, #{@name_save} to #{@postparameter.name}!" 
+  page.remove("request-item_#{@postparameter.request_id}-#{@name_save}-#{@postparameter.id}")
+  page.insert_html(:bottom, "request-item_#{@postparameter.request_id}_postparameters",  :partial => "requestparameter", :object => @postparameter, :locals => { :requestparametername => "postparameter"})
+  statusmessage = "Successfully updated postparameter name #{@postparameter.request_id}, #{@name_save} to #{@postparameter.name}!"
 else
   statusmessage = flash[:notice]
 end
