@@ -120,8 +120,9 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select "table#request-item_1-head > tr > td > div#request-item_1-collapsed > a > img[src=/collapsed.png]"
     assert_select "table#request-item_1-head > tr > td:nth-child(2) > span.in_place_editor_field", 'GET'
     assert_select "table#request-item_1-head > tr > td:nth-child(3) > span.in_place_editor_field", '/myindex.html'
-    assert_select "table#request-item_1-head > tr > td:nth-child(4) > form"
-    assert_select "table#request-item_1-head > tr > td:nth-child(4) > form > input[src^=/trash.png]"
+    # FIXME add generate-requestrule code
+    assert_select "table#request-item_1-head > tr > td:nth-child(5) > form"
+    assert_select "table#request-item_1-head > tr > td:nth-child(5) > form > input[src^=/trash.png]"
     assert_select "li#request-item_1 > div#request-item_1-details"
     assert_select "li#request-item_1 > div.requestdetails > div:nth-child(2) > div > div ", DEFAULT_HEADERS.size  # number of detail fields on display per default
     
