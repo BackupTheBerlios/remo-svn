@@ -6,6 +6,7 @@
                 <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div></td>
               <td class="request_http_method"><%= in_place_editor_field :request, :http_method, {}, :save_text => "save" -%>&nbsp;</td>
               <td class="request_path"><%= in_place_editor_field :request, :path, {}, :save_text => "save", :cancel_text => "cancel" -%>&nbsp;</td>
+              <td class="generate_requestrule"><a href="/generate_requestrule/index/<%= request.id -%>" target="_blank"><img src="/generate_requestrule.png" alt="image: generate requestrule" title="generate requestrule" /></a></td>
               <td class="remove-request"><% form_remote_tag :url => { :action => :remove_request, :id => request } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove request"} -%><% end -%></td>
             </tr>
           </table>
