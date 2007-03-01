@@ -42,6 +42,7 @@ def generate(request=nil, version=nil)
     #
     file.puts "  # Checking request method"
     file.puts "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\""
+    file.puts ""
   end
 
   def add_check_strict_headers (file, id)
@@ -51,14 +52,11 @@ def generate(request=nil, version=nil)
 
     # The rule looks like the following:
     #
-    # SecRule REQUEST_HEADERS_NAMES "!^(User-Agent|Host|Accept|ZZZ|XXX|YYY)$" "setvar:TX.INVALID=1,t:none,pass"
-    # SecRule "TX:INVALID"  "^1$" "deny,status:501,severity:3,msg:'Strict headercheck: At least one request header unknown for this path.'"
+    # SecRule REQUEST_HEADERS_NAMES "!^(Host|Referer|...)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
     #
-    # In this example, only User-Agent, Host, Accept and ZZZ are accepted as headers.
+    # In this example, only Host, Referer, etc. are accepted as headers.
     # Every other header would lead to a denial of the request.
     #
-
-    # FIXME: Check for empty headerlist
 
     header_string = ""
     Header.find(:all, :conditions => "request_id = #{id}").each do |header|
@@ -68,19 +66,55 @@ def generate(request=nil, version=nil)
 
     file.puts "  # Strict headercheck (make sure the request contains only predefined request headers)"
     file.puts "  SecRule REQUEST_HEADERS_NAMES \"!^(#{header_string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'\""
+    file.puts ""
 
   end
 
-  def add_check_individual_header (file, name, value, id)
+  def add_check_strict_postparameters (file, id)
+    # "strict postparametercheck" is a modsecurity construct.
+    # it guarantees that only known headers are accepted.
+    # every path can have it's own strict set of postparameters.
+
+    # The rule looks like the following:
+    #
+    # SecRule ARGS_NAMES "!^(username|password)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"
+    #
+    # A problem is that ARGS_NAMES includes query string arguments and post payload arguments
+    # mixed into a single collection
+    #
+
+    string = ""
+    Postparameter.find(:all, :conditions => "request_id = #{id}").each do |postparameter|
+        string += "|" unless string.size == 0
+        string += postparameter.name
+    end
+
+    unless string.size == 0
+      file.puts "  # Strict argument check (make sure the request contains only predefined request arguments)"
+      file.puts "  SecRule ARGS_NAMES \"!^(#{string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'\""
+      file.puts ""
+    end
+
+  end
+
+  def add_check_individual_header (file, name, domain, id)
     # write a rule that checks a single header for compliance with rules
     # the header is optional
     # but it is in the request, then it is checked
     file.puts "  # Checking request header \"#{name}\""
     file.puts "  SecRule &REQUEST_HEADERS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\""
-    file.puts "  SecRule REQUEST_HEADERS:#{name} \"!^(#{value})$\" \"t:none\""
+    file.puts "  SecRule REQUEST_HEADERS:#{name} \"!^(#{domain})$\" \"t:none\""
   end
 
-
+  def add_check_individual_postparameter (file, name, domain, id)
+    # write a rule that checks a single header for compliance with rules
+    # the header is optional
+    # but it is in the request, then it is checked
+    file.puts "  # Checking argument \"#{name}\""
+    file.puts "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:2,status:501,severity:3,msg:'Argument #{name} is mandatory, but it is not present in request.'\""
+    file.puts "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Argument #{name} failed validity check.'\""
+    file.puts "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\""
+  end
 
   File.open(filename, "w") do |file|
 
@@ -93,17 +127,24 @@ def generate(request=nil, version=nil)
 
       # check http method
       add_check_http_method(file, r.http_method, r.id)
-      file.puts ""
   
       # check names of the headers
       add_check_strict_headers(file, r.id)
-      file.puts ""
 
       # check individual headers
       Header.find(:all, :conditions => "request_id = #{r.id}").each do |header|
         add_check_individual_header(file, header.name, header.domain, r.id) 
       end
-      file.puts ""
+      file.puts "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
+
+      # check names of the postparameters
+      add_check_strict_postparameters(file, r.id)
+
+      # check individual headers
+      Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|
+        add_check_individual_postparameter(file, postparameter.name, postparameter.domain, r.id) 
+      end
+      file.puts "" unless Postparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
       # all checks for this path passed. So we can allow the request
       file.puts "  # All checks passed for this path. Request is allowed."
@@ -118,7 +159,6 @@ def generate(request=nil, version=nil)
   end
 
   return filename
-
 
 end
 
