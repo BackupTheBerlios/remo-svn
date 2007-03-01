@@ -1,5 +1,11 @@
 # Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
-one:
+rb1:
   id: 1
-two:
+  request_id: 2
+  name: "username"
+  domain: ".*"
+rb2:
   id: 2
+  request_id: 2
+  name: "password"
+  domain: ".*"

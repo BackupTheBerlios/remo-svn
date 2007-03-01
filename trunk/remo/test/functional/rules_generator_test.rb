@@ -20,6 +20,10 @@ def assert_rule_line (rules_array, line, regexp, initial_comment)
 end
 
 class RulesGeneratorTest < Test::Unit::TestCase
+  fixtures :requests
+  fixtures :headers
+  fixtures :postparameters
+
   def test_main
     filename = generate(nil, nil)  
     rules_array = IO.readlines(filename)
@@ -44,6 +48,15 @@ class RulesGeneratorTest < Test::Unit::TestCase
       # 12 |  # Checking request header "User-Agent"
       # 13 |  ...
       #
+      # p  |  Strict argument check (make sure the request contains only predefined request arguments)
+      # p+1|  SecRule ARGS_NAMES "!^(username|...)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"
+      # p+2|
+      # r  |  # Checking argument "username"
+      # r+1|  SecRule &ARGS:emailaddress "@eq 0" "t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress is mandatory, but it is not present in request.'"
+      # r+2|  SecRule &ARGS:emailaddress "!@eq 0" "chain,t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress failed validity check.'"
+      # r+3|  SecRule ARGS:emailaddress "!^(.*)$" "t:none"
+      # r+4|  
+      # ...|  ...
       # n  |
       # n+1|  # All checks passed for this path. Request is allowed.
       # n+2|  SecAction "allow,id:6,t:none,msg:'Request passed all checks, it is thus allowed.'"
@@ -93,6 +106,44 @@ class RulesGeneratorTest < Test::Unit::TestCase
           /^  SecRule REQUEST_HEADERS:#{header.name} "!\^\(#{header.domain}\)\$" "t:none"$/,
           "Request header check 2nd line for header #{header.name} is not correct"
         n += 3
+      end
+
+      # Check the strict argument check of the rule group
+      if Postparameter.find(:all, :conditions => "request_id = #{item.id}").size > 0
+        assert_rule_line rules_array, startline + n,
+          /^$/, "Line not empty"
+        n += 1
+        assert_rule_line rules_array, startline + n, 
+          /^  # Strict argument check \(make sure the request contains only predefined request arguments\)$/,
+          "Comment \"Strict argument check\" not correct"
+        string = ""
+        Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
+          string += "|" unless string.size == 0
+          string += postparameter.name
+        end
+        assert_rule_line rules_array, startline + n + 1, 
+          /^  SecRule ARGS_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"/,
+          "Comment \"Strict argument check\" not correct"
+        assert_rule_line rules_array, startline + n + 2,
+          /^$/, "Line not empty"
+          n += 3
+      end
+
+      # Loop and check every argumentcheck of the rule group
+      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
+        assert_rule_line rules_array, startline + n, 
+          /^  # Checking argument "#{postparameter.name}"$/,
+          "Argument check comment for argument #{postparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 1, 
+          /^  SecRule &ARGS:#{postparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Argument #{postparameter.name} is mandatory, but it is not present in request.'\"$/,
+          "Request argument check first line for argument #{postparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 2, 
+          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Argument #{postparameter.name} failed validity check.'"$/,
+          "Request argument check 2nd line for postparameter #{postparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 3, 
+          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
+          "Request argument check 3rd line for postparameter #{postparameter.name} is not correct"
+        n += 4
       end
 
       # Check the end of the rule group
