@@ -19,8 +19,8 @@
               <table id="request-item_<%= request.id-%>_headers_header">
                 <tr>
                   <td>
-                    <div id="request-item_<%= request.id-%>_headers-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestHeaders(2); return false;"><img src="/collapsed.png"></a></div>
-                    <div id="request-item_<%= request.id-%>_headers-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestHeaders(2); return false;"><img src="/expanded.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_headers-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestHeaders(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_headers-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestHeaders(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
                   </td>
                   <td id="request-item_<%= request.id-%>_headers-branchtitle" class="branchtitle">Headers</td>
                   <td class="add-header"><% form_remote_tag :url => { :action => :add_header, :id => request } do -%><%= image_submit_tag "/add_header.png", { :alt => "image: add_header.png", :title => "add header"} -%><% end -%></td>
@@ -39,8 +39,8 @@
               <table id="request-item_<%= request.id-%>_postparameters_header">
                 <tr>
                   <td>
-                    <div id="request-item_<%= request.id-%>_postparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestPostparameters(2); return false;"><img src="/collapsed.png"></a></div>
-                    <div id="request-item_<%= request.id-%>_postparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestPostparameters(2); return false;"><img src="/expanded.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_postparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestPostparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_postparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestPostparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
                   </td>
                   <td id="request-item_<%= request.id-%>_postparameters-branchtitle" class="branchtitle">Postparameters</td>
                   <td class="add-postparameter"><% form_remote_tag :url => { :action => :add_postparameter, :id => request } do -%><%= image_submit_tag "/add_postparameter.png", { :alt => "image: add_postparameter.png", :title => "add postparameter"} -%><% end -%></td>
