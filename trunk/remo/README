@@ -4,8 +4,10 @@ REMO - Rule Editor for ModSecurity
 Remo is a project to build a graphical rule editor for ModSecurity,
 an Apache security module.
 
-Remo has been started in January 2007, i plan to have an alpha release
-in February 2007, going beta sometimes during spring.  Basic Concept
+Remo has been started in January 2007, the first alpha release came
+out in February 2007. The plan is to go beta sometimes during spring.
+
+Basic Concept
 
 Modsecurity is not a simple toy. It is quite tricky to configure
 successfully. Many web applications are not very simple either. Bringing
@@ -16,9 +18,7 @@ All dangerous is filtered out.
 
 A network firewall uses a whitelisting approach; also called positive
 security model: Everything is dropped outside of a short and strict
-rulset. An application firewall should do exactly the same. (See Ivan
-Ristic's thougts on positive security. Ivan Ristic is the man behind
-modsecurity.)
+rulset. An application firewall should do exactly the same. 
 
 But this comes with a catch: Your application does not come with a short
 and strict ruleset and writing one will be tough. This is the point where
@@ -34,12 +34,10 @@ This is the short list of features done so far:
  * Ruby on rails application with ajax use
  * Enter http requests, display them, edit them, delete 
    them, rearrange them
- * Generate simple positive modsecurity2 ruleset
+ * Edit http headers for every request
+ * Edit http post arguments for every request
 
 Near future plans
 
- * Transform the request list into a treeview of requests
- * Extend the request record to include the full variety of 
-   http header fields (so far it is only method and path)
- * Generate a strict ruleset based on such a list of full blown request records
+ * Extend the request record to include full http support
 

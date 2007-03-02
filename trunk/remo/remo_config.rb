@@ -1,5 +1,5 @@
 # Remo Release Version
-REMO_RELEASE_VERSION = "0.1.2-dev"
+REMO_RELEASE_VERSION = "0.1.2"
 
 # This is a list of default headers that are added to a new request in remo.
 
