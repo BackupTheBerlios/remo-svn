@@ -84,7 +84,7 @@ def get_check_strict_postparameters (id)
 
   mystring = ""
   Postparameter.find(:all, :conditions => "request_id = #{id}").each do |postparameter|
-    mystring += "|" unless string.size == 0
+    mystring += "|" unless mystring.size == 0
     mystring += postparameter.name
   end
 
