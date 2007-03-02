@@ -18,6 +18,7 @@ require "./test/unit/postparameter_test"
 
 # views / controller
 require "./test/functional/main_controller_test"
+require "./test/functional/generate_requestrule_controller_test"
 
 # application
 require "./test/integration/user_story6_test"

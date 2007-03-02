@@ -1,7 +1,7 @@
 require "rules_generator/main"
 
 class GenerateRequestruleController < ApplicationController
-    def index
+  def index
 
     request = Request.find(params[:id])
     @rule = get_requestrule(request) 
@@ -10,6 +10,6 @@ class GenerateRequestruleController < ApplicationController
     @rule.gsub!(">", "&gt;")
     @rule.gsub!("\n  ", "\n&nbsp;&nbsp;")
     @rule.gsub!("\n", "<br />")
-    
+
   end
 end
