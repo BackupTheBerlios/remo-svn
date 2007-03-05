@@ -262,7 +262,7 @@ class MainControllerTest < Test::Unit::TestCase
   end
 
   def test_add_postparameter
-    generic_test_add_requestparameter "getparameter", 3
+    generic_test_add_requestparameter "postparameter", 3
   end
 
   def test_remove_header
@@ -276,8 +276,8 @@ class MainControllerTest < Test::Unit::TestCase
   def test_remove_postparameter
     # no need to test. As remove postparameter uses the same routines like remove header
   end 
-  def test_remove_getparameter
-    # no need to test. As remove getparameter uses the same routines like remove header
+  def test_remove_postparameter
+    # no need to test. As remove postparameter uses the same routines like remove header
   end 
 
   def generic_test_set_header_name (model, name, id, value)
@@ -319,24 +319,24 @@ class MainControllerTest < Test::Unit::TestCase
   def test_set_postparameter_name
     generic_test_set_postparameter_name Postparameter, "postparameter", 3, "foo"
   end
-  def generic_test_set_getparameter_name (model, name, id, value)
-    post :add_getparameter, :id => id
+  def generic_test_set_querystringparameter_name (model, name, id, value)
+    post :add_querystringparameter, :id => id
     id = model.find(:first, :order => "id DESC").id # get the record id of the header just inserted
 
-    post :set_getparameter_name, :id => id, :value => value
+    post :set_querystringparameter_name, :id => id, :value => value
     assert_response :success
     assert_template "set_requestparameter_name"	
     
-    assert_match /Element.remove\("request-item_3-getparameter-click-to-edit-#{id}"\)/, @response.body
+    assert_match /Element.remove\("request-item_3-querystringparameter-click-to-edit-#{id}"\)/, @response.body
 
     assert_select_rjs do
-      assert_select "div.request-getparameter-field", 1 
-      assert_select "div.request-getparameter-field > div", 4 
-      # with this we are quite sure we got a real getparameter item. so this will do
+      assert_select "div.request-querystringparameter-field", 1 
+      assert_select "div.request-querystringparameter-field > div", 4 
+      # with this we are quite sure we got a real querystringparameter item. so this will do
     end
   end
-  def test_set_getparameter_name
-    generic_test_set_getparameter_name Getparameter, "getparameter", 3, "foo"
+  def test_set_querystringparameter_name
+    generic_test_set_querystringparameter_name Querystringparameter, "querystringparameter", 3, "foo"
   end
 
   def test_generate_ruleset

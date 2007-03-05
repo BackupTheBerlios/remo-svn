@@ -35,8 +35,9 @@ class MainController < ApplicationController
   Postparameter.content_columns.each do |column|
     extended_in_place_edit_for :postparameter, column.name
   end  
-  Getparameter.content_columns.each do |column|
-    extended_in_place_edit_for :getparameter, column.name
+
+  Querystringparameter.content_columns.each do |column|
+    extended_in_place_edit_for :querystringparameter, column.name
   end  
 
   def index
@@ -115,6 +116,7 @@ class MainController < ApplicationController
       Request.delete(params[:id])
       Header.delete_all(['request_id = ?' , params[:id]])
       Postparameter.delete_all(['request_id = ?' , params[:id]])
+      Querystringparameter.delete_all(['request_id = ?' , params[:id]])
     rescue => err
       flash[:notice] = "Removing failed! " + err
     end
@@ -196,23 +198,23 @@ class MainController < ApplicationController
 
   end
 
-  def add_getparameter
+  def add_querystringparameter
 
     if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
-      @getparameter = Getparameter.new(:request_id => params[:id], 
+      @querystringparameter = Querystringparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
                            :domain => ".*")
       begin
-        @getparameter.save!
+        @querystringparameter.save!
       rescue => err
-        flash[:notice] = "Adding getparameter failed! " + err
+        flash[:notice] = "Adding querystringparameter failed! " + err
       end
 
     else
-        flash[:notice] = "Adding getparameter failed! Request #{params[:id]} is not existing." 
+        flash[:notice] = "Adding querystringparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @getparameter, "getparameter"
+    render_add_requestparameter @querystringparameter, "querystringparameter"
 
   end
 
@@ -231,18 +233,18 @@ class MainController < ApplicationController
 
   end
 
-  def remove_getparameter
+  def remove_querystringparameter
     id = params[:id]
 
     begin
-      @request_id = Getparameter.find(id).request_id
-      @name = Getparameter.find(id).name
-      Getparameter.delete(id)
+      @request_id = Querystringparameter.find(id).request_id
+      @name = Querystringparameter.find(id).name
+      Querystringparameter.delete(id)
     rescue => err
       flash[:notice] = "Removing failed! " + err
     end
 
-    remove_requestparameter Getparameter, id
+    remove_requestparameter Querystringparameter, id
 
   end
 
@@ -265,23 +267,23 @@ class MainController < ApplicationController
     render_set_requestparameter_name @postparameter, "postparameter", @name_save
   end
 
-  def set_getparameter_name
-    # the getparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+  def set_querystringparameter_name
+    # the querystringparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
     
-    @getparameter = Getparameter.find(params[:id])
-    @name_save = @getparameter.name
+    @querystringparameter = Querystringparameter.find(params[:id])
+    @name_save = @querystringparameter.name
     unless params[:value].nil? || params[:value].size == 0
       begin
-        @getparameter.name = params[:value] 
+        @querystringparameter.name = params[:value] 
 
-        @getparameter.save!
+        @querystringparameter.save!
       rescue => err
         flash[:notice] = "Setting name failed! " + err
-        @getparameter.name = @name_save
+        @querystringparameter.name = @name_save
       end
     end
 
-    render_set_requestparameter_name @getparameter, "getparameter", @name_save
+    render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save
   end
 
   def generate_ruleset

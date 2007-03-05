@@ -36,22 +36,22 @@
               </div>
             </div>
 
-            <div id="request-item_<%= request.id-%>_getparameters" class="requestparameters">
-              <table id="request-item_<%= request.id-%>_getparameters_header">
+            <div id="request-item_<%= request.id-%>_querystringparameters" class="requestparameters">
+              <table id="request-item_<%= request.id-%>_querystringparameters_header">
                 <tr>
                   <td>
-                    <div id="request-item_<%= request.id-%>_getparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestGetparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
-                    <div id="request-item_<%= request.id-%>_getparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestGetparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_querystringparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestQuerystringparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_querystringparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestQuerystringparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
                   </td>
-                  <td id="request-item_<%= request.id-%>_getparameters-branchtitle" class="branchtitle">Query String Arguments</td>
-                  <td class="add-getparameter"><% form_remote_tag :url => { :action => :add_getparameter, :id => request } do -%><%= image_submit_tag "/add_getparameter.png", { :alt => "image: add_getparameter.png", :title => "add getparameter"} -%><% end -%></td>
+                  <td id="request-item_<%= request.id-%>_querystringparameters-branchtitle" class="branchtitle">Query String Arguments</td>
+                  <td class="add-querystringparameter"><% form_remote_tag :url => { :action => :add_querystringparameter, :id => request } do -%><%= image_submit_tag "/add_querystringparameter.png", { :alt => "image: add_querystringparameter.png", :title => "add querystringparameter"} -%><% end -%></td>
                 </tr>
               </table>
-              <div id="request-item_<%= request.id-%>_getparameters_body" class="requestparameters_body" style="display: none;">
-                <%            @request.getparameters.each do |@getparameter| -%>
+              <div id="request-item_<%= request.id-%>_querystringparameters_body" class="requestparameters_body" style="display: none;">
+                <%            @request.querystringparameters.each do |@querystringparameter| -%>
                 <%= render(:partial => "requestparameter", 
-                :object => @getparameter,
-                :locals => { :requestparametername => "getparameter"}) -%>
+                :object => @querystringparameter,
+                :locals => { :requestparametername => "querystringparameter"}) -%>
                 <%            end -%>
               </div>
             </div>

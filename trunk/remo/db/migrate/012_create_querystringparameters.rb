@@ -1,6 +1,6 @@
-class CreateGetparameters < ActiveRecord::Migration
+class CreateQuerystringparameters < ActiveRecord::Migration
   def self.up
-    execute "CREATE TABLE getparameters (
+    execute "CREATE TABLE querystringparameters (
               id           INTEGER PRIMARY KEY,
               request_id   INTEGER NOT NULL,
               name         STRING NOT NULL,
@@ -17,6 +17,6 @@ class CreateGetparameters < ActiveRecord::Migration
   end
 
   def self.down
-    drop_table :getparameters
+    drop_table :querystringparameters
   end
 end

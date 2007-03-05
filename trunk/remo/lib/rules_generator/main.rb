@@ -88,7 +88,7 @@ def get_check_strict_requestparameters (id)
     mystring += "|" unless mystring.size == 0
     mystring += parameter.name
   end
-  Getparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
+  Querystringparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
     mystring += parameter.name
   end
@@ -115,7 +115,7 @@ def get_check_individual_header (name, domain, id)
   return string
 end
 
-def get_check_individual_getparameter (name, domain, id)
+def get_check_individual_querystringparameter (name, domain, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
@@ -159,14 +159,14 @@ def get_requestrule(r)
   end
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
-  # check names of the postparameters and getparameters
+  # check names of the postparameters and querystringparameters
   string += get_check_strict_requestparameters(r.id)
 
-  # check individual getparameters
-  Getparameter.find(:all, :conditions => "request_id = #{r.id}").each do |getparameter|
-    string += get_check_individual_getparameter(getparameter.name, getparameter.domain, r.id) 
+  # check individual querystringparameters
+  Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").each do |querystringparameter|
+    string += get_check_individual_querystringparameter(querystringparameter.name, querystringparameter.domain, r.id) 
   end
-  string += "" unless Getparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
+  string += "" unless Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
   # check individual postparameters
   Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|

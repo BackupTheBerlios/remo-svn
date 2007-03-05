@@ -3,7 +3,7 @@ class Request < ActiveRecord::Base
 
   has_many :headers
   has_many :postparameters
-  has_many :getparameters
+  has_many :querystringparameters
 
   attr_accessible :http_method, :path, :weight, :remarks
 

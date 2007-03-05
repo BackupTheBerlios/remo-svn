@@ -4,12 +4,6 @@
 
 ActiveRecord::Schema.define(:version => 12) do
 
-  create_table "getparameters", :force => true do |t|
-    t.column "request_id", :integer,                :default => 0,  :null => false
-    t.column "name",       :string,  :limit => nil, :default => "", :null => false
-    t.column "domain",     :text,                   :default => ""
-  end
-
   create_table "headers", :force => true do |t|
     t.column "request_id", :integer,                :default => 0,  :null => false
     t.column "name",       :string,  :limit => nil, :default => "", :null => false
@@ -17,6 +11,12 @@ ActiveRecord::Schema.define(:version => 12) do
   end
 
   create_table "postparameters", :force => true do |t|
+    t.column "request_id", :integer,                :default => 0,  :null => false
+    t.column "name",       :string,  :limit => nil, :default => "", :null => false
+    t.column "domain",     :text,                   :default => ""
+  end
+
+  create_table "querystringparameters", :force => true do |t|
     t.column "request_id", :integer,                :default => 0,  :null => false
     t.column "name",       :string,  :limit => nil, :default => "", :null => false
     t.column "domain",     :text,                   :default => ""

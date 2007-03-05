@@ -23,7 +23,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
   fixtures :requests
   fixtures :headers
   fixtures :postparameters
-  fixtures :getparameters
+  fixtures :postparameters
 
   def test_main
     filename = generate(nil, nil)  
@@ -131,19 +131,19 @@ class RulesGeneratorTest < Test::Unit::TestCase
       end
 
       # Loop and check every post argument check of the rule group
-      Getparameter.find(:all, :conditions => "request_id = #{item.id}").each do |getparameter|
+      Querystringparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
         assert_rule_line rules_array, startline + n, 
-          /^  # Checking query string argument "#{getparameter.name}"$/,
-          "Argument check comment for argument #{getparameter.name} is not correct"
+          /^  # Checking query string argument "#{postparameter.name}"$/,
+          "Argument check comment for argument #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 1,
-          /^  SecRule REQUEST_BODY "#{getparameter.name}\[=&\]|#{getparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{getparameter.name} is present in query string. This is illegal.'"$/,
-          "Request argument check 1st line for getparameter #{getparameter.name} is not correct"
+          /^  SecRule REQUEST_BODY "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{querystringparameter.name} is present in query string. This is illegal.'"$/,
+          "Request argument check 1st line for postparameter #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule &ARGS:#{getparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Query string argument #{getparameter.name} failed validity check.'"$/,
-          "Request argument check 2nd line for getparameter #{getparameter.name} is not correct"
+          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Query string argument #{postparameter.name} failed validity check.'"$/,
+          "Request argument check 2nd line for postparameter #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 3, 
-          /^  SecRule ARGS:#{getparameter.name} "\!\^(#{getparameter.domain})\$" "t:none"$/,
-          "Request argument check 3rd line for getparameter #{getparameter.name} is not correct"
+          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
+          "Request argument check 3rd line for postparameter #{postparameter.name} is not correct"
         n += 4
       end
 
