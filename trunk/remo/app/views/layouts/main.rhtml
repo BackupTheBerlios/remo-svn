@@ -35,6 +35,13 @@ function toggleRequestQuerystringparameters(id)
   Element.toggle('request-item_' + id + '_querystringparameters-expanded');
   return false;
 }
+function toggleRequestCookieparameters(id)
+{
+  Element.toggle('request-item_' + id + '_cookieparameters_body'); 
+  Element.toggle('request-item_' + id + '_cookieparameters-collapsed');
+  Element.toggle('request-item_' + id + '_cookieparameters-expanded');
+  return false;
+}
 
 </script>
 </head>

@@ -40,6 +40,10 @@ class MainController < ApplicationController
     extended_in_place_edit_for :querystringparameter, column.name
   end  
 
+  Cookieparameter.content_columns.each do |column|
+    extended_in_place_edit_for :cookieparameter, column.name
+  end  
+
   def index
 
     @requests = Request.find_requests
@@ -117,6 +121,7 @@ class MainController < ApplicationController
       Header.delete_all(['request_id = ?' , params[:id]])
       Postparameter.delete_all(['request_id = ?' , params[:id]])
       Querystringparameter.delete_all(['request_id = ?' , params[:id]])
+      Cookieparameter.delete_all(['request_id = ?' , params[:id]])
     rescue => err
       flash[:notice] = "Removing failed! " + err
     end
@@ -218,6 +223,26 @@ class MainController < ApplicationController
 
   end
 
+  def add_cookieparameter
+
+    if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
+      @cookieparameter = Cookieparameter.new(:request_id => params[:id], 
+                           :name => "click-to-edit", 
+                           :domain => ".*")
+      begin
+        @cookieparameter.save!
+      rescue => err
+        flash[:notice] = "Adding cookieparameter failed! " + err
+      end
+
+    else
+        flash[:notice] = "Adding cookieparameter failed! Request #{params[:id]} is not existing." 
+    end
+
+    render_add_requestparameter @cookieparameter, "cookieparameter"
+
+  end
+
   def remove_postparameter
     id = params[:id]
 
@@ -245,6 +270,21 @@ class MainController < ApplicationController
     end
 
     remove_requestparameter Querystringparameter, id
+
+  end
+
+  def remove_cookieparameter
+    id = params[:id]
+
+    begin
+      @request_id = Cookieparameter.find(id).request_id
+      @name = Cookieparameter.find(id).name
+      Cookieparameter.delete(id)
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+
+    remove_requestparameter Cookieparameter, id
 
   end
 
@@ -284,6 +324,25 @@ class MainController < ApplicationController
     end
 
     render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save
+  end
+
+  def set_cookieparameter_name
+    # the cookieparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+    
+    @cookieparameter = Cookieparameter.find(params[:id])
+    @name_save = @cookieparameter.name
+    unless params[:value].nil? || params[:value].size == 0
+      begin
+        @cookieparameter.name = params[:value] 
+
+        @cookieparameter.save!
+      rescue => err
+        flash[:notice] = "Setting name failed! " + err
+        @cookieparameter.name = @name_save
+      end
+    end
+
+    render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save
   end
 
   def generate_ruleset

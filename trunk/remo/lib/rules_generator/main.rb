@@ -68,7 +68,7 @@ def get_check_strict_headers (id)
   return string
 end
 
-def get_check_strict_requestparameters (id)
+def get_check_strict_querystringpostparameters (id)
   # "strict requestparametercheck" is a modsecurity construct.
   # it guarantees that only known parameters are accepted.
   # every path can have it's own strict set of get- and post-parameters.
@@ -103,6 +103,33 @@ def get_check_strict_requestparameters (id)
   return string
 end
 
+def get_check_strict_cookiepostparameters (id)
+  # "strict cookieparametercheck" is a modsecurity construct.
+  # it guarantees that only known cookies are accepted.
+  # every path can have it's own strict set of cookie-parameters
+  # in modsecurity they are part of a collection REQUEST_COOKIES_NAMES.
+
+  # The rule looks like the following:
+  #
+  # SecRule REQUEST_COOKIES_NAMES "!^(sessioid|authid)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Cookiecheck: At least one cookie is not predefined for this path.'"
+  #
+  string = ""
+
+  mystring = ""
+  Cookieparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
+    mystring += "|" unless mystring.size == 0
+    mystring += parameter.name
+  end
+
+  unless mystring.size == 0
+    string += "\n"
+    string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
+    string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Cookiecheck: At least one cookie is not predefined for this path.'\"\n"
+    string += "\n"
+  end
+
+  return string
+end
 def get_check_individual_header (name, domain, id)
   # write a rule that checks a single header for compliance with rules
   # the header is optional
@@ -115,14 +142,27 @@ def get_check_individual_header (name, domain, id)
   return string
 end
 
+def get_check_individual_cookieparameter (name, domain, id)
+  # write a rule that checks a single query string argument for compliance with rules
+  # the header is optional
+  # but it is in the request, then it is checked
+  string = ""
+  string += "  # Checking query string argument \"#{name}\"\n"
+  string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} is mandatory, but it is not present in request.'\"\n"
+  string += "  SecRule &REQUEST_COOKIES:#{name} \"!@eq 0\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none\"\n"
+
+  return string
+end
+
 def get_check_individual_querystringparameter (name, domain, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking query string argument \"#{name}\"\n"
-  string += "  SecRule REQUEST_BODY \"#{name}[=&]|#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
-  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_BODY \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"
   return string
 end
@@ -133,9 +173,9 @@ def get_check_individual_postparameter (name, domain, id)
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking post argument \"#{name}\"\n"
-  string += "  SecRule QUERY_STRING \"#{name}[=&]|#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
-  string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is mandatory, but it is not present in request.'\"\n"
-  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
+  string += "  SecRule QUERY_STRING \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} is mandatory, but it is not present in request.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"
   return string
 end
@@ -159,8 +199,18 @@ def get_requestrule(r)
   end
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
+  # check names of cookies
+  string += get_check_strict_cookiepostparameters(r.id)
+
+  # check individual cookies
+  # FIXME
+  Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").each do |cookieparameter|
+    string += get_check_individual_cookieparameter(cookieparameter.name, cookieparameter.domain, r.id) 
+  end
+  string += "" unless Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
+
   # check names of the postparameters and querystringparameters
-  string += get_check_strict_requestparameters(r.id)
+  string += get_check_strict_querystringpostparameters(r.id)
 
   # check individual querystringparameters
   Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").each do |querystringparameter|

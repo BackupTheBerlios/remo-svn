@@ -173,17 +173,20 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select_rjs "rules-mainarea-sortlist" do
       assert_select "li > table", 1                                           # head 
       assert_select "li > div.requestdetails", 1                              # details
-      assert_select "li > div.requestdetails > div", 4                        # remarks + headers + query string p. + postparameters
-      assert_select "li > div.requestdetails > div.requestparameters", 3      # headers + query string p. + postparameters
+      assert_select "li > div.requestdetails > div", 5                        # remarks + headers + cookies + query string p. + postparameters
+      assert_select "li > div.requestdetails > div.requestparameters", 4      # headers + query string p. + postparameters
       assert_select "li > div.requestdetails > div:nth-child(2) > table ", 1  # headers header
-      assert_select "li > div.requestdetails > div:nth-child(3) > table ", 1  # query string parameters header
-      assert_select "li > div.requestdetails > div:nth-child(4) > table ", 1  # post parameters header
+      assert_select "li > div.requestdetails > div:nth-child(3) > table ", 1  # cookies header
+      assert_select "li > div.requestdetails > div:nth-child(4) > table ", 1  # query string parameters header
+      assert_select "li > div.requestdetails > div:nth-child(5) > table ", 1  # post parameters header
       assert_select "li > div.requestdetails > div:nth-child(2) > div ", 1    # headers body
-      assert_select "li > div.requestdetails > div:nth-child(3) > div ", 1    # query string parameters body
-      assert_select "li > div.requestdetails > div:nth-child(4) > div ", 1    # postparameters body
+      assert_select "li > div.requestdetails > div:nth-child(3) > div ", 1    # cookies body
+      assert_select "li > div.requestdetails > div:nth-child(4) > div ", 1    # query string parameters body
+      assert_select "li > div.requestdetails > div:nth-child(5) > div ", 1    # postparameters body
       assert_select "li > div.requestdetails > div:nth-child(2) > div > div ", DEFAULT_HEADERS.size  # number of headers
-      assert_select "li > div.requestdetails > div:nth-child(3) > div > div ", 0  # number of default query string parameters
-      assert_select "li > div.requestdetails > div:nth-child(4) > div > div ", 0  # number of default post parameters
+      assert_select "li > div.requestdetails > div:nth-child(3) > div > div ", 0  # number of default cookies
+      assert_select "li > div.requestdetails > div:nth-child(4) > div > div ", 0  # number of default query string parameters
+      assert_select "li > div.requestdetails > div:nth-child(5) > div > div ", 0  # number of default post parameters
       # with this we are sure the request item looks correct
     end
 
@@ -300,6 +303,27 @@ class MainControllerTest < Test::Unit::TestCase
   def test_set_header_name
     generic_test_set_header_name Header, "header", 3, "foo"
   end
+
+  def generic_test_set_cookieparameter_name (model, name, id, value)
+    post :add_cookieparameter, :id => id
+    id = model.find(:first, :order => "id DESC").id # get the record id of the header just inserted
+
+    post :set_cookieparameter_name, :id => id, :value => value
+    assert_response :success
+    assert_template "set_requestparameter_name"	
+    
+    assert_match /Element.remove\("request-item_3-cookieparameter-click-to-edit-#{id}"\)/, @response.body
+
+    assert_select_rjs do
+      assert_select "div.request-cookieparameter-field", 1 
+      assert_select "div.request-cookieparameter-field > div", 4 
+      # with this we are quite sure we got a real cookieparameter item. so this will do
+    end
+  end
+  def test_set_cookieparameter_name
+    generic_test_set_cookieparameter_name Cookieparameter, "cookieparameter", 3, "foo"
+  end
+
   def generic_test_set_postparameter_name (model, name, id, value)
     post :add_postparameter, :id => id
     id = model.find(:first, :order => "id DESC").id # get the record id of the header just inserted

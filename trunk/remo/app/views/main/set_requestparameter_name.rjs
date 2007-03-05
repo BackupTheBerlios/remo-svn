@@ -13,7 +13,7 @@ page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
   page.remove("request-item_#{@requestparameter.request_id}-#{@requestparametername}-#{@name_save}-#{@requestparameter.id}")
-  page.insert_html(:bottom, "request-item_#{@requestparameter.request_id}_#{@requestparametername}s",  :partial => "requestparameter", :object => @requestparameter, :locals => { :requestparametername => @requestparametername})
+  page.insert_html(:bottom, "request-item_#{@requestparameter.request_id}_#{@requestparametername}s_body",  :partial => "requestparameter", :object => @requestparameter, :locals => { :requestparametername => @requestparametername})
   statusmessage = "Successfully updated #{@requestparametername} name #{@requestparameter.request_id}, #{@name_save} to #{@requestparameter.name}!" 
 else
   statusmessage = flash[:notice]

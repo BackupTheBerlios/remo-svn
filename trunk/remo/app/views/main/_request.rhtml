@@ -56,6 +56,26 @@
               </div>
             </div>
 
+            <div id="request-item_<%= request.id-%>_cookieparameters" class="requestparameters">
+              <table id="request-item_<%= request.id-%>_cookieparameters_header">
+                <tr>
+                  <td>
+                    <div id="request-item_<%= request.id-%>_cookieparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestCookieparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_cookieparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestCookieparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
+                  </td>
+                  <td id="request-item_<%= request.id-%>_cookieparameters-branchtitle" class="branchtitle">Cookies</td>
+                  <td class="add-cookieparameter"><% form_remote_tag :url => { :action => :add_cookieparameter, :id => request } do -%><%= image_submit_tag "/add_cookieparameter.png", { :alt => "image: add_cookieparameter.png", :title => "add cookieparameter"} -%><% end -%></td>
+                </tr>
+              </table>
+              <div id="request-item_<%= request.id-%>_cookieparameters_body" class="requestparameters_body" style="display: none;">
+                <%            @request.cookieparameters.each do |@cookieparameter| -%>
+                <%= render(:partial => "requestparameter", 
+                :object => @cookieparameter,
+                :locals => { :requestparametername => "cookieparameter"}) -%>
+                <%            end -%>
+              </div>
+            </div>
+
             <div id="request-item_<%= request.id-%>_postparameters" class="requestparameters">
               <table id="request-item_<%= request.id-%>_postparameters_header">
                 <tr>

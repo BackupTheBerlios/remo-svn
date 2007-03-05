@@ -1,0 +1,11 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+rb1:
+  id: 1
+  request_id: 1
+  name: "sessionid"
+  domain: ".*"
+rb2:
+  id: 2
+  request_id: 2
+  name: "sessionid"
+  domain: ".*"

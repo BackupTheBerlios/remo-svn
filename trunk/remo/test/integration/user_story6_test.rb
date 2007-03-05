@@ -123,6 +123,10 @@ class UserStory6Test < ActionController::IntegrationTest
         adds_requestparameter(Querystringparameter, id)
       end
 
+      def user.adds_cookieparameter(id)
+        adds_requestparameter(Cookieparameter, id)
+      end
+
       def user.removes_header(id, headername)
         # add a header to the request #id
         # the header will have the name "click-to-edit" per default
@@ -173,17 +177,24 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.removes_header(id=1, "foobar")
     colin.adds_header(1)
     colin.uses_inline_editor(id=1, Header, "click-to-edit", "bar")
-    colin.adds_postparameter(1)
-    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foobar")
-    colin.adds_postparameter(1)
-    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foo")
-    colin.uses_inline_editor(id=1, Postparameter, "foo", "xxx")
+
+    colin.adds_cookieparameter(1)
+    colin.uses_inline_editor(id=1, Cookieparameter, "click-to-edit", "foobar")
+    colin.adds_cookieparameter(1)
+    colin.uses_inline_editor(id=1, Cookieparameter, "click-to-edit", "foo")
+    colin.uses_inline_editor(id=1, Cookieparameter, "foo", "xxx")
 
     colin.adds_querystringparameter(1)
     colin.uses_inline_editor(id=1, Querystringparameter, "click-to-edit", "foobar")
     colin.adds_querystringparameter(1)
     colin.uses_inline_editor(id=1, Querystringparameter, "click-to-edit", "foo")
     colin.uses_inline_editor(id=1, Querystringparameter, "foo", "xxx")
+
+    colin.adds_postparameter(1)
+    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foobar")
+    colin.adds_postparameter(1)
+    colin.uses_inline_editor(id=1, Postparameter, "click-to-edit", "foo")
+    colin.uses_inline_editor(id=1, Postparameter, "foo", "xxx")
 
     colin.generates_ruleset
     colin.removes_request(2)

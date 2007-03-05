@@ -239,12 +239,12 @@ li {
   font-size: small;
   margin-bottom: 1px;
 }
-.request-remove-header, .request-remove-postparameter, .request-remove-querystringparameter{
+.request-remove-header, .request-remove-postparameter, .request-remove-querystringparameter, .request-remove-cookieparameter{
   float: left;
   padding-left: 20px;
 }
 
-.request-header-field, .request-postparameter-field, .request-querystringparameter-field {
+.request-header-field, .request-postparameter-field, .request-querystringparameter-field, .request-cookieparameter-field{
   padding-left: 16px;
   clear: both;
 }
