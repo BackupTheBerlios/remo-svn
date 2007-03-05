@@ -28,6 +28,13 @@ function toggleRequestPostparameters(id)
   Element.toggle('request-item_' + id + '_postparameters-expanded');
   return false;
 }
+function toggleRequestGetparameters(id)
+{
+  Element.toggle('request-item_' + id + '_getparameters_body'); 
+  Element.toggle('request-item_' + id + '_getparameters-collapsed');
+  Element.toggle('request-item_' + id + '_getparameters-expanded');
+  return false;
+}
 
 </script>
 </head>

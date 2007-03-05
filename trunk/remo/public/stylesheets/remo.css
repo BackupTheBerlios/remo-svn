@@ -239,12 +239,12 @@ li {
   font-size: small;
   margin-bottom: 1px;
 }
-.request-remove-header, .request-remove-postparameter{
+.request-remove-header, .request-remove-postparameter, .request-remove-getparameter{
   float: left;
   padding-left: 20px;
 }
 
-.request-header-field, .request-postparameter-field{
+.request-header-field, .request-postparameter-field, .request-getparameter-field {
   padding-left: 16px;
   clear: both;
 }

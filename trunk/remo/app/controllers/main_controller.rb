@@ -35,7 +35,9 @@ class MainController < ApplicationController
   Postparameter.content_columns.each do |column|
     extended_in_place_edit_for :postparameter, column.name
   end  
-
+  Getparameter.content_columns.each do |column|
+    extended_in_place_edit_for :getparameter, column.name
+  end  
 
   def index
 
@@ -194,6 +196,26 @@ class MainController < ApplicationController
 
   end
 
+  def add_getparameter
+
+    if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
+      @getparameter = Getparameter.new(:request_id => params[:id], 
+                           :name => "click-to-edit", 
+                           :domain => ".*")
+      begin
+        @getparameter.save!
+      rescue => err
+        flash[:notice] = "Adding getparameter failed! " + err
+      end
+
+    else
+        flash[:notice] = "Adding getparameter failed! Request #{params[:id]} is not existing." 
+    end
+
+    render_add_requestparameter @getparameter, "getparameter"
+
+  end
+
   def remove_postparameter
     id = params[:id]
 
@@ -206,6 +228,21 @@ class MainController < ApplicationController
     end
 
     remove_requestparameter Postparameter, id
+
+  end
+
+  def remove_getparameter
+    id = params[:id]
+
+    begin
+      @request_id = Getparameter.find(id).request_id
+      @name = Getparameter.find(id).name
+      Getparameter.delete(id)
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+
+    remove_requestparameter Getparameter, id
 
   end
 
@@ -228,6 +265,24 @@ class MainController < ApplicationController
     render_set_requestparameter_name @postparameter, "postparameter", @name_save
   end
 
+  def set_getparameter_name
+    # the getparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+    
+    @getparameter = Getparameter.find(params[:id])
+    @name_save = @getparameter.name
+    unless params[:value].nil? || params[:value].size == 0
+      begin
+        @getparameter.name = params[:value] 
+
+        @getparameter.save!
+      rescue => err
+        flash[:notice] = "Setting name failed! " + err
+        @getparameter.name = @name_save
+      end
+    end
+
+    render_set_requestparameter_name @getparameter, "getparameter", @name_save
+  end
 
   def generate_ruleset
     

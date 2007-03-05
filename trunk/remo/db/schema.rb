@@ -2,7 +2,13 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 11) do
+ActiveRecord::Schema.define(:version => 12) do
+
+  create_table "getparameters", :force => true do |t|
+    t.column "request_id", :integer,                :default => 0,  :null => false
+    t.column "name",       :string,  :limit => nil, :default => "", :null => false
+    t.column "domain",     :text,                   :default => ""
+  end
 
   create_table "headers", :force => true do |t|
     t.column "request_id", :integer,                :default => 0,  :null => false

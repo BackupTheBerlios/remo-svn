@@ -68,10 +68,11 @@ def get_check_strict_headers (id)
   return string
 end
 
-def get_check_strict_postparameters (id)
-  # "strict postparametercheck" is a modsecurity construct.
-  # it guarantees that only known headers are accepted.
-  # every path can have it's own strict set of postparameters.
+def get_check_strict_requestparameters (id)
+  # "strict requestparametercheck" is a modsecurity construct.
+  # it guarantees that only known parameters are accepted.
+  # every path can have it's own strict set of get- and post-parameters.
+  # in modsecurity they are combined into a single collection called ARGS_NAMES.
 
   # The rule looks like the following:
   #
@@ -83,9 +84,13 @@ def get_check_strict_postparameters (id)
   string = ""
 
   mystring = ""
-  Postparameter.find(:all, :conditions => "request_id = #{id}").each do |postparameter|
+  Postparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += postparameter.name
+    mystring += parameter.name
+  end
+  Getparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
+    mystring += "|" unless mystring.size == 0
+    mystring += parameter.name
   end
 
   unless mystring.size == 0
@@ -110,14 +115,29 @@ def get_check_individual_header (name, domain, id)
   return string
 end
 
-def get_check_individual_postparameter (name, domain, id)
-  # write a rule that checks a single header for compliance with rules
+def get_check_individual_getparameter (name, domain, id)
+  # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
-  string += "  # Checking argument \"#{name}\"\n"
-  string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:2,status:501,severity:3,msg:'Argument #{name} is mandatory, but it is not present in request.'\"\n"
-  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Argument #{name} failed validity check.'\"\n"
+  string += "  # Checking query string argument \"#{name}\"\n"
+  string += "  SecRule REQUEST_BODY \"#{name}[=&]\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
+  string += "  SecRule REQUEST_BODY \"#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"
+  return string
+end
+
+def get_check_individual_postparameter (name, domain, id)
+  # write a rule that checks a single post parameter for compliance with rules
+  # the header is optional
+  # but it is in the request, then it is checked
+  string = ""
+  string += "  # Checking post argument \"#{name}\"\n"
+  string += "  SecRule QUERY_STRING \"#{name}[=&]\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
+  string += "  SecRule QUERY_STRING \"#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is mandatory, but it is not present in request.'\"\n"
+  string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"
   return string
 end
@@ -141,10 +161,16 @@ def get_requestrule(r)
   end
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
-  # check names of the postparameters
-  string += get_check_strict_postparameters(r.id)
+  # check names of the postparameters and getparameters
+  string += get_check_strict_requestparameters(r.id)
 
-  # check individual headers
+  # check individual getparameters
+  Getparameter.find(:all, :conditions => "request_id = #{r.id}").each do |getparameter|
+    string += get_check_individual_getparameter(getparameter.name, getparameter.domain, r.id) 
+  end
+  string += "" unless Getparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
+
+  # check individual postparameters
   Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|
     string += get_check_individual_postparameter(postparameter.name, postparameter.domain, r.id) 
   end

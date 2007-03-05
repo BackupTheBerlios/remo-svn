@@ -36,6 +36,26 @@
               </div>
             </div>
 
+            <div id="request-item_<%= request.id-%>_getparameters" class="requestparameters">
+              <table id="request-item_<%= request.id-%>_getparameters_header">
+                <tr>
+                  <td>
+                    <div id="request-item_<%= request.id-%>_getparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestGetparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                    <div id="request-item_<%= request.id-%>_getparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestGetparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
+                  </td>
+                  <td id="request-item_<%= request.id-%>_getparameters-branchtitle" class="branchtitle">Query String Arguments</td>
+                  <td class="add-getparameter"><% form_remote_tag :url => { :action => :add_getparameter, :id => request } do -%><%= image_submit_tag "/add_getparameter.png", { :alt => "image: add_getparameter.png", :title => "add getparameter"} -%><% end -%></td>
+                </tr>
+              </table>
+              <div id="request-item_<%= request.id-%>_getparameters_body" class="requestparameters_body" style="display: none;">
+                <%            @request.getparameters.each do |@getparameter| -%>
+                <%= render(:partial => "requestparameter", 
+                :object => @getparameter,
+                :locals => { :requestparametername => "getparameter"}) -%>
+                <%            end -%>
+              </div>
+            </div>
+
             <div id="request-item_<%= request.id-%>_postparameters" class="requestparameters">
               <table id="request-item_<%= request.id-%>_postparameters_header">
                 <tr>
@@ -43,7 +63,7 @@
                     <div id="request-item_<%= request.id-%>_postparameters-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestPostparameters(<%= @request.id -%>); return false;"><img src="/collapsed.png"></a></div>
                     <div id="request-item_<%= request.id-%>_postparameters-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestPostparameters(<%= @request.id -%>); return false;"><img src="/expanded.png"></a></div>
                   </td>
-                  <td id="request-item_<%= request.id-%>_postparameters-branchtitle" class="branchtitle">Postparameters</td>
+                  <td id="request-item_<%= request.id-%>_postparameters-branchtitle" class="branchtitle">Post Arguments</td>
                   <td class="add-postparameter"><% form_remote_tag :url => { :action => :add_postparameter, :id => request } do -%><%= image_submit_tag "/add_postparameter.png", { :alt => "image: add_postparameter.png", :title => "add postparameter"} -%><% end -%></td>
                 </tr>
               </table>
@@ -55,5 +75,8 @@
                 <%            end -%>
               </div>
             </div>
+
+
+
           </div>
         </li>
