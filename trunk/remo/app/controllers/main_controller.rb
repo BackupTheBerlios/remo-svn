@@ -32,16 +32,16 @@ class MainController < ApplicationController
     extended_in_place_edit_for :header, column.name
   end  
 
+  Cookieparameter.content_columns.each do |column|
+    extended_in_place_edit_for :cookieparameter, column.name
+  end  
+
   Postparameter.content_columns.each do |column|
     extended_in_place_edit_for :postparameter, column.name
   end  
 
   Querystringparameter.content_columns.each do |column|
     extended_in_place_edit_for :querystringparameter, column.name
-  end  
-
-  Cookieparameter.content_columns.each do |column|
-    extended_in_place_edit_for :cookieparameter, column.name
   end  
 
   def index

@@ -93,12 +93,10 @@ def get_check_strict_querystringpostparameters (id)
     mystring += parameter.name
   end
 
-  unless mystring.size == 0
-    string += "\n"
-    string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
-    string += "  SecRule ARGS_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'\"\n"
-    string += "\n"
-  end
+  string += "\n"
+  string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
+  string += "  SecRule ARGS_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'\"\n"
+  string += "\n"
 
   return string
 end
@@ -121,12 +119,10 @@ def get_check_strict_cookiepostparameters (id)
     mystring += parameter.name
   end
 
-  unless mystring.size == 0
-    string += "\n"
-    string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
-    string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Cookiecheck: At least one cookie is not predefined for this path.'\"\n"
-    string += "\n"
-  end
+  string += "\n"
+  string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
+  string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Cookiecheck: At least one cookie is not predefined for this path.'\"\n"
+  string += "\n"
 
   return string
 end
