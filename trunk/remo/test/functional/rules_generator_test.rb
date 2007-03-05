@@ -22,7 +22,8 @@ end
 class RulesGeneratorTest < Test::Unit::TestCase
   fixtures :requests
   fixtures :headers
-  fixtures :postparameters
+  fixtures :cookieparameters
+  fixtures :querystringparameters
   fixtures :postparameters
 
   def test_main
@@ -109,26 +110,62 @@ class RulesGeneratorTest < Test::Unit::TestCase
         n += 3
       end
 
-      # Check the strict argument check of the rule group
-      if Postparameter.find(:all, :conditions => "request_id = #{item.id}").size > 0
-        assert_rule_line rules_array, startline + n,
+      # Check the strict cookiecheck of the rule group
+      assert_rule_line rules_array, startline + n,
           /^$/, "Line not empty"
-        n += 1
+      n += 1
+      assert_rule_line rules_array, startline + n,
+        /^  # Strict cookie check \(make sure the request contains only predefined request cookies\)$/,
+        "Comment \"Strict cookiecheck\" not correct"
+      string = ""
+      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |cookie|
+          string += "|" unless string.size == 0
+          string += cookie.name
+      end
+      assert_rule_line rules_array, startline + n + 1,
+        /^  SecRule REQUEST_COOKIES_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Strict cookiecheck: At least one cookie is not predefined for this path.'"$/,
+        "\"Strict headercheck\" not correct"
+      n += 2
+
+      # Loop and check every cookie check of the rule group
+      assert_rule_line rules_array, startline + n,
+          /^$/, "Line not empty"
+      n += 1
+      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |cookieparameter|
         assert_rule_line rules_array, startline + n, 
+          /^  # Checking cookie "#{cookieparameter.name}"$/,
+          "Argument check comment for cookie #{cookieparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 1,
+          /^  SecRule &REQUEST_COOKIES:#{cookieparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Cookie #{cookieparameter.name} is mandatory, but it is not present in request.'"$/,
+          "Request argument check 1st line for cookie #{cookieparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 2,
+          /^  SecRule &REQUEST_COOKIES:#{cookieparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Cookie #{cookieparameter.name} failed validity check.'"$/,
+          "Request argument check 2nd line for cookie #{cookieparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 3, 
+          /^  SecRule REQUEST_COOKIES:#{cookieparameter.name} "\!\^(#{cookieparameter.domain})\$" "t:none"$/,
+          "Request argument check 3rd line for cookie #{cookieparameter.name} is not correct"
+        n += 4
+      end
+
+      # Check the strict argument check of the rule group
+      assert_rule_line rules_array, startline + n,
+          /^$/, "Line not empty"
+          n += 1
+      assert_rule_line rules_array, startline + n, 
           /^  # Strict argument check \(make sure the request contains only predefined request arguments\)$/,
           "Comment \"Strict argument check\" not correct"
-        string = ""
-        Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
-          string += "|" unless string.size == 0
-          string += postparameter.name
-        end
-        assert_rule_line rules_array, startline + n + 1, 
-          /^  SecRule ARGS_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"/,
+          string = ""
+      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
+        string += "|" unless string.size == 0
+        string += postparameter.name
+          end
+      assert_rule_line rules_array, startline + n + 1, 
+          /^  SecRule ARGS_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:1,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"$/,
           "Comment \"Strict argument check\" not correct"
-        assert_rule_line rules_array, startline + n + 2,
-          /^$/, "Line not empty"
+      assert_rule_line rules_array, startline + n + 2,
+          /^$/,
+      "Line not empty"
           n += 3
-      end
 
       # Loop and check every post argument check of the rule group
       Querystringparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
@@ -136,7 +173,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
           /^  # Checking query string argument "#{postparameter.name}"$/,
           "Argument check comment for argument #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 1,
-          /^  SecRule REQUEST_BODY "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{querystringparameter.name} is present in query string. This is illegal.'"$/,
+          /^  SecRule REQUEST_BODY "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{postparameter.name} is present in query string. This is illegal.'"$/,
           "Request argument check 1st line for postparameter #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 2, 
           /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Query string argument #{postparameter.name} failed validity check.'"$/,

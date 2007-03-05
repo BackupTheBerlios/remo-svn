@@ -101,7 +101,7 @@ def get_check_strict_querystringpostparameters (id)
   return string
 end
 
-def get_check_strict_cookiepostparameters (id)
+def get_check_strict_cookieparameters (id)
   # "strict cookieparametercheck" is a modsecurity construct.
   # it guarantees that only known cookies are accepted.
   # every path can have it's own strict set of cookie-parameters
@@ -120,8 +120,8 @@ def get_check_strict_cookiepostparameters (id)
   end
 
   string += "\n"
-  string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
-  string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Cookiecheck: At least one cookie is not predefined for this path.'\"\n"
+  string += "  # Strict cookie check (make sure the request contains only predefined request cookies)\n"
+  string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict cookiecheck: At least one cookie is not predefined for this path.'\"\n"
   string += "\n"
 
   return string
@@ -143,7 +143,7 @@ def get_check_individual_cookieparameter (name, domain, id)
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
-  string += "  # Checking query string argument \"#{name}\"\n"
+  string += "  # Checking cookie \"#{name}\"\n"
   string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} is mandatory, but it is not present in request.'\"\n"
   string += "  SecRule &REQUEST_COOKIES:#{name} \"!@eq 0\" \"chain,t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} failed validity check.'\"\n"
   string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none\"\n"
@@ -196,7 +196,7 @@ def get_requestrule(r)
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
   # check names of cookies
-  string += get_check_strict_cookiepostparameters(r.id)
+  string += get_check_strict_cookieparameters(r.id)
 
   # check individual cookies
   # FIXME
