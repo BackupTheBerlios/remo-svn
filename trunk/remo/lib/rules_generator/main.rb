@@ -121,8 +121,7 @@ def get_check_individual_getparameter (name, domain, id)
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking query string argument \"#{name}\"\n"
-  string += "  SecRule REQUEST_BODY \"#{name}[=&]\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
-  string += "  SecRule REQUEST_BODY \"#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
+  string += "  SecRule REQUEST_BODY \"#{name}[=&]|#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
   string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"
   return string
@@ -134,8 +133,7 @@ def get_check_individual_postparameter (name, domain, id)
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking post argument \"#{name}\"\n"
-  string += "  SecRule QUERY_STRING \"#{name}[=&]\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
-  string += "  SecRule QUERY_STRING \"#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
+  string += "  SecRule QUERY_STRING \"#{name}[=&]|#{name}$\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
   string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} is mandatory, but it is not present in request.'\"\n"
   string += "  SecRule &ARGS:#{name} \"!@eq 0\" \"chain,t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none\"\n"

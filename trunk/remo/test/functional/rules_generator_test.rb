@@ -23,6 +23,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
   fixtures :requests
   fixtures :headers
   fixtures :postparameters
+  fixtures :getparameters
 
   def test_main
     filename = generate(nil, nil)  
@@ -51,7 +52,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
       # p  |  Strict argument check (make sure the request contains only predefined request arguments)
       # p+1|  SecRule ARGS_NAMES "!^(username|...)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"
       # p+2|
-      # r  |  # Checking argument "username"
+      # r  |  # Checking post argument "username"
       # r+1|  SecRule &ARGS:emailaddress "@eq 0" "t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress is mandatory, but it is not present in request.'"
       # r+2|  SecRule &ARGS:emailaddress "!@eq 0" "chain,t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress failed validity check.'"
       # r+3|  SecRule ARGS:emailaddress "!^(.*)$" "t:none"
@@ -129,21 +130,41 @@ class RulesGeneratorTest < Test::Unit::TestCase
           n += 3
       end
 
-      # Loop and check every argumentcheck of the rule group
+      # Loop and check every post argument check of the rule group
+      Getparameter.find(:all, :conditions => "request_id = #{item.id}").each do |getparameter|
+        assert_rule_line rules_array, startline + n, 
+          /^  # Checking query string argument "#{getparameter.name}"$/,
+          "Argument check comment for argument #{getparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 1,
+          /^  SecRule REQUEST_BODY "#{getparameter.name}\[=&\]|#{getparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{getparameter.name} is present in query string. This is illegal.'"$/,
+          "Request argument check 1st line for getparameter #{getparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 2, 
+          /^  SecRule &ARGS:#{getparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Query string argument #{getparameter.name} failed validity check.'"$/,
+          "Request argument check 2nd line for getparameter #{getparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 3, 
+          /^  SecRule ARGS:#{getparameter.name} "\!\^(#{getparameter.domain})\$" "t:none"$/,
+          "Request argument check 3rd line for getparameter #{getparameter.name} is not correct"
+        n += 4
+      end
+
+      # Loop and check every post argument check of the rule group
       Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
         assert_rule_line rules_array, startline + n, 
-          /^  # Checking argument "#{postparameter.name}"$/,
+          /^  # Checking post argument "#{postparameter.name}"$/,
           "Argument check comment for argument #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 1, 
-          /^  SecRule &ARGS:#{postparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Argument #{postparameter.name} is mandatory, but it is not present in request.'\"$/,
-          "Request argument check first line for argument #{postparameter.name} is not correct"
+        assert_rule_line rules_array, startline + n + 1,
+          /^  SecRule QUERY_STRING "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{postparameter.name} is present in query string. This is illegal.'"$/,
+          "Request argument check 1st line for postparameter #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Argument #{postparameter.name} failed validity check.'"$/,
-          "Request argument check 2nd line for postparameter #{postparameter.name} is not correct"
+          /^  SecRule &ARGS:#{postparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Post argument #{postparameter.name} is mandatory, but it is not present in request.'"$/,
+          "Request argument check 2nd line for argument #{postparameter.name} is not correct"
         assert_rule_line rules_array, startline + n + 3, 
-          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
+          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Post argument #{postparameter.name} failed validity check.'"$/,
           "Request argument check 3rd line for postparameter #{postparameter.name} is not correct"
-        n += 4
+        assert_rule_line rules_array, startline + n + 4, 
+          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
+          "Request argument check 4th line for postparameter #{postparameter.name} is not correct"
+        n += 5
       end
 
       # Check the end of the rule group

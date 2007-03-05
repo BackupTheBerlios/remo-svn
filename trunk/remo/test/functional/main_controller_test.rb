@@ -173,14 +173,17 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select_rjs "rules-mainarea-sortlist" do
       assert_select "li > table", 1                                           # head 
       assert_select "li > div.requestdetails", 1                              # details
-      assert_select "li > div.requestdetails > div", 3                        # remarks + headers + postparameters
-      assert_select "li > div.requestdetails > div.requestparameters", 2      # headers + postparameters
+      assert_select "li > div.requestdetails > div", 4                        # remarks + headers + query string p. + postparameters
+      assert_select "li > div.requestdetails > div.requestparameters", 3      # headers + query string p. + postparameters
       assert_select "li > div.requestdetails > div:nth-child(2) > table ", 1  # headers header
-      assert_select "li > div.requestdetails > div:nth-child(3) > table ", 1  # postparameters header
+      assert_select "li > div.requestdetails > div:nth-child(3) > table ", 1  # query string parameters header
+      assert_select "li > div.requestdetails > div:nth-child(4) > table ", 1  # post parameters header
       assert_select "li > div.requestdetails > div:nth-child(2) > div ", 1    # headers body
-      assert_select "li > div.requestdetails > div:nth-child(3) > div ", 1    # postparameters body
+      assert_select "li > div.requestdetails > div:nth-child(3) > div ", 1    # query string parameters body
+      assert_select "li > div.requestdetails > div:nth-child(4) > div ", 1    # postparameters body
       assert_select "li > div.requestdetails > div:nth-child(2) > div > div ", DEFAULT_HEADERS.size  # number of headers
-      assert_select "li > div.requestdetails > div:nth-child(3) > div > div ", 0  # number of default post parameters
+      assert_select "li > div.requestdetails > div:nth-child(3) > div > div ", 0  # number of default query string parameters
+      assert_select "li > div.requestdetails > div:nth-child(4) > div > div ", 0  # number of default post parameters
       # with this we are sure the request item looks correct
     end
 
@@ -258,6 +261,10 @@ class MainControllerTest < Test::Unit::TestCase
     generic_test_add_requestparameter "postparameter", 3
   end
 
+  def test_add_postparameter
+    generic_test_add_requestparameter "getparameter", 3
+  end
+
   def test_remove_header
     post :remove_header, :id => 1 # this is the header id
     assert_response :success
@@ -268,6 +275,9 @@ class MainControllerTest < Test::Unit::TestCase
 
   def test_remove_postparameter
     # no need to test. As remove postparameter uses the same routines like remove header
+  end 
+  def test_remove_getparameter
+    # no need to test. As remove getparameter uses the same routines like remove header
   end 
 
   def generic_test_set_header_name (model, name, id, value)
@@ -283,22 +293,18 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select_rjs do
       assert_select "div.request-#{name}-field", 1 
       assert_select "div.request-#{name}-field > div", 4 
-      # with this we are quite sure we got a real header item. so this will do
+      # with this we are quite sure we got a real postparameter item. so this will do
     end
 
   end
   def test_set_header_name
     generic_test_set_header_name Header, "header", 3, "foo"
   end
-  def test_set_postparameter_name
-    generic_test_set_header_name Postparameter, "postparameter", 3, "foo"
-  end
+  def generic_test_set_postparameter_name (model, name, id, value)
+    post :add_postparameter, :id => id
+    id = model.find(:first, :order => "id DESC").id # get the record id of the header just inserted
 
-  def test_set_postparameter_name
-    post :add_postparameter, :id => 3
-    id = Postparameter.find(:first, :order => "id DESC").id # get the record id of the header just inserted
-
-    post :set_postparameter_name, :id => id, :value => "foo"
+    post :set_postparameter_name, :id => id, :value => value
     assert_response :success
     assert_template "set_requestparameter_name"	
     
@@ -307,8 +313,30 @@ class MainControllerTest < Test::Unit::TestCase
     assert_select_rjs do
       assert_select "div.request-postparameter-field", 1 
       assert_select "div.request-postparameter-field > div", 4 
-      # with this we are quite sure we got a real header item. so this will do
+      # with this we are quite sure we got a real postparameter item. so this will do
     end
+  end
+  def test_set_postparameter_name
+    generic_test_set_postparameter_name Postparameter, "postparameter", 3, "foo"
+  end
+  def generic_test_set_getparameter_name (model, name, id, value)
+    post :add_getparameter, :id => id
+    id = model.find(:first, :order => "id DESC").id # get the record id of the header just inserted
+
+    post :set_getparameter_name, :id => id, :value => value
+    assert_response :success
+    assert_template "set_requestparameter_name"	
+    
+    assert_match /Element.remove\("request-item_3-getparameter-click-to-edit-#{id}"\)/, @response.body
+
+    assert_select_rjs do
+      assert_select "div.request-getparameter-field", 1 
+      assert_select "div.request-getparameter-field > div", 4 
+      # with this we are quite sure we got a real getparameter item. so this will do
+    end
+  end
+  def test_set_getparameter_name
+    generic_test_set_getparameter_name Getparameter, "getparameter", 3, "foo"
   end
 
   def test_generate_ruleset

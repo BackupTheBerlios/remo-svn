@@ -3,4 +3,4 @@ rb1:
   id: 1
   request_id: 2
   name: "username"
-  domain: "\w{4,16}"
+  domain: ".*"
