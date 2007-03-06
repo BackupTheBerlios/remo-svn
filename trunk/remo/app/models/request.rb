@@ -1,5 +1,5 @@
 class Request < ActiveRecord::Base
-  VALID_HTTP_METHODS = ["GET", "POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"]
+  VALID_HTTP_METHODS = ["GET", "POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS", "GET|POST"]
 
   has_many :headers
   has_many :postparameters
