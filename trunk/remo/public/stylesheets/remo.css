@@ -239,6 +239,21 @@ li {
   font-size: small;
   margin-bottom: 1px;
 }
+.request-mandatory{
+  float: left;
+  white-space: nowrap;
+  color: gray;
+  font-size: small;
+  padding-left: 5px;
+}
+
+.request-mandatory input{
+  border-style: none; /* This is a button by default. This way we make it into a text link.*/
+  color: #2eaeff;
+  font-size: small;
+  background: none;
+}
+
 .request-remove-header, .request-remove-postparameter, .request-remove-querystringparameter, .request-remove-cookieparameter{
   float: left;
   padding-left: 20px;

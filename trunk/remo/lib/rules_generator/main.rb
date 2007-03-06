@@ -126,51 +126,58 @@ def get_check_strict_cookieparameters (id)
 
   return string
 end
-def get_check_individual_header (name, domain, id)
+def get_check_individual_header (name, domain, mandatory, id)
   # write a rule that checks a single header for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking request header \"#{name}\"\n"
+  if mandatory
+    string += "  SecRule &REQUEST_HEADERS:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} is mandatory, but it is not present in request.'\"\n" 
+  end
   string += "  SecRule REQUEST_HEADERS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\"\n"
 
   return string
 end
 
-def get_check_individual_cookieparameter (name, domain, id)
+def get_check_individual_cookieparameter (name, domain, mandatory, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking cookie \"#{name}\"\n"
-  string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} is mandatory, but it is not present in request.'\"\n"
+  if mandatory
+    string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} is mandatory, but it is not present in request.'\"\n" 
+  end
   string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} failed validity check.'\"\n"
 
   return string
 end
 
-def get_check_individual_querystringparameter (name, domain, id)
+def get_check_individual_querystringparameter (name, domain, mandatory, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking query string argument \"#{name}\"\n"
   string += "  SecRule REQUEST_BODY \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
+  if mandatory
+    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{name} is mandatory, but is not present.'\"\n"
+  end
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
   return string
 end
 
-def get_check_individual_postparameter (name, domain, id)
+def get_check_individual_postparameter (name, domain, mandatory, id)
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   string = ""
   string += "  # Checking post argument \"#{name}\"\n"
   string += "  SecRule QUERY_STRING \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
-  
-  string += "  SecRule REQUEST_METHOD \"\^POST\$\" \"chain,t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{name} is mandatory, but is not present.'\"\n"
-  string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none\"\n"
- 
+  if mandatory
+    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{name} is mandatory, but is not present.'\"\n"
+  end
   string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
   return string
 end
@@ -190,7 +197,7 @@ def get_requestrule(r)
 
   # check individual headers
   Header.find(:all, :conditions => "request_id = #{r.id}").each do |header|
-    string += get_check_individual_header(header.name, header.domain, r.id) 
+    string += get_check_individual_header(header.name, header.domain, header.mandatory, r.id) 
   end
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
@@ -198,9 +205,8 @@ def get_requestrule(r)
   string += get_check_strict_cookieparameters(r.id)
 
   # check individual cookies
-  # FIXME
   Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").each do |cookieparameter|
-    string += get_check_individual_cookieparameter(cookieparameter.name, cookieparameter.domain, r.id) 
+    string += get_check_individual_cookieparameter(cookieparameter.name, cookieparameter.domain, cookieparameter.mandatory, r.id) 
   end
   string += "" unless Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
@@ -209,13 +215,13 @@ def get_requestrule(r)
 
   # check individual querystringparameters
   Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").each do |querystringparameter|
-    string += get_check_individual_querystringparameter(querystringparameter.name, querystringparameter.domain, r.id) 
+    string += get_check_individual_querystringparameter(querystringparameter.name, querystringparameter.domain, querystringparameter.mandatory, r.id) 
   end
   string += "" unless Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
   # check individual postparameters
   Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|
-    string += get_check_individual_postparameter(postparameter.name, postparameter.domain, r.id) 
+    string += get_check_individual_postparameter(postparameter.name, postparameter.domain, postparameter.mandatory, r.id) 
   end
   string += "" unless Postparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 

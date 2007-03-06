@@ -6,5 +6,11 @@
                                                                                                           @requestparameter.name
                                                                                                           end -%></div><div class="request-fieldcolon">:&nbsp;</div>
                 <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field requestparametername, "domain", {}, :save_text => "save" -%></div>
+                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-mandatory" class="request-mandatory"><% if requestparameter.mandatory
+                       string="mandatory"
+                     else
+                       string="optional"
+                     end
+                     form_remote_tag :url => { :action => "toggle_#{requestparametername}_mandatory", :id => requestparameter.id } do -%><input name="commit" type="submit" value="<%= string -%>" /><% end -%></div>
                 <div class="request-remove-<%= requestparametername -%>"><% form_remote_tag :url => { :action => "remove_#{requestparametername}", :id => requestparameter.id } do -%><%= image_submit_tag "/trash_small.png", { :alt => "image: trash.png", :title => "remove #{requestparametername}"} -%><% end -%></div>
               </div>
