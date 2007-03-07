@@ -12,7 +12,7 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.replace_html("request-item_#{@item.request_id}-#{@item.name}-mandatory", :partial => "requestparameter_mandatory", :object => @item, :locals => { :string => @string})
+  page.replace_html("request-item_#{@item.request_id}-#{@item.name}-mandatory", :partial => "requestparameter_mandatory", :object => @item, :locals => { :string => @string, :requestparametername => @requestparametername})
   statusmessage = "Successfully toggled mandatory status!" 
 else
   statusmessage = flash[:notice]

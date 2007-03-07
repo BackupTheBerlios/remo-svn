@@ -8,7 +8,17 @@ def append_file(file, app_file, request, version)
 end
 
 def get_commentname (name)
-  return name.gsub("\\", "")
+  myname = name.clone # otherwise name is updated too
+  myname.gsub!("\\d", "d")
+  myname.gsub!("\\s", " ")
+  myname.gsub!("\\/", "/")
+  return myname
+end
+def get_escapedname (name)
+  myname = name.clone # otherwise name is updated too
+  myname.gsub!("[", "\\[")
+  myname.gsub!("]", "\\]")
+  return myname
 end
 
 def get_check_http_method (value, id)
@@ -42,7 +52,7 @@ def get_check_strict_headers (id)
   header_string = ""
   Header.find(:all, :conditions => "request_id = #{id}").each do |header|
     header_string += "|" unless header_string.size == 0
-    header_string += header.name
+    header_string += get_escapedname(header.name)
   end
 
   string += "  # Strict headercheck (make sure the request contains only predefined request headers)\n"
@@ -70,11 +80,11 @@ def get_check_strict_querystringpostparameters (id)
   mystring = ""
   Postparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += parameter.name
+    mystring += get_escapedname(parameter.name)
   end
   Querystringparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += parameter.name
+    mystring += get_escapedname(parameter.name)
   end
 
   string += "\n"
@@ -100,7 +110,7 @@ def get_check_strict_cookieparameters (id)
   mystring = ""
   Cookieparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += parameter.name
+    mystring += get_escapedname(parameter.name)
   end
 
   string += "\n"
@@ -114,13 +124,21 @@ def get_check_individual_header (name, domain, mandatory, id)
   # write a rule that checks a single header for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
-  commentname=get_commentname(name)
+  commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
+  escapedname=get_escapedname(name)
+  if escapedname.index("\\d").nil?
+    npre = nil
+    npost = nil
+  else
+    npre = "/"
+    npost = "/"
+  end  
   string = ""
   string += "  # Checking request header \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_HEADERS:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_HEADERS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -129,13 +147,21 @@ def get_check_individual_cookieparameter (name, domain, mandatory, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
-  commentname=get_commentname(name)
+  commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
+  escapedname=get_escapedname(name)
+  if escapedname.index("\\d").nil?
+    npre = nil
+    npost = nil
+  else
+    npre = "/"
+    npost = "/"
+  end
   string = ""
   string += "  # Checking cookie \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_COOKIES:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_COOKIES:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -144,16 +170,24 @@ def get_check_individual_querystringparameter (name, domain, mandatory, id, cros
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
-  commentname=get_commentname(name)
+  commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
+  escapedname=get_escapedname(name)
+  if escapedname.index("\\d").nil?
+    npre = nil
+    npost = nil
+  else
+    npre = "/"
+    npost = "/"
+  end
   string = ""
   string += "  # Checking query string argument \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule REQUEST_BODY \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} is present in post payload. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} failed validity check.'\"\n"
   return string
 end
 
@@ -161,19 +195,24 @@ def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
-  #
-  #
-  #
-  commentname=get_commentname(name)
+  commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
+  escapedname=get_escapedname(name)
+  if escapedname.index("\\d").nil?
+    npre = nil
+    npost = nil
+  else
+    npre = "/"
+    npost = "/"
+  end
   string = ""
   string += "  # Checking post argument \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule QUERY_STRING \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} is present in query string. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} failed validity check.'\"\n"
   return string
 end
 

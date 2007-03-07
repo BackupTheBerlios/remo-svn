@@ -1,1 +1,1 @@
-<% form_remote_tag :url => { :action => "toggle_postparameter_mandatory", :id => requestparameter_mandatory.id } do -%><input name="commit" type="submit" value="<%= string -%>" /><% end -%>
+<% form_remote_tag :url => { :action => "toggle_#{requestparametername}_mandatory", :id => requestparameter_mandatory.id } do -%><input name="commit" type="submit" value="<%= string -%>" /><% end -%>

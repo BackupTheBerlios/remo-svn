@@ -345,22 +345,17 @@ class MainController < ApplicationController
     render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save
   end
 
+  def toggle_header_mandatory
+    toggle_requestparameter_mandatory(Header, params[:id])
+  end 
+  def toggle_cookieparameter_mandatory
+    toggle_requestparameter_mandatory(Cookieparameter, params[:id])
+  end
+  def toggle_querystringparameter_mandatory
+    toggle_requestparameter_mandatory(Querystringparameter, params[:id])
+  end
   def toggle_postparameter_mandatory
-    unless params[:id].nil?
-      begin
-        @item = Postparameter.find(params[:id])
-        @item.mandatory = !@item.mandatory
-        @item.save!
-        if @item.mandatory
-          @string = "mandatory"
-        else
-          @string = "optional"
-        end
-      rescue => err
-        flash[:notice] = "Toggling mandatory status failed! " + err
-      end
-    end
-    render(:template => "main/toggle_requestparameter_mandatory") 
+    toggle_requestparameter_mandatory(Postparameter, params[:id])
   end
 
   def generate_ruleset
@@ -412,6 +407,25 @@ class MainController < ApplicationController
 
     render(:template => "main/set_requestparameter_name") 
  
+  end
+
+  def toggle_requestparameter_mandatory (model, id)
+    unless id.nil?
+      begin
+        @item = model.find(params[:id])
+        @item.mandatory = !@item.mandatory
+        @item.save!
+        if @item.mandatory
+          @string = "mandatory"
+        else
+          @string = "optional"
+        end
+      rescue => err
+        flash[:notice] = "Toggling mandatory status failed! " + err
+      end
+    end
+    @requestparametername = model.name.downcase
+    render(:template => "main/toggle_requestparameter_mandatory")
   end
 
 end
