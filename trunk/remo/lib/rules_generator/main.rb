@@ -7,24 +7,8 @@ def append_file(file, app_file, request, version)
   end
 end
 
-def map_dbname_httpname (string)
-  # map a remo db name to a real http header.
-  # see http://remo.netnea.com/twiki/bin/view/Main/Task30Start
-  # for the mapping rules
-
-  string = string.gsub("guiprefix_", "")
-  string = string.gsub("_", "-") 
-
-  # capitalize substrings (-> accept-language to Accept-Language)
-  words = string.split("-")
-  string = ""
-  words.each do |word|
-    string += "-" unless string.size == 0
-    string += word.capitalize
-  end
-
-  return string
-
+def get_commentname (name)
+  return name.gsub("\\", "")
 end
 
 def get_check_http_method (value, id)
@@ -130,12 +114,13 @@ def get_check_individual_header (name, domain, mandatory, id)
   # write a rule that checks a single header for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
+  commentname=get_commentname(name)
   string = ""
   string += "  # Checking request header \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_HEADERS:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_HEADERS:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_HEADERS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{name} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_HEADERS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -144,41 +129,51 @@ def get_check_individual_cookieparameter (name, domain, mandatory, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
+  commentname=get_commentname(name)
   string = ""
   string += "  # Checking cookie \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_COOKIES:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{name} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_COOKIES:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
 
   return string
 end
 
-def get_check_individual_querystringparameter (name, domain, mandatory, id)
+def get_check_individual_querystringparameter (name, domain, mandatory, id, crosscheck=true)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
+  commentname=get_commentname(name)
   string = ""
   string += "  # Checking query string argument \"#{name}\"\n"
-  string += "  SecRule REQUEST_BODY \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} is present in post payload. This is illegal.'\"\n"
-  if mandatory
-    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{name} is mandatory, but is not present.'\"\n"
+  if crosscheck
+    string += "  SecRule REQUEST_BODY \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} is present in post payload. This is illegal.'\"\n"
   end
-  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{name} failed validity check.'\"\n"
+  if mandatory
+    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{commentname} is mandatory, but is not present.'\"\n"
+  end
+  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} failed validity check.'\"\n"
   return string
 end
 
-def get_check_individual_postparameter (name, domain, mandatory, id)
+def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=true)
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
+  #
+  #
+  #
+  commentname=get_commentname(name)
   string = ""
   string += "  # Checking post argument \"#{name}\"\n"
-  string += "  SecRule QUERY_STRING \"#{name}[=&]|#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} is present in query string. This is illegal.'\"\n"
-  if mandatory
-    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{name} is mandatory, but is not present.'\"\n"
+  if crosscheck
+    string += "  SecRule QUERY_STRING \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} is present in query string. This is illegal.'\"\n"
   end
-  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{name} failed validity check.'\"\n"
+  if mandatory
+    string += "  SecRule &ARGS:#{name} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{commentname} is mandatory, but is not present.'\"\n"
+  end
+  string += "  SecRule ARGS:#{name} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} failed validity check.'\"\n"
   return string
 end
 
@@ -215,13 +210,23 @@ def get_requestrule(r)
 
   # check individual querystringparameters
   Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").each do |querystringparameter|
-    string += get_check_individual_querystringparameter(querystringparameter.name, querystringparameter.domain, querystringparameter.mandatory, r.id) 
+    string += get_check_individual_querystringparameter(querystringparameter.name,
+                                                        querystringparameter.domain, 
+                                                        querystringparameter.mandatory, 
+                                                        r.id, 
+                                                        crosscheck = Postparameter.find(:all, :conditions => "request_id = #{r.id} and name = \"#{querystringparameter.name}\"").size == 0) 
+                                                        # crosscheck means to make sure that a querystring parameter is not passed as postparameter too
   end
   string += "" unless Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
   # check individual postparameters
   Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|
-    string += get_check_individual_postparameter(postparameter.name, postparameter.domain, postparameter.mandatory, r.id) 
+    string += get_check_individual_postparameter(postparameter.name,
+                                                 postparameter.domain, 
+                                                 postparameter.mandatory, 
+                                                 r.id, 
+                                                 crosscheck = Querystringparameter.find(:all, :conditions => "request_id = #{r.id} and name = \"#{postparameter.name}\"").size == 0) 
+                                                 # crosscheck means to make sure that a querystring parameter is not passed as postparameter too
   end
   string += "" unless Postparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
