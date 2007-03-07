@@ -54,6 +54,10 @@ class MainController < ApplicationController
       @rules_status = flash[:notice]
     end
 
+    Postparameter.find_postparameters.each { |item|
+      logger.error "#{item.id} #{item.name}"
+    }
+
     @rules_toolset_buttons = RULES_TOOLSET_BUTTONS
 
   end

@@ -28,11 +28,11 @@
                 </tr>
               </table>
               <div id="request-item_<%= request.id-%>_headers_body" class="requestparameters_body" style="display: none;">
-                <%            @request.headers.each do |@header| -%>
-                <%= render(:partial => "requestparameter", 
-                :object => @header,
-                :locals => { :requestparametername => "header"}) -%>
-                <%            end -%>
+                <%    Header.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@header| -%>
+                <%=     render(:partial => "requestparameter", 
+                          :object => @header,
+                          :locals => { :requestparametername => "header"}) -%>
+                <%    end -%>
               </div>
             </div>
 
@@ -48,11 +48,11 @@
                 </tr>
               </table>
               <div id="request-item_<%= request.id-%>_querystringparameters_body" class="requestparameters_body" style="display: none;">
-                <%            @request.querystringparameters.each do |@querystringparameter| -%>
-                <%= render(:partial => "requestparameter", 
-                :object => @querystringparameter,
-                :locals => { :requestparametername => "querystringparameter"}) -%>
-                <%            end -%>
+                <%    Querystringparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@querystringparameter| -%>
+                <%=     render(:partial => "requestparameter", 
+                          :object => @querystringparameter,
+                          :locals => { :requestparametername => "querystringparameter"}) -%>
+                <%    end -%>
               </div>
             </div>
 
@@ -68,11 +68,11 @@
                 </tr>
               </table>
               <div id="request-item_<%= request.id-%>_cookieparameters_body" class="requestparameters_body" style="display: none;">
-                <%            @request.cookieparameters.each do |@cookieparameter| -%>
-                <%= render(:partial => "requestparameter", 
-                :object => @cookieparameter,
-                :locals => { :requestparametername => "cookieparameter"}) -%>
-                <%            end -%>
+                <%    Cookieparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@cookieparameter| -%>
+                <%=     render(:partial => "requestparameter", 
+                          :object => @cookieparameter,
+                          :locals => { :requestparametername => "cookieparameter"}) -%>
+                <%    end -%>
               </div>
             </div>
 
@@ -88,11 +88,11 @@
                 </tr>
               </table>
               <div id="request-item_<%= request.id-%>_postparameters_body" class="requestparameters_body" style="display: none;">
-                <%            @request.postparameters.each do |@postparameter| -%>
-                <%= render(:partial => "requestparameter", 
-                :object => @postparameter,
-                :locals => { :requestparametername => "postparameter"}) -%>
-                <%            end -%>
+                <%    Postparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@postparameter| -%>
+                <%=     render(:partial => "requestparameter", 
+                          :object => @postparameter,
+                          :locals => { :requestparametername => "postparameter"}) -%>
+                <%    end -%>
               </div>
             </div>
 
