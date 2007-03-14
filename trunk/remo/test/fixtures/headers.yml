@@ -110,3 +110,102 @@ rb11:
   request_id: 2
   name: "Cache-Control"
   domain: ".*"
+
+actiontest_get_h1:
+  id: 101
+  request_id: 3
+  name: "Referer"
+  domain: ".*"
+actiontest_get_h2:
+  id: 102
+  request_id: 3
+  name: "Host"
+  domain: ".*"
+actiontest_get_h3:
+  id: 103
+  request_id: 3
+  name: "User-Agent"
+  domain: ".*"
+actiontest_get_h4:
+  id: 104
+  request_id: 3
+  name: "Cookie"
+  domain: ".*"
+actiontest_get_h4:
+  id: 104
+  request_id: 3
+  name: "Cookie"
+  domain: ".*"
+actiontest_get_h5:
+  id: 105
+  request_id: 3
+  name: "Accept"
+  domain: ".*"
+
+actiontest_post_h1:
+  id: 120
+  request_id: 4
+  name: "Referer"
+  domain: ".*"
+actiontest_post_h2:
+  id: 121
+  request_id: 4
+  name: "Host"
+  domain: ".*"
+actiontest_post_h3:
+  id: 122
+  request_id: 4
+  name: "User-Agent"
+  domain: ".*" 
+actiontest_post_h4:
+  id: 123
+  request_id: 4
+  name: "Cookie"
+  domain: ".*"
+actiontest_post_h5:
+  id: 124
+  request_id: 4
+  name: "Accept"
+  domain: ".*"
+actiontest_post_h6:
+  id: 125
+  request_id: 4
+  name: "Content-Type"
+  domain: ".*"
+actiontest_post_h7:
+  id: 126
+  request_id: 4
+  name: "Content-Length"
+  domain: "\d*"
+actiontest_post_h8:
+  id: 127
+  request_id: 4
+  name: "Expect"
+  domain: ".*"
+
+actiontest_redirect_h1:
+  id: 140
+  request_id: 5
+  name: "Referer"
+  domain: ".*"
+actiontest_redirect_h2:
+  id: 141
+  request_id: 5
+  name: "Host"
+  domain: ".*"
+actiontest_redirect_h3:
+  id: 142
+  request_id: 5
+  name: "User-Agent"
+  domain: ".*" 
+actiontest_redirect_h4:
+  id: 143
+  request_id: 5
+  name: "Cookie"
+  domain: ".*" 
+actiontest_redirect_h5:
+  id: 144
+  request_id: 5
+  name: "Accept"
+  domain: ".*"
+

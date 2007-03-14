@@ -252,7 +252,7 @@ class MainControllerTest < Test::Unit::TestCase
     # add_request javascript reply
     assert_select_rjs do
       assert_select "div.request-#{name}-field", 1 
-      assert_select "div.request-#{name}-field > div", 4 
+      assert_select "div.request-#{name}-field > div", 5 
       # with this we are quite sure we got a real item. so this will do
     end
   end
@@ -295,7 +295,7 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select_rjs do
       assert_select "div.request-#{name}-field", 1 
-      assert_select "div.request-#{name}-field > div", 4 
+      assert_select "div.request-#{name}-field > div", 5 
       # with this we are quite sure we got a real postparameter item. so this will do
     end
 
@@ -316,7 +316,7 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select_rjs do
       assert_select "div.request-cookieparameter-field", 1 
-      assert_select "div.request-cookieparameter-field > div", 4 
+      assert_select "div.request-cookieparameter-field > div", 5 
       # with this we are quite sure we got a real cookieparameter item. so this will do
     end
   end
@@ -336,7 +336,7 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select_rjs do
       assert_select "div.request-postparameter-field", 1 
-      assert_select "div.request-postparameter-field > div", 4 
+      assert_select "div.request-postparameter-field > div", 5 
       # with this we are quite sure we got a real postparameter item. so this will do
     end
   end
@@ -355,7 +355,7 @@ class MainControllerTest < Test::Unit::TestCase
 
     assert_select_rjs do
       assert_select "div.request-querystringparameter-field", 1 
-      assert_select "div.request-querystringparameter-field > div", 4 
+      assert_select "div.request-querystringparameter-field > div", 5 
       # with this we are quite sure we got a real querystringparameter item. so this will do
     end
   end

@@ -9,3 +9,65 @@ rb2:
   request_id: 2
   name: "password"
   domain: ".*"
+
+actiontest_get_p1:
+  id: 3
+  request_id: 3
+  name: "qp_single_integer"
+  domain: "\d"
+actiontest_post_p1:
+  id: 4
+  request_id: 4
+  name: "p_single_integer"
+  domain: "\d"
+actiontest_post_p2:
+  id: 5
+  request_id: 4
+  name: "p_single_integer_or_empty"
+  domain: "\d{0,1}"
+actiontest_post_p3:
+  id: 6
+  request_id: 4
+  name: "p_empty"
+  domain: ".{0}"
+actiontest_post_p4:
+  id: 7
+  request_id: 4
+  name: "p_exotic"
+  domain: '[\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2A\x2B\x2C\x2D\x2E\x2F\x3A\x3B\x3C\x3D\x3E\x3F\x40\x5B\x5C\x5D\x5E\x5F\x60\x7B\x7C\x7D\x7E\x7F]'
+actiontest_post_p5:
+  id: 8
+  request_id: 4
+  name: "p_single_letter"
+  domain: "\w"
+actiontest_post_p6:
+  id: 9
+  request_id: 4
+  name: "p_string_long"
+  domain: "[\w\x20]{0,1024}"
+actiontest_post_p7:
+  id: 10 
+  request_id: 4
+  name: "qp_single_integer"
+  domain: "\d"
+actiontest_post_p9:
+  id: 12 
+  request_id: 4
+  name: "p_string_extremely_long"
+  domain: '[\w\x20]{0,65535}'
+actiontest_post_p10:
+  id: 13 
+  request_id: 4
+  name: "p_string_really_long"
+  domain: '[\w\x20]{0,10240}'
+actiontest_post_p11:
+  id: 14
+  request_id: 4
+  name: "p_numeric_id_\d"
+  domain: "\d"
+
+actiontest_redirect_r1:
+  id: 11
+  request_id: 5
+  name: "p_single_integer"
+  domain: "\d"

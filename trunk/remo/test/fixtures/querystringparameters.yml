@@ -4,3 +4,51 @@ rb1:
   request_id: 2
   name: "username"
   domain: ".*"
+
+actiontest_get_q1:
+  id: 2
+  request_id: 3
+  name: "q_single_integer"
+  domain: "\d"
+actiontest_get_q2:
+  id: 3
+  request_id: 3
+  name: "q_single_integer_or_empty"
+  domain: "\d{0,1}"
+actiontest_get_q3:
+  id: 4
+  request_id: 3
+  name: "q_empty"
+  domain: ".{0}"
+actiontest_get_q4:
+  id: 5
+  request_id: 3
+  name: "q_exotic"
+  domain: '[\x00\x01\x02\x03\x04\x05\x06\x07\x08\x09\x0A\x0B\x0C\x0D\x0E\x0F\x10\x11\x12\x13\x14\x15\x16\x17\x18\x19\x1A\x1B\x1C\x1D\x1E\x1F\x20\x21\x22\x23\x24\x25\x26\x27\x28\x29\x2A\x2B\x2C\x2D\x2E\x2F\x3A\x3B\x3C\x3D\x3E\x3F\x40\x5B\x5C\x5D\x5E\x5F\x60\x7B\x7C\x7D\x7E\x7F]'
+actiontest_get_q5:
+  id: 6
+  request_id: 3
+  name: "q_single_letter"
+  domain: "\w"
+actiontest_get_q6:
+  id: 7
+  request_id: 3
+  name: "q_string_long"
+  domain: "[\w\x20]{0,1024}"
+actiontest_get_q7:
+  id: 8
+  request_id: 3
+  name: "qp_single_integer"
+  domain: "\d"
+
+actiontest_post_q1:
+  id: 9
+  request_id: 4
+  name: "qp_single_integer"
+  domain: "\d"
+
+actiontest_redirect_r1:
+  id: 10
+  request_id: 5
+  name: "q_single_integer"
+  domain: "\d"

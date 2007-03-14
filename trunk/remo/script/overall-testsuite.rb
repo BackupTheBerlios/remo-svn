@@ -7,6 +7,8 @@ require "test/unit"
 
 # testcases below are started automatically
 
+require "./test/functional/ruleset-action-test/ruleset-action-test"
+
 # libs
 require "./test/functional/various_test"
 require "./test/functional/rules_generator_test"

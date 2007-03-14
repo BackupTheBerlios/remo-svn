@@ -78,18 +78,18 @@ def get_check_strict_querystringpostparameters (id)
   string = ""
 
   mystring = ""
-  Postparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
+  Querystringparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
     mystring += get_escapedname(parameter.name)
   end
-  Querystringparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
+  Postparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
     mystring += get_escapedname(parameter.name)
   end
 
   string += "\n"
-  string += "  # Strict argument check (make sure the request contains only predefined request arguments)\n"
-  string += "  SecRule ARGS_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'\"\n"
+  string += "  # Strict argumentcheck (make sure the request contains only predefined request arguments)\n"
+  string += "  SecRule ARGS_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict argumentcheck: At least one request parameter is not predefined for this path.'\"\n"
   string += "\n"
 
   return string
@@ -114,8 +114,8 @@ def get_check_strict_cookieparameters (id)
   end
 
   string += "\n"
-  string += "  # Strict cookie check (make sure the request contains only predefined request cookies)\n"
-  string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict cookiecheck: At least one cookie is not predefined for this path.'\"\n"
+  string += "  # Strict cookieparametercheck (make sure the request contains only predefined request cookieparameters)\n"
+  string += "  SecRule REQUEST_COOKIES_NAMES \"!^(#{mystring})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict cookieparametercheck: At least one request cookieparameter is not predefined for this path.'\"\n"
   string += "\n"
 
   return string
@@ -134,11 +134,11 @@ def get_check_individual_header (name, domain, mandatory, id)
     npost = "/"
   end  
   string = ""
-  string += "  # Checking request header \"#{name}\"\n"
+  string += "  # Checking header \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request header #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -180,14 +180,14 @@ def get_check_individual_querystringparameter (name, domain, mandatory, id, cros
     npost = "/"
   end
   string = ""
-  string += "  # Checking query string argument \"#{name}\"\n"
+  string += "  # Checking querystringparameter \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule REQUEST_BODY \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Query string argument #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Querystringparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Query string argument #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} failed validity check.'\"\n"
   return string
 end
 
@@ -205,14 +205,14 @@ def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=
     npost = "/"
   end
   string = ""
-  string += "  # Checking post argument \"#{name}\"\n"
+  string += "  # Checking postparameter \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule QUERY_STRING \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Post parameter #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Postparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Post argument #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} failed validity check.'\"\n"
   return string
 end
 

@@ -11,3 +11,26 @@ valid_post:
   path: "/action/post.php"
   weight: 4
   remarks: "Basic post request"
+
+actiontest_get:
+  id: 3
+  http_method: "GET"
+  path: "/index.php"
+  weight: 5
+  remarks: "Actiontest GET"
+
+actiontest_post:
+  id: 4
+  http_method: "POST"
+  path: "/submit.php"
+  weight: 6
+  remarks: "Actiontest POST"
+
+actiontest_redirect:
+  id: 5
+  http_method: "GET"
+  path: "/redirect.php"
+  weight: 7
+  remarks: "Actiontest GET"
+  
+

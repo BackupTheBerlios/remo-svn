@@ -1,3 +1,4 @@
+
 def escape_path(path)
   replacements = [ 
     ['/', '\/'], 
@@ -11,6 +12,9 @@ def escape_path(path)
 end
 
 def get_release_version
+  if REMO_RELEASE_VERSION.nil?
+    require File.dirname(__FILE__) + '/../../remo_config'
+  end
   return REMO_RELEASE_VERSION
 end
 

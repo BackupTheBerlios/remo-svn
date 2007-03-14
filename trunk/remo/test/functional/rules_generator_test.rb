@@ -15,8 +15,160 @@ def get_startline(rules_array, path)
 
 end
 
-def assert_rule_line (rules_array, line, regexp, initial_comment)
-   assert_equal false, regexp.match(rules_array[line]).nil?, "#{initial_comment} (line #{line}):\n Expected : /#{regexp.source}/\n Retrieved:   #{rules_array[line]}" 
+def assert_rule_line_regex (rules_array, line, regexp, initial_comment)
+   assert_equal false, regexp.match(rules_array[line]).nil?, "#{initial_comment} (line #{line+1}):\n Expected : /#{regexp.source}/\n Retrieved:   #{rules_array[line]}" 
+   # it's line + 1 as the ruley_array works with cardinal numbers and we display an ordinary one.
+end
+
+def assert_rule_line_string (rules_array, line, template, initial_comment)
+   assert_equal true, rules_array[line].chomp == template, "#{initial_comment} (line #{line+1}):\n Expected : #{template}\n Retrieved: #{rules_array[line]}" 
+   # it's line + 1 as the ruley_array works with cardinal numbers and we display an ordinary one.
+end
+
+def build_rule_regex(string)
+  string.gsub!("\\", "\\\\\\") # this is exactly what is needed for single backslashes
+  string.gsub!("^", "\\^")
+  string.gsub!("(", "\\(")
+  string.gsub!(")", "\\)")
+  string.gsub!("{", "\\{")
+  string.gsub!("}", "\\}")
+  string.gsub!("[", "\\[")
+  string.gsub!("]", "\\]")
+  string.gsub!("$", "\\$")
+  regex = /^  #{string}$/
+  return regex
+end
+
+def check_crosscheck(rules_array, i, rulename, rulename_commentname, name, id, type)
+  assert_rule_line_regex rules_array, i,
+    build_rule_regex("SecRule #{rulename} \"^#{name}\[=&\]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{name} is present in #{rulename_commentname}. This is illegal.'\""),
+      "Request argument crosscheck for #{type} #{name} is not correct"
+end
+
+def assert_empty_line (rules_array, i)
+  assert_rule_line_regex rules_array, i, /^$/, "Line not empty"
+  return 1
+end
+
+def check_single_requestparameter(rules_array, id, i, type, rulename, name, domain, mandatory, crosscheck=false)
+  lines = 0
+  assert_rule_line_regex rules_array, i + lines,
+    build_rule_regex("# Checking #{type} \"#{name}\""),
+    "Argument check comment for #{type} #{name} is not correct"
+  lines += 1
+
+  if crosscheck and type == "postparameter"
+    # post parameter crosscheck
+    check_crosscheck(rules_array, i + lines, "QUERY_STRING", "query string", name, id, type)
+    lines += 1
+  end
+  
+  if crosscheck and type == "querystringparameter"
+    # querystring parameter crosscheck
+    check_crosscheck(rules_array, i + lines, "REQUEST_BODY", "post payload", name, id, type)
+    lines += 1
+  end
+
+  if mandatory
+    assert_rule_line_regex rules_array, i + lines,
+      build_rule_regex("SecRule &#{rulename}:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{name} is mandatory, but it is not present in request.'\""),
+      "Request argument mandatory check for #{type} #{name} is not correct"
+  lines += 1
+  end
+
+  if name.index("\\d").nil?
+    npre = nil
+    npost = nil
+  else
+    npre = "/"
+    npost = "/"
+  end  
+  commentname=get_commentname(name)
+  assert_rule_line_string rules_array, i + lines,
+    "  SecRule #{rulename}:#{npre}#{name}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check.'\"",
+    "Request argument domain check for #{type} #{name} is not correct" 
+  lines += 1
+  
+  return lines
+
+end
+
+def check_rulegroup_header (rules_array, i, http_method, path, remarks, id)
+  assert_rule_line_regex rules_array, i + 0,
+    /^# allow: #{http_method} #{path} \(request id \/ rule group #{id}\)$/, "Rule start does not start with '# allow'" 
+  assert_rule_line_regex rules_array, i + 1,
+    /^# #{remarks}/, "Remarks comment does not match the remarks field"
+  assert_rule_line_regex rules_array, i + 2,
+    /^<LocationMatch "\^#{path}\$">$/, "LocationMatch line is not correct"
+  assert_rule_line_regex rules_array, i + 3, 
+    /^  # Checking request method$/, "Comment \"request method\" not correct"
+  assert_rule_line_regex rules_array, i + 4, 
+   /^  SecRule REQUEST_METHOD "!\^#{http_method}\$" "t:none,deny,id:#{id},status:501,severity:3,msg:'Request method wrong \(it is not #{http_method}\).'"$/, 
+   "Request method check faulty"
+
+  assert_empty_line(rules_array, i + 5)
+
+  return 6
+
+end
+
+def strict_parametercheck (rules_array, model, collectionname, i, id)
+  # Check the strict headercheck of the rule group
+  string = ""
+
+  assert_rule_line_regex rules_array, i, 
+        /^  # Strict #{model.name.downcase}check \(make sure the request contains only predefined request #{model.name.downcase}s\)$/, 
+        "Comment \"Strict #{model.name.downcase}check\" not correct"
+  
+  model.find(:all, :conditions => "request_id = #{id}").each do |item|
+    string += "|" unless string.size == 0
+    string += item.name
+  end
+
+  assert_rule_line_regex rules_array, i + 1,
+    build_rule_regex("SecRule #{collectionname} \"!^(#{string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict #{model.name.downcase}check: At least one request #{model.name.downcase} is not predefined for this path.'\""),
+    "\"Strict #{model.name.downcase}check\" not correct"
+
+  assert_empty_line(rules_array, i + 2)
+
+  return 3
+end
+
+def strict_combined_parametercheck (rules_array, models, collectionname, i, id)
+  # postparameters and querystring parameters are combined in modsecurity into a single collection
+  assert_rule_line_regex rules_array, i, 
+        /^  # Strict argumentcheck \(make sure the request contains only predefined request arguments\)$/, 
+        "Comment \"Strict argumentcheck\" not correct"
+  string = ""
+  
+  models.each do |model|
+    model.find(:all, :conditions => "request_id = #{id}").each do |item|
+      string += "|" unless string.size == 0
+      string += item.name
+    end
+  end
+
+  assert_rule_line_regex rules_array, i + 1,
+    build_rule_regex("SecRule #{collectionname} \"!^(#{string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict argumentcheck: At least one request parameter is not predefined for this path.'\""),
+    "\"Strict argument check\" not correct"
+
+  assert_empty_line(rules_array, i + 2)
+
+  return 3
+end
+
+def check_rulegroup_footer(rules_array, id, i)
+  # Check the end of the rule group
+  assert_rule_line_regex rules_array, i,
+    /^  # All checks passed for this path. Request is allowed.$/, 
+    "Final comment for request not correct"
+  assert_rule_line_regex rules_array, i + 1,
+    /^  SecAction "allow,id:#{id},t:none,msg:'Request passed all checks, it is thus allowed.'"$/, 
+    "Rule allowing request not correct."
+  assert_rule_line_regex rules_array, i + 2,
+    /^<\/LocationMatch>$/, "Closing LocationMatch is not correct."
+
+    return 3
 end
 
 class RulesGeneratorTest < Test::Unit::TestCase
@@ -32,190 +184,78 @@ class RulesGeneratorTest < Test::Unit::TestCase
 
     Request.find(:all).each do |item|
       startline = get_startline(rules_array, item.path)
+      n = 0
 
-      # Example rule group should look as follows:
+      # Start of the rulegroup (header)
+      n += check_rulegroup_header(rules_array, startline + n, item.http_method, item.path, item.remarks, item.id)
+      n += strict_parametercheck(rules_array, Header, "REQUEST_HEADER_NAMES", startline + n, item.id)
 
-      #  0 |# allow: GET /info.html (request id / rule group 6)
-      #  1 |# Basic get request
-      #  2 |<LocationMatch "^/info.html$">
-      #  3 |  # Checking request method
-      #  4 |  SecRule REQUEST_METHOD "!^GET$" "t:none,deny,id:6,status:501,severity:3,msg:'Request method wrong (it is not GET).'"
-      #  5 |
-      #  6 |  # Strict headercheck (make sure the request contains only predefined request headers)
-      #  7 |  SecRule REQUEST_HEADERS_NAMES "!^(Host|User-Agent|...)$" "t:none,deny,id:6,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
-      #  8 |
-      #  9 |  # Checking request header "Host"
-      # 10 |  SecRule &REQUEST_HEADERS:User-Agent "!@eq 0" "chain,t:none,deny,id:6,status:501,severity:3,msg:'Request header User-Agent failed validity check.'"
-      # 11 |  SecRule REQUEST_HEADERS:User-Agent "!^(curl.*)$" "t:none,"
-      # 12 |  # Checking request header "User-Agent"
-      # 13 |  ...
-      #
-      # p  |  Strict argument check (make sure the request contains only predefined request arguments)
-      # p+1|  SecRule ARGS_NAMES "!^(username|...)$" "t:none,deny,id:2,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"
-      # p+2|
-      # r  |  # Checking post argument "username"
-      # r+1|  SecRule &ARGS:emailaddress "@eq 0" "t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress is mandatory, but it is not present in request.'"
-      # r+2|  SecRule &ARGS:emailaddress "!@eq 0" "chain,t:none,deny,id:2,status:501,severity:3,msg:'Argument emailaddress failed validity check.'"
-      # r+3|  SecRule ARGS:emailaddress "!^(.*)$" "t:none"
-      # r+4|  
-      # ...|  ...
-      # n  |
-      # n+1|  # All checks passed for this path. Request is allowed.
-      # n+2|  SecAction "allow,id:6,t:none,msg:'Request passed all checks, it is thus allowed.'"
-      # n+3|</LocationMatch>
-
-
-      # Check start of rule group
-      assert_rule_line rules_array, startline + 0,
-        /^# allow: #{item.http_method} #{item.path} \(request id \/ rule group #{item.id}\)$/, "Rule start does not start with '# allow'" 
-      assert_rule_line rules_array, startline + 1,
-        /^# #{item.remarks}/, "Remarks comment does not match the remarks field"
-      assert_rule_line rules_array, startline + 2,
-        /^<LocationMatch "\^#{item.path}\$">$/, "LocationMatch line is not correct"
-      assert_rule_line rules_array, startline + 3, 
-        /^  # Checking request method$/, "Comment \"request method\" not correct"
-      assert_rule_line rules_array, startline + 4, 
-        /^  SecRule REQUEST_METHOD "!\^#{item.http_method}\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request method wrong \(it is not #{item.http_method}\).'"$/, 
-        "Request method check faulty"
-      assert_rule_line rules_array, startline + 5, 
-        /^$/, "Line not empty"
-
-      # Check the strict headercheck of the rule group
-      assert_rule_line rules_array, startline + 6,
-        /^  # Strict headercheck \(make sure the request contains only predefined request headers\)$/, 
-        "Comment \"Strict headercheck\" not correct"
-      header_string = ""
-      Header.find(:all, :conditions => "request_id = #{item.id}").each do |header|
-          header_string += "|" unless header_string.size == 0
-          header_string += header.name
+      # Http headers
+      Header.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
+         n += check_single_requestparameter(rules_array, 
+                                           item.id, 
+                                           startline + n, 
+                                           "header", 
+                                           "REQUEST_HEADERS", 
+                                           myitem.name, 
+                                           myitem.domain, 
+                                           myitem.mandatory)       
       end
-      assert_rule_line rules_array, startline + 7,
-        /^  SecRule REQUEST_HEADERS_NAMES "!\^\(#{header_string}\)\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"$/,
-        "\"Strict headercheck\" not correct"
+      n += assert_empty_line(rules_array, startline + n)
 
-      # Loop and check every headercheck of the rule group
-      assert_rule_line rules_array, startline + 8,
-        /^$/, "Line not empty"
-      n = 9
-      Header.find(:all, :conditions => "request_id = #{item.id}").each do |header|
-        assert_rule_line rules_array, startline + n, 
-          /^  # Checking request header "#{header.name}"$/,
-          "Request header check comment for header #{header.name} is not correct"
-        assert_rule_line rules_array, startline + n + 1, 
-          /^  SecRule &REQUEST_HEADERS:#{header.name} "!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Request header #{header.name} failed validity check.'\"$/,
-          "Request header check first line for header #{header.name} is not correct"
-        assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule REQUEST_HEADERS:#{header.name} "!\^\(#{header.domain}\)\$" "t:none"$/,
-          "Request header check 2nd line for header #{header.name} is not correct"
-        n += 3
+      # Cookies
+      n += strict_parametercheck(rules_array, Cookieparameter, "REQUEST_COOKIES_NAMES", startline + n, item.id)
+      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
+        n += check_single_requestparameter(rules_array,
+                                           item.id,
+                                           startline + n,
+                                           "cookie",
+                                           "REQUEST_COOKIES",
+                                           myitem.name,
+                                           myitem.domain,
+                                           myitem.mandatory)
       end
 
-      # Check the strict cookiecheck of the rule group
-      assert_rule_line rules_array, startline + n,
-          /^$/, "Line not empty"
-      n += 1
-      assert_rule_line rules_array, startline + n,
-        /^  # Strict cookie check \(make sure the request contains only predefined request cookies\)$/,
-        "Comment \"Strict cookiecheck\" not correct"
-      string = ""
-      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |cookie|
-          string += "|" unless string.size == 0
-          string += cookie.name
-      end
-      assert_rule_line rules_array, startline + n + 1,
-        /^  SecRule REQUEST_COOKIES_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Strict cookiecheck: At least one cookie is not predefined for this path.'"$/,
-        "\"Strict headercheck\" not correct"
-      n += 2
+      # Querystring and post parameters 
+      n += assert_empty_line(rules_array, startline + n)
+      n += strict_combined_parametercheck(rules_array, [Querystringparameter, Postparameter], "ARGS_NAMES", startline + n, item.id)
 
-      # Loop and check every cookie check of the rule group
-      assert_rule_line rules_array, startline + n,
-          /^$/, "Line not empty"
-      n += 1
-      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |cookieparameter|
-        assert_rule_line rules_array, startline + n, 
-          /^  # Checking cookie "#{cookieparameter.name}"$/,
-          "Argument check comment for cookie #{cookieparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 1,
-          /^  SecRule &REQUEST_COOKIES:#{cookieparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Cookie #{cookieparameter.name} is mandatory, but it is not present in request.'"$/,
-          "Request argument check 1st line for cookie #{cookieparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 2,
-          /^  SecRule &REQUEST_COOKIES:#{cookieparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Cookie #{cookieparameter.name} failed validity check.'"$/,
-          "Request argument check 2nd line for cookie #{cookieparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 3, 
-          /^  SecRule REQUEST_COOKIES:#{cookieparameter.name} "\!\^(#{cookieparameter.domain})\$" "t:none"$/,
-          "Request argument check 3rd line for cookie #{cookieparameter.name} is not correct"
-        n += 4
+      Querystringparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
+        if Postparameter.find(:first, :conditions => "request_id = #{item.id} and name = '#{myitem.name}'").nil?
+          crosscheck = true
+        else
+          crosscheck = false
+        end
+        n += check_single_requestparameter(rules_array, 
+                                           item.id, 
+                                           startline + n, 
+                                           "querystringparameter", 
+                                           "ARGS", 
+                                           myitem.name, 
+                                           myitem.domain, 
+                                           myitem.mandatory,
+                                           crosscheck)
       end
 
-      # Check the strict argument check of the rule group
-      assert_rule_line rules_array, startline + n,
-          /^$/, "Line not empty"
-          n += 1
-      assert_rule_line rules_array, startline + n, 
-          /^  # Strict argument check \(make sure the request contains only predefined request arguments\)$/,
-          "Comment \"Strict argument check\" not correct"
-          string = ""
-      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
-        string += "|" unless string.size == 0
-        string += postparameter.name
-          end
-      assert_rule_line rules_array, startline + n + 1, 
-          /^  SecRule ARGS_NAMES "!\^\(#{string}\)\$" "t:none,deny,id:1,status:501,severity:3,msg:'Strict Argumentcheck: At least one request parameter is not predefined for this path.'"$/,
-          "Comment \"Strict argument check\" not correct"
-      assert_rule_line rules_array, startline + n + 2,
-          /^$/,
-      "Line not empty"
-          n += 3
-
-      # Loop and check every post argument check of the rule group
-      Querystringparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
-        assert_rule_line rules_array, startline + n, 
-          /^  # Checking query string argument "#{postparameter.name}"$/,
-          "Argument check comment for argument #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 1,
-          /^  SecRule REQUEST_BODY "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Query string argument #{postparameter.name} is present in query string. This is illegal.'"$/,
-          "Request argument check 1st line for postparameter #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Query string argument #{postparameter.name} failed validity check.'"$/,
-          "Request argument check 2nd line for postparameter #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 3, 
-          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
-          "Request argument check 3rd line for postparameter #{postparameter.name} is not correct"
-        n += 4
+      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
+        if Querystringparameter.find(:first, :conditions => "request_id = #{item.id} and name = '#{myitem.name}'").nil?
+          crosscheck = true
+        else
+          crosscheck = false
+        end
+        n += check_single_requestparameter(rules_array, 
+                                           item.id, 
+                                           startline + n, 
+                                           "postparameter", 
+                                           "ARGS", 
+                                           myitem.name, 
+                                           myitem.domain, 
+                                           myitem.mandatory,
+                                           crosscheck)
       end
+      n += assert_empty_line(rules_array, startline + n)
 
-      # Loop and check every post argument check of the rule group
-      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |postparameter|
-        assert_rule_line rules_array, startline + n, 
-          /^  # Checking post argument "#{postparameter.name}"$/,
-          "Argument check comment for argument #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 1,
-          /^  SecRule QUERY_STRING "#{postparameter.name}\[=&\]|#{postparameter.name}$" "t:none,deny,id:2,status:501,severity:3,msg:'Post argument #{postparameter.name} is present in query string. This is illegal.'"$/,
-          "Request argument check 1st line for postparameter #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 2, 
-          /^  SecRule &ARGS:#{postparameter.name} "@eq 0" "t:none,deny,id:#{item.id},status:501,severity:3,msg:'Post argument #{postparameter.name} is mandatory, but it is not present in request.'"$/,
-          "Request argument check 2nd line for argument #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 3, 
-          /^  SecRule &ARGS:#{postparameter.name} "\!@eq 0" "chain,t:none,deny,id:#{item.id},status:501,severity:3,msg:'Post argument #{postparameter.name} failed validity check.'"$/,
-          "Request argument check 3rd line for postparameter #{postparameter.name} is not correct"
-        assert_rule_line rules_array, startline + n + 4, 
-          /^  SecRule ARGS:#{postparameter.name} "\!\^(#{postparameter.domain})\$" "t:none"$/,
-          "Request argument check 4th line for postparameter #{postparameter.name} is not correct"
-        n += 5
-      end
-
-      # Check the end of the rule group
-      assert_rule_line rules_array, startline + n,
-        /^$/, "Line not empty"
-      assert_rule_line rules_array, startline + n + 1,
-        /^  # All checks passed for this path. Request is allowed.$/, 
-        "Final comment for request not correct"
-      assert_rule_line rules_array, startline + n + 2, 
-        /^  SecAction "allow,id:#{item.id},t:none,msg:'Request passed all checks, it is thus allowed.'"$/, 
-        "Rule allowing request not correct."
-      assert_rule_line rules_array, startline + n + 3, 
-        /^<\/LocationMatch>$/, "Closing LocationMatch is not correct."
-
+      n += check_rulegroup_footer(rules_array, item.id, startline + n)
 
    end
 

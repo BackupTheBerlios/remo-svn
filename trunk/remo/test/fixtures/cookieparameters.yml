@@ -9,3 +9,17 @@ rb2:
   request_id: 2
   name: "sessionid"
   domain: ".*"
+
+actiontest_post_c1:
+  id: 3
+  request_id: 4
+  name: "c_session"
+  domain: "\d{8}"
+  mandatory: true
+actiontest_redirect_c1:
+  id: 4
+  request_id: 5
+  name: "c_session"
+  domain: "\d{8}"
+  mandatory: true
+
