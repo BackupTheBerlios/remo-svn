@@ -1,0 +1,32 @@
+#!/bin/sh -e
+#
+# apache2 start/stop script
+#
+# Now this is really simple.
+#
+
+pidof_apache() {
+	if [ -f ./httpd.pid ]; then
+		PID=`cat ./httpd.pid`
+	else
+		echo "PID file not found. Aborting."
+		exit 1
+	fi
+
+}
+
+case $1 in
+	start)
+		/usr/sbin/apache2 -f httpd.conf
+	;;
+	stop)
+		pidof_apache
+		kill $PID
+	;;
+	restart)
+		pidof_apache
+		kill $PID
+		sleep 1
+		/usr/sbin/apache2 -f httpd.conf
+	;;
+esac

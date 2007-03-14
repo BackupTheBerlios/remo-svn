@@ -1,0 +1,105 @@
+--b221e356-A--
+[09/Mar/2007:16:38:05 +0000] DD8@WH8AAAEAAH6EhgkAAAAA 127.0.0.1 2732 127.0.0.1 16005
+--b221e356-B--
+GET /redirect.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--b221e356-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 217
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--b221e356-H--
+Message: Access denied with code 501 (phase 2). Operator EQ match: 0. [id "3"] [msg "Cookie c_session is mandatory, but it is not present in request."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1173458285182552 25745 (1011 24779 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b221e356-Z--
+
+--b221e356-A--
+[09/Mar/2007:16:38:05 +0000] DD-5x38AAAEAAH6FAEYAAAAB 127.0.0.1 2733 127.0.0.1 16005
+--b221e356-B--
+GET /redirect.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_session=12345678
+
+--b221e356-F--
+HTTP/1.1 302 Found
+X-Powered-By: PHP/5.2.0-8
+Location: /index.php?
+Content-Length: 0
+Content-Type: text/html
+
+--b221e356-E--
+
+--b221e356-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1173458285230535 8156 (1135 4792 7372)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b221e356-Z--
+
+--b221e356-A--
+[09/Mar/2007:16:38:05 +0000] DEBtg38AAAEAAH6GAQ8AAAAC 127.0.0.1 2734 127.0.0.1 16005
+--b221e356-B--
+GET /redirect.php?q_unknown=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_session=12345678
+
+--b221e356-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 217
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--b221e356-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(q_single_integer)$" against "ARGS_NAMES:q_unknown" required. [id "3"] [msg "Strict Argumentcheck: At least one request parameter is not predefined for this path."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1173458285260163 143438 (1102 4792 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b221e356-Z--
+
+--b221e356-A--
+[09/Mar/2007:16:38:05 +0000] DEHzun8AAAEAAH6HAdcAAAAD 127.0.0.1 2735 127.0.0.1 16005
+--b221e356-B--
+GET /redirect.php?q_single_integer=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_session=12345678
+
+--b221e356-F--
+HTTP/1.1 302 Found
+X-Powered-By: PHP/5.2.0-8
+Location: /index.php?q_single_integer=1
+Content-Length: 0
+Content-Type: text/html
+
+--b221e356-E--
+
+--b221e356-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1173458285360058 43992 (1106 5080 7602)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b221e356-Z--
+

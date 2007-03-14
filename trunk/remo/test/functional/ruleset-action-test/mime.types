@@ -1,0 +1,3 @@
+AddType text/plain asc txt
+AddType text/html html htm
+AddType application/x-httpd-php .php
