@@ -8,13 +8,13 @@ require "net/http"
 require "find"
 
 def main ()
-  display, filenames, ids, reinject, stdin, summary, verbose = get_options 
-    # filename is already checked for existence/readability in get_options
+  display, filenames, ids, quiet, reinject, stdin, summary, verbose = get_options 
+    # filename is checked for existence/readability in get_options
 
   requests = parse_logfiles(filenames, stdin)
 
   display_requests(requests, ids, verbose) if display
-  successes, failures = reinject_requests(requests, ids, verbose) if reinject
+  successes, failures = reinject_requests(requests, ids, verbose, quiet) if reinject
   display_summary(requests, verbose, successes, failures) if summary
 
   unless failures.nil?
@@ -40,6 +40,7 @@ def print_usage
    puts "               of the request."
    puts "-l --list      display requests"
    puts "-r --reinject  reinject requests"
+   puts "-q --quiet     be quiet"
    puts "-s --summary   bring a summary report at the end"
    puts "-v --verbose   be verbose"
    puts
@@ -241,7 +242,7 @@ def display_summary(requests, verbose, successes=nil, failures=nil)
   end
 end
 
-def reinject_single_request(r, verbose=false)
+def reinject_single_request(r, verbose=false, quiet=false)
   response = nil
   success = false
 
@@ -331,7 +332,7 @@ def reinject_single_request(r, verbose=false)
       string += "FAILURE. Not able to qualify response."
     end
 
-    puts string
+    puts string unless quiet
 
   end
 
@@ -339,12 +340,12 @@ def reinject_single_request(r, verbose=false)
 
 end
 
-def reinject_requests(requests, ids=nil, verbose=false)
+def reinject_requests(requests, ids=nil, verbose=false, quiet=false)
   successes = 0
   failures = 0
   if ids.nil?
     requests.each do |r|
-      success = reinject_single_request(r, verbose)
+      success = reinject_single_request(r, verbose, quiet)
       if success 
         successes += 1
       else
@@ -356,7 +357,7 @@ def reinject_requests(requests, ids=nil, verbose=false)
       unless /\w/.match(id).nil?
         # numerical id
         unless id.to_i > requests.size - 1
-          success = reinject_single_request(requests[id.to_i])
+          success = reinject_single_request(requests[id.to_i], verbose, quiet)
           if success 
             successes += 1
           else
@@ -370,7 +371,7 @@ def reinject_requests(requests, ids=nil, verbose=false)
         # alphanumerical
         intid = get_integer_id_from_alphanumerical_id(requests, id) # translate the alphanumerical id into a integer id
         unless intid.nil?
-          success = reinject_single_request(requests[intid])
+          success = reinject_single_request(requests[intid], verbose, quiet)
           if success 
             successes += 1
           else
@@ -444,6 +445,7 @@ def get_options
                      ["-l", "--list", GetoptLong::NO_ARGUMENT],
                      ["-i", "--ids", GetoptLong::REQUIRED_ARGUMENT],
                      ["-r", "--reinject", GetoptLong::NO_ARGUMENT],
+                     ["-q", "--quiet", GetoptLong::NO_ARGUMENT],
                      ["-s", "--summary", GetoptLong::NO_ARGUMENT],
                      ["-v", "--verbose", GetoptLong::NO_ARGUMENT])
 
@@ -456,6 +458,7 @@ def read_options(parser)
   ids = nil
   reinject = false
   stdin = false
+  quiet = false
   summary = false
   verbose = false
 
@@ -478,6 +481,8 @@ def read_options(parser)
         display = true
       when "-r"
         reinject = arg
+      when "-q"
+        quiet = true
       when "-s"
         summary = true
       when "-v"
@@ -539,7 +544,7 @@ def read_options(parser)
   end
   exit 1 unless validate_ids(ids)
 
-  return display, filenames, ids, reinject, stdin, summary, verbose
+  return display, filenames, ids, quiet, reinject, stdin, summary, verbose
 end
 
 
@@ -627,5 +632,9 @@ def http_post(host, path, querystring={}, headers = {}, data = {})
 
 end
 
-main
+
+if __FILE__ == $0
+  main
+end
+
 

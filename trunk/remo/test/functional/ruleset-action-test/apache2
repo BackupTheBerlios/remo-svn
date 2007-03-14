@@ -18,10 +18,14 @@ pidof_apache() {
 case $1 in
 	start)
 		/usr/sbin/apache2 -f httpd.conf
+		sleep 1
 	;;
 	stop)
-		pidof_apache
-		kill $PID
+		/usr/sbin/apache2 -k stop -f httpd.conf
+		sleep 1
+		if [ -f httpd.pid ]; then
+			rm httpd.pid
+		fi
 	;;
 	restart)
 		pidof_apache

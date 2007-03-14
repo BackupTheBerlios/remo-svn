@@ -3,8 +3,6 @@
 # Overall testsuite for project remo
 #
 
-require "test/unit"
-
 # testcases below are started automatically
 
 require "./test/functional/ruleset-action-test/ruleset-action-test"

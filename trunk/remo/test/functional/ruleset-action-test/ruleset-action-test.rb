@@ -60,6 +60,7 @@ class ModSecurityTest < ActionController::IntegrationTest
 
     Dir.chdir("./test/functional/ruleset-action-test/")
 
+    system("./apache2 stop") if File::exists?("./httpd.pid")
     system("./apache2 start")
 
     Dir.chdir("../../..")
@@ -68,7 +69,13 @@ class ModSecurityTest < ActionController::IntegrationTest
     write_requestrule(4, "test/functional/ruleset-action-test/rulefile-submit.php.conf")
     write_requestrule(5, "test/functional/ruleset-action-test/rulefile-redirect.php.conf")
 
-    assert system("test/functional/ruleset-action-test/audit-log-parser.rb -r test/functional/ruleset-action-test/blueprints/blueprint_*.log >/dev/null"), "Active Apache/ModSecurity rule checking failed."
+    require "test/functional/ruleset-action-test/audit-log-parser"
+
+    requests = parse_logfiles(["test/functional/ruleset-action-test/blueprints/blueprint_redirect.php.log"], nil)
+    successes, failures = reinject_requests(requests, nil, false, true) if requests.size > 0
+
+    assert_equal 0, failures, "Active Apache/ModSecurity rule checking failed."
+    
   end
 
 
