@@ -19,4 +19,6 @@ end
 
 page.replace_html("rules-statusarea", "<div>#{statusmessage}</div>" )
 
+page.call 'adjustdivheight'
+
 page.sortable 'rules-mainarea-sortlist', :url => {:action => "rearrange_requests"}
