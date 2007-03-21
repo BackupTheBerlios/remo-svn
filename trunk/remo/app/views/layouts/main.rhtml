@@ -42,11 +42,39 @@ function toggleRequestCookieparameters(id)
   Element.toggle('request-item_' + id + '_cookieparameters-expanded');
   return false;
 }
+function getwindowheight() 
+{
+  // taken from http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
+  var myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myHeight = window.innerHeight;
+  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myHeight = document.body.clientHeight;
+  }
+  return myHeight;
+}
+function elementheight(id) 
+{   
+  return document.getElementById(id).style.height
+}
+function adjustframes() 
+{   
+  var winheight, divheight;
+  winheight = getwindowheight();
+  divheight = winheight - 170 - elementheight('flash-frame') - elementheight('rules-statusarea') - elementheight('rules-toolsetarea');
+  document.getElementById('rules-mainarea').style.height = divheight + "px";
+  document.getElementById('source-mainarea').style.height = divheight + "px";
+}
 
 </script>
 </head>
 
-<body id="remo">
+<body id="remo" onload="javascript:adjustframes()">
   <div id="banner" class="header">
     <div id="title"><h1><a href="http://remo.netnea.com">remo</a> - rule editor for <a href="http://www.modsecurity.org">modsecurity</a></h1><span class="remo-version">Release <%= get_release_version -%></span></div>
     <div id="logodiv" align="right"><a href="http://remo.netnea.com"><img id="logo" src="/images/logo.png"/></a></div>
