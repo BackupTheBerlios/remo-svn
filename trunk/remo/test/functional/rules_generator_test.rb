@@ -76,16 +76,17 @@ def check_single_requestparameter(rules_array, id, i, type, rulename, name, doma
   lines += 1
   end
 
-  if name.index("\\d").nil?
-    npre = nil
-    npost = nil
-  else
-    npre = "/"
-    npost = "/"
-  end  
   commentname=get_commentname(name)
+  doubleescapedname=get_doubleescapedname(name)
+  paramname = ""  
+  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
+    paramname = name
+  else
+    paramname = "'/^#{doubleescapedname}$/'"
+  end
+
   assert_rule_line_string rules_array, i + lines,
-    "  SecRule #{rulename}:#{npre}#{name}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check.'\"",
+    "  SecRule #{rulename}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check.'\"",
     "Request argument domain check for #{type} #{name} is not correct" 
   lines += 1
   
