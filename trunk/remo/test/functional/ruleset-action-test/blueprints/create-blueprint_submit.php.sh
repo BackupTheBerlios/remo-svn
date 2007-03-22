@@ -94,3 +94,13 @@ curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_string_extremely_long=`r
 curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_numeric_id_1=1" "$POSTURL"
 curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_numeric_id_1=a" "$POSTURL"
 curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_numeric_id_11=3" "$POSTURL"
+
+# variable post parameter names
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_a=1" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_a=x" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_a-a=1" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p_a-a=x" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p[a]=1" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p[a]=x" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p[a-a]=1" "$POSTURL"
+curl $CURLOPTIONS -H "Cookie: c_session=12345678" -d "p[a-a]=x" "$POSTURL"

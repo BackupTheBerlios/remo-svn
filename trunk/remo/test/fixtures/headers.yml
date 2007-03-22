@@ -141,6 +141,31 @@ actiontest_get_h5:
   request_id: 3
   name: "Accept"
   domain: ".*"
+actiontest_get_h6:
+  id: 106
+  request_id: 3
+  name: "H_[a-z]{1,4}"
+  domain: "\d"
+actiontest_get_h7:
+  id: 107
+  request_id: 3
+  name: "H_\w{1,4}"
+  domain: "\d"
+actiontest_get_h8:
+  id: 108
+  request_id: 3
+  name: "H_[\w-]{1,4}"
+  domain: "\d"
+actiontest_get_h9:
+  id: 109
+  request_id: 3
+  name: "H\[\w{1,4}\]"
+  domain: "\d"
+actiontest_get_h10:
+  id: 110
+  request_id: 3
+  name: "H\[[\w-]{1,4}\]"
+  domain: "\d"
 
 actiontest_post_h1:
   id: 120

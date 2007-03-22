@@ -71,7 +71,9 @@ class ModSecurityTest < ActionController::IntegrationTest
 
     require "test/functional/ruleset-action-test/audit-log-parser"
 
-    requests = parse_logfiles(["test/functional/ruleset-action-test/blueprints/blueprint_redirect.php.log"], nil)
+    requests = parse_logfiles(["test/functional/ruleset-action-test/blueprints/blueprint_index.php.log", "test/functional/ruleset-action-test/blueprints/blueprint_submit.php.log", "test/functional/ruleset-action-test/blueprints/blueprint_redirect.php.log"], nil)
+
+
     successes, failures = reinject_requests(requests, nil, false, true) if requests.size > 0
 
     assert_equal 0, failures, "Active Apache/ModSecurity rule checking failed."

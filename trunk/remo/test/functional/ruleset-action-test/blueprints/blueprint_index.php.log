@@ -1,18 +1,18 @@
---33661d04-A--
-[09/Mar/2007:14:19:33 +0000] HNjsu38AAAEAAHgwAR0AAAAA 127.0.0.1 4538 127.0.0.1 16005
---33661d04-B--
+--82ae6c4b-A--
+[22/Mar/2007:19:09:57 +0000] r1hLC38AAAEAACTMhkcAAAAA 127.0.0.1 1860 127.0.0.1 16005
+--82ae6c4b-B--
 GET /index.php HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---33661d04-F--
+--82ae6c4b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 295
 Content-Type: text/html
 
---33661d04-E--
+--82ae6c4b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -28,31 +28,31 @@ http_method: GET<br />
 </body
 </html>
 
---33661d04-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--82ae6c4b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449973755067 33276 (1037 29455 32448)
+Stopwatch: 1174590597909259 13634 (684 1254 12872)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---33661d04-Z--
+--82ae6c4b-Z--
 
---33661d04-A--
-[09/Mar/2007:14:19:33 +0000] HNnGmX8AAAEAAHgxAe4AAAAB 127.0.0.1 4539 127.0.0.1 16005
---33661d04-B--
+--82ae6c4b-A--
+[22/Mar/2007:19:09:57 +0000] r1jX138AAAEAACTNAHcAAAAB 127.0.0.1 1861 127.0.0.1 16005
+--82ae6c4b-B--
 GET /index.php?q_single_integer=1 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---33661d04-F--
+--82ae6c4b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 332
 Content-Type: text/html
 
---33661d04-E--
+--82ae6c4b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -68,79 +68,79 @@ q_single_integer=1<br />
 </body
 </html>
 
---33661d04-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--82ae6c4b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449973810841 9171 (1056 5423 8392)
+Stopwatch: 1174590597945303 4595 (721 1338 3916)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---33661d04-Z--
+--82ae6c4b-Z--
 
---33661d04-A--
-[09/Mar/2007:14:19:33 +0000] HNrSYX8AAAEAAHgyArYAAAAC 127.0.0.1 4540 127.0.0.1 16005
---33661d04-B--
+--82ae6c4b-A--
+[22/Mar/2007:19:09:57 +0000] r1mMIn8AAAEAACTOAUAAAAAC 127.0.0.1 1862 127.0.0.1 16005
+--82ae6c4b-B--
 GET /index.php?q_single_integer HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---33661d04-F--
+--82ae6c4b-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---33661d04-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_single_integer" required. [id "1"] [msg "Query string argument q_single_integer failed validity check."] [severity "ERROR"]
+--82ae6c4b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_single_integer" required. [id "3"] [msg "Querystringparameter q_single_integer failed validity check."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449973879393 5045 (1045 4174 -)
+Stopwatch: 1174590597991458 1956 (724 1272 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---33661d04-Z--
+--82ae6c4b-Z--
 
---33661d04-A--
-[09/Mar/2007:14:19:33 +0000] HNs9vH8AAAEAAHgzA3QAAAAD 127.0.0.1 4541 127.0.0.1 16005
---33661d04-B--
+--82ae6c4b-A--
+[22/Mar/2007:19:09:58 +0000] r1o6hH8AAAEAACTPAgsAAAAD 127.0.0.1 1863 127.0.0.1 16005
+--82ae6c4b-B--
 GET /index.php?q_single_integer=10 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---33661d04-F--
+--82ae6c4b-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---33661d04-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_single_integer" required. [id "1"] [msg "Query string argument q_single_integer failed validity check."] [severity "ERROR"]
+--82ae6c4b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_single_integer" required. [id "3"] [msg "Querystringparameter q_single_integer failed validity check."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449973906876 38583 (34589 37718 -)
+Stopwatch: 1174590598036100 1975 (727 1283 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---33661d04-Z--
+--82ae6c4b-Z--
 
---33661d04-A--
-[09/Mar/2007:14:19:34 +0000] HNwrwH8AAAEAAHg0BDMAAAAE 127.0.0.1 4542 127.0.0.1 16005
---33661d04-B--
+--82ae6c4b-A--
+[22/Mar/2007:19:09:58 +0000] r1qy-n8AAAEAACTQAvsAAAAE 127.0.0.1 1864 127.0.0.1 16005
+--82ae6c4b-B--
 GET /index.php?q_single_integer_or_empty HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---33661d04-F--
+--82ae6c4b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 346
 Content-Type: text/html
 
---33661d04-E--
+--82ae6c4b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -156,31 +156,31 @@ q_single_integer_or_empty<br />
 </body
 </html>
 
---33661d04-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--82ae6c4b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449973967808 44822 (1054 41004 44023)
+Stopwatch: 1174590598066942 4979 (721 1315 4240)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---33661d04-Z--
+--82ae6c4b-Z--
 
---64c4063e-A--
-[09/Mar/2007:14:19:34 +0000] HN2QO38AAAEAAHgxAe8AAAAB 127.0.0.1 4543 127.0.0.1 16005
---64c4063e-B--
+--0beff07a-A--
+[22/Mar/2007:19:09:58 +0000] r1tM8H8AAAEAACTMhkgAAAAA 127.0.0.1 1865 127.0.0.1 16005
+--0beff07a-B--
 GET /index.php?q_single_integer_or_empty=1 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---64c4063e-F--
+--0beff07a-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 350
 Content-Type: text/html
 
---64c4063e-E--
+--0beff07a-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -196,55 +196,55 @@ q_single_integer_or_empty=1<br />
 </body
 </html>
 
---64c4063e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--0beff07a-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974059067 6442 (550 4534 5968)
+Stopwatch: 1174590598106352 2825 (324 734 1898)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---64c4063e-Z--
+--0beff07a-Z--
 
---64c4063e-A--
-[09/Mar/2007:14:19:34 +0000] HN4A-38AAAEAAHgwAR4AAAAA 127.0.0.1 4544 127.0.0.1 16005
---64c4063e-B--
+--0beff07a-A--
+[22/Mar/2007:19:09:58 +0000] r1ya9H8AAAEAACTNAHgAAAAB 127.0.0.1 1866 127.0.0.1 16005
+--0beff07a-B--
 GET /index.php?q_single_integer_or_empty=10 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---64c4063e-F--
+--0beff07a-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---64c4063e-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d{0,1})$" against "ARGS:q_single_integer_or_empty" required. [id "1"] [msg "Query string argument q_single_integer_or_empty failed validity check."] [severity "ERROR"]
+--0beff07a-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d{0,1})$" against "ARGS:q_single_integer_or_empty" required. [id "3"] [msg "Querystringparameter q_single_integer_or_empty failed validity check."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974087935 40104 (549 39573 -)
+Stopwatch: 1174590598191860 1009 (283 624 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---64c4063e-Z--
+--0beff07a-Z--
 
---64c4063e-A--
-[09/Mar/2007:14:19:34 +0000] HN7zXH8AAAEAAHgyArcAAAAC 127.0.0.1 4545 127.0.0.1 16005
---64c4063e-B--
+--0beff07a-A--
+[22/Mar/2007:19:09:58 +0000] r11XsH8AAAEAACTOAUEAAAAC 127.0.0.1 1867 127.0.0.1 16005
+--0beff07a-B--
 GET /index.php?q_exotic=%00 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---64c4063e-F--
+--0beff07a-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---64c4063e-E--
+--0beff07a-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -260,31 +260,31 @@ q_exotic=%00<br />
 </body
 </html>
 
---64c4063e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--0beff07a-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974149980 50927 (576 45280 50381)
+Stopwatch: 1174590598240176 3611 (294 722 3160)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---64c4063e-Z--
+--0beff07a-Z--
 
---64c4063e-A--
-[09/Mar/2007:14:19:34 +0000] HOBWs38AAAEAAHgzA3UAAAAD 127.0.0.1 4546 127.0.0.1 16005
---64c4063e-B--
+--0beff07a-A--
+[22/Mar/2007:19:09:58 +0000] r127hn8AAAEAACTPAgwAAAAD 127.0.0.1 1868 127.0.0.1 16005
+--0beff07a-B--
 GET /index.php?q_exotic=%01 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---64c4063e-F--
+--0beff07a-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---64c4063e-E--
+--0beff07a-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -300,31 +300,31 @@ q_exotic=%01<br />
 </body
 </html>
 
---64c4063e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--0beff07a-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974240947 22683 (574 4599 7440)
+Stopwatch: 1174590598265734 3703 (296 715 3209)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---64c4063e-Z--
+--0beff07a-Z--
 
---64c4063e-A--
-[09/Mar/2007:14:19:34 +0000] HOEGpn8AAAEAAHg0BDQAAAAE 127.0.0.1 4547 127.0.0.1 16005
---64c4063e-B--
+--0beff07a-A--
+[22/Mar/2007:19:09:58 +0000] r17IFX8AAAEAACTQAvwAAAAE 127.0.0.1 1869 127.0.0.1 16005
+--0beff07a-B--
 GET /index.php?q_exotic=%02 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---64c4063e-F--
+--0beff07a-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---64c4063e-E--
+--0beff07a-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -340,31 +340,31 @@ q_exotic=%02<br />
 </body
 </html>
 
---64c4063e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--0beff07a-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974285990 6458 (551 4599 5973)
+Stopwatch: 1174590598334485 2184 (284 680 1825)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---64c4063e-Z--
+--0beff07a-Z--
 
---fa68770a-A--
-[09/Mar/2007:14:19:34 +0000] HOIR438AAAEAAHgxAfAAAAAB 127.0.0.1 4548 127.0.0.1 16005
---fa68770a-B--
+--c4f29222-A--
+[22/Mar/2007:19:09:58 +0000] r197-n8AAAEAACTMhkkAAAAA 127.0.0.1 1870 127.0.0.1 16005
+--c4f29222-B--
 GET /index.php?q_exotic=%03 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---fa68770a-F--
+--c4f29222-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---fa68770a-E--
+--c4f29222-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -380,31 +380,31 @@ q_exotic=%03<br />
 </body
 </html>
 
---fa68770a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--c4f29222-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974354403 6460 (509 4602 5983)
+Stopwatch: 1174590598380542 2182 (282 681 1823)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---fa68770a-Z--
+--c4f29222-Z--
 
---fa68770a-A--
-[09/Mar/2007:14:19:34 +0000] HOLkIX8AAAEAAHgwAR8AAAAA 127.0.0.1 4549 127.0.0.1 16005
---fa68770a-B--
+--c4f29222-A--
+[22/Mar/2007:19:09:58 +0000] r2BNvH8AAAEAACTNAHkAAAAB 127.0.0.1 1871 127.0.0.1 16005
+--c4f29222-B--
 GET /index.php?q_exotic=%04 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---fa68770a-F--
+--c4f29222-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---fa68770a-E--
+--c4f29222-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -420,31 +420,31 @@ q_exotic=%04<br />
 </body
 </html>
 
---fa68770a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--c4f29222-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974408225 6429 (523 4558 5953)
+Stopwatch: 1174590598434236 2207 (286 687 1838)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---fa68770a-Z--
+--c4f29222-Z--
 
---fa68770a-A--
-[09/Mar/2007:14:19:34 +0000] HOPvDX8AAAEAAHgyArgAAAAC 127.0.0.1 4550 127.0.0.1 16005
---fa68770a-B--
+--c4f29222-A--
+[22/Mar/2007:19:09:58 +0000] r2ES0H8AAAEAACTOAUIAAAAC 127.0.0.1 1872 127.0.0.1 16005
+--c4f29222-B--
 GET /index.php?q_exotic=%05 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---fa68770a-F--
+--c4f29222-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---fa68770a-E--
+--c4f29222-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -460,31 +460,31 @@ q_exotic=%05<br />
 </body
 </html>
 
---fa68770a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--c4f29222-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974476557 6509 (558 4630 6000)
+Stopwatch: 1174590598484688 2220 (283 681 1818)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---fa68770a-Z--
+--c4f29222-Z--
 
---fa68770a-A--
-[09/Mar/2007:14:19:34 +0000] HOS5cH8AAAEAAHgzA3YAAAAD 127.0.0.1 4551 127.0.0.1 16005
---fa68770a-B--
+--c4f29222-A--
+[22/Mar/2007:19:09:58 +0000] r2HYq38AAAEAACTPAg0AAAAD 127.0.0.1 1873 127.0.0.1 16005
+--c4f29222-B--
 GET /index.php?q_exotic=%06 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---fa68770a-F--
+--c4f29222-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---fa68770a-E--
+--c4f29222-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -500,31 +500,31 @@ q_exotic=%06<br />
 </body
 </html>
 
---fa68770a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--c4f29222-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974528368 6434 (519 4600 5970)
+Stopwatch: 1174590598535339 4071 (286 687 3603)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---fa68770a-Z--
+--c4f29222-Z--
 
---fa68770a-A--
-[09/Mar/2007:14:19:34 +0000] HOW6338AAAEAAHg0BDUAAAAE 127.0.0.1 4552 127.0.0.1 16005
---fa68770a-B--
+--c4f29222-A--
+[22/Mar/2007:19:09:58 +0000] r2MjvX8AAAEAACTQAv0AAAAE 127.0.0.1 1874 127.0.0.1 16005
+--c4f29222-B--
 GET /index.php?q_exotic=%07 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---fa68770a-F--
+--c4f29222-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---fa68770a-E--
+--c4f29222-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -540,31 +540,31 @@ q_exotic=%07<br />
 </body
 </html>
 
---fa68770a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--c4f29222-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974594271 6477 (520 4622 6011)
+Stopwatch: 1174590598620093 2184 (285 686 1818)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---fa68770a-Z--
+--c4f29222-Z--
 
---1bb22765-A--
-[09/Mar/2007:14:19:34 +0000] HOa1L38AAAEAAHgxAfEAAAAB 127.0.0.1 4553 127.0.0.1 16005
---1bb22765-B--
+--58a19912-A--
+[22/Mar/2007:19:09:58 +0000] r2PoRX8AAAEAACTMhkoAAAAA 127.0.0.1 1875 127.0.0.1 16005
+--58a19912-B--
 GET /index.php?q_exotic=%08 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1bb22765-F--
+--58a19912-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---1bb22765-E--
+--58a19912-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -580,31 +580,31 @@ q_exotic=%08<br />
 </body
 </html>
 
---1bb22765-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--58a19912-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974658351 6421 (534 4583 5959)
+Stopwatch: 1174590598670405 2186 (288 689 1828)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1bb22765-Z--
+--58a19912-Z--
 
---1bb22765-A--
-[09/Mar/2007:14:19:34 +0000] HOeEhn8AAAEAAHgwASAAAAAA 127.0.0.1 4554 127.0.0.1 16005
---1bb22765-B--
+--58a19912-A--
+[22/Mar/2007:19:09:58 +0000] r2SddH8AAAEAACTNAHoAAAAB 127.0.0.1 1876 127.0.0.1 16005
+--58a19912-B--
 GET /index.php?q_exotic=%09 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1bb22765-F--
+--58a19912-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---1bb22765-E--
+--58a19912-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -620,31 +620,31 @@ q_exotic=%09<br />
 </body
 </html>
 
---1bb22765-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--58a19912-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974711430 6395 (507 4486 5929)
+Stopwatch: 1174590598716788 2222 (283 681 1819)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1bb22765-Z--
+--58a19912-Z--
 
---1bb22765-A--
-[09/Mar/2007:14:19:34 +0000] HOiCJn8AAAEAAHgyArkAAAAC 127.0.0.1 4555 127.0.0.1 16005
---1bb22765-B--
+--58a19912-A--
+[22/Mar/2007:19:09:58 +0000] r2T8xn8AAAEAACTOAUMAAAAC 127.0.0.1 1877 127.0.0.1 16005
+--58a19912-B--
 GET /index.php?q_exotic=%0A HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1bb22765-F--
+--58a19912-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---1bb22765-E--
+--58a19912-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -660,31 +660,31 @@ q_exotic=%0A<br />
 </body
 </html>
 
---1bb22765-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--58a19912-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974776358 6498 (584 4627 6031)
+Stopwatch: 1174590598741190 2171 (280 679 1813)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1bb22765-Z--
+--58a19912-Z--
 
---1bb22765-A--
-[09/Mar/2007:14:19:34 +0000] HOlKgX8AAAEAAHgzA3cAAAAD 127.0.0.1 4556 127.0.0.1 16005
---1bb22765-B--
+--58a19912-A--
+[22/Mar/2007:19:09:58 +0000] r2VbTn8AAAEAACTPAg4AAAAD 127.0.0.1 1878 127.0.0.1 16005
+--58a19912-B--
 GET /index.php?q_exotic=%0B HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1bb22765-F--
+--58a19912-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---1bb22765-E--
+--58a19912-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -700,31 +700,31 @@ q_exotic=%0B<br />
 </body
 </html>
 
---1bb22765-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--58a19912-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974827649 6426 (512 4558 5961)
+Stopwatch: 1174590598765390 2181 (283 681 1820)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1bb22765-Z--
+--58a19912-Z--
 
---1bb22765-A--
-[09/Mar/2007:14:19:34 +0000] HOpFNn8AAAEAAHg0BDYAAAAE 127.0.0.1 4557 127.0.0.1 16005
---1bb22765-B--
+--58a19912-A--
+[22/Mar/2007:19:09:58 +0000] r2bAYX8AAAEAACTQAv4AAAAE 127.0.0.1 1879 127.0.0.1 16005
+--58a19912-B--
 GET /index.php?q_exotic=%0C HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1bb22765-F--
+--58a19912-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---1bb22765-E--
+--58a19912-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -740,31 +740,31 @@ q_exotic=%0C<br />
 </body
 </html>
 
---1bb22765-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--58a19912-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974891830 6454 (508 4528 5986)
+Stopwatch: 1174590598856801 2179 (284 683 1820)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1bb22765-Z--
+--58a19912-Z--
 
---d8aba04c-A--
-[09/Mar/2007:14:19:34 +0000] HOsSs38AAAEAAHgxAfIAAAAB 127.0.0.1 4558 127.0.0.1 16005
---d8aba04c-B--
+--5c094a35-A--
+[22/Mar/2007:19:09:58 +0000] r2eSMn8AAAEAACTMhksAAAAA 127.0.0.1 1880 127.0.0.1 16005
+--5c094a35-B--
 GET /index.php?q_exotic=%0D HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---d8aba04c-F--
+--5c094a35-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---d8aba04c-E--
+--5c094a35-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -780,31 +780,31 @@ q_exotic=%0D<br />
 </body
 </html>
 
---d8aba04c-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--5c094a35-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449974944435 6529 (524 4652 6061)
+Stopwatch: 1174590598910514 2180 (284 681 1823)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---d8aba04c-Z--
+--5c094a35-Z--
 
---d8aba04c-A--
-[09/Mar/2007:14:19:35 +0000] HOwW2H8AAAEAAHgwASEAAAAA 127.0.0.1 4559 127.0.0.1 16005
---d8aba04c-B--
+--5c094a35-A--
+[22/Mar/2007:19:09:58 +0000] r2hXiX8AAAEAACTNAHsAAAAB 127.0.0.1 1881 127.0.0.1 16005
+--5c094a35-B--
 GET /index.php?q_exotic=%0E HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---d8aba04c-F--
+--5c094a35-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---d8aba04c-E--
+--5c094a35-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -820,31 +820,31 @@ q_exotic=%0E<br />
 </body
 </html>
 
---d8aba04c-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--5c094a35-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975011032 6601 (538 4611 6103)
+Stopwatch: 1174590598961033 2175 (283 680 1816)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---d8aba04c-Z--
+--5c094a35-Z--
 
---d8aba04c-A--
-[09/Mar/2007:14:19:35 +0000] HOzt8H8AAAEAAHgyAroAAAAC 127.0.0.1 4560 127.0.0.1 16005
---d8aba04c-B--
+--5c094a35-A--
+[22/Mar/2007:19:09:59 +0000] r2kjxX8AAAEAACTOAUQAAAAC 127.0.0.1 1882 127.0.0.1 16005
+--5c094a35-B--
 GET /index.php?q_exotic=%0F HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---d8aba04c-F--
+--5c094a35-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---d8aba04c-E--
+--5c094a35-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -860,31 +860,31 @@ q_exotic=%0F<br />
 </body
 </html>
 
---d8aba04c-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--5c094a35-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975066096 6542 (514 4653 6062)
+Stopwatch: 1174590599013317 2212 (285 685 1857)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---d8aba04c-Z--
+--5c094a35-Z--
 
---d8aba04c-A--
-[09/Mar/2007:14:19:35 +0000] HO3n-n8AAAEAAHgzA3gAAAAD 127.0.0.1 4561 127.0.0.1 16005
---d8aba04c-B--
+--5c094a35-A--
+[22/Mar/2007:19:09:59 +0000] r2mEIn8AAAEAACTPAg8AAAAD 127.0.0.1 1883 127.0.0.1 16005
+--5c094a35-B--
 GET /index.php?q_exotic=%10 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---d8aba04c-F--
+--5c094a35-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---d8aba04c-E--
+--5c094a35-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -900,31 +900,31 @@ q_exotic=%10<br />
 </body
 </html>
 
---d8aba04c-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--5c094a35-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975130110 6385 (510 4513 5881)
+Stopwatch: 1174590599037986 2272 (283 684 1894)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---d8aba04c-Z--
+--5c094a35-Z--
 
---d8aba04c-A--
-[09/Mar/2007:14:19:35 +0000] HO7eJH8AAAEAAHg0BDcAAAAE 127.0.0.1 4562 127.0.0.1 16005
---d8aba04c-B--
+--5c094a35-A--
+[22/Mar/2007:19:09:59 +0000] r2njp38AAAEAACTQAv8AAAAE 127.0.0.1 1884 127.0.0.1 16005
+--5c094a35-B--
 GET /index.php?q_exotic=%11 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---d8aba04c-F--
+--5c094a35-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---d8aba04c-E--
+--5c094a35-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -940,31 +940,31 @@ q_exotic=%11<br />
 </body
 </html>
 
---d8aba04c-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--5c094a35-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975193124 8627 (525 6676 8108)
+Stopwatch: 1174590599062439 2190 (282 681 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---d8aba04c-Z--
+--5c094a35-Z--
 
---e650325d-A--
-[09/Mar/2007:14:19:35 +0000] HO-SJ38AAAEAAHgxAfMAAAAB 127.0.0.1 4563 127.0.0.1 16005
---e650325d-B--
+--ab169e33-A--
+[22/Mar/2007:19:09:59 +0000] r2r99X8AAAEAACTMhkwAAAAA 127.0.0.1 1885 127.0.0.1 16005
+--ab169e33-B--
 GET /index.php?q_exotic=%12 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e650325d-F--
+--ab169e33-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e650325d-E--
+--ab169e33-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -980,31 +980,31 @@ q_exotic=%12<br />
 </body
 </html>
 
---e650325d-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ab169e33-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975255591 6441 (512 4563 5930)
+Stopwatch: 1174590599134709 2617 (281 686 1817)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e650325d-Z--
+--ab169e33-Z--
 
---e650325d-A--
-[09/Mar/2007:14:19:35 +0000] HPEHRn8AAAEAAHgwASIAAAAA 127.0.0.1 4564 127.0.0.1 16005
---e650325d-B--
+--ab169e33-A--
+[22/Mar/2007:19:09:59 +0000] r2u25H8AAAEAACTNAHwAAAAB 127.0.0.1 1886 127.0.0.1 16005
+--ab169e33-B--
 GET /index.php?q_exotic=%13 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e650325d-F--
+--ab169e33-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e650325d-E--
+--ab169e33-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1020,31 +1020,31 @@ q_exotic=%13<br />
 </body
 </html>
 
---e650325d-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ab169e33-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975334726 6444 (508 4570 5942)
+Stopwatch: 1174590599182052 2189 (283 687 1819)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e650325d-Z--
+--ab169e33-Z--
 
---e650325d-A--
-[09/Mar/2007:14:19:35 +0000] HPHfhH8AAAEAAHgyArsAAAAC 127.0.0.1 4565 127.0.0.1 16005
---e650325d-B--
+--ab169e33-A--
+[22/Mar/2007:19:09:59 +0000] r2x8638AAAEAACTOAUUAAAAC 127.0.0.1 1887 127.0.0.1 16005
+--ab169e33-B--
 GET /index.php?q_exotic=%14 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e650325d-F--
+--ab169e33-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e650325d-E--
+--ab169e33-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1060,31 +1060,31 @@ q_exotic=%14<br />
 </body
 </html>
 
---e650325d-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ab169e33-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975390084 6418 (514 4538 5909)
+Stopwatch: 1174590599232747 2228 (284 688 1830)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e650325d-Z--
+--ab169e33-Z--
 
---e650325d-A--
-[09/Mar/2007:14:19:35 +0000] HPK1iH8AAAEAAHgzA3kAAAAD 127.0.0.1 4566 127.0.0.1 16005
---e650325d-B--
+--ab169e33-A--
+[22/Mar/2007:19:09:59 +0000] r20rMX8AAAEAACTPAhAAAAAD 127.0.0.1 1888 127.0.0.1 16005
+--ab169e33-B--
 GET /index.php?q_exotic=%15 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e650325d-F--
+--ab169e33-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e650325d-E--
+--ab169e33-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1100,31 +1100,31 @@ q_exotic=%15<br />
 </body
 </html>
 
---e650325d-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ab169e33-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975444872 6474 (568 4641 6007)
+Stopwatch: 1174590599277361 2203 (291 698 1841)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e650325d-Z--
+--ab169e33-Z--
 
---e650325d-A--
-[09/Mar/2007:14:19:35 +0000] HPOKAX8AAAEAAHg0BDgAAAAE 127.0.0.1 4567 127.0.0.1 16005
---e650325d-B--
+--ab169e33-A--
+[22/Mar/2007:19:09:59 +0000] r23@gn8AAAEAACTQAwAAAAAE 127.0.0.1 1889 127.0.0.1 16005
+--ab169e33-B--
 GET /index.php?q_exotic=%16 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e650325d-F--
+--ab169e33-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e650325d-E--
+--ab169e33-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1140,31 +1140,31 @@ q_exotic=%16<br />
 </body
 </html>
 
---e650325d-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ab169e33-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975499265 6362 (576 4540 5897)
+Stopwatch: 1174590599331458 2187 (287 689 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e650325d-Z--
+--ab169e33-Z--
 
---19d80d75-A--
-[09/Mar/2007:14:19:35 +0000] HPRT138AAAEAAHgxAfQAAAAB 127.0.0.1 4568 127.0.0.1 16005
---19d80d75-B--
+--233bb95b-A--
+[22/Mar/2007:19:09:59 +0000] r25dY38AAAEAACTMhk0AAAAA 127.0.0.1 1890 127.0.0.1 16005
+--233bb95b-B--
 GET /index.php?q_exotic=%17 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---19d80d75-F--
+--233bb95b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---19d80d75-E--
+--233bb95b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1180,31 +1180,31 @@ q_exotic=%17<br />
 </body
 </html>
 
---19d80d75-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--233bb95b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975550935 7046 (587 5102 6510)
+Stopwatch: 1174590599355747 2191 (289 693 1830)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---19d80d75-Z--
+--233bb95b-Z--
 
---19d80d75-A--
-[09/Mar/2007:14:19:35 +0000] HPVSin8AAAEAAHgwASMAAAAA 127.0.0.1 4569 127.0.0.1 16005
---19d80d75-B--
+--233bb95b-A--
+[22/Mar/2007:19:09:59 +0000] r29iuH8AAAEAACTNAH0AAAAB 127.0.0.1 1891 127.0.0.1 16005
+--233bb95b-B--
 GET /index.php?q_exotic=%18 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---19d80d75-F--
+--233bb95b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---19d80d75-E--
+--233bb95b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1220,31 +1220,31 @@ q_exotic=%18<br />
 </body
 </html>
 
---19d80d75-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--233bb95b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975616138 6495 (563 4624 5994)
+Stopwatch: 1174590599422648 5855 (286 690 1830)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---19d80d75-Z--
+--233bb95b-Z--
 
---19d80d75-A--
-[09/Mar/2007:14:19:35 +0000] HPZfM38AAAEAAHgyArwAAAAC 127.0.0.1 4570 127.0.0.1 16005
---19d80d75-B--
+--233bb95b-A--
+[22/Mar/2007:19:09:59 +0000] r2-WoX8AAAEAACTOAUYAAAAC 127.0.0.1 1892 127.0.0.1 16005
+--233bb95b-B--
 GET /index.php?q_exotic=%19 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---19d80d75-F--
+--233bb95b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---19d80d75-E--
+--233bb95b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1260,31 +1260,31 @@ q_exotic=%19<br />
 </body
 </html>
 
---19d80d75-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--233bb95b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975684915 6466 (513 4626 5998)
+Stopwatch: 1174590599452321 2190 (287 688 1833)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---19d80d75-Z--
+--233bb95b-Z--
 
---19d80d75-A--
-[09/Mar/2007:14:19:35 +0000] HPcsw38AAAEAAHgzA3oAAAAD 127.0.0.1 4571 127.0.0.1 16005
---19d80d75-B--
+--233bb95b-A--
+[22/Mar/2007:19:09:59 +0000] r3CyAX8AAAEAACTPAhEAAAAD 127.0.0.1 1893 127.0.0.1 16005
+--233bb95b-B--
 GET /index.php?q_exotic=%1A HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---19d80d75-F--
+--233bb95b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---19d80d75-E--
+--233bb95b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1300,31 +1300,31 @@ q_exotic=%1A<br />
 </body
 </html>
 
---19d80d75-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--233bb95b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975737539 6495 (567 4653 6024)
+Stopwatch: 1174590599508481 2274 (287 694 1904)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---19d80d75-Z--
+--233bb95b-Z--
 
---19d80d75-A--
-[09/Mar/2007:14:19:35 +0000] HPf2VX8AAAEAAHg0BDkAAAAE 127.0.0.1 4572 127.0.0.1 16005
---19d80d75-B--
+--233bb95b-A--
+[22/Mar/2007:19:09:59 +0000] r3E@v38AAAEAACTQAwEAAAAE 127.0.0.1 1894 127.0.0.1 16005
+--233bb95b-B--
 GET /index.php?q_exotic=%1B HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---19d80d75-F--
+--233bb95b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---19d80d75-E--
+--233bb95b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1340,31 +1340,31 @@ q_exotic=%1B<br />
 </body
 </html>
 
---19d80d75-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--233bb95b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975789141 6383 (514 4555 5918)
+Stopwatch: 1174590599544511 2653 (716 1126 2282)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---19d80d75-Z--
+--233bb95b-Z--
 
---e7f7d96b-A--
-[09/Mar/2007:14:19:35 +0000] HPjOJH8AAAEAAHgxAfUAAAAB 127.0.0.1 4573 127.0.0.1 16005
---e7f7d96b-B--
+--65d9f06c-A--
+[22/Mar/2007:19:09:59 +0000] r3KcyH8AAAEAACTMhk4AAAAA 127.0.0.1 1895 127.0.0.1 16005
+--65d9f06c-B--
 GET /index.php?q_exotic=%1C HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e7f7d96b-F--
+--65d9f06c-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e7f7d96b-E--
+--65d9f06c-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1380,31 +1380,31 @@ q_exotic=%1C<br />
 </body
 </html>
 
---e7f7d96b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--65d9f06c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975844388 8126 (2109 6220 7616)
+Stopwatch: 1174590599634120 2227 (285 688 1824)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e7f7d96b-Z--
+--65d9f06c-Z--
 
---e7f7d96b-A--
-[09/Mar/2007:14:19:35 +0000] HPn-MX8AAAEAAHgwASQAAAAA 127.0.0.1 4574 127.0.0.1 16005
---e7f7d96b-B--
+--65d9f06c-A--
+[22/Mar/2007:19:09:59 +0000] r3NQ838AAAEAACTNAH4AAAAB 127.0.0.1 1896 127.0.0.1 16005
+--65d9f06c-B--
 GET /index.php?q_exotic=%1D HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e7f7d96b-F--
+--65d9f06c-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e7f7d96b-E--
+--65d9f06c-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1420,31 +1420,31 @@ q_exotic=%1D<br />
 </body
 </html>
 
---e7f7d96b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--65d9f06c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975922481 6438 (514 4522 5961)
+Stopwatch: 1174590599680243 2188 (288 693 1827)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e7f7d96b-Z--
+--65d9f06c-Z--
 
---e7f7d96b-A--
-[09/Mar/2007:14:19:35 +0000] HPrMyn8AAAEAAHgyAr0AAAAC 127.0.0.1 4575 127.0.0.1 16005
---e7f7d96b-B--
+--65d9f06c-A--
+[22/Mar/2007:19:09:59 +0000] r3Ov8n8AAAEAACTOAUcAAAAC 127.0.0.1 1897 127.0.0.1 16005
+--65d9f06c-B--
 GET /index.php?q_exotic=%1E HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e7f7d96b-F--
+--65d9f06c-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e7f7d96b-E--
+--65d9f06c-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1460,31 +1460,31 @@ q_exotic=%1E<br />
 </body
 </html>
 
---e7f7d96b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--65d9f06c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449975975114 6459 (515 4634 5993)
+Stopwatch: 1174590599704562 2173 (285 687 1814)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e7f7d96b-Z--
+--65d9f06c-Z--
 
---e7f7d96b-A--
-[09/Mar/2007:14:19:36 +0000] HPunjn8AAAEAAHgzA3sAAAAD 127.0.0.1 4576 127.0.0.1 16005
---e7f7d96b-B--
+--65d9f06c-A--
+[22/Mar/2007:19:09:59 +0000] r3QOdX8AAAEAACTPAhIAAAAD 127.0.0.1 1898 127.0.0.1 16005
+--65d9f06c-B--
 GET /index.php?q_exotic=%1F HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e7f7d96b-F--
+--65d9f06c-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e7f7d96b-E--
+--65d9f06c-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1500,31 +1500,31 @@ q_exotic=%1F<br />
 </body
 </html>
 
---e7f7d96b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--65d9f06c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976031118 6442 (506 4587 5967)
+Stopwatch: 1174590599728757 29413 (27358 27814 29041)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e7f7d96b-Z--
+--65d9f06c-Z--
 
---e7f7d96b-A--
-[09/Mar/2007:14:19:36 +0000] HPx8VH8AAAEAAHg0BDoAAAAE 127.0.0.1 4577 127.0.0.1 16005
---e7f7d96b-B--
+--65d9f06c-A--
+[22/Mar/2007:19:09:59 +0000] r3VW2H8AAAEAACTQAwIAAAAE 127.0.0.1 1899 127.0.0.1 16005
+--65d9f06c-B--
 GET /index.php?q_exotic=%20 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---e7f7d96b-F--
+--65d9f06c-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---e7f7d96b-E--
+--65d9f06c-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1540,31 +1540,31 @@ q_exotic=%20<br />
 </body
 </html>
 
---e7f7d96b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--65d9f06c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976085588 6762 (516 4842 6248)
+Stopwatch: 1174590599812824 2282 (285 685 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---e7f7d96b-Z--
+--65d9f06c-Z--
 
---dcc9f72b-A--
-[09/Mar/2007:14:19:36 +0000] HP1BQn8AAAEAAHgxAfYAAAAB 127.0.0.1 4578 127.0.0.1 16005
---dcc9f72b-B--
+--4d958341-A--
+[22/Mar/2007:19:09:59 +0000] r3YZGX8AAAEAACTMhk8AAAAA 127.0.0.1 1900 127.0.0.1 16005
+--4d958341-B--
 GET /index.php?q_exotic=%21 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---dcc9f72b-F--
+--4d958341-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---dcc9f72b-E--
+--4d958341-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1580,31 +1580,31 @@ q_exotic=%21<br />
 </body
 </html>
 
---dcc9f72b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--4d958341-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976136002 6511 (516 4644 6041)
+Stopwatch: 1174590599862553 2200 (286 690 1839)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---dcc9f72b-Z--
+--4d958341-Z--
 
---dcc9f72b-A--
-[09/Mar/2007:14:19:36 +0000] HP4ECn8AAAEAAHgwASUAAAAA 127.0.0.1 4579 127.0.0.1 16005
---dcc9f72b-B--
+--4d958341-A--
+[22/Mar/2007:19:09:59 +0000] r3Z3gH8AAAEAACTNAH8AAAAB 127.0.0.1 1901 127.0.0.1 16005
+--4d958341-B--
 GET /index.php?q_exotic=" HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---dcc9f72b-F--
+--4d958341-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---dcc9f72b-E--
+--4d958341-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1620,31 +1620,31 @@ q_exotic="<br />
 </body
 </html>
 
---dcc9f72b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--4d958341-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976185866 6433 (512 4567 5960)
+Stopwatch: 1174590599886720 2173 (284 688 1815)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---dcc9f72b-Z--
+--4d958341-Z--
 
---dcc9f72b-A--
-[09/Mar/2007:14:19:36 +0000] HP7lHH8AAAEAAHgyAr4AAAAC 127.0.0.1 4580 127.0.0.1 16005
---dcc9f72b-B--
+--4d958341-A--
+[22/Mar/2007:19:09:59 +0000] r3cvj38AAAEAACTOAUgAAAAC 127.0.0.1 1902 127.0.0.1 16005
+--4d958341-B--
 GET /index.php?q_exotic=%23 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---dcc9f72b-F--
+--4d958341-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---dcc9f72b-E--
+--4d958341-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1660,31 +1660,31 @@ q_exotic=%23<br />
 </body
 </html>
 
---dcc9f72b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--4d958341-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976243484 6474 (514 4539 6004)
+Stopwatch: 1174590599933839 2193 (294 699 1836)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---dcc9f72b-Z--
+--4d958341-Z--
 
---dcc9f72b-A--
-[09/Mar/2007:14:19:36 +0000] HP@y8H8AAAEAAHgzA3wAAAAD 127.0.0.1 4581 127.0.0.1 16005
---dcc9f72b-B--
+--4d958341-A--
+[22/Mar/2007:19:09:59 +0000] r3gnvH8AAAEAACTPAhMAAAAD 127.0.0.1 1903 127.0.0.1 16005
+--4d958341-B--
 GET /index.php?q_exotic=$ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---dcc9f72b-F--
+--4d958341-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---dcc9f72b-E--
+--4d958341-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1700,31 +1700,31 @@ q_exotic=$<br />
 </body
 </html>
 
---dcc9f72b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--4d958341-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976296176 6484 (514 4614 6016)
+Stopwatch: 1174590599997372 2181 (286 689 1820)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---dcc9f72b-Z--
+--4d958341-Z--
 
---dcc9f72b-A--
-[09/Mar/2007:14:19:36 +0000] HQCLPX8AAAEAAHg0BDsAAAAE 127.0.0.1 4582 127.0.0.1 16005
---dcc9f72b-B--
+--4d958341-A--
+[22/Mar/2007:19:10:00 +0000] r3j@AH8AAAEAACTQAwMAAAAE 127.0.0.1 1904 127.0.0.1 16005
+--4d958341-B--
 GET /index.php?q_exotic=% HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---dcc9f72b-F--
+--4d958341-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---dcc9f72b-E--
+--4d958341-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1740,31 +1740,31 @@ q_exotic=%<br />
 </body
 </html>
 
---dcc9f72b-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--4d958341-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976351549 6412 (512 4541 5945)
+Stopwatch: 1174590600052224 2216 (284 688 1853)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---dcc9f72b-Z--
+--4d958341-Z--
 
---87bb9e25-A--
-[09/Mar/2007:14:19:36 +0000] HQFgPX8AAAEAAHgxAfcAAAAB 127.0.0.1 4583 127.0.0.1 16005
---87bb9e25-B--
+--72f2e062-A--
+[22/Mar/2007:19:10:00 +0000] r3mKCX8AAAEAACTMhlAAAAAA 127.0.0.1 1905 127.0.0.1 16005
+--72f2e062-B--
 GET /index.php?q_exotic=%26 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---87bb9e25-F--
+--72f2e062-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---87bb9e25-E--
+--72f2e062-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1780,31 +1780,31 @@ q_exotic=%26<br />
 </body
 </html>
 
---87bb9e25-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--72f2e062-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976406077 6479 (515 4611 6013)
+Stopwatch: 1174590600088073 3787 (283 2139 3402)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---87bb9e25-Z--
+--72f2e062-Z--
 
---87bb9e25-A--
-[09/Mar/2007:14:19:36 +0000] HQI@EX8AAAEAAHgwASYAAAAA 127.0.0.1 4584 127.0.0.1 16005
---87bb9e25-B--
+--72f2e062-A--
+[22/Mar/2007:19:10:00 +0000] r3nu038AAAEAACTNAIAAAAAB 127.0.0.1 1906 127.0.0.1 16005
+--72f2e062-B--
 GET /index.php?q_exotic=' HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---87bb9e25-F--
+--72f2e062-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---87bb9e25-E--
+--72f2e062-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1820,31 +1820,31 @@ q_exotic='<br />
 </body
 </html>
 
---87bb9e25-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--72f2e062-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976462865 13794 (516 10435 13235)
+Stopwatch: 1174590600113875 2192 (295 700 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---87bb9e25-Z--
+--72f2e062-Z--
 
---87bb9e25-A--
-[09/Mar/2007:14:19:36 +0000] HQOGU38AAAEAAHgyAr8AAAAC 127.0.0.1 4585 127.0.0.1 16005
---87bb9e25-B--
+--72f2e062-A--
+[22/Mar/2007:19:10:00 +0000] r3pOkH8AAAEAACTOAUkAAAAC 127.0.0.1 1907 127.0.0.1 16005
+--72f2e062-B--
 GET /index.php?q_exotic=( HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---87bb9e25-F--
+--72f2e062-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---87bb9e25-E--
+--72f2e062-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1860,31 +1860,31 @@ q_exotic=(<br />
 </body
 </html>
 
---87bb9e25-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--72f2e062-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976546899 6494 (511 4622 5987)
+Stopwatch: 1174590600138384 2185 (286 691 1823)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---87bb9e25-Z--
+--72f2e062-Z--
 
---87bb9e25-A--
-[09/Mar/2007:14:19:36 +0000] HQRazH8AAAEAAHgzA30AAAAD 127.0.0.1 4586 127.0.0.1 16005
---87bb9e25-B--
+--72f2e062-A--
+[22/Mar/2007:19:10:00 +0000] r3scIX8AAAEAACTPAhQAAAAD 127.0.0.1 1908 127.0.0.1 16005
+--72f2e062-B--
 GET /index.php?q_exotic=) HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---87bb9e25-F--
+--72f2e062-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---87bb9e25-E--
+--72f2e062-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1900,31 +1900,31 @@ q_exotic=)<br />
 </body
 </html>
 
---87bb9e25-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--72f2e062-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976601292 6458 (514 4580 5949)
+Stopwatch: 1174590600191009 3590 (286 692 3144)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---87bb9e25-Z--
+--72f2e062-Z--
 
---87bb9e25-A--
-[09/Mar/2007:14:19:36 +0000] HQUlyn8AAAEAAHg0BDwAAAAE 127.0.0.1 4587 127.0.0.1 16005
---87bb9e25-B--
+--72f2e062-A--
+[22/Mar/2007:19:10:00 +0000] r3xm438AAAEAACTQAwQAAAAE 127.0.0.1 1909 127.0.0.1 16005
+--72f2e062-B--
 GET /index.php?q_exotic=* HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---87bb9e25-F--
+--72f2e062-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---87bb9e25-E--
+--72f2e062-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1940,31 +1940,31 @@ q_exotic=*<br />
 </body
 </html>
 
---87bb9e25-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--72f2e062-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976653258 6408 (511 4504 5943)
+Stopwatch: 1174590600275683 2178 (283 687 1820)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---87bb9e25-Z--
+--72f2e062-Z--
 
---59c99708-A--
-[09/Mar/2007:14:19:36 +0000] HQX5aH8AAAEAAHgxAfgAAAAB 127.0.0.1 4588 127.0.0.1 16005
---59c99708-B--
+--2a87c400-A--
+[22/Mar/2007:19:10:00 +0000] r3zFin8AAAEAACTMhlEAAAAA 127.0.0.1 1910 127.0.0.1 16005
+--2a87c400-B--
 GET /index.php?q_exotic=%2B HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---59c99708-F--
+--2a87c400-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---59c99708-E--
+--2a87c400-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -1980,31 +1980,31 @@ q_exotic=%2B<br />
 </body
 </html>
 
---59c99708-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--2a87c400-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976707432 6502 (570 4619 5994)
+Stopwatch: 1174590600299914 2262 (284 685 1900)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---59c99708-Z--
+--2a87c400-Z--
 
---59c99708-A--
-[09/Mar/2007:14:19:36 +0000] HQbJI38AAAEAAHgwAScAAAAA 127.0.0.1 4589 127.0.0.1 16005
---59c99708-B--
+--2a87c400-A--
+[22/Mar/2007:19:10:00 +0000] r32TD38AAAEAACTNAIEAAAAB 127.0.0.1 1911 127.0.0.1 16005
+--2a87c400-B--
 GET /index.php?q_exotic=, HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---59c99708-F--
+--2a87c400-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---59c99708-E--
+--2a87c400-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2020,31 +2020,31 @@ q_exotic=,<br />
 </body
 </html>
 
---59c99708-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--2a87c400-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976760611 6379 (564 4557 5913)
+Stopwatch: 1174590600352527 3664 (1698 2133 3295)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---59c99708-Z--
+--2a87c400-Z--
 
---59c99708-A--
-[09/Mar/2007:14:19:36 +0000] HQeWzH8AAAEAAHgyAsAAAAAC 127.0.0.1 4590 127.0.0.1 16005
---59c99708-B--
+--2a87c400-A--
+[22/Mar/2007:19:10:00 +0000] r36eBn8AAAEAACTOAUoAAAAC 127.0.0.1 1912 127.0.0.1 16005
+--2a87c400-B--
 GET /index.php?q_exotic=- HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---59c99708-F--
+--2a87c400-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---59c99708-E--
+--2a87c400-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2060,31 +2060,31 @@ q_exotic=-<br />
 </body
 </html>
 
---59c99708-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--2a87c400-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976813260 7298 (567 5333 6824)
+Stopwatch: 1174590600420870 2188 (285 687 1824)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---59c99708-Z--
+--2a87c400-Z--
 
---59c99708-A--
-[09/Mar/2007:14:19:36 +0000] HQgK5X8AAAEAAHgzA34AAAAD 127.0.0.1 4591 127.0.0.1 16005
---59c99708-B--
+--2a87c400-A--
+[22/Mar/2007:19:10:00 +0000] r39UB38AAAEAACTPAhUAAAAD 127.0.0.1 1913 127.0.0.1 16005
+--2a87c400-B--
 GET /index.php?q_exotic=. HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---59c99708-F--
+--2a87c400-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---59c99708-E--
+--2a87c400-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2100,31 +2100,31 @@ q_exotic=.<br />
 </body
 </html>
 
---59c99708-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--2a87c400-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976842981 28882 (567 4570 28413)
+Stopwatch: 1174590600467463 2179 (285 687 1814)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---59c99708-Z--
+--2a87c400-Z--
 
---59c99708-A--
-[09/Mar/2007:14:19:36 +0000] HQkQWn8AAAEAAHg0BD0AAAAE 127.0.0.1 4592 127.0.0.1 16005
---59c99708-B--
+--2a87c400-A--
+[22/Mar/2007:19:10:00 +0000] r3@zjH8AAAEAACTQAwUAAAAE 127.0.0.1 1914 127.0.0.1 16005
+--2a87c400-B--
 GET /index.php?q_exotic=/ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---59c99708-F--
+--2a87c400-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---59c99708-E--
+--2a87c400-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2140,31 +2140,31 @@ q_exotic=/<br />
 </body
 </html>
 
---59c99708-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--2a87c400-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976909914 6425 (568 4555 5921)
+Stopwatch: 1174590600491916 2221 (285 687 1819)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---59c99708-Z--
+--2a87c400-Z--
 
---32b14111-A--
-[09/Mar/2007:14:19:36 +0000] HQnen38AAAEAAHgxAfkAAAAB 127.0.0.1 4593 127.0.0.1 16005
---32b14111-B--
+--cf62a901-A--
+[22/Mar/2007:19:10:00 +0000] r4B09n8AAAEAACTMhlIAAAAA 127.0.0.1 1915 127.0.0.1 16005
+--cf62a901-B--
 GET /index.php?q_exotic=: HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---32b14111-F--
+--cf62a901-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---32b14111-E--
+--cf62a901-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2180,31 +2180,31 @@ q_exotic=:<br />
 </body
 </html>
 
---32b14111-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--cf62a901-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449976962719 6462 (514 4570 5940)
+Stopwatch: 1174590600541430 2198 (288 693 1836)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---32b14111-Z--
+--cf62a901-Z--
 
---32b14111-A--
-[09/Mar/2007:14:19:37 +0000] HQrokH8AAAEAAHgwASgAAAAA 127.0.0.1 4594 127.0.0.1 16005
---32b14111-B--
+--cf62a901-A--
+[22/Mar/2007:19:10:00 +0000] r4Foe38AAAEAACTNAIIAAAAB 127.0.0.1 1916 127.0.0.1 16005
+--cf62a901-B--
 GET /index.php?q_exotic=; HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---32b14111-F--
+--cf62a901-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---32b14111-E--
+--cf62a901-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2220,31 +2220,31 @@ q_exotic=;<br />
 </body
 </html>
 
---32b14111-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--cf62a901-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977030800 6373 (503 4525 5900)
+Stopwatch: 1174590600603771 2187 (284 696 1826)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---32b14111-Z--
+--cf62a901-Z--
 
---32b14111-A--
-[09/Mar/2007:14:19:37 +0000] HQu62H8AAAEAAHgyAsEAAAAC 127.0.0.1 4595 127.0.0.1 16005
---32b14111-B--
+--cf62a901-A--
+[22/Mar/2007:19:10:00 +0000] r4HHOH8AAAEAACTOAUsAAAAC 127.0.0.1 1917 127.0.0.1 16005
+--cf62a901-B--
 GET /index.php?q_exotic=< HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---32b14111-F--
+--cf62a901-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---32b14111-E--
+--cf62a901-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2260,31 +2260,31 @@ q_exotic=<<br />
 </body
 </html>
 
---32b14111-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--cf62a901-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977084632 6435 (510 4598 5962)
+Stopwatch: 1174590600628024 2179 (285 687 1823)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---32b14111-Z--
+--cf62a901-Z--
 
---32b14111-A--
-[09/Mar/2007:14:19:37 +0000] HQyJZn8AAAEAAHgzA38AAAAD 127.0.0.1 4596 127.0.0.1 16005
---32b14111-B--
+--cf62a901-A--
+[22/Mar/2007:19:10:00 +0000] r4K@-X8AAAEAACTPAhYAAAAD 127.0.0.1 1918 127.0.0.1 16005
+--cf62a901-B--
 GET /index.php?q_exotic=%3D HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---32b14111-F--
+--cf62a901-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---32b14111-E--
+--cf62a901-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2300,31 +2300,31 @@ q_exotic=%3D<br />
 </body
 </html>
 
---32b14111-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--cf62a901-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977137510 6495 (514 4605 5979)
+Stopwatch: 1174590600691453 2231 (286 688 1825)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---32b14111-Z--
+--cf62a901-Z--
 
---32b14111-A--
-[09/Mar/2007:14:19:37 +0000] HQ1Uc38AAAEAAHg0BD4AAAAE 127.0.0.1 4597 127.0.0.1 16005
---32b14111-B--
+--cf62a901-A--
+[22/Mar/2007:19:10:00 +0000] r4Md-38AAAEAACTQAwYAAAAE 127.0.0.1 1919 127.0.0.1 16005
+--cf62a901-B--
 GET /index.php?q_exotic=> HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---32b14111-F--
+--cf62a901-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---32b14111-E--
+--cf62a901-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2340,31 +2340,31 @@ q_exotic=><br />
 </body
 </html>
 
---32b14111-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--cf62a901-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977189491 6395 (520 4556 5921)
+Stopwatch: 1174590600715775 2172 (284 686 1811)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---32b14111-Z--
+--cf62a901-Z--
 
---1f704545-A--
-[09/Mar/2007:14:19:37 +0000] HQ41UX8AAAEAAHgxAfoAAAAB 127.0.0.1 4598 127.0.0.1 16005
---1f704545-B--
+--ec556924-A--
+[22/Mar/2007:19:10:00 +0000] r4N9-n8AAAEAACTMhlMAAAAA 127.0.0.1 1920 127.0.0.1 16005
+--ec556924-B--
 GET /index.php?q_exotic=? HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1f704545-F--
+--ec556924-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---1f704545-E--
+--ec556924-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2380,31 +2380,31 @@ q_exotic=?<br />
 </body
 </html>
 
---1f704545-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ec556924-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977247057 6486 (511 4645 6015)
+Stopwatch: 1174590600740350 2223 (284 685 1859)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1f704545-Z--
+--ec556924-Z--
 
---1f704545-A--
-[09/Mar/2007:14:19:37 +0000] HQ8FNn8AAAEAAHgwASkAAAAA 127.0.0.1 4599 127.0.0.1 16005
---1f704545-B--
+--ec556924-A--
+[22/Mar/2007:19:10:00 +0000] r4RJ5H8AAAEAACTNAIMAAAAB 127.0.0.1 1921 127.0.0.1 16005
+--ec556924-B--
 GET /index.php?q_exotic=@ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1f704545-F--
+--ec556924-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---1f704545-E--
+--ec556924-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2420,31 +2420,31 @@ q_exotic=@<br />
 </body
 </html>
 
---1f704545-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ec556924-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977300278 6381 (511 4519 5914)
+Stopwatch: 1174590600792548 2525 (585 993 2154)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1f704545-Z--
+--ec556924-Z--
 
---1f704545-A--
-[09/Mar/2007:14:19:37 +0000] HQ-TmX8AAAEAAHgyAsIAAAAC 127.0.0.1 4600 127.0.0.1 16005
---1f704545-B--
+--ec556924-A--
+[22/Mar/2007:19:10:00 +0000] r4VzRH8AAAEAACTOAUwAAAAC 127.0.0.1 1922 127.0.0.1 16005
+--ec556924-B--
 GET /index.php?q_exotic=[ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1f704545-F--
+--ec556924-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---1f704545-E--
+--ec556924-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2460,31 +2460,31 @@ q_exotic=[<br />
 </body
 </html>
 
---1f704545-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ec556924-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977353113 7465 (514 5466 6949)
+Stopwatch: 1174590600868676 2231 (286 691 1826)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1f704545-Z--
+--ec556924-Z--
 
---1f704545-A--
-[09/Mar/2007:14:19:37 +0000] HRBH9n8AAAEAAHgzA4AAAAAD 127.0.0.1 4601 127.0.0.1 16005
---1f704545-B--
+--ec556924-A--
+[22/Mar/2007:19:10:00 +0000] r4Y0bH8AAAEAACTPAhcAAAAD 127.0.0.1 1923 127.0.0.1 16005
+--ec556924-B--
 GET /index.php?q_exotic=\ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1f704545-F--
+--ec556924-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---1f704545-E--
+--ec556924-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2500,31 +2500,31 @@ q_exotic=\<br />
 </body
 </html>
 
---1f704545-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ec556924-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977382902 31053 (514 4549 30534)
+Stopwatch: 1174590600918124 2483 (285 689 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1f704545-Z--
+--ec556924-Z--
 
---1f704545-A--
-[09/Mar/2007:14:19:37 +0000] HRFWOH8AAAEAAHg0BD8AAAAE 127.0.0.1 4602 127.0.0.1 16005
---1f704545-B--
+--ec556924-A--
+[22/Mar/2007:19:10:01 +0000] r4d@8H8AAAEAACTQAwcAAAAE 127.0.0.1 1924 127.0.0.1 16005
+--ec556924-B--
 GET /index.php?q_exotic=] HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---1f704545-F--
+--ec556924-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---1f704545-E--
+--ec556924-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2540,31 +2540,31 @@ q_exotic=]<br />
 </body
 </html>
 
---1f704545-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--ec556924-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977452088 6375 (515 4517 5914)
+Stopwatch: 1174590601002736 2197 (283 687 1835)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---1f704545-Z--
+--ec556924-Z--
 
---0d4e757a-A--
-[09/Mar/2007:14:19:37 +0000] HRHG9n8AAAEAAHgxAfsAAAAB 127.0.0.1 4603 127.0.0.1 16005
---0d4e757a-B--
+--f96ee679-A--
+[22/Mar/2007:19:10:01 +0000] r4feTn8AAAEAACTMhlQAAAAA 127.0.0.1 1925 127.0.0.1 16005
+--f96ee679-B--
 GET /index.php?q_exotic=^ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---0d4e757a-F--
+--f96ee679-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---0d4e757a-E--
+--f96ee679-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2580,31 +2580,31 @@ q_exotic=^<br />
 </body
 </html>
 
---0d4e757a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f96ee679-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977480950 6403 (516 4532 5938)
+Stopwatch: 1174590601027150 2182 (284 670 1829)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---0d4e757a-Z--
+--f96ee679-Z--
 
---0d4e757a-A--
-[09/Mar/2007:14:19:37 +0000] HRLvGH8AAAEAAHgwASoAAAAA 127.0.0.1 4604 127.0.0.1 16005
---0d4e757a-B--
+--f96ee679-A--
+[22/Mar/2007:19:10:01 +0000] r4inFX8AAAEAACTNAIQAAAAB 127.0.0.1 1926 127.0.0.1 16005
+--f96ee679-B--
 GET /index.php?q_exotic=_ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---0d4e757a-F--
+--f96ee679-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---0d4e757a-E--
+--f96ee679-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2620,31 +2620,31 @@ q_exotic=_<br />
 </body
 </html>
 
---0d4e757a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f96ee679-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977556760 6479 (513 4584 5985)
+Stopwatch: 1174590601078549 3582 (283 665 1794)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---0d4e757a-Z--
+--f96ee679-Z--
 
---0d4e757a-A--
-[09/Mar/2007:14:19:37 +0000] HRO8E38AAAEAAHgyAsMAAAAC 127.0.0.1 4605 127.0.0.1 16005
---0d4e757a-B--
+--f96ee679-A--
+[22/Mar/2007:19:10:01 +0000] r4m0tH8AAAEAACTOAU0AAAAC 127.0.0.1 1927 127.0.0.1 16005
+--f96ee679-B--
 GET /index.php?q_exotic=` HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---0d4e757a-F--
+--f96ee679-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---0d4e757a-E--
+--f96ee679-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2660,31 +2660,31 @@ q_exotic=`<br />
 </body
 </html>
 
---0d4e757a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f96ee679-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977609235 6451 (559 4585 5978)
+Stopwatch: 1174590601147572 2164 (284 671 1803)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---0d4e757a-Z--
+--f96ee679-Z--
 
---0d4e757a-A--
-[09/Mar/2007:14:19:37 +0000] HRSXxX8AAAEAAHgzA4EAAAAD 127.0.0.1 4606 127.0.0.1 16005
---0d4e757a-B--
+--f96ee679-A--
+[22/Mar/2007:19:10:01 +0000] r4oUVX8AAAEAACTPAhgAAAAD 127.0.0.1 1928 127.0.0.1 16005
+--f96ee679-B--
 GET /index.php?q_exotic={ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---0d4e757a-F--
+--f96ee679-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---0d4e757a-E--
+--f96ee679-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2700,31 +2700,31 @@ q_exotic={<br />
 </body
 </html>
 
---0d4e757a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f96ee679-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977665477 6490 (513 4624 5989)
+Stopwatch: 1174590601172053 2167 (285 669 1797)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---0d4e757a-Z--
+--f96ee679-Z--
 
---0d4e757a-A--
-[09/Mar/2007:14:19:37 +0000] HRVozX8AAAEAAHg0BEAAAAAE 127.0.0.1 4607 127.0.0.1 16005
---0d4e757a-B--
+--f96ee679-A--
+[22/Mar/2007:19:10:01 +0000] r4rnon8AAAEAACTQAwgAAAAE 127.0.0.1 1929 127.0.0.1 16005
+--f96ee679-B--
 GET /index.php?q_exotic=| HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---0d4e757a-F--
+--f96ee679-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---0d4e757a-E--
+--f96ee679-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2740,31 +2740,31 @@ q_exotic=|<br />
 </body
 </html>
 
---0d4e757a-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f96ee679-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977718989 6471 (528 4592 5964)
+Stopwatch: 1174590601226146 2260 (329 732 1889)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---0d4e757a-Z--
+--f96ee679-Z--
 
---07574179-A--
-[09/Mar/2007:14:19:37 +0000] HRXaWX8AAAEAAHgxAfwAAAAB 127.0.0.1 4608 127.0.0.1 16005
---07574179-B--
+--f647954e-A--
+[22/Mar/2007:19:10:01 +0000] r4ucfn8AAAEAACTMhlUAAAAA 127.0.0.1 1930 127.0.0.1 16005
+--f647954e-B--
 GET /index.php?q_exotic=} HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---07574179-F--
+--f647954e-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---07574179-E--
+--f647954e-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2780,31 +2780,31 @@ q_exotic=}<br />
 </body
 </html>
 
---07574179-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f647954e-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977748057 32867 (511 30878 32348)
+Stopwatch: 1174590601272446 2215 (284 667 1813)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---07574179-Z--
+--f647954e-Z--
 
---07574179-A--
-[09/Mar/2007:14:19:37 +0000] HRax5X8AAAEAAHgwASsAAAAA 127.0.0.1 4609 127.0.0.1 16005
---07574179-B--
+--f647954e-A--
+[22/Mar/2007:19:10:01 +0000] r4xSJn8AAAEAACTNAIUAAAAB 127.0.0.1 1931 127.0.0.1 16005
+--f647954e-B--
 GET /index.php?q_exotic=~ HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---07574179-F--
+--f647954e-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 316
 Content-Type: text/html
 
---07574179-E--
+--f647954e-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2820,31 +2820,31 @@ q_exotic=~<br />
 </body
 </html>
 
---07574179-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f647954e-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977803237 27432 (513 4537 26872)
+Stopwatch: 1174590601318950 2148 (282 665 1794)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---07574179-Z--
+--f647954e-Z--
 
---07574179-A--
-[09/Mar/2007:14:19:37 +0000] HRewG38AAAEAAHgyAsQAAAAC 127.0.0.1 4610 127.0.0.1 16005
---07574179-B--
+--f647954e-A--
+[22/Mar/2007:19:10:01 +0000] r4zbY38AAAEAACTOAU4AAAAC 127.0.0.1 1932 127.0.0.1 16005
+--f647954e-B--
 GET /index.php?q_exotic=%7F HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---07574179-F--
+--f647954e-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 320
 Content-Type: text/html
 
---07574179-E--
+--f647954e-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2860,31 +2860,31 @@ q_exotic=%7F<br />
 </body
 </html>
 
---07574179-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f647954e-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977868315 6499 (518 4655 6032)
+Stopwatch: 1174590601354083 2166 (292 675 1808)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---07574179-Z--
+--f647954e-Z--
 
---07574179-A--
-[09/Mar/2007:14:19:37 +0000] HRiqvX8AAAEAAHgzA4IAAAAD 127.0.0.1 4611 127.0.0.1 16005
---07574179-B--
+--f647954e-A--
+[22/Mar/2007:19:10:01 +0000] r44o6X8AAAEAACTPAhkAAAAD 127.0.0.1 1933 127.0.0.1 16005
+--f647954e-B--
 GET /index.php?q_single_integer=1&q_single_letter=a HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---07574179-F--
+--f647954e-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 374
 Content-Type: text/html
 
---07574179-E--
+--f647954e-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2901,79 +2901,79 @@ q_single_letter=a<br />
 </body
 </html>
 
---07574179-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--f647954e-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977932477 6711 (597 4789 6187)
+Stopwatch: 1174590601439465 2253 (287 690 1855)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---07574179-Z--
+--f647954e-Z--
 
---07574179-A--
-[09/Mar/2007:14:19:37 +0000] HRl17n8AAAEAAHg0BEEAAAAE 127.0.0.1 4612 127.0.0.1 16005
---07574179-B--
+--f647954e-A--
+[22/Mar/2007:19:10:01 +0000] r465TX8AAAEAACTQAwkAAAAE 127.0.0.1 1934 127.0.0.1 16005
+--f647954e-B--
 GET /index.php?q_single_integer=1&q_single_letter HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---07574179-F--
+--f647954e-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---07574179-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(\\w)$" against "ARGS:q_single_letter" required. [id "1"] [msg "Query string argument q_single_letter failed validity check."] [severity "ERROR"]
+--f647954e-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\w)$" against "ARGS:q_single_letter" required. [id "3"] [msg "Querystringparameter q_single_letter failed validity check."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449977984494 4519 (545 4010 -)
+Stopwatch: 1174590601476429 1029 (289 648 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---07574179-Z--
+--f647954e-Z--
 
---aa51ca1e-A--
-[09/Mar/2007:14:19:38 +0000] HRpAu38AAAEAAHgxAf0AAAAB 127.0.0.1 4613 127.0.0.1 16005
---aa51ca1e-B--
+--e041856b-A--
+[22/Mar/2007:19:10:01 +0000] r48RoX8AAAEAACTMhlYAAAAA 127.0.0.1 1935 127.0.0.1 16005
+--e041856b-B--
 GET /index.php?q_single_integer=1&q_empty=1 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---aa51ca1e-F--
+--e041856b-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---aa51ca1e-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(.{0})$" against "ARGS:q_empty" required. [id "1"] [msg "Query string argument q_empty failed validity check."] [severity "ERROR"]
+--e041856b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(.{0})$" against "ARGS:q_empty" required. [id "3"] [msg "Querystringparameter q_empty failed validity check."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978036411 5041 (532 4521 -)
+Stopwatch: 1174590601499041 1020 (288 633 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---aa51ca1e-Z--
+--e041856b-Z--
 
---aa51ca1e-A--
-[09/Mar/2007:14:19:38 +0000] HRtpeX8AAAEAAHgwASwAAAAA 127.0.0.1 4614 127.0.0.1 16005
---aa51ca1e-B--
+--e041856b-A--
+[22/Mar/2007:19:10:01 +0000] r49p638AAAEAACTNAIYAAAAB 127.0.0.1 1936 127.0.0.1 16005
+--e041856b-B--
 GET /index.php?q_single_integer=1&q_single_integer_or_empty HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---aa51ca1e-F--
+--e041856b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 390
 Content-Type: text/html
 
---aa51ca1e-E--
+--e041856b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -2990,31 +2990,31 @@ q_single_integer_or_empty<br />
 </body
 </html>
 
---aa51ca1e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--e041856b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978112377 6701 (540 4780 6216)
+Stopwatch: 1174590601521643 2262 (327 733 1892)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---aa51ca1e-Z--
+--e041856b-Z--
 
---aa51ca1e-A--
-[09/Mar/2007:14:19:38 +0000] HRxQgH8AAAEAAHgyAsUAAAAC 127.0.0.1 4615 127.0.0.1 16005
---aa51ca1e-B--
+--e041856b-A--
+[22/Mar/2007:19:10:01 +0000] r5A8z38AAAEAACTOAU8AAAAC 127.0.0.1 1937 127.0.0.1 16005
+--e041856b-B--
 GET /index.php?q_single_integer_or_empty&q_single_integer=1 HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---aa51ca1e-F--
+--e041856b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 390
 Content-Type: text/html
 
---aa51ca1e-E--
+--e041856b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -3031,31 +3031,31 @@ q_single_integer=1<br />
 </body
 </html>
 
---aa51ca1e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--e041856b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978171520 6673 (542 4798 6196)
+Stopwatch: 1174590601575631 2561 (286 690 2178)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---aa51ca1e-Z--
+--e041856b-Z--
 
---aa51ca1e-A--
-[09/Mar/2007:14:19:38 +0000] HR0dK38AAAEAAHgzA4MAAAAD 127.0.0.1 4616 127.0.0.1 16005
---aa51ca1e-B--
+--e041856b-A--
+[22/Mar/2007:19:10:01 +0000] r5H9gH8AAAEAACTPAhoAAAAD 127.0.0.1 1938 127.0.0.1 16005
+--e041856b-B--
 GET /index.php?q_string_long=test+string+and+more HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---aa51ca1e-F--
+--e041856b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 364
 Content-Type: text/html
 
---aa51ca1e-E--
+--e041856b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -3071,31 +3071,31 @@ q_string_long=test+string+and+more<br />
 </body
 </html>
 
---aa51ca1e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--e041856b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978223915 6822 (520 4553 5966)
+Stopwatch: 1174590601690496 2232 (284 661 1868)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---aa51ca1e-Z--
+--e041856b-Z--
 
---aa51ca1e-A--
-[09/Mar/2007:14:19:38 +0000] HR5@5H8AAAEAAHg0BEIAAAAE 127.0.0.1 4617 127.0.0.1 16005
---aa51ca1e-B--
+--e041856b-A--
+[22/Mar/2007:19:10:01 +0000] r5JctH8AAAEAACTQAwoAAAAE 127.0.0.1 1939 127.0.0.1 16005
+--e041856b-B--
 GET /index.php?q_string_long=test%20string%20and%20more HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 
---aa51ca1e-F--
+--e041856b-F--
 HTTP/1.1 200 OK
 X-Powered-By: PHP/5.2.0-8
 Content-Length: 376
 Content-Type: text/html
 
---aa51ca1e-E--
+--e041856b-E--
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
@@ -3111,63 +3111,851 @@ q_string_long=test%20string%20and%20more<br />
 </body
 </html>
 
---aa51ca1e-H--
-Message: Access allowed (phase 2). Unconditional match in SecAction. [id "1"] [msg "Request passed all checks, it is thus allowed."]
+--e041856b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978314468 6500 (513 4538 6030)
+Stopwatch: 1174590601714868 2163 (287 664 1804)
 Response-Body-Transformed: Dechunked
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---aa51ca1e-Z--
+--e041856b-Z--
 
---5621fd63-A--
-[09/Mar/2007:14:19:38 +0000] HR@GmX8AAAEAAHgxAf4AAAAB 127.0.0.1 4618 127.0.0.1 16005
---5621fd63-B--
+--901c593c-A--
+[22/Mar/2007:19:10:01 +0000] r5Mp4H8AAAEAACTMhlcAAAAA 127.0.0.1 1940 127.0.0.1 16005
+--901c593c-B--
 GET /index.php HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 X-Unknown: xxx
 
---5621fd63-F--
+--901c593c-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---5621fd63-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^(Host|Referer|User-Agent|Accept|Accept-Language|Accept-Encoding|Accept-Charset|Keep-Alive|Connection|Cookie|If-Modified-Since|If-None-Match|Cache-Control|Via|X-Forwarded-For|From|Content-Length|Content-Type)$" against "REQUEST_HEADERS_NAMES:X-Unknown" required. [id "1"] [msg "Strict headercheck: At least one request header is not predefined for this path."] [severity "ERROR"]
+--901c593c-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(Referer|Host|User-Agent|Cookie|Accept|H_[a-z]{1,4}|H_\\w{1,4}|H_[\\w-]{1,4}|H\\[\\w{1,4}\\]|H\\[[\\w-]{1,4}\\])$" against "REQUEST_HEADERS_NAMES:X-Unknown" required. [id "3"] [msg "Strict headercheck: At least one request header is not predefined for this path."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978381977 1767 (478 1385 -)
+Stopwatch: 1174590601767392 785 (271 492 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---5621fd63-Z--
+--901c593c-Z--
 
---5621fd63-A--
-[09/Mar/2007:14:19:38 +0000] HSA3qH8AAAEAAHgwAS0AAAAA 127.0.0.1 4619 127.0.0.1 16005
---5621fd63-B--
+--901c593c-A--
+[22/Mar/2007:19:10:01 +0000] r5OsxH8AAAEAACTNAIcAAAAB 127.0.0.1 1941 127.0.0.1 16005
+--901c593c-B--
 GET /index.php HTTP/1.1
 User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
 Host: localhost:16005
 Accept: */*
 Cookie: xxx
 
---5621fd63-F--
+--901c593c-F--
 HTTP/1.1 501 Method Not Implemented
 Allow: 
 Content-Length: 214
 Connection: close
 Content-Type: text/html; charset=iso-8859-1
 
---5621fd63-H--
-Message: Access denied with code 501 (phase 2). Match of "rx ^()$" against "REQUEST_COOKIES_NAMES:xxx" required. [id "1"] [msg "Strict cookiecheck: At least one cookie is not predefined for this path."] [severity "ERROR"]
+--901c593c-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(c_[a-z]{1,4}|c_\\w{1,4}|c_[\\w-]{1,4}|c\\[\\w{1,4}\\]|c\\[[\\w-]{1,4}\\])$" against "REQUEST_COOKIES_NAMES:xxx" required. [id "3"] [msg "Strict cookieparametercheck: At least one request cookieparameter is not predefined for this path."] [severity "ERROR"]
 Action: Intercepted (phase 2)
-Stopwatch: 1173449978427304 3802 (509 3415 -)
+Stopwatch: 1174590601800900 883 (282 590 -)
 Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
 Server: Apache
 
---5621fd63-Z--
+--901c593c-Z--
+
+--901c593c-A--
+[22/Mar/2007:19:10:01 +0000] r5RgNn8AAAEAACTOAVAAAAAC 127.0.0.1 1942 127.0.0.1 16005
+--901c593c-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H_a: 1
+
+--901c593c-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 295
+Content-Type: text/html
+
+--901c593c-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--901c593c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590601846838 2101 (277 642 1748)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--901c593c-Z--
+
+--901c593c-A--
+[22/Mar/2007:19:10:01 +0000] r5UPnn8AAAEAACTPAhsAAAAD 127.0.0.1 1943 127.0.0.1 16005
+--901c593c-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H_a: x
+
+--901c593c-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--901c593c-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_HEADERS:H_a" required. [id "3"] [msg "Header H_[a-z]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590601891742 893 (275 599 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--901c593c-Z--
+
+--901c593c-A--
+[22/Mar/2007:19:10:01 +0000] r5ZcCH8AAAEAACTQAwsAAAAE 127.0.0.1 1944 127.0.0.1 16005
+--901c593c-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H_a-a: 1
+
+--901c593c-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 295
+Content-Type: text/html
+
+--901c593c-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--901c593c-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590601976840 2088 (274 625 1733)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--901c593c-Z--
+
+--0229327b-A--
+[22/Mar/2007:19:10:02 +0000] r5cAcH8AAAEAACTMhlgAAAAA 127.0.0.1 1945 127.0.0.1 16005
+--0229327b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H_a-a: x
+
+--0229327b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--0229327b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_HEADERS:H_a-a" required. [id "3"] [msg "Header H_[w-]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602018928 858 (275 563 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--0229327b-Z--
+
+--0229327b-A--
+[22/Mar/2007:19:10:02 +0000] r5dY4X8AAAEAACTNAIgAAAAB 127.0.0.1 1946 127.0.0.1 16005
+--0229327b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H[a]: 1
+
+--0229327b-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 295
+Content-Type: text/html
+
+--0229327b-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--0229327b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602041569 2214 (277 637 1815)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--0229327b-Z--
+
+--0229327b-A--
+[22/Mar/2007:19:10:02 +0000] r5e4Dn8AAAEAACTOAVEAAAAC 127.0.0.1 1947 127.0.0.1 16005
+--0229327b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H[a]: x
+
+--0229327b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--0229327b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_HEADERS:H[a]" required. [id "3"] [msg "Header H[w{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602065934 868 (277 567 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--0229327b-Z--
+
+--0229327b-A--
+[22/Mar/2007:19:10:02 +0000] r5iKrn8AAAEAACTPAhwAAAAD 127.0.0.1 1948 127.0.0.1 16005
+--0229327b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H[a-a]: 1
+
+--0229327b-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 295
+Content-Type: text/html
+
+--0229327b-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--0229327b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602119854 2168 (274 625 1800)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--0229327b-Z--
+
+--0229327b-A--
+[22/Mar/2007:19:10:02 +0000] r5oC8H8AAAEAACTQAwwAAAAE 127.0.0.1 1949 127.0.0.1 16005
+--0229327b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+H[a-a]: x
+
+--0229327b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--0229327b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_HEADERS:H[a-a]" required. [id "3"] [msg "Header H[[w-]{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602216176 872 (274 573 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--0229327b-Z--
+
+--aa472f6b-A--
+[22/Mar/2007:19:10:02 +0000] r5qsv38AAAEAACTMhlkAAAAA 127.0.0.1 1950 127.0.0.1 16005
+--aa472f6b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_a=1
+
+--aa472f6b-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 308
+Content-Type: text/html
+
+--aa472f6b-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+c_a: 1<br />
+</body
+</html>
+
+--aa472f6b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602259647 2574 (285 672 2188)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--aa472f6b-Z--
+
+--aa472f6b-A--
+[22/Mar/2007:19:10:02 +0000] r5wisH8AAAEAACTNAIkAAAAB 127.0.0.1 1951 127.0.0.1 16005
+--aa472f6b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_a=x
+
+--aa472f6b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--aa472f6b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_COOKIES:c_a" required. [id "3"] [msg "Cookie c_[a-z]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602355376 895 (285 601 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--aa472f6b-Z--
+
+--aa472f6b-A--
+[22/Mar/2007:19:10:02 +0000] r5x6Rn8AAAEAACTOAVIAAAAC 127.0.0.1 1952 127.0.0.1 16005
+--aa472f6b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_a-a=1
+
+--aa472f6b-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 310
+Content-Type: text/html
+
+--aa472f6b-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+c_a-a: 1<br />
+</body
+</html>
+
+--aa472f6b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602377798 2156 (285 657 1800)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--aa472f6b-Z--
+
+--aa472f6b-A--
+[22/Mar/2007:19:10:02 +0000] r5zZYX8AAAEAACTPAh0AAAAD 127.0.0.1 1953 127.0.0.1 16005
+--aa472f6b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c_a-a=x
+
+--aa472f6b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--aa472f6b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_COOKIES:c_a-a" required. [id "3"] [msg "Cookie c_[w-]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602402145 971 (286 675 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--aa472f6b-Z--
+
+--aa472f6b-A--
+[22/Mar/2007:19:10:02 +0000] r52eZn8AAAEAACTQAw0AAAAE 127.0.0.1 1954 127.0.0.1 16005
+--aa472f6b-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c[a]=1
+
+--aa472f6b-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 310
+Content-Type: text/html
+
+--aa472f6b-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+c: Array<br />
+</body
+</html>
+
+--aa472f6b-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602452582 2658 (683 1070 2283)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--aa472f6b-Z--
+
+--b3ed9b4f-A--
+[22/Mar/2007:19:10:02 +0000] r56VlH8AAAEAACTMhloAAAAA 127.0.0.1 1955 127.0.0.1 16005
+--b3ed9b4f-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c[a]=x
+
+--b3ed9b4f-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--b3ed9b4f-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_COOKIES:c[a]" required. [id "3"] [msg "Cookie c[w{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602515860 951 (286 605 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b3ed9b4f-Z--
+
+--b3ed9b4f-A--
+[22/Mar/2007:19:10:02 +0000] r59CO38AAAEAACTNAIoAAAAB 127.0.0.1 1956 127.0.0.1 16005
+--b3ed9b4f-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c[a-a]=1
+
+--b3ed9b4f-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 310
+Content-Type: text/html
+
+--b3ed9b4f-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php<br />
+http_method: GET<br />
+<h2>query string</h2>
+<br />
+<h2>cookies</h2>
+c: Array<br />
+</body
+</html>
+
+--b3ed9b4f-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602560059 2513 (286 656 2129)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b3ed9b4f-Z--
+
+--b3ed9b4f-A--
+[22/Mar/2007:19:10:02 +0000] r6Bk9H8AAAEAACTOAVMAAAAC 127.0.0.1 1957 127.0.0.1 16005
+--b3ed9b4f-B--
+GET /index.php HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+Cookie: c[a-a]=x
+
+--b3ed9b4f-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--b3ed9b4f-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "REQUEST_COOKIES:c[a-a]" required. [id "3"] [msg "Cookie c[[w-]{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602634484 910 (287 615 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b3ed9b4f-Z--
+
+--b3ed9b4f-A--
+[22/Mar/2007:19:10:02 +0000] r6ETeH8AAAEAACTPAh4AAAAD 127.0.0.1 1958 127.0.0.1 16005
+--b3ed9b4f-B--
+GET /index.php?q_a=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--b3ed9b4f-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 306
+Content-Type: text/html
+
+--b3ed9b4f-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php?q_a=1<br />
+http_method: GET<br />
+<h2>query string</h2>
+q_a=1<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--b3ed9b4f-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602679160 2644 (285 673 2249)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b3ed9b4f-Z--
+
+--b3ed9b4f-A--
+[22/Mar/2007:19:10:02 +0000] r6KPvH8AAAEAACTQAw4AAAAE 127.0.0.1 1959 127.0.0.1 16005
+--b3ed9b4f-B--
+GET /index.php?q_a=x HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--b3ed9b4f-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--b3ed9b4f-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_a" required. [id "3"] [msg "Querystringparameter q_[a-z]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602776508 930 (283 633 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--b3ed9b4f-Z--
+
+--48d5e44f-A--
+[22/Mar/2007:19:10:02 +0000] r6LoTX8AAAEAACTMhlsAAAAA 127.0.0.1 1960 127.0.0.1 16005
+--48d5e44f-B--
+GET /index.php?q_a-a=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--48d5e44f-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 310
+Content-Type: text/html
+
+--48d5e44f-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php?q_a-a=1<br />
+http_method: GET<br />
+<h2>query string</h2>
+q_a-a=1<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--48d5e44f-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602799181 2145 (285 661 1790)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--48d5e44f-Z--
+
+--48d5e44f-A--
+[22/Mar/2007:19:10:02 +0000] r6NHOn8AAAEAACTNAIsAAAAB 127.0.0.1 1961 127.0.0.1 16005
+--48d5e44f-B--
+GET /index.php?q_a-a=x HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--48d5e44f-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--48d5e44f-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q_a-a" required. [id "3"] [msg "Querystringparameter q_[w-]{1,4} failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602823482 946 (284 645 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--48d5e44f-Z--
+
+--48d5e44f-A--
+[22/Mar/2007:19:10:02 +0000] r6QL9H8AAAEAACTOAVQAAAAC 127.0.0.1 1962 127.0.0.1 16005
+--48d5e44f-B--
+GET /index.php?q[a]=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--48d5e44f-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 308
+Content-Type: text/html
+
+--48d5e44f-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php?q[a]=1<br />
+http_method: GET<br />
+<h2>query string</h2>
+q[a]=1<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--48d5e44f-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602873844 2185 (290 683 1829)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--48d5e44f-Z--
+
+--48d5e44f-A--
+[22/Mar/2007:19:10:02 +0000] r6T5uX8AAAEAACTPAh8AAAAD 127.0.0.1 1963 127.0.0.1 16005
+--48d5e44f-B--
+GET /index.php?q[a]=x HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--48d5e44f-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--48d5e44f-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q[a]" required. [id "3"] [msg "Querystringparameter q[w{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602934713 945 (287 653 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--48d5e44f-Z--
+
+--48d5e44f-A--
+[22/Mar/2007:19:10:02 +0000] r6Wio38AAAEAACTQAw8AAAAE 127.0.0.1 1964 127.0.0.1 16005
+--48d5e44f-B--
+GET /index.php?q[a-a]=1 HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--48d5e44f-F--
+HTTP/1.1 200 OK
+X-Powered-By: PHP/5.2.0-8
+Content-Length: 312
+Content-Type: text/html
+
+--48d5e44f-E--
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+</head>
+<body>
+<h1>hello world</h1>
+<h2>general</h2>
+uri: /index.php?q[a-a]=1<br />
+http_method: GET<br />
+<h2>query string</h2>
+q[a-a]=1<br />
+<h2>cookies</h2>
+</body
+</html>
+
+--48d5e44f-H--
+Message: Access allowed (phase 2). Unconditional match in SecAction. [id "3"] [msg "Request passed all checks, it is thus allowed."]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590602977955 2201 (281 655 1799)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--48d5e44f-Z--
+
+--cd04115b-A--
+[22/Mar/2007:19:10:03 +0000] r6Zccn8AAAEAACTMhlwAAAAA 127.0.0.1 1965 127.0.0.1 16005
+--cd04115b-B--
+GET /index.php?q[a-a]=x HTTP/1.1
+User-Agent: curl/7.15.5 (i486-pc-linux-gnu) libcurl/7.15.5 OpenSSL/0.9.8c zlib/1.2.3 libidn/0.6.5
+Host: localhost:16005
+Accept: */*
+
+--cd04115b-F--
+HTTP/1.1 501 Method Not Implemented
+Allow: 
+Content-Length: 214
+Connection: close
+Content-Type: text/html; charset=iso-8859-1
+
+--cd04115b-H--
+Message: Access denied with code 501 (phase 2). Match of "rx ^(\\d)$" against "ARGS:q[a-a]" required. [id "3"] [msg "Querystringparameter q[[w-]{1,4}] failed validity check."] [severity "ERROR"]
+Action: Intercepted (phase 2)
+Stopwatch: 1174590603025522 950 (285 656 -)
+Producer: ModSecurity v2.1.0-rc7 (Apache 2.x)
+Server: Apache
+
+--cd04115b-Z--
 

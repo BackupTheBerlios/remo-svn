@@ -40,15 +40,40 @@ actiontest_get_q7:
   request_id: 3
   name: "qp_single_integer"
   domain: "\d"
+actiontest_get_q8:
+  id: 9
+  request_id: 3
+  name: "q_[a-z]{1,4}"
+  domain: "\d"
+actiontest_get_q9:
+  id: 10
+  request_id: 3
+  name: "q_\w{1,4}"
+  domain: "\d"
+actiontest_get_q10:
+  id: 11
+  request_id: 3
+  name: "q_[\w-]{1,4}"
+  domain: "\d"
+actiontest_get_q11:
+  id: 12
+  request_id: 3
+  name: "q\[\w{1,4}\]"
+  domain: "\d"
+actiontest_get_q12:
+  id: 13
+  request_id: 3
+  name: "q\[[\w-]{1,4}\]"
+  domain: "\d"
 
 actiontest_post_q1:
-  id: 9
+  id: 20
   request_id: 4
   name: "qp_single_integer"
   domain: "\d"
 
 actiontest_redirect_r1:
-  id: 10
+  id: 40
   request_id: 5
   name: "q_single_integer"
   domain: "\d"

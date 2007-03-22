@@ -85,3 +85,35 @@ curl $CURLOPTIONS "$GETURL?q_string_long=test+string+and+more"
 curl $CURLOPTIONS "$GETURL?q_string_long=test%20string%20and%20more"
 curl $CURLOPTIONS -H "X-Unknown: xxx" "$GETURL"
 curl $CURLOPTIONS -H "Cookie: xxx" "$GETURL"
+
+
+# Variable header names
+curl $CURLOPTIONS -H "H_a: 1" "$GETURL"
+curl $CURLOPTIONS -H "H_a: x" "$GETURL"
+curl $CURLOPTIONS -H "H_a-a: 1" "$GETURL"
+curl $CURLOPTIONS -H "H_a-a: x" "$GETURL"
+curl $CURLOPTIONS -H "H[a]: 1" "$GETURL"
+curl $CURLOPTIONS -H "H[a]: x" "$GETURL"
+curl $CURLOPTIONS -H "H[a-a]: 1" "$GETURL"
+curl $CURLOPTIONS -H "H[a-a]: x" "$GETURL"
+
+# Variable cookie names
+curl $CURLOPTIONS -H "Cookie: c_a=1" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c_a=x" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c_a-a=1" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c_a-a=x" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c[a]=1" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c[a]=x" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c[a-a]=1" "$GETURL"
+curl $CURLOPTIONS -H "Cookie: c[a-a]=x" "$GETURL"
+
+# Variable query string names
+curl $CURLOPTIONS "$GETURL?q_a=1"
+curl $CURLOPTIONS "$GETURL?q_a=x"
+curl $CURLOPTIONS "$GETURL?q_a-a=1"
+curl $CURLOPTIONS "$GETURL?q_a-a=x"
+curl $CURLOPTIONS "$GETURL?q\[a\]=1"
+curl $CURLOPTIONS "$GETURL?q\[a\]=x"
+curl $CURLOPTIONS "$GETURL?q\[a-a\]=1"
+curl $CURLOPTIONS "$GETURL?q\[a-a\]=x"
+

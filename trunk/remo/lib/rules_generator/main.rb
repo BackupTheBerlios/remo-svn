@@ -9,15 +9,14 @@ end
 
 def get_commentname (name)
   myname = name.clone # otherwise name is updated too
-  myname.gsub!("\\d", "d")
-  myname.gsub!("\\s", " ")
-  myname.gsub!("\\/", "/")
+  myname.gsub!("\\", "")
   return myname
 end
-def get_escapedname (name)
+def get_doubleescapedname (name)
+  # modsecurity wants \d, \r, \s etc. escaped as \\\d, \\\r etc. when used as argument selector.
+  # see http://remo.netnea.com/twiki/bin/view/Main/Task48Start
   myname = name.clone # otherwise name is updated too
-  myname.gsub!("[", "\\[")
-  myname.gsub!("]", "\\]")
+  myname.gsub!('\\', '\\\\\\\\\\')
   return myname
 end
 
@@ -52,7 +51,7 @@ def get_check_strict_headers (id)
   header_string = ""
   Header.find(:all, :conditions => "request_id = #{id}").each do |header|
     header_string += "|" unless header_string.size == 0
-    header_string += get_escapedname(header.name)
+    header_string += header.name
   end
 
   string += "  # Strict headercheck (make sure the request contains only predefined request headers)\n"
@@ -80,11 +79,11 @@ def get_check_strict_querystringpostparameters (id)
   mystring = ""
   Querystringparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += get_escapedname(parameter.name)
+    mystring += parameter.name
   end
   Postparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += get_escapedname(parameter.name)
+    mystring += parameter.name
   end
 
   string += "\n"
@@ -110,7 +109,7 @@ def get_check_strict_cookieparameters (id)
   mystring = ""
   Cookieparameter.find(:all, :conditions => "request_id = #{id}").each do |parameter|
     mystring += "|" unless mystring.size == 0
-    mystring += get_escapedname(parameter.name)
+    mystring += parameter.name
   end
 
   string += "\n"
@@ -125,20 +124,19 @@ def get_check_individual_header (name, domain, mandatory, id)
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
-  escapedname=get_escapedname(name)
-  if escapedname.index("\\d").nil?
-    npre = nil
-    npost = nil
+  doubleescapedname=get_doubleescapedname(name)
+  paramname = ""
+  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
+    paramname = name
   else
-    npre = "/"
-    npost = "/"
-  end  
+    paramname = "'/^#{doubleescapedname}$/'"
+  end      
   string = ""
   string += "  # Checking header \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_HEADERS:#{paramname} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_HEADERS:#{npost}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_HEADERS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -148,20 +146,19 @@ def get_check_individual_cookieparameter (name, domain, mandatory, id)
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
-  escapedname=get_escapedname(name)
-  if escapedname.index("\\d").nil?
-    npre = nil
-    npost = nil
+  doubleescapedname=get_doubleescapedname(name)
+  paramname = ""
+  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
+    paramname = name
   else
-    npre = "/"
-    npost = "/"
-  end
+    paramname = "'/^#{doubleescapedname}$/'"
+  end      
   string = ""
   string += "  # Checking cookie \"#{name}\"\n"
   if mandatory
-    string += "  SecRule &REQUEST_COOKIES:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &REQUEST_COOKIES:#{paramname} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_COOKIES:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_COOKIES:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
 
   return string
 end
@@ -171,23 +168,22 @@ def get_check_individual_querystringparameter (name, domain, mandatory, id, cros
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
-  escapedname=get_escapedname(name)
-  if escapedname.index("\\d").nil?
-    npre = nil
-    npost = nil
+  doubleescapedname=get_doubleescapedname(name)
+  paramname = ""
+  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
+    paramname = name
   else
-    npre = "/"
-    npost = "/"
-  end
+    paramname = "'/^#{doubleescapedname}$/'"
+  end  
   string = ""
   string += "  # Checking querystringparameter \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule REQUEST_BODY \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Querystringparameter #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{paramname} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Querystringparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} failed validity check.'\"\n"
   return string
 end
 
@@ -196,23 +192,22 @@ def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
-  escapedname=get_escapedname(name)
-  if escapedname.index("\\d").nil?
-    npre = nil
-    npost = nil
+  doubleescapedname=get_doubleescapedname(name)
+  paramname = ""
+  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
+    paramname = name
   else
-    npre = "/"
-    npost = "/"
+    paramname = "'/^#{doubleescapedname}$/'"
   end
   string = ""
   string += "  # Checking postparameter \"#{name}\"\n"
   if crosscheck
-    string += "  SecRule QUERY_STRING \"^#{escapedname}[=&]|^#{escapedname}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{name}[=&]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
   end
   if mandatory
-    string += "  SecRule &ARGS:#{npre}#{escapedname}#{npost} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Postparameter #{commentname} is mandatory, but is not present.'\"\n"
+    string += "  SecRule &ARGS:#{paramname} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Postparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{npre}#{escapedname}#{npost} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} failed validity check.'\"\n"
   return string
 end
 
