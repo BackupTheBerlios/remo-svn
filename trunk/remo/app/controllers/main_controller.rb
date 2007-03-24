@@ -23,7 +23,6 @@ class MainController < ApplicationController
         false]                    # ajax request (inline display of javascript result)
   ]
 
-
   Request.content_columns.each do |column|
     extended_in_place_edit_for :request, column.name
   end 
@@ -129,6 +128,28 @@ class MainController < ApplicationController
     rescue => err
       flash[:notice] = "Removing failed! " + err
     end
+
+  end
+
+  def set_request_http_method
+    # in place select edit
+    
+    request = Request.find(params[:id])
+    http_method_save = request.http_method
+
+    unless params[:value].nil? || params[:value].size == 0 || MainHelper::HTTP_METHODS.select { |e| e == params[:value] }.size == 0
+      begin
+        request.http_method = params[:value] 
+        request.save!
+      rescue => err
+        flash[:notice] = "Setting http_method failed! " + err
+        request.http_method = http_method_save
+      end
+    else
+      logger.error "Invalid form submission. Value: #{params[:value]}"
+    end
+
+    render(:text => request.http_method)
 
   end
 

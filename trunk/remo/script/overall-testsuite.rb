@@ -10,6 +10,7 @@ require "./test/functional/ruleset-action-test/ruleset-action-test"
 # libs
 require "./test/functional/various_test"
 require "./test/functional/rules_generator_test"
+require "./test/functional/main_helper_test"
 
 # models
 require "./test/unit/request_test"

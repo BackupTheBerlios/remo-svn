@@ -1,5 +1,7 @@
+require File.dirname(__FILE__) + '/../../app/helpers/main_helper'
+
 class Request < ActiveRecord::Base
-  VALID_HTTP_METHODS = ["GET", "POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS", "GET|POST"]
+  VALID_HTTP_METHODS = MainHelper::HTTP_METHODS
 
   has_many :headers
   has_many :postparameters
