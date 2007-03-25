@@ -5,7 +5,7 @@
                                                                                                         else
                                                                                                           @requestparameter.name
                                                                                                           end -%></div><div class="request-fieldcolon">:&nbsp;</div>
-                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_editor_field requestparametername, "domain", {}, :save_text => "save" -%></div>
+                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_select_editor_field_requestparameter_domain requestparametername, "domain", {}, :select_options => domainarray -%></div>
                 <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-mandatory" class="request-mandatory"><% if requestparameter.mandatory
                        string="mandatory"
                      else

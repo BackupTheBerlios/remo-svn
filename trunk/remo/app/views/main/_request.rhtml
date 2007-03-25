@@ -33,7 +33,7 @@
                 <%    Header.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@header| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @header,
-                          :locals => { :requestparametername => "header"}) -%>
+                          :locals => { :requestparametername => "header", :domainarray => MainHelper::HEADER_DOMAINS}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -53,7 +53,7 @@
                 <%    Querystringparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@querystringparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @querystringparameter,
-                          :locals => { :requestparametername => "querystringparameter"}) -%>
+                          :locals => { :requestparametername => "querystringparameter", :domainarray => MainHelper::QUERY_STRING_DOMAINS}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -73,7 +73,7 @@
                 <%    Cookieparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@cookieparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @cookieparameter,
-                          :locals => { :requestparametername => "cookieparameter"}) -%>
+                          :locals => { :requestparametername => "cookieparameter", :domainarray => MainHelper::COOKIE_DOMAINS}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -93,7 +93,7 @@
                 <%    Postparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@postparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @postparameter,
-                          :locals => { :requestparametername => "postparameter"}) -%>
+                          :locals => { :requestparametername => "postparameter", :domainarray => MainHelper::POSTPARAMETER_DOMAINS}) -%>
                 <%    end -%>
               </div>
             </div>

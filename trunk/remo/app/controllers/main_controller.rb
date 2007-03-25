@@ -207,6 +207,41 @@ class MainController < ApplicationController
 
   end
 
+  def set_cookieparameter_domain
+    set_requestparameter_domain (params[:id], params[:value], Cookieparameter, MainHelper::COOKIE_DOMAINS)
+  end
+
+  def set_requestparameter_domain (id, value, model, value_domain)
+    # in place select edit
+    
+    record = model.find(id)
+    domain_save = record.domain
+
+    display = nil
+
+    unless value.nil? || value.size == 0 
+
+      if value_domain.select { |e| e == value }.size > 0
+        display = value
+        value = "__" + value + "__"
+      else
+        display = "Custom"
+      end
+      begin
+        record.domain = value
+        record.save!
+      rescue => err
+        flash[:notice] = "Setting parameter failed! " + err
+        record.domain = domain_save
+      end
+    else
+      logger.error "Invalid form submission. Value: #{value}"
+    end
+
+    render(:text => display)
+
+  end
+
 
   def add_postparameter
 
