@@ -1,14 +1,4 @@
-STANDARD_DOMAINS = {
-  "Hostname" => "[0-9a-zA-Z-.]{1,64}",
-  "IP Address V4" => "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}",
-  "IP Address V6" => "([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}",
-  "Base64, max. 16 characters" => "[0-9a-zA-Z+/]{0,16}={0,2}",
-  "Integer, max. 16 characters" => "\d{0,16}",
-  "Flag, single character" => "[0-9a-zA-Z]",
-  "Header: User-Agent" => "[0-9a-zA-Z +:;!()/.-]{1,256}",
-  "Header: Host" => "[0-9a-zA-Z-.]{3,64}",
-  "Header: Basic Authorization" => "Basic\s[0-9a-zA-Z+/]{0,256}={0,2}"
-                   }
+require File.dirname(__FILE__) + '/../../remo_config'
 
 def append_file(file, app_file, request, version)
   File.foreach(app_file) do |line|

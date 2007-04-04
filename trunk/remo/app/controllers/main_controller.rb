@@ -467,8 +467,8 @@ class MainController < ApplicationController
     DEFAULT_HEADERS.each do |item|
       @header = Header.new(:request_id => request_id, 
                            :name => item.keys[0],
-                           :standard_domain => "Custom",
-                           :custom_domain => item.values[0])
+                           :standard_domain => item.values[0][0],
+                           :custom_domain => item.values[0][1])
       @header.save!
     end
 
