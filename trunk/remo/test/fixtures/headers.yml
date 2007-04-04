@@ -3,234 +3,280 @@ ra1:
   id: 1
   request_id: 1
   name: "Host"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra2: 
   id: 2
   request_id: 1
   name: "Accept"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra3:
   id: 3
   request_id: 1
   name: "Accept-Language"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra4:
   id: 4
   request_id: 1
   name: "Accept-Encoding"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra5:
   id: 5
   request_id: 1
   name: "Accept-Charset"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra6:
   id: 6
   request_id: 1
   name: "Keep-Alive"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra7:
   id: 7
   request_id: 1
   name: "Referer"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra8:
   id: 8
   request_id: 1
   name: "Cookie"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra9:
   id: 9
   request_id: 1
   name: "If-Modified-Since"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra10:
   id: 10
   request_id: 1
   name: "If-None-Match"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 ra11:
   id: 11
   request_id: 1
   name: "Cache-Control"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 
 rb1:
   id: 21
   request_id: 2
   name: "Host"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb2: 
   id: 22
   request_id: 2
   name: "Accept"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb3:
   id: 23
   request_id: 2
   name: "Accept-Language"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb4:
   id: 24
   request_id: 2
   name: "Accept-Encoding"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb5:
   id: 25
   request_id: 2
   name: "Accept-Charset"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb6:
   id: 26
   request_id: 2
   name: "Keep-Alive"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb7:
   id: 27
   request_id: 2
   name: "Referer"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb8:
   id: 28
   request_id: 2
   name: "Cookie"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb9:
   id: 29
   request_id: 2
   name: "If-Modified-Since"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb10:
   id: 30
   request_id: 2
   name: "If-None-Match"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 rb11:
   id: 31
   request_id: 2
   name: "Cache-Control"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 
 actiontest_get_h1:
   id: 101
   request_id: 3
   name: "Referer"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h2:
   id: 102
   request_id: 3
   name: "Host"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h3:
   id: 103
   request_id: 3
   name: "User-Agent"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h4:
   id: 104
   request_id: 3
   name: "Cookie"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h4:
   id: 104
   request_id: 3
   name: "Cookie"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h5:
   id: 105
   request_id: 3
   name: "Accept"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_get_h6:
   id: 106
   request_id: 3
   name: "H_[a-z]{1,4}"
-  domain: "\d"
+  standard_domain: "Custom"
+  custom_domain: "\d"
 actiontest_get_h7:
   id: 107
   request_id: 3
   name: "H_\w{1,4}"
-  domain: "\d"
+  standard_domain: "Custom"
+  custom_domain: "\d"
 actiontest_get_h8:
   id: 108
   request_id: 3
   name: "H_[\w-]{1,4}"
-  domain: "\d"
+  standard_domain: "Custom"
+  custom_domain: "\d"
 actiontest_get_h9:
   id: 109
   request_id: 3
   name: "H\[\w{1,4}\]"
-  domain: "\d"
+  standard_domain: "Custom"
+  custom_domain: "\d"
 actiontest_get_h10:
   id: 110
   request_id: 3
   name: "H\[[\w-]{1,4}\]"
-  domain: "\d"
+  standard_domain: "Custom"
+  custom_domain: "\d"
 
 actiontest_post_h1:
   id: 120
   request_id: 4
   name: "Referer"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_post_h2:
   id: 121
   request_id: 4
   name: "Host"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_post_h3:
   id: 122
   request_id: 4
   name: "User-Agent"
-  domain: ".*" 
+  standard_domain: "Custom"
+  custom_domain: ".*" 
 actiontest_post_h4:
   id: 123
   request_id: 4
   name: "Cookie"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_post_h5:
   id: 124
   request_id: 4
   name: "Accept"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_post_h6:
   id: 125
   request_id: 4
   name: "Content-Type"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_post_h7:
   id: 126
   request_id: 4
   name: "Content-Length"
-  domain: "\d*"
+  standard_domain: "Custom"
+  custom_domain: "\d*"
 actiontest_post_h8:
   id: 127
   request_id: 4
   name: "Expect"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 
 actiontest_redirect_h1:
   id: 140
   request_id: 5
   name: "Referer"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_redirect_h2:
   id: 141
   request_id: 5
   name: "Host"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 actiontest_redirect_h3:
   id: 142
   request_id: 5
   name: "User-Agent"
-  domain: ".*" 
+  standard_domain: "Custom"
+  custom_domain: ".*" 
 actiontest_redirect_h4:
   id: 143
   request_id: 5
   name: "Cookie"
-  domain: ".*" 
+  standard_domain: "Custom"
+  custom_domain: ".*" 
 actiontest_redirect_h5:
   id: 144
   request_id: 5
   name: "Accept"
-  domain: ".*"
+  standard_domain: "Custom"
+  custom_domain: ".*"
 

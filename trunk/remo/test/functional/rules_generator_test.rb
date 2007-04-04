@@ -50,12 +50,14 @@ def assert_empty_line (rules_array, i)
   return 1
 end
 
-def check_single_requestparameter(rules_array, id, i, type, rulename, name, domain, mandatory, crosscheck=false)
+def check_single_requestparameter(rules_array, id, i, type, rulename, name, standard_domain, custom_domain, mandatory, crosscheck=false)
   lines = 0
   assert_rule_line_regex rules_array, i + lines,
     build_rule_regex("# Checking #{type} \"#{name}\""),
     "Argument check comment for #{type} #{name} is not correct"
   lines += 1
+  
+  domain = get_domain(standard_domain, custom_domain)
 
   if crosscheck and type == "postparameter"
     # post parameter crosscheck
@@ -86,7 +88,7 @@ def check_single_requestparameter(rules_array, id, i, type, rulename, name, doma
   end
 
   assert_rule_line_string rules_array, i + lines,
-    "  SecRule #{rulename}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check.'\"",
+    "  SecRule #{rulename}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check. Value domain: #{standard_domain}.'\"",
     "Request argument domain check for #{type} #{name} is not correct" 
   lines += 1
   
@@ -199,7 +201,8 @@ class RulesGeneratorTest < Test::Unit::TestCase
                                            "header", 
                                            "REQUEST_HEADERS", 
                                            myitem.name, 
-                                           myitem.domain, 
+                                           myitem.standard_domain, 
+                                           myitem.custom_domain, 
                                            myitem.mandatory)       
       end
       n += assert_empty_line(rules_array, startline + n)
@@ -213,7 +216,8 @@ class RulesGeneratorTest < Test::Unit::TestCase
                                            "cookie",
                                            "REQUEST_COOKIES",
                                            myitem.name,
-                                           myitem.domain,
+                                           myitem.standard_domain, 
+                                           myitem.custom_domain,
                                            myitem.mandatory)
       end
 
@@ -233,7 +237,8 @@ class RulesGeneratorTest < Test::Unit::TestCase
                                            "querystringparameter", 
                                            "ARGS", 
                                            myitem.name, 
-                                           myitem.domain, 
+                                           myitem.standard_domain, 
+                                           myitem.custom_domain, 
                                            myitem.mandatory,
                                            crosscheck)
       end
@@ -250,7 +255,8 @@ class RulesGeneratorTest < Test::Unit::TestCase
                                            "postparameter", 
                                            "ARGS", 
                                            myitem.name, 
-                                           myitem.domain, 
+                                           myitem.standard_domain, 
+                                           myitem.custom_domain, 
                                            myitem.mandatory,
                                            crosscheck)
       end

@@ -93,7 +93,7 @@
                 <%    Postparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@postparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @postparameter,
-                          :locals => { :requestparametername => "postparameter", :domainarray => MainHelper::POSTPARAMETER_DOMAINS}) -%>
+                          :locals => { :requestparametername => "postparameter", :domainarray => MainHelper::POST_DOMAINS}) -%>
                 <%    end -%>
               </div>
             </div>

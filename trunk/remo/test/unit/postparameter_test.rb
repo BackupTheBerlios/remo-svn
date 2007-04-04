@@ -7,14 +7,16 @@ class PostparameterTest < Test::Unit::TestCase
 
     postparameter = Postparameter.new(:request_id     => 1,
     			:name           => "X-Test",
-    			:domain         => ".*")
+    			:standard_domain         => "Custom",
+    			:custom_domain         => ".*")
     assert postparameter.save
   end
   def test_invalid_save
 
     postparameter = Postparameter.new(:request_id     => 1,
     			:name           => nil,
-    			:domain         => ".*")
+    			:standard_domain         => "Custom",
+    			:custom_domain         => ".*")
     assert !postparameter.save
     assert_equal "can't be blank", postparameter.errors.on(:name)
   end

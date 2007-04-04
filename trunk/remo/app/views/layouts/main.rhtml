@@ -93,6 +93,14 @@ function toggleRequestCookieparameters(id)
   adjustdivheight();
   return false;
 }
+function toggleRequestParameterDetails(type, id)
+{
+  Element.toggle('request-' + type + '-' + id + '-details');
+  Element.toggle('request-' + type + '-' + id + '-collapsed');
+  Element.toggle('request-' + type + '-' + id + '-expanded');
+  adjustdivheight();
+  return false;
+}
 </script>
 </head>
 

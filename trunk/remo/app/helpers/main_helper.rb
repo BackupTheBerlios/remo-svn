@@ -6,6 +6,6 @@ module MainHelper
   HEADER_DOMAINS = common_domains + ["Header: User-Agent", "Header: Host", "Header: Basic Authorization"].sort
   COOKIE_DOMAINS = common_domains
   QUERY_STRING_DOMAINS = common_domains
-  POSTPARAMETER_DOMAINS = common_domains
+  POST_DOMAINS = common_domains
 
 end

@@ -1,3 +1,15 @@
+STANDARD_DOMAINS = {
+  "Hostname" => "[0-9a-zA-Z-.]{1,64}",
+  "IP Address V4" => "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}",
+  "IP Address V6" => "([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}",
+  "Base64, max. 16 characters" => "[0-9a-zA-Z+/]{0,16}={0,2}",
+  "Integer, max. 16 characters" => "\d{0,16}",
+  "Flag, single character" => "[0-9a-zA-Z]",
+  "Header: User-Agent" => "[0-9a-zA-Z +:;!()/.-]{1,256}",
+  "Header: Host" => "[0-9a-zA-Z-.]{3,64}",
+  "Header: Basic Authorization" => "Basic\s[0-9a-zA-Z+/]{0,256}={0,2}"
+                   }
+
 def append_file(file, app_file, request, version)
   File.foreach(app_file) do |line|
     line.gsub!("__VERSION__", version) unless version.nil?
@@ -19,7 +31,6 @@ def get_doubleescapedname (name)
   myname.gsub!('\\', '\\\\\\\\\\')
   return myname
 end
-
 def get_check_http_method (value, id)
   # check the http method
   #
@@ -31,6 +42,15 @@ def get_check_http_method (value, id)
   string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
   string += "\n"
   return string
+end
+def get_domain(standard_domain, custom_domain)
+  domain=""
+  if standard_domain == "Custom"
+    domain = custom_domain
+  else
+    domain = STANDARD_DOMAINS[standard_domain] unless STANDARD_DOMAINS[standard_domain].nil?
+  end
+  return domain
 end
 
 def get_check_strict_headers (id)
@@ -119,13 +139,14 @@ def get_check_strict_cookieparameters (id)
 
   return string
 end
-def get_check_individual_header (name, domain, mandatory, id)
+def get_check_individual_header (name, standard_domain, custom_domain, mandatory, id)
   # write a rule that checks a single header for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
   doubleescapedname=get_doubleescapedname(name)
   paramname = ""
+  domain = get_domain(standard_domain, custom_domain)
   if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
     paramname = name
   else
@@ -136,18 +157,19 @@ def get_check_individual_header (name, domain, mandatory, id)
   if mandatory
     string += "  SecRule &REQUEST_HEADERS:#{paramname} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_HEADERS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_HEADERS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Header #{commentname} failed validity check. Value domain: #{standard_domain}.'\"\n"
 
   return string
 end
 
-def get_check_individual_cookieparameter (name, domain, mandatory, id)
+def get_check_individual_cookieparameter (name, standard_domain, custom_domain, mandatory, id)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
   doubleescapedname=get_doubleescapedname(name)
   paramname = ""
+  domain = get_domain(standard_domain, custom_domain)
   if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
     paramname = name
   else
@@ -158,18 +180,19 @@ def get_check_individual_cookieparameter (name, domain, mandatory, id)
   if mandatory
     string += "  SecRule &REQUEST_COOKIES:#{paramname} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
-  string += "  SecRule REQUEST_COOKIES:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check.'\"\n"
+  string += "  SecRule REQUEST_COOKIES:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Cookie #{commentname} failed validity check. Value domain: #{standard_domain}.'\"\n"
 
   return string
 end
 
-def get_check_individual_querystringparameter (name, domain, mandatory, id, crosscheck=true)
+def get_check_individual_querystringparameter (name, standard_domain, custom_domain, mandatory, id, crosscheck=true)
   # write a rule that checks a single query string argument for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
   doubleescapedname=get_doubleescapedname(name)
   paramname = ""
+  domain = get_domain(standard_domain, custom_domain)
   if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
     paramname = name
   else
@@ -183,17 +206,18 @@ def get_check_individual_querystringparameter (name, domain, mandatory, id, cros
   if mandatory
     string += "  SecRule &ARGS:#{paramname} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Querystringparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Querystringparameter #{commentname} failed validity check. Value domain: #{standard_domain}.'\"\n"
   return string
 end
 
-def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=true)
+def get_check_individual_postparameter (name, standard_domain, custom_domain, mandatory, id, crosscheck=true)
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
   # but it is in the request, then it is checked
   commentname=get_commentname(name) # we have to replace "\d" with "d", as mod_security complains otherwise
   doubleescapedname=get_doubleescapedname(name)
   paramname = ""
+  domain = get_domain(standard_domain, custom_domain)
   if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
     paramname = name
   else
@@ -207,7 +231,7 @@ def get_check_individual_postparameter (name, domain, mandatory, id, crosscheck=
   if mandatory
     string += "  SecRule &ARGS:#{paramname} \"@eq 0\" \"t:none,deny,id:1,status:501,severity:3,msg:'Postparameter #{commentname} is mandatory, but is not present.'\"\n"
   end
-  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} failed validity check.'\"\n"
+  string += "  SecRule ARGS:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Postparameter #{commentname} failed validity check. Value domain: #{standard_domain}.'\"\n"
   return string
 end
 
@@ -226,7 +250,7 @@ def get_requestrule(r)
 
   # check individual headers
   Header.find(:all, :conditions => "request_id = #{r.id}").each do |header|
-    string += get_check_individual_header(header.name, header.domain, header.mandatory, r.id) 
+    string += get_check_individual_header(header.name, header.standard_domain, header.custom_domain, header.mandatory, r.id) 
   end
   string += "" unless Header.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
@@ -235,7 +259,7 @@ def get_requestrule(r)
 
   # check individual cookies
   Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").each do |cookieparameter|
-    string += get_check_individual_cookieparameter(cookieparameter.name, cookieparameter.domain, cookieparameter.mandatory, r.id) 
+    string += get_check_individual_cookieparameter(cookieparameter.name, cookieparameter.standard_domain, cookieparameter.custom_domain, cookieparameter.mandatory, r.id) 
   end
   string += "" unless Cookieparameter.find(:all, :conditions => "request_id = #{r.id}").size == 0
 
@@ -245,7 +269,8 @@ def get_requestrule(r)
   # check individual querystringparameters
   Querystringparameter.find(:all, :conditions => "request_id = #{r.id}").each do |querystringparameter|
     string += get_check_individual_querystringparameter(querystringparameter.name,
-                                                        querystringparameter.domain, 
+                                                        querystringparameter.standard_domain, 
+                                                        querystringparameter.custom_domain, 
                                                         querystringparameter.mandatory, 
                                                         r.id, 
                                                         crosscheck = Postparameter.find(:all, :conditions => "request_id = #{r.id} and name = \"#{querystringparameter.name}\"").size == 0) 
@@ -256,7 +281,8 @@ def get_requestrule(r)
   # check individual postparameters
   Postparameter.find(:all, :conditions => "request_id = #{r.id}").each do |postparameter|
     string += get_check_individual_postparameter(postparameter.name,
-                                                 postparameter.domain, 
+                                                 postparameter.standard_domain, 
+                                                 postparameter.custom_domain, 
                                                  postparameter.mandatory, 
                                                  r.id, 
                                                  crosscheck = Querystringparameter.find(:all, :conditions => "request_id = #{r.id} and name = \"#{postparameter.name}\"").size == 0) 

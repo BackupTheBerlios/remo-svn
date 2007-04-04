@@ -7,14 +7,14 @@ class HeaderTest < Test::Unit::TestCase
 
     header = Header.new(:request_id     => 1,
     			:name           => "X-Test",
-    			:domain         => ".*")
+    			:custom_domain  => ".*")
     assert header.save
   end
   def test_invalid_save
 
     header = Header.new(:request_id     => 1,
     			:name           => nil,
-    			:domain         => ".*")
+    			:custom_domain  => ".*")
     assert !header.save
     assert_equal "can't be blank", header.errors.on(:name)
   end

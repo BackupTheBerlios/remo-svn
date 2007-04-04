@@ -1,11 +1,15 @@
-<% @requestparameter = requestparameter # scope problem. When working in partials, @requestparameter has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 -%>
+<% @requestparameter = requestparameter; # scope problem. When working in partials, @requestparameter has to be set manually to get in_place_editor_field to work. See http://dev.rubyonrails.org/ticket/3094 
+   domainarray = @domainarray unless @domainarray.nil? -%>
 <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparametername -%>-<%= requestparameter.name -%>-<%= requestparameter.id -%>" class="request-<%= requestparametername -%>-field">
+  
+                <div id="request-<%= requestparametername -%>-<%= requestparameter.id -%>-collapsed" class="foldhandle" style=""><a href="#" onclick="toggleRequestParameterDetails('<%= requestparametername -%>', <%= requestparameter.id -%>); return false;"><img src="/collapsed.png"></a></div>
+                <div id="request-<%= requestparametername -%>-<%= requestparameter.id -%>-expanded" class="foldhandle" style="display: none;"><a href="#" onclick="toggleRequestParameterDetails('<%= requestparametername -%>', <%= requestparameter.id -%>); return false;"><img src="/expanded.png"></a></div>
                 <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-label" class="request-fieldlabel"><%= if @requestparameter.name == "click-to-edit" 
                                                                                                           in_place_editor_field requestparametername, "name", {}, :save_text => "save"
                                                                                                         else
                                                                                                           @requestparameter.name
                                                                                                           end -%></div><div class="request-fieldcolon">:&nbsp;</div>
-                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_select_editor_field_requestparameter_domain requestparametername, "domain", {}, :select_options => domainarray -%></div>
+                <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-fieldedit" class="request-fieldedit"><%= in_place_select_editor_field requestparametername, "standard_domain", {}, :select_options => domainarray -%></div>
                 <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-mandatory" class="request-mandatory"><% if requestparameter.mandatory
                        string="mandatory"
                      else
@@ -13,4 +17,9 @@
                      end
                      form_remote_tag :url => { :action => "toggle_#{requestparametername}_mandatory", :id => requestparameter.id } do -%><input name="commit" type="submit" value="<%= string -%>" /><% end -%></div>
                 <div class="request-remove-<%= requestparametername -%>"><% form_remote_tag :url => { :action => "remove_#{requestparametername}", :id => requestparameter.id } do -%><%= image_submit_tag "/trash_small.png", { :alt => "image: trash.png", :title => "remove #{requestparametername}"} -%><% end -%></div>
+                <div id="request-<%= requestparametername -%>-<%= requestparameter.id -%>-details" class="request-parameter-details" style="display: none;">
+                  <div id="request-item_<%= requestparameter.request_id-%>-<%= requestparameter.id -%>-custom-label" class="request-fieldlabel-detail">Custom regex:&nbsp;</div>
+                  <div id="request-item_<%= requestparameter.request_id -%>-<%= requestparameter.name -%>-custom-fieldedit" class="request-fieldedit"><%= in_place_editor_field requestparametername, "custom_domain", {}, :save_text => "ok" -%></div>
+                  <div class="request-fieldhint">&nbsp;&nbsp;&nbsp;(ignored, unless parameter domain is "Custom")</div>
+                </div>
               </div>

@@ -2,34 +2,38 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 14) do
+ActiveRecord::Schema.define(:version => 15) do
 
   create_table "cookieparameters", :force => true do |t|
-    t.column "request_id", :integer,                :default => 0,     :null => false
-    t.column "name",       :string,  :limit => nil, :default => "",    :null => false
-    t.column "domain",     :text,                   :default => ""
-    t.column "mandatory",  :boolean,                :default => false
+    t.column "request_id",      :integer, :default => 0,        :null => false
+    t.column "name",            :string,  :default => "''''''", :null => false
+    t.column "mandatory",       :boolean, :default => false
+    t.column "standard_domain", :text,    :default => "''''''"
+    t.column "custom_domain",   :text,    :default => "''''''"
   end
 
   create_table "headers", :force => true do |t|
-    t.column "request_id", :integer,                :default => 0,     :null => false
-    t.column "name",       :string,  :limit => nil, :default => "",    :null => false
-    t.column "domain",     :text,                   :default => ""
-    t.column "mandatory",  :boolean,                :default => false
+    t.column "request_id",      :integer, :default => 0,        :null => false
+    t.column "name",            :string,  :default => "''''''", :null => false
+    t.column "mandatory",       :boolean, :default => false
+    t.column "standard_domain", :text,    :default => "''''''"
+    t.column "custom_domain",   :text,    :default => "''''''"
   end
 
   create_table "postparameters", :force => true do |t|
-    t.column "request_id", :integer,                :default => 0,     :null => false
-    t.column "name",       :string,  :limit => nil, :default => "",    :null => false
-    t.column "domain",     :text,                   :default => ""
-    t.column "mandatory",  :boolean,                :default => false
+    t.column "request_id",      :integer, :default => 0,        :null => false
+    t.column "name",            :string,  :default => "''''''", :null => false
+    t.column "mandatory",       :boolean, :default => false
+    t.column "standard_domain", :text,    :default => "''''''"
+    t.column "custom_domain",   :text,    :default => "''''''"
   end
 
   create_table "querystringparameters", :force => true do |t|
-    t.column "request_id", :integer,                :default => 0,     :null => false
-    t.column "name",       :string,  :limit => nil, :default => "",    :null => false
-    t.column "domain",     :text,                   :default => ""
-    t.column "mandatory",  :boolean,                :default => false
+    t.column "request_id",      :integer, :default => 0,        :null => false
+    t.column "name",            :string,  :default => "''''''", :null => false
+    t.column "mandatory",       :boolean, :default => false
+    t.column "standard_domain", :text,    :default => "''''''"
+    t.column "custom_domain",   :text,    :default => "''''''"
   end
 
   create_table "requests", :force => true do |t|

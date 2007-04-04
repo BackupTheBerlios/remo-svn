@@ -81,9 +81,9 @@ class UserStory6Test < ActionController::IntegrationTest
           id = model.find(:first, :conditions => "request_id = #{id} AND name = '#{fieldname}'").id
 
           unless fieldname == "click-to-edit" 
-            post "/main/set_#{model.name.downcase}_domain/#{id}", "value" => savevalue
+            post "/main/set_#{model.name.downcase}_custom_domain/#{id}", "value" => savevalue
             assert_response :success
-            dbvalue = model.find(id).domain
+            dbvalue = model.find(id).custom_domain
           else # setting the name of a new postparameter (default-name is "click-to-edit")
             post "/main/set_#{model.name.downcase}_name/#{id}", "value" => savevalue
             assert_response :success

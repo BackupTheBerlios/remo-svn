@@ -158,7 +158,8 @@ class MainController < ApplicationController
     if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
       @header = Header.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
-                           :domain => ".*")
+                           :standard_domain => "click-to-edit",
+                           :custom_domain => "\\d")
       begin
         @header.save!
       rescue => err
@@ -169,7 +170,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding header failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @header, "header"
+    render_add_requestparameter @header, "header", MainHelper::HEADER_DOMAINS
 
   end
 
@@ -187,31 +188,48 @@ class MainController < ApplicationController
 
   end
 
-  def set_header_name
-    # the header name is "click-to-edit" by default. It can be updated to a real name. But only once.
-    
-    @header = Header.find(params[:id])
-    @name_save = @header.name
-    unless params[:value].nil? || params[:value].size == 0
-      begin
-        @header.name = params[:value] 
+  def set_headerparameter_standard_domain
+    set_requestparameter_standard_domain(params[:id], params[:value], Headerparameter, MainHelper::HEADER_DOMAINS)
+  end
+  def set_cookieparameter_standard_domain
+    set_requestparameter_standard_domain(params[:id], params[:value], Cookieparameter, MainHelper::COOKIE_DOMAINS)
+  end  
+  def set_querystringparameter_standard_domain
+    set_requestparameter_standard_domain(params[:id], params[:value], Querystringparameter, MainHelper::QUERY_STRING_DOMAINS)
+  end
+  def set_postparameter_standard_domain
+    set_requestparameter_standard_domain(params[:id], params[:value], Postparameter, MainHelper::POST_DOMAINS)
+  end
 
-        @header.save!
+  def set_requestparameter_standard_domain (id, value, model, value_domain)
+    # in place select edit
+    
+    record = model.find(id)
+    domain_save = record.standard_domain
+
+    display = nil
+
+    unless value.nil? || value.size == 0 || value_domain.select { |e| e == value }.size == 0
+      begin
+        record.standard_domain = value
+        record.save!
       rescue => err
-        flash[:notice] = "Setting name failed! " + err
-        @header.name = @name_save
+        flash[:notice] = "Setting parameter failed! " + err
+        record.domain = domain_save
       end
+    else
+      logger.error "Invalid form submission. Value: #{value}"
     end
 
-    render_set_requestparameter_name @header, "header", @name_save
+    render(:text => value )
 
   end
 
-  def set_cookieparameter_domain
-    set_requestparameter_domain (params[:id], params[:value], Cookieparameter, MainHelper::COOKIE_DOMAINS)
+  def set_cookieparameter_domain_custom
+    set_requestparameter_domain_custom(params[:id], params[:value], Cookieparameter)
   end
 
-  def set_requestparameter_domain (id, value, model, value_domain)
+  def set_requestparameter_domain_custom (id, value, model)
     # in place select edit
     
     record = model.find(id)
@@ -220,13 +238,6 @@ class MainController < ApplicationController
     display = nil
 
     unless value.nil? || value.size == 0 
-
-      if value_domain.select { |e| e == value }.size > 0
-        display = value
-        value = "__" + value + "__"
-      else
-        display = "Custom"
-      end
       begin
         record.domain = value
         record.save!
@@ -238,17 +249,17 @@ class MainController < ApplicationController
       logger.error "Invalid form submission. Value: #{value}"
     end
 
-    render(:text => display)
+    render(:text => value)
 
   end
-
 
   def add_postparameter
 
     if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
       @postparameter = Postparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
-                           :domain => ".*")
+                           :standard_domain => "click-to-edit",
+                           :custom_domain => "\\d")
       begin
         @postparameter.save!
       rescue => err
@@ -259,7 +270,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding postparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @postparameter, "postparameter"
+    render_add_requestparameter @postparameter, "postparameter", MainHelper::POST_DOMAINS
 
   end
 
@@ -268,7 +279,8 @@ class MainController < ApplicationController
     if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
       @querystringparameter = Querystringparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
-                           :domain => ".*")
+                           :standard_domain => "click-to-edit",
+                           :custom_domain => "\\d")
       begin
         @querystringparameter.save!
       rescue => err
@@ -279,7 +291,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding querystringparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @querystringparameter, "querystringparameter"
+    render_add_requestparameter @querystringparameter, "querystringparameter", MainHelper::QUERY_STRING_DOMAINS
 
   end
 
@@ -288,7 +300,8 @@ class MainController < ApplicationController
     if Request.find(:all, :conditions => "id = #{params[:id]}").size > 0
       @cookieparameter = Cookieparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
-                           :domain => ".*")
+                           :standard_domain => "click-to-edit",
+                           :custom_domain => "\\d")
       begin
         @cookieparameter.save!
       rescue => err
@@ -299,7 +312,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding cookieparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @cookieparameter, "cookieparameter"
+    render_add_requestparameter @cookieparameter, "cookieparameter", MainHelper::COOKIE_DOMAINS
 
   end
 
@@ -348,42 +361,24 @@ class MainController < ApplicationController
 
   end
 
-  def set_postparameter_name
-    # the postparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+  def set_header_name
+    # the header name is "click-to-edit" by default. It can be updated to a real name. But only once.
     
-    @postparameter = Postparameter.find(params[:id])
-    @name_save = @postparameter.name
+    @header = Header.find(params[:id])
+    @name_save = @header.name
     unless params[:value].nil? || params[:value].size == 0
       begin
-        @postparameter.name = params[:value] 
+        @header.name = params[:value] 
 
-        @postparameter.save!
+        @header.save!
       rescue => err
         flash[:notice] = "Setting name failed! " + err
-        @postparameter.name = @name_save
+        @header.name = @name_save
       end
     end
 
-    render_set_requestparameter_name @postparameter, "postparameter", @name_save
-  end
+    render_set_requestparameter_name @header, "header", @name_save, MainHelper::HEADER_DOMAINS
 
-  def set_querystringparameter_name
-    # the querystringparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
-    
-    @querystringparameter = Querystringparameter.find(params[:id])
-    @name_save = @querystringparameter.name
-    unless params[:value].nil? || params[:value].size == 0
-      begin
-        @querystringparameter.name = params[:value] 
-
-        @querystringparameter.save!
-      rescue => err
-        flash[:notice] = "Setting name failed! " + err
-        @querystringparameter.name = @name_save
-      end
-    end
-
-    render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save
   end
 
   def set_cookieparameter_name
@@ -402,7 +397,45 @@ class MainController < ApplicationController
       end
     end
 
-    render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save
+    render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save, MainHelper::COOKIE_DOMAINS
+  end
+
+  def set_querystringparameter_name
+    # the querystringparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+    
+    @querystringparameter = Querystringparameter.find(params[:id])
+    @name_save = @querystringparameter.name
+    unless params[:value].nil? || params[:value].size == 0
+      begin
+        @querystringparameter.name = params[:value] 
+
+        @querystringparameter.save!
+      rescue => err
+        flash[:notice] = "Setting name failed! " + err
+        @querystringparameter.name = @name_save
+      end
+    end
+
+    render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save, MainHelper::QUERY_STRING_DOMAINS
+  end
+
+  def set_postparameter_name
+    # the postparameter name is "click-to-edit" by default. It can be updated to a real name. But only once.
+    
+    @postparameter = Postparameter.find(params[:id])
+    @name_save = @postparameter.name
+    unless params[:value].nil? || params[:value].size == 0
+      begin
+        @postparameter.name = params[:value] 
+
+        @postparameter.save!
+      rescue => err
+        flash[:notice] = "Setting name failed! " + err
+        @postparameter.name = @name_save
+      end
+    end
+
+    render_set_requestparameter_name @postparameter, "postparameter", @name_save, MainHelper::POST_DOMAINS
   end
 
   def toggle_header_mandatory
@@ -434,7 +467,8 @@ class MainController < ApplicationController
     DEFAULT_HEADERS.each do |item|
       @header = Header.new(:request_id => request_id, 
                            :name => item.keys[0],
-                           :domain => item.values[0])
+                           :standard_domain => "Custom",
+                           :custom_domain => item.values[0])
       @header.save!
     end
 
@@ -449,22 +483,24 @@ class MainController < ApplicationController
 
   end
 
-  def render_add_requestparameter (requestparameter, requestparametername)
+  def render_add_requestparameter (requestparameter, requestparametername, domainarray)
 
     @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
     @requestparametername = requestparametername
 
-    render(:template => "main/add_requestparameter") 
+    @domainarray = domainarray # otherwise i can not seem to pass the array
+    render(:template => "main/add_requestparameter")
   
   end
 
 
-  def render_set_requestparameter_name (requestparameter, requestparametername, name_save)
+  def render_set_requestparameter_name (requestparameter, requestparametername, name_save, domainarray)
 
     @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
     @requestparametername = requestparametername
     @name_save = name_save
 
+    @domainarray = domainarray # otherwise i can not seem to pass the array
     render(:template => "main/set_requestparameter_name") 
  
   end

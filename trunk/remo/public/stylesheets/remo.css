@@ -259,8 +259,28 @@ li {
 }
 
 .request-header-field, .request-postparameter-field, .request-querystringparameter-field, .request-cookieparameter-field{
-  padding-left: 16px;
+  padding-left: 20px;
   clear: both;
+}
+
+
+/* request parameter details */
+.request-parameter-details {
+  float: left;
+  clear: both;
+  padding-left: 5px;
+}
+.request-fieldlabel-detail {
+  float: left;
+  clear: both;
+  padding-left: 12px;
+  color: gray;
+  font-size: small;
+}
+.request-fieldhint {
+  float: left;
+  color: gray;
+  font-size: small;
 }
 
 /* rails helper: inplace editor */
