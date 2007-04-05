@@ -3,29 +3,14 @@ require File.dirname(__FILE__) + '/../test_helper'
 require 'rules_generator/main'
 require 'helpers/various'
 
-
-def get_startline(rules_array, path)
-  # return the line within a ruleset where the rule regarding the 
-  # path passed as parameter starts
-
-  rules_array.size.times do |i|
-    regexp = /^# allow: .*#{path}/
-    return i if regexp.match(rules_array[i])
-  end
-
+def assert_regex_match (needle, haystack, comment="")
+  assert_equal false, build_regex(needle).match(haystack).nil?, comment
+end
+def assert_regex_no_match (needle, haystack, comment="")
+  assert_equal true, build_regex(needle).match(haystack).nil?, comment
 end
 
-def assert_rule_line_regex (rules_array, line, regexp, initial_comment)
-   assert_equal false, regexp.match(rules_array[line]).nil?, "#{initial_comment} (line #{line+1}):\n Expected : /#{regexp.source}/\n Retrieved:   #{rules_array[line]}" 
-   # it's line + 1 as the ruley_array works with cardinal numbers and we display an ordinary one.
-end
-
-def assert_rule_line_string (rules_array, line, template, initial_comment)
-   assert_equal true, rules_array[line].chomp == template, "#{initial_comment} (line #{line+1}):\n Expected : #{template}\n Retrieved: #{rules_array[line]}" 
-   # it's line + 1 as the ruley_array works with cardinal numbers and we display an ordinary one.
-end
-
-def build_rule_regex(string)
+def build_regex(string)
   string.gsub!("\\", "\\\\\\") # this is exactly what is needed for single backslashes
   string.gsub!("^", "\\^")
   string.gsub!("(", "\\(")
@@ -35,144 +20,11 @@ def build_rule_regex(string)
   string.gsub!("[", "\\[")
   string.gsub!("]", "\\]")
   string.gsub!("$", "\\$")
-  regex = /^  #{string}$/
+  string.gsub!(":", "\\:")
+  regex = /#{string}/
   return regex
 end
 
-def check_crosscheck(rules_array, i, rulename, rulename_commentname, name, id, type)
-  assert_rule_line_regex rules_array, i,
-    build_rule_regex("SecRule #{rulename} \"^#{name}\[=&\]|^#{name}$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{name} is present in #{rulename_commentname}. This is illegal.'\""),
-      "Request argument crosscheck for #{type} #{name} is not correct"
-end
-
-def assert_empty_line (rules_array, i)
-  assert_rule_line_regex rules_array, i, /^$/, "Line not empty"
-  return 1
-end
-
-def check_single_requestparameter(rules_array, id, i, type, rulename, name, standard_domain, custom_domain, mandatory, crosscheck=false)
-  lines = 0
-  assert_rule_line_regex rules_array, i + lines,
-    build_rule_regex("# Checking #{type} \"#{name}\""),
-    "Argument check comment for #{type} #{name} is not correct"
-  lines += 1
-  
-  domain = get_domain(standard_domain, custom_domain)
-
-  if crosscheck and type == "postparameter"
-    # post parameter crosscheck
-    check_crosscheck(rules_array, i + lines, "QUERY_STRING", "query string", name, id, type)
-    lines += 1
-  end
-  
-  if crosscheck and type == "querystringparameter"
-    # querystring parameter crosscheck
-    check_crosscheck(rules_array, i + lines, "REQUEST_BODY", "post payload", name, id, type)
-    lines += 1
-  end
-
-  if mandatory
-    assert_rule_line_regex rules_array, i + lines,
-      build_rule_regex("SecRule &#{rulename}:#{name} \"@eq 0\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{name} is mandatory, but it is not present in request.'\""),
-      "Request argument mandatory check for #{type} #{name} is not correct"
-  lines += 1
-  end
-
-  commentname=get_commentname(name)
-  doubleescapedname=get_doubleescapedname(name)
-  paramname = ""  
-  if /\\[dDwWstrn]/.match(name).nil? and /\[/.match(name).nil?
-    paramname = name
-  else
-    paramname = "'/^#{doubleescapedname}$/'"
-  end
-
-  assert_rule_line_string rules_array, i + lines,
-    "  SecRule #{rulename}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'#{type.capitalize} #{commentname} failed validity check. Value domain: #{standard_domain}.'\"",
-    "Request argument domain check for #{type} #{name} is not correct" 
-  lines += 1
-  
-  return lines
-
-end
-
-def check_rulegroup_header (rules_array, i, http_method, path, remarks, id)
-  assert_rule_line_regex rules_array, i + 0,
-    /^# allow: #{http_method} #{path} \(request id \/ rule group #{id}\)$/, "Rule start does not start with '# allow'" 
-  assert_rule_line_regex rules_array, i + 1,
-    /^# #{remarks}/, "Remarks comment does not match the remarks field"
-  assert_rule_line_regex rules_array, i + 2,
-    /^<LocationMatch "\^#{path}\$">$/, "LocationMatch line is not correct"
-  assert_rule_line_regex rules_array, i + 3, 
-    /^  # Checking request method$/, "Comment \"request method\" not correct"
-  assert_rule_line_regex rules_array, i + 4, 
-   /^  SecRule REQUEST_METHOD "!\^#{http_method}\$" "t:none,deny,id:#{id},status:501,severity:3,msg:'Request method wrong \(it is not #{http_method}\).'"$/, 
-   "Request method check faulty"
-
-  assert_empty_line(rules_array, i + 5)
-
-  return 6
-
-end
-
-def strict_parametercheck (rules_array, model, collectionname, i, id)
-  # Check the strict headercheck of the rule group
-  string = ""
-
-  assert_rule_line_regex rules_array, i, 
-        /^  # Strict #{model.name.downcase}check \(make sure the request contains only predefined request #{model.name.downcase}s\)$/, 
-        "Comment \"Strict #{model.name.downcase}check\" not correct"
-  
-  model.find(:all, :conditions => "request_id = #{id}").each do |item|
-    string += "|" unless string.size == 0
-    string += item.name
-  end
-
-  assert_rule_line_regex rules_array, i + 1,
-    build_rule_regex("SecRule #{collectionname} \"!^(#{string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict #{model.name.downcase}check: At least one request #{model.name.downcase} is not predefined for this path.'\""),
-    "\"Strict #{model.name.downcase}check\" not correct"
-
-  assert_empty_line(rules_array, i + 2)
-
-  return 3
-end
-
-def strict_combined_parametercheck (rules_array, models, collectionname, i, id)
-  # postparameters and querystring parameters are combined in modsecurity into a single collection
-  assert_rule_line_regex rules_array, i, 
-        /^  # Strict argumentcheck \(make sure the request contains only predefined request arguments\)$/, 
-        "Comment \"Strict argumentcheck\" not correct"
-  string = ""
-  
-  models.each do |model|
-    model.find(:all, :conditions => "request_id = #{id}").each do |item|
-      string += "|" unless string.size == 0
-      string += item.name
-    end
-  end
-
-  assert_rule_line_regex rules_array, i + 1,
-    build_rule_regex("SecRule #{collectionname} \"!^(#{string})$\" \"t:none,deny,id:#{id},status:501,severity:3,msg:'Strict argumentcheck: At least one request parameter is not predefined for this path.'\""),
-    "\"Strict argument check\" not correct"
-
-  assert_empty_line(rules_array, i + 2)
-
-  return 3
-end
-
-def check_rulegroup_footer(rules_array, id, i)
-  # Check the end of the rule group
-  assert_rule_line_regex rules_array, i,
-    /^  # All checks passed for this path. Request is allowed.$/, 
-    "Final comment for request not correct"
-  assert_rule_line_regex rules_array, i + 1,
-    /^  SecAction "allow,id:#{id},t:none,msg:'Request passed all checks, it is thus allowed.'"$/, 
-    "Rule allowing request not correct."
-  assert_rule_line_regex rules_array, i + 2,
-    /^<\/LocationMatch>$/, "Closing LocationMatch is not correct."
-
-    return 3
-end
 
 class RulesGeneratorTest < Test::Unit::TestCase
   fixtures :requests
@@ -181,92 +33,141 @@ class RulesGeneratorTest < Test::Unit::TestCase
   fixtures :querystringparameters
   fixtures :postparameters
 
-  def test_main
-    filename = generate(nil, nil)  
-    rules_array = IO.readlines(filename)
+  def test_get_commentname
+    assert_equal 'd', get_commentname('\d')
+  end
 
-    Request.find(:all).each do |item|
-      startline = get_startline(rules_array, item.path)
-      n = 0
+  def test_get_escapedname
+    assert_equal '\\d', get_escapedname('\d')
+  end
 
-      # Start of the rulegroup (header)
-      n += check_rulegroup_header(rules_array, startline + n, item.http_method, item.path, item.remarks, item.id)
-      n += strict_parametercheck(rules_array, Header, "REQUEST_HEADER_NAMES", startline + n, item.id)
+  def test_get_doubleescapedname
+    assert_equal '\\\\\\d', get_doubleescapedname('\d')
+  end
 
-      # Http headers
-      Header.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
-         n += check_single_requestparameter(rules_array, 
-                                           item.id, 
-                                           startline + n, 
-                                           "header", 
-                                           "REQUEST_HEADERS", 
-                                           myitem.name, 
-                                           myitem.standard_domain, 
-                                           myitem.custom_domain, 
-                                           myitem.mandatory)       
-      end
-      n += assert_empty_line(rules_array, startline + n)
+  def test_get_domain
+    assert_equal '\d', get_domain("Custom", '\d')
+    assert_equal '\d{0,16}', get_domain("Integer, max. 16 characters", '\d')
+    assert_equal '', get_domain("Integer XXX", '\d')
+  end
 
-      # Cookies
-      n += strict_parametercheck(rules_array, Cookieparameter, "REQUEST_COOKIES_NAMES", startline + n, item.id)
-      Cookieparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
-        n += check_single_requestparameter(rules_array,
-                                           item.id,
-                                           startline + n,
-                                           "cookie",
-                                           "REQUEST_COOKIES",
-                                           myitem.name,
-                                           myitem.standard_domain, 
-                                           myitem.custom_domain,
-                                           myitem.mandatory)
-      end
+  def test_get_status
+    assert_equal '', get_status("Default")
+    assert_equal ',status:501', get_status("501")
+  end
+  
+  def test_get_redirect
+    assert_equal '', get_redirect("200", "http://remo.netnea.com")
+    assert_equal ',redirect:http://remo.netnea.com', get_redirect("302", "http://remo.netnea.com")
+  end
 
-      # Querystring and post parameters 
-      n += assert_empty_line(rules_array, startline + n)
-      n += strict_combined_parametercheck(rules_array, [Querystringparameter, Postparameter], "ARGS_NAMES", startline + n, item.id)
+  def test_get_check_http_method
+    string = get_check_http_method("GET", "1")
+    assert_regex_match "# Checking request method", string, "Comment not found"
+    assert_regex_match "SecRule REQUEST_METHOD", string, "Error in 1st part of the rule:\n#{string}"
+    assert_regex_match "!^GET$", string, "Error in the 2nd part of the rule:\n#{string}"
+    assert_regex_match "t:none,deny,id:1,severity:3,msg:'Request method wrong (it is not GET).'",
+                        string , "Error in the 3rd part of the rule:\n#{string}"
+  end
 
-      Querystringparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
-        if Postparameter.find(:first, :conditions => "request_id = #{item.id} and name = '#{myitem.name}'").nil?
-          crosscheck = true
-        else
-          crosscheck = false
-        end
-        n += check_single_requestparameter(rules_array, 
-                                           item.id, 
-                                           startline + n, 
-                                           "querystringparameter", 
-                                           "ARGS", 
-                                           myitem.name, 
-                                           myitem.standard_domain, 
-                                           myitem.custom_domain, 
-                                           myitem.mandatory,
-                                           crosscheck)
-      end
+  def test_get_check_strict_parametertype
+    string = get_check_strict_parametertype(Header, 1)
 
-      Postparameter.find(:all, :conditions => "request_id = #{item.id}").each do |myitem|
-        if Querystringparameter.find(:first, :conditions => "request_id = #{item.id} and name = '#{myitem.name}'").nil?
-          crosscheck = true
-        else
-          crosscheck = false
-        end
-        n += check_single_requestparameter(rules_array, 
-                                           item.id, 
-                                           startline + n, 
-                                           "postparameter", 
-                                           "ARGS", 
-                                           myitem.name, 
-                                           myitem.standard_domain, 
-                                           myitem.custom_domain, 
-                                           myitem.mandatory,
-                                           crosscheck)
-      end
-      n += assert_empty_line(rules_array, startline + n)
+    assert_regex_match "# Strict headercheck (make sure the request contains only predefined request headers)", string, "Comment not found"
+    assert_regex_match "SecRule REQUEST_HEADERS_NAMES", string, "Error in 1st part of the rule:\n#{string}"
+    assert_regex_match "!^(Host|Accept|Accept-Language|Accept-Encoding|Accept-Charset|Keep-Alive|Referer|Cookie|If-Modified-Since|If-None-Match|Cache-Control)$",
+                        string, "Error in 2nd part of the rule:\n#{string}"
+    assert_regex_match "t:none,deny,id:1,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'", 
+                        string, "Error in 3rd part of the rule:\n#{string}"
 
-      n += check_rulegroup_footer(rules_array, item.id, startline + n)
-
-   end
+    string = get_check_strict_parametertype(Querystringparameter, 1)
+      # querystringparameters and postparameters are part of the same collection. So querystring checking involves postparameter checking too
+    assert_regex_match "# Strict querystringparameter-/postparametercheck (make sure the request contains only predefined request querystringparameter-/postparameters)", string, "Comment not found"
 
   end
+
+  def test_get_crosscheck
+
+    item = Querystringparameter.find(:first, :conditions => "name = 'q_single_integer'")
+    string = get_crosscheck "querystringparameter", get_commentname(item.name), item
+
+    # crosscheck needed
+    assert_regex_match "SecRule REQUEST_BODY", string, "Error in 1st part of the rule:\n#{string}"
+    assert_regex_match "^q_single_integer[=&]|^q_single_integer$",
+                        string, "Error in crosscheck:\n#{string}"
+    assert_regex_match "t:none,deny,id:3,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
+                        string, "Error in crosscheck:\n#{string}"
+
+    # crosscheck not needed                       
+    item = Querystringparameter.find(:first, :conditions => "name = 'qp_single_integer'")
+    string = get_crosscheck "querystringparameter", get_commentname(item.name), item
+    assert_regex_no_match "t:none,deny,id:3,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
+                        string, "Crosscheck is there, but parameter does not need a crosscheck:\n#{string}"
+
+  end
+
+  def test_get_mandatorycheck
+
+    # mandatory not needed
+    item = Querystringparameter.find(:first, :conditions => "name = 'q_single_integer'")
+    string = get_mandatorycheck "querystringparameter", get_commentname(item.name), "ARGS", item
+    assert_regex_no_match "is mandatory", string, "Error, because there is a mandatory check, but there should not be one:\n#{string}"
+
+    # mandatory needed                        
+    item = Cookieparameter.find(:first, :conditions => "name = 'c_session'")
+    string = get_mandatorycheck "cookieparameter", get_commentname(item.name), "REQUEST_COOKIES", item
+    assert_regex_match( 
+      'SecRule &REQUEST_COOKIES:c_session "@eq 0" "t:none,deny,id:4,severity:3,msg:\'Cookieparameter c_session is mandatory, but it is not present in request.\'',
+      string, 
+      "Error in mandatory check:\n#{string}")
+
+  end
+
+  def test_get_check_individual_parameter
+    item = Querystringparameter.find(:first, :conditions => "name = 'q_single_integer'")
+    string = get_check_individual_parameter("querystringparameter", item)
+
+    # main rule
+    assert_regex_match '# Checking querystringparameter "q_single_integer"', string, "Comment not found"
+    assert_regex_match "SecRule ARGS:q_single_integer", string, "Error in 1st part of the rule:\n#{string}"
+    assert_regex_match '!^(\d)$', string, "Error in 2nd part of the rule:\n#{string}"
+
+    assert_regex_match "t:none,deny,id:3,severity:3,msg:'Querystringparameter q_single_integer failed validity check. Value domain: Custom.'",
+                        string, "Error in 3rd part of the rule:\n#{string}"
+
+    # crosscheck is tested seperately above. 
+    # mandatory is tested seperately above.
+
+  end
+
+  def test_domain_status_redirect
+    # test the correct status code and redirect URL for a failed domain check
+    item = Cookieparameter.find(:first, :conditions => "id = 40")
+    string = get_check_individual_parameter("querystringparameter", item)
+    assert_regex_match 'status:301,redirect:http://www.netnea.com', string, "Domain failed status code/redirect not correct:\n#{string}"
+  end
+  def test_mandatory_status_redirect
+    # test the correct status code and redirect URL for a failed mandatory check
+    item = Cookieparameter.find(:first, :conditions => "id = 40")
+    string = get_check_individual_parameter("querystringparameter", item)
+    assert_regex_match 'status:302,redirect:http://remo.netnea.com', string, "Mandatory failed status code/redirect not correct:\n#{string}"
+  end
+
+  def test_get_requestrule
+    string = get_requestrule(Request.find(:first))
+
+    assert_regex_match '# Basic get request', string, "Rulegroup comment not found."
+    assert_regex_match '<LocationMatch "^/index.html$">', string, "Rulegroup header not found."
+    
+    # middle part is checked in individula checking functions above
+
+    assert_regex_match "# All checks passed for this path. Request is allowed.", string, "Rulegroup fallback comment not found."
+    assert_regex_match 'SecAction "allow,id:1,t:none,msg:\'Request passed all checks, it is thus allowed.\'', string, "Rulegroup fallback comment not found."
+    assert_regex_match "</LocationMatch>", string, "Rulegroup footer not found."
+
+    assert string.size > 200, "Requestrule is too short to be correct:\n#{string}"
+  end
+
 
 end
 

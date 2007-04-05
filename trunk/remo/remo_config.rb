@@ -25,30 +25,47 @@ unless defined? REMO_RELEASE_VERSION
     {"Content-Type" =>      ["Custom", ".*"]},
   ]
 
+  # http methods
   WEBDAV_METHODS = ["BCOPY", "BDELETE", "BMOVE", "BPROPFIND", "BPROPPATCH", "COPY", "LOCK", "MKCOL", "MOVE", "NOTIFY", "POLL", "PROPFIND", "PROPPATCH", "SEARCH", "SUBSCRIBE", "UNLOCK", "UNSUBSCRIBE", "X-MS-ENUMATTS"]
   HTTP_METHODS = ["GET", "POST", "GET|POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"] + WEBDAV_METHODS
 
 
+  # Standard domain to regex mapping
   STANDARD_DOMAINS = {
     # name - value pairs
-    "Hostname" => "[0-9a-zA-Z-.]{1,64}",
-    "IP Address V4" => "\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}",
-    "IP Address V6" => "([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}",
-    "Base64, max. 16 characters" => "[0-9a-zA-Z+/]{0,16}={0,2}",
-    "Integer, max. 16 characters" => "\d{0,16}",
-    "Flag, single character" => "[0-9a-zA-Z]",
-    "Header: User-Agent" => "[0-9a-zA-Z +:;!()/.-]{1,256}",
-    "Header: Host" => "[0-9a-zA-Z-.]{3,64}",
-    "Header: Basic Authorization" => "Basic\s[0-9a-zA-Z+/]{0,256}={0,2}"
+    "Hostname" => '[0-9a-zA-Z-.]{1,64}',
+    "IP Address V4" => '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}',
+    "IP Address V6" => '([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}',
+    "Base64, max. 16 characters" => '[0-9a-zA-Z+/]{0,16}={0,2}',
+    "Integer, max. 16 characters" => '\d{0,16}',
+    "Flag, single character" => '[0-9a-zA-Z]',
+    "Sessionid, max. 16 alphanumerical characters" => '[0-9a-zA-Z]{1,16}',
+    "Header: User-Agent" => '[0-9a-zA-Z +:;!()/.-]{1,256}',
+    "Header: Host" => '[0-9a-zA-Z-.]{3,64}',
+    "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
   }
 
-  common_domains = ["Custom"] + ["Hostname", "IP Address V4", "IP Address V6", "Base64, max. 16 characters", "Integer, max. 16 characters", "Flag, single character"].sort
+  # Standard domains per parameter type
+  common_domains = ["Custom"] + ["Hostname", "IP Address V4", "IP Address V6", "Base64, max. 16 characters", "Integer, max. 16 characters", "Flag, single character", "Sessionid, alphanumerical, max. 16 characters"].sort
 
   HEADER_DOMAINS = common_domains + ["Header: User-Agent", "Header: Host", "Header: Basic Authorization"].sort unless defined? HEADER_DOMAINS
   COOKIE_DOMAINS = common_domains unless defined? COOKIE_DOMAINS
   QUERY_STRING_DOMAINS = common_domains unless defined? QUERY_STRING_DOMAINS
   POST_DOMAINS = common_domains unless defined? POST_DOMAINS
 
-  HTTP_METHODS = ["GET", "POST", "GET|POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"] unless defined? HTTP_METHODS
+  
+  # All the http status codes and "Default" as an array.
+  HTTP_STATUS_CODES_WITH_DEFAULT = ["Default", "100", "101", "200", "201", "202", "203", "204", "205", "206", "300", "301", "302", "303", "304", "305", "306", "307", "400", "401", "402", "403", "404", "405", "406", "407", "408", "409", "410", "411", "412", "413", "414", "415", "416", "417", "500", "501", "502", "503", "504", "505"]
+
+  # Those status codes, that result in a redirect to the user agent
+  HTTP_REDIRECT_STATUS_CODES = ["300", "301", "302", "303", "305", "307"]
+
+  # ModSecurity collection names
+  MOD_SECURITY_COLLECTIONS = {
+    "header" => "REQUEST_HEADERS",
+    "cookieparameter" => "REQUEST_COOKIES",
+    "querystringparameter" => "ARGS",
+    "postparameter" => "ARGS"
+  }
 
 end

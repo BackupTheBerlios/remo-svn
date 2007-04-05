@@ -5,12 +5,16 @@ rb1:
   name: "sessionid"
   standard_domain: "Custom"
   custom_domain: ".*"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 rb2:
   id: 2
   request_id: 2
   name: "sessionid"
   standard_domain: "Custom"
   custom_domain: ".*"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 
 actiontest_index_c1:
   id: 3
@@ -18,30 +22,40 @@ actiontest_index_c1:
   name: "c_[a-z]{1,4}"
   standard_domain: "Custom"
   custom_domain: "\d"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 actiontest_index_c2:
   id: 4
   request_id: 3
   name: "c_\w{1,4}"
   standard_domain: "Custom"
   custom_domain: "\d"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 actiontest_index_c3:
   id: 5
   request_id: 3
   name: "c_[\w-]{1,4}"
   standard_domain: "Custom"
   custom_domain: "\d"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 actiontest_index_c4:
   id: 6
   request_id: 3
   name: "c\[\w{1,4}\]"
   standard_domain: "Custom"
   custom_domain: "\d"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 actiontest_index_c5:
   id: 7
   request_id: 3
   name: "c\[[\w-]{1,4}\]"
   standard_domain: "Custom"
   custom_domain: "\d"
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 
 actiontest_post_c1:
   id: 20
@@ -50,6 +64,8 @@ actiontest_post_c1:
   standard_domain: "Custom"
   custom_domain: "\d{8}"
   mandatory: true
+  domain_status_code: "Default"
+  mandatory_status_code: "Default"
 
 actiontest_redirect_c1:
   id: 40
@@ -58,4 +74,8 @@ actiontest_redirect_c1:
   standard_domain: "Custom"
   custom_domain: "\d{8}"
   mandatory: true
+  domain_status_code: "301"
+  domain_location: "http://www.netnea.com"
+  mandatory_status_code: "302"
+  mandatory_location: "http://remo.netnea.com"
 

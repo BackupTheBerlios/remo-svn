@@ -159,7 +159,11 @@ class MainController < ApplicationController
       @header = Header.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
                            :standard_domain => "click-to-edit",
-                           :custom_domain => "\\d")
+                           :custom_domain => "\\d",
+                           :domain_status_code => "Default",
+                           :domain_location => "click-to-edit",
+                           :mandatory_status_code => "Default",
+                           :mandatory_location => "click-to-edit")
       begin
         @header.save!
       rescue => err
@@ -170,7 +174,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding header failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @header, "header", MainHelper::HEADER_DOMAINS
+    render_add_requestparameter @header, "header", MainHelper::HEADER_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT
 
   end
 
@@ -259,7 +263,11 @@ class MainController < ApplicationController
       @postparameter = Postparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
                            :standard_domain => "click-to-edit",
-                           :custom_domain => "\\d")
+                           :custom_domain => "\\d",
+                           :domain_status_code => "Default",
+                           :domain_location => "click-to-edit",
+                           :mandatory_status_code => "Default",
+                           :mandatory_location => "click-to-edit")
       begin
         @postparameter.save!
       rescue => err
@@ -270,7 +278,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding postparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @postparameter, "postparameter", MainHelper::POST_DOMAINS
+    render_add_requestparameter @postparameter, "postparameter", MainHelper::POST_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT
 
   end
 
@@ -280,7 +288,11 @@ class MainController < ApplicationController
       @querystringparameter = Querystringparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
                            :standard_domain => "click-to-edit",
-                           :custom_domain => "\\d")
+                           :custom_domain => "\\d",
+                           :domain_status_code => "Default",
+                           :domain_location => "click-to-edit",
+                           :mandatory_status_code => "Default",
+                           :mandatory_location => "click-to-edit")
       begin
         @querystringparameter.save!
       rescue => err
@@ -291,7 +303,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding querystringparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @querystringparameter, "querystringparameter", MainHelper::QUERY_STRING_DOMAINS
+    render_add_requestparameter @querystringparameter, "querystringparameter", MainHelper::QUERY_STRING_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
 
   end
 
@@ -301,7 +313,11 @@ class MainController < ApplicationController
       @cookieparameter = Cookieparameter.new(:request_id => params[:id], 
                            :name => "click-to-edit", 
                            :standard_domain => "click-to-edit",
-                           :custom_domain => "\\d")
+                           :custom_domain => "\\d",
+                           :domain_status_code => "Default",
+                           :domain_location => "click-to-edit",
+                           :mandatory_status_code => "Default",
+                           :mandatory_location => "click-to-edit")      
       begin
         @cookieparameter.save!
       rescue => err
@@ -312,7 +328,7 @@ class MainController < ApplicationController
         flash[:notice] = "Adding cookieparameter failed! Request #{params[:id]} is not existing." 
     end
 
-    render_add_requestparameter @cookieparameter, "cookieparameter", MainHelper::COOKIE_DOMAINS
+    render_add_requestparameter @cookieparameter, "cookieparameter", MainHelper::COOKIE_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
 
   end
 
@@ -377,7 +393,7 @@ class MainController < ApplicationController
       end
     end
 
-    render_set_requestparameter_name @header, "header", @name_save, MainHelper::HEADER_DOMAINS
+    render_set_requestparameter_name @header, "header", @name_save, MainHelper::HEADER_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
 
   end
 
@@ -397,7 +413,7 @@ class MainController < ApplicationController
       end
     end
 
-    render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save, MainHelper::COOKIE_DOMAINS
+    render_set_requestparameter_name @cookieparameter, "cookieparameter", @name_save, MainHelper::COOKIE_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
   end
 
   def set_querystringparameter_name
@@ -416,7 +432,7 @@ class MainController < ApplicationController
       end
     end
 
-    render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save, MainHelper::QUERY_STRING_DOMAINS
+    render_set_requestparameter_name @querystringparameter, "querystringparameter", @name_save, MainHelper::QUERY_STRING_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
   end
 
   def set_postparameter_name
@@ -435,7 +451,7 @@ class MainController < ApplicationController
       end
     end
 
-    render_set_requestparameter_name @postparameter, "postparameter", @name_save, MainHelper::POST_DOMAINS
+    render_set_requestparameter_name @postparameter, "postparameter", @name_save, MainHelper::POST_DOMAINS, MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT 
   end
 
   def toggle_header_mandatory
@@ -468,7 +484,11 @@ class MainController < ApplicationController
       @header = Header.new(:request_id => request_id, 
                            :name => item.keys[0],
                            :standard_domain => item.values[0][0],
-                           :custom_domain => item.values[0][1])
+                           :custom_domain => item.values[0][1],
+                           :domain_status_code => "Default",
+                           :domain_location => "click-to-edit",
+                           :mandatory_status_code => "Default",
+                           :mandatory_location => "click-to-edit")
       @header.save!
     end
 
@@ -483,24 +503,26 @@ class MainController < ApplicationController
 
   end
 
-  def render_add_requestparameter (requestparameter, requestparametername, domainarray)
+  def render_add_requestparameter (requestparameter, requestparametername, domainarray, statuscodearray)
 
     @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
     @requestparametername = requestparametername
+    @domainarray = domainarray 
+    @statuscodearray = statuscodearray 
 
-    @domainarray = domainarray # otherwise i can not seem to pass the array
     render(:template => "main/add_requestparameter")
   
   end
 
 
-  def render_set_requestparameter_name (requestparameter, requestparametername, name_save, domainarray)
+  def render_set_requestparameter_name (requestparameter, requestparametername, name_save, domainarray, statuscodearray)
 
     @requestparameter = requestparameter    # parameters have to be passed to rjs as instance variables.
     @requestparametername = requestparametername
     @name_save = name_save
+    @domainarray = domainarray 
+    @statuscodearray = statuscodearray 
 
-    @domainarray = domainarray # otherwise i can not seem to pass the array
     render(:template => "main/set_requestparameter_name") 
  
   end

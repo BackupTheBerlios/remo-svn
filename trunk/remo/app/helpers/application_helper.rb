@@ -17,14 +17,14 @@ module ApplicationHelper
 
   def in_place_select_editor(field_id, options = {})
     select_options = options[:select_options].map{|opt| escape_javascript(opt)}
+    options[:click_to_edit_text] = "click to edit" if options[:click_to_edit_text].nil?
     function = "new Ajax.InPlaceSelectEditor(" 
     function << "'#{field_id}', " 
     function << "'#{url_for(options[:url])}' " 
     function << (', ' + options_for_javascript(
         {
-        'selectOptionsHTML' => " new Array('"+
-                              select_options.join("','") +
-                              "')" 
+        'selectOptionsHTML' => " new Array('"+ select_options.join("','") + "')",
+        'clickToEditText' => "'" + options[:click_to_edit_text] + "'"
         }
       )
     ) if options[:select_options]

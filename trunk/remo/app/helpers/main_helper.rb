@@ -6,6 +6,7 @@ module MainHelper
     # include constants into helper namespace to make them available for the 
     # partial views
     HTTP_METHODS = HTTP_METHODS
+    HTTP_STATUS_CODES_WITH_DEFAULT = HTTP_STATUS_CODES_WITH_DEFAULT
 
     HEADER_DOMAINS = HEADER_DOMAINS
     COOKIE_DOMAINS = COOKIE_DOMAINS

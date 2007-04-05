@@ -33,7 +33,9 @@
                 <%    Header.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@header| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @header,
-                          :locals => { :requestparametername => "header", :domainarray => MainHelper::HEADER_DOMAINS}) -%>
+                          :locals => { :requestparametername => "header",
+                                       :domainarray => MainHelper::HEADER_DOMAINS,
+                                       :statuscodearray => MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -53,7 +55,9 @@
                 <%    Querystringparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@querystringparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @querystringparameter,
-                          :locals => { :requestparametername => "querystringparameter", :domainarray => MainHelper::QUERY_STRING_DOMAINS}) -%>
+                          :locals => { :requestparametername => "querystringparameter",
+                                       :domainarray => MainHelper::QUERY_STRING_DOMAINS,
+                                       :statuscodearray => MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -73,7 +77,9 @@
                 <%    Cookieparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@cookieparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @cookieparameter,
-                          :locals => { :requestparametername => "cookieparameter", :domainarray => MainHelper::COOKIE_DOMAINS}) -%>
+                          :locals => { :requestparametername => "cookieparameter",
+                                       :domainarray => MainHelper::COOKIE_DOMAINS,
+                                       :statuscodearray => MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT}) -%>
                 <%    end -%>
               </div>
             </div>
@@ -93,7 +99,9 @@
                 <%    Postparameter.find(:all, :conditions => "request_id = #{@request.id}", :order => "name ASC").each do |@postparameter| -%>
                 <%=     render(:partial => "requestparameter", 
                           :object => @postparameter,
-                          :locals => { :requestparametername => "postparameter", :domainarray => MainHelper::POST_DOMAINS}) -%>
+                          :locals => { :requestparametername => "postparameter",
+                                       :domainarray => MainHelper::POST_DOMAINS,
+                                       :statuscodearray => MainHelper::HTTP_STATUS_CODES_WITH_DEFAULT}) -%>
                 <%    end -%>
               </div>
             </div>
