@@ -41,7 +41,7 @@ unless defined? REMO_RELEASE_VERSION
     "Flag, single character" => '[0-9a-zA-Z]',
     "Sessionid, max. 16 alphanumerical characters" => '[0-9a-zA-Z]{1,16}',
     "Header: User-Agent" => '[0-9a-zA-Z +:;!()/.-]{1,256}',
-    "Header: Host" => '[0-9a-zA-Z-.]{3,64}',
+    "Header: Host" => '[0-9a-zA-Z-:.]{3,64}',
     "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
   }
 
@@ -59,6 +59,8 @@ unless defined? REMO_RELEASE_VERSION
 
   # Those status codes, that result in a redirect to the user agent
   HTTP_REDIRECT_STATUS_CODES = ["300", "301", "302", "303", "305", "307"]
+
+  HTTP_DEFAULT_DENY_STATUS_CODE = "501"
 
   # ModSecurity collection names
   MOD_SECURITY_COLLECTIONS = {

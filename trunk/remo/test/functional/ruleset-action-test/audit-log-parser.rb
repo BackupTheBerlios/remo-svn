@@ -246,7 +246,7 @@ def reinject_single_request(r, verbose=false, quiet=false)
   response = nil
   success = false
 
-  display_single_request(r, nil, verbose) if verbose
+  display_single_request(r, verbose) if verbose
 
   if r[:host].nil?
     puts "Host header not set. Can't reinject."
@@ -428,7 +428,7 @@ def display_requests(requests, ids=nil, verbose=false)
         # alphanumerical
         intid = get_integer_id_from_alphanumerical_id(requests, id) # translate the alphanumerical id into a integer id
         unless intid.nil?
-          display_single_request(requests[intid], intid, verbose)
+          display_single_request(requests[intid], verbose)
         else
           puts "Id #{id} not found."
         end

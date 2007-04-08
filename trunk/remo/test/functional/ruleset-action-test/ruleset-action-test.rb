@@ -10,7 +10,7 @@ class ModSecurityTest < ActionController::IntegrationTest
 
  
   def self.major_teardown
-    Dir.chdir("./test/functional/ruleset-action-test/")
+    Dir.chdir("./test/functional/ruleset-action-test/") if FileTest::exists?("./test/functional/ruleset-action-test/")
     system("./apache2 stop") if File::exists?("./httpd.pid")
 
     File.delete("modsec_debug.log") if FileTest::exists?("modsec_audit.log")
@@ -58,7 +58,7 @@ class ModSecurityTest < ActionController::IntegrationTest
 
     end
 
-    Dir.chdir("./test/functional/ruleset-action-test/")
+    Dir.chdir("./test/functional/ruleset-action-test/") if FileTest::exists?("./test/functional/ruleset-action-test/")
 
     system("./apache2 stop") if File::exists?("./httpd.pid")
     system("./apache2 start")

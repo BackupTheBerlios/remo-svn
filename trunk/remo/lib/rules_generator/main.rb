@@ -47,7 +47,7 @@ def get_check_http_method (value, id)
   #
   string = ""
   string += "  # Checking request method\n"
-  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
+  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
   string += "\n"
   return string
 end
@@ -94,7 +94,7 @@ def get_check_strict_parametertype (model, id)
   end
 
   string += "  # Strict #{name}check (make sure the request contains only predefined request #{name}s)\n"
-  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,deny,id:#{id},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
+  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,deny,id:#{id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
   string += "\n"
 
   return string
@@ -107,10 +107,10 @@ def get_crosscheck (parametername, commentname, item)
   string = ""
 
   if (parametername == "querystringparameter" and Postparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
   end
   if (parametername == "postparameter" and Querystringparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
   end
 
   return string
@@ -120,7 +120,9 @@ def get_mandatorycheck (parametername, commentname, collection_name, item)
   string = ""
   
   status = get_mandatory_status item
+  status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
   redirect = get_mandatory_redirect item
+
 
   if item.mandatory
     string += "  SecRule &#{collection_name}:#{item.name} \"@eq 0\" \"t:none,deny,id:#{item.request_id}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} is mandatory, but it is not present in request.'\"\n" 
@@ -179,6 +181,7 @@ def get_check_individual_parameter (parametername, item)
   string += get_mandatorycheck parametername, commentname, collection_name, item
 
   status = get_domain_status item
+  status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
   redirect = get_domain_redirect item
 
   string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{item.request_id}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"

@@ -74,8 +74,19 @@ actiontest_redirect_c1:
   standard_domain: "Custom"
   custom_domain: "\d{8}"
   mandatory: true
+  domain_status_code: "Default"
+  domain_location: "click-to-edit"
+  mandatory_status_code: "Default"
+  mandatory_location: "click-to-edit"
+
+domain_status_redirect:
+  id: 50
+  request_id: 5
+  name: "c_session_redirect"
+  standard_domain: "Custom"
+  custom_domain: "\d{8}"
+  mandatory: true
   domain_status_code: "301"
   domain_location: "http://www.netnea.com"
   mandatory_status_code: "302"
   mandatory_location: "http://remo.netnea.com"
-
