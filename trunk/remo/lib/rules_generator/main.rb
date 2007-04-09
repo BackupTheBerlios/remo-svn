@@ -52,7 +52,24 @@ def get_check_http_method (value, id)
   return string
 end
 
-
+def get_check_strict_http_methods(requests)
+  string = ""
+  string += "  # Checking request method\n"
+  unless requests.length > 1
+    string += "  SecRule REQUEST_METHOD \"!^(#{requests[0].http_method})$\" \"t:none,deny,id:#{requests[0].id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not #{requests[0].http_method}).'\"\n"
+  else
+    # check http_methods
+    mystring = ""
+    requests.each do |r|
+      mystring += "|" unless mystring.size == 0
+      mystring += r.http_method
+    end
+    string += "  SecRule REQUEST_METHOD \"!^(#{mystring})$\" \"t:none,deny,id:#{requests[0].id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not one of #{mystring}).'\"\n"
+    # note that the id is the request id of the first request in the set. this is a convention.
+  end
+  string += "\n"
+  return string
+end
 
 def get_check_strict_parametertype (model, id)
   # "strict headercheck" is a modsecurity construct.
@@ -95,8 +112,17 @@ def get_check_strict_parametertype (model, id)
 
   string += "  # Strict #{name}check (make sure the request contains only predefined request #{name}s)\n"
   string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,deny,id:#{id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
-  string += "\n"
 
+  return string
+end
+
+def get_http_method_skip_block(requests)
+  string = ""
+  requests.each do |r|
+    skip = get_http_method_skip_distance(requests, r.http_method)
+    string += "  SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"t:none,pass,skip:#{skip}\"\n"
+  end
+  string += "\n" unless string.length == 0
   return string
 end
 
@@ -160,6 +186,111 @@ def get_mandatory_redirect(item)
   return get_redirect(item.mandatory_status_code, item.mandatory_location)
 end
 
+def get_http_method_position(requests, http_method)
+  # get the position of the request with the http_method in the requests array passed
+
+    pos_http_method = nil # position of the http_method in question within the requests set
+                          # the requests set is the set of requests with the same path
+    0.upto(requests.length-1) do |i|
+      logger.error "#{i} #{requests[i].http_method} #{http_method}"
+      pos_http_method = i if requests[i].http_method == http_method
+    end
+
+    return pos_http_method
+end
+
+def get_total_num_parameters_of_request(request_id)
+  n = 0
+  [Header, Cookieparameter, Querystringparameter, Postparameter].each do |model|
+    n += model.find(:all, :conditions => "request_id = #{request_id}").length
+  end
+  return n
+end
+
+def get_total_num_mandatory_parameters_of_request(request_id)
+  n = 0
+  [Header, Cookieparameter, Querystringparameter, Postparameter].each do |model|
+    n += model.find(:all, :conditions => "request_id = #{request_id} and mandatory = 't' ").length
+  end
+  return n
+end
+
+def get_total_num_crosscheck_parameters_of_request(request_id)
+  n = 0
+  Querystringparameter.find(:all, :conditions => "request_id = #{request_id}").each do |item|
+    n += 1 if Postparameter.find(:first, :conditions => "request_id = #{request_id} and name = '#{item.name}'").nil?
+  end
+  Postparameter.find(:all, :conditions => "request_id = #{request_id}").each do |item|
+    n += 1 if Querystringparameter.find(:first, :conditions => "request_id = #{request_id} and name = '#{item.name}'").nil?
+  end
+  return n
+end
+
+def get_http_method_skip_distance(requests, http_method)
+    skip = 0
+
+    pos_http_method = get_http_method_position(requests, http_method)
+
+    if pos_http_method.nil?
+      logger.error "http_method is not part of the requests set. This is illegal."
+      return 0
+    end
+
+    skip += (requests.length - pos_http_method - 1) # skipping the other methods in the "skip"-block
+
+    0.upto(pos_http_method - 1) do |i|
+      skip += 3 # strict header check, strict cookie check, strict query string/post parameter check (the later two share the collection)
+      skip += get_total_num_parameters_of_request(requests[i].id) # one rule per parameter
+      skip += get_total_num_mandatory_parameters_of_request(requests[i].id) # one rule per mandatory parameter
+      skip += get_total_num_crosscheck_parameters_of_request(requests[i].id)
+      skip += 1 unless i >= requests.length # Skipping SecAction rule at the end, but not at the last one
+    end
+
+    return skip
+
+end
+
+def get_remaining_skip_rule(requests, http_method)
+  # A rule that will skip all the other http_method rule blocks
+  skip = 0
+  string = ""
+  
+  pos_http_method = get_http_method_position(requests, http_method) + 1
+
+  unless pos_http_method >= requests.length 
+    pos_http_method.upto(requests.length - 1) do |i|
+      skip += 3 # strict header check, strict cookie check, strict query string/post parameter check (the later two share the collection)
+      skip += get_total_num_parameters_of_request(requests[i].id) # one rule per parameter
+      skip += get_total_num_mandatory_parameters_of_request(requests[i].id) # one rule per mandatory parameter
+      skip += get_total_num_crosscheck_parameters_of_request(requests[i].id)
+      skip += 1 unless i >= (requests.length - 1) # Skipping SecAction rule at the end, but not at the last one
+    end
+
+    string += "  # skip the remaining http_method blocks until the fall back rule\n"
+    string += "  SecAction \"t:none,pass,skip:#{skip}\"\n"
+    string += "\n"
+  end
+
+  return string
+end
+
+def get_check_the_four_parameter_types(r)
+  string = ""
+
+  [Header, Cookieparameter, Querystringparameter, Postparameter].each do |model|
+    unless model == Postparameter
+      # postparameters are being tested together with the querystringparameters as they are part of the same collection
+      string += get_check_strict_parametertype(model, r.id)
+    end
+
+    model.find(:all, :conditions => "request_id = #{r.id}").each do |item| # loop over parameters
+      string += get_check_individual_parameter(model.name.downcase, item)
+    end
+    string += "\n" unless string.length == 0
+  end
+  return string
+end
+
 def get_check_individual_parameter (parametername, item)
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
@@ -191,7 +322,7 @@ def get_check_individual_parameter (parametername, item)
 end
 
 def get_requestrule(r)
-  models = [Header, Cookieparameter, Querystringparameter, Postparameter]
+  # do a request rule block for this request and all other requests with the same path
   string = ""
 
   # request rule group header
@@ -199,20 +330,21 @@ def get_requestrule(r)
   string += "# #{r.remarks}\n" unless r.remarks.nil?
   string += "<LocationMatch \"^#{r.path}$\">\n"
 
-  # check http method
-  string += get_check_http_method(r.http_method, r.id)
+  requests = Request.find(:all, :conditions => "path = '#{r.path}'")
 
-  # check the 4 parameter types
-  models.each do |model|
-    unless model == Postparameter
-      # postparameters are being tested together with the querystringparameters as they are part of the same collection
-      string += get_check_strict_parametertype(model, r.id)
-    end
+  string += get_check_strict_http_methods(requests)
 
-    model.find(:all, :conditions => "request_id = #{r.id}").each do |item| # loop over parameters
-      string += get_check_individual_parameter(model.name.downcase, item)
-    end
-    string += "\n"
+  string += get_http_method_skip_block(requests) if requests.length > 1
+    # if there are multiple requests with the same path
+    # we have to work with skips. 
+    # See http://remo.netnea.com/twiki/bin/view/Main/Task50Start for more infos
+
+  # parameter blocks
+  requests.each do |r|
+      string += "  # skip-destination for http_method #{r.http_method}\n" if requests.length > 1
+        # this comment is not necessary of there is no skipping
+      string += get_check_the_four_parameter_types(r)
+      string += get_remaining_skip_rule(requests, r.http_method) if requests.length > 1
   end
 
   # all checks for this path passed. So we can allow the request
@@ -231,14 +363,16 @@ def generate(request=nil, version=nil)
   prepend_filename= "prepend-file.conf"
   append_filename= "append-file.conf"
 
-  requests = Request.find(:all, :order => "weight ASC")
+  requests = Request.find(:all, :order => "path, weight ASC")
 
   File.open(filename, "w") do |file|
 
     append_file(file, prepend_filename, request, version)
 
+    old_path = nil
     requests.each do |r|
-      file.puts get_requestrule(r)
+      file.puts get_requestrule(r) unless r.path == old_path
+      old_path = r.path
     end
 
     append_file(file, append_filename, request, version)
