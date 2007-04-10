@@ -35,9 +35,21 @@ This is the short list of features done so far:
  * Enter http requests, display them, edit them, delete 
    them, rearrange them
  * Edit http headers for every request
+ * Edit http cookie arguments for every request
+ * Edit http query string arguments for every request
  * Edit http post arguments for every request
+ * Support for parameter names with regular expressions
+   I.e. post parameters like user_1, user_2, theme[bluecoat]_path etc.
+ * Predefined value domains
+   No need to edit a regular expression for every parameter 
+   anymore. Just select a predefined domain.
+ * Support custom http_status codes for every failed 
+   pattern match (including redirect with custom location)
+ * Support custom http_status codes for every missing 
+   mandatory parameter (including redirect with custom location)
 
 Near future plans
 
- * Extend the request record to include full http support
+ * Better default value domains
+ * Going beta
 
