@@ -36,7 +36,7 @@ actiontest_redirect:
 mandatory_test:
   id: 6
   http_method: "GET"
-  path: "/redirect.php"
+  path: "/redirect2.php"
   weight: 7
   remarks: "Mandatory test GET"
   

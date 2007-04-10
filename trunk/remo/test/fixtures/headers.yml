@@ -280,3 +280,35 @@ actiontest_redirect_h5:
   standard_domain: "Custom"
   custom_domain: ".*"
 
+domain_status_redirect_h1:
+  id: 150
+  request_id: 6
+  name: "Referer"
+  standard_domain: "Custom"
+  custom_domain: ".*"
+domain_status_redirect_h2:
+  id: 151
+  request_id: 6
+  name: "Host"
+  standard_domain: "Custom"
+  custom_domain: ".*"
+domain_status_redirect_h3:
+  id: 152
+  request_id: 6
+  name: "User-Agent"
+  standard_domain: "Custom"
+  custom_domain: ".*" 
+domain_status_redirect_h4:
+  id: 153
+  request_id: 6
+  name: "Cookie"
+  standard_domain: "Custom"
+  custom_domain: ".*" 
+domain_status_redirect_h5:
+  id: 154
+  request_id: 6
+  name: "Accept"
+  standard_domain: "Custom"
+  custom_domain: ".*"
+
+

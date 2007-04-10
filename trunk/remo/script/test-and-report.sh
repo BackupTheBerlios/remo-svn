@@ -16,7 +16,7 @@ cd $TMPDIR
 svn checkout --quiet $SVNTREE
 cd $TRUNKDIR
 REV=`svn info | grep Revision\: | cut -d " " -f2`
-TEST=`ruby script/overall-testsuite.rb | tail -1`
+TEST=`ruby script/overall-testsuite.rb >/tmp/test.log; cat /tmp/test.log | tail -1`
 
 cd
 

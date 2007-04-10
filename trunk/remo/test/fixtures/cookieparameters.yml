@@ -91,7 +91,7 @@ actiontest_redirect_c2:
   mandatory_status_code: "302"
   mandatory_location: "http://remo.netnea.com"
 
-domain_status_redirect:
+domain_status_redirect_1:
   id: 50
   request_id: 6
   name: "c_session_redirect"
