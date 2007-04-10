@@ -1,6 +1,6 @@
 unless defined? REMO_RELEASE_VERSION
   # Remo Release Version
-  REMO_RELEASE_VERSION = "0.1.4-dev"
+  REMO_RELEASE_VERSION = "0.1.4"
 
   # This is a list of default headers that are added to a new request in remo by default
   DEFAULT_HEADERS = [
