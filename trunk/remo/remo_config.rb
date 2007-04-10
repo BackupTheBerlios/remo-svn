@@ -27,7 +27,7 @@ unless defined? REMO_RELEASE_VERSION
 
   # http methods
   WEBDAV_METHODS = ["BCOPY", "BDELETE", "BMOVE", "BPROPFIND", "BPROPPATCH", "COPY", "LOCK", "MKCOL", "MOVE", "NOTIFY", "POLL", "PROPFIND", "PROPPATCH", "SEARCH", "SUBSCRIBE", "UNLOCK", "UNSUBSCRIBE", "X-MS-ENUMATTS"]
-  HTTP_METHODS = ["GET", "POST", "GET|POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"] + WEBDAV_METHODS
+  HTTP_METHODS = ["GET", "POST", "HEAD", "TRACE", "PUT", "DELETE", "CONNECT", "OPTIONS"] + WEBDAV_METHODS
 
 
   # Standard domain to regex mapping
@@ -38,8 +38,9 @@ unless defined? REMO_RELEASE_VERSION
     "IP Address V6" => '([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}',
     "Base64, max. 16 characters" => '[0-9a-zA-Z+/]{0,16}={0,2}',
     "Integer, max. 16 characters" => '\d{0,16}',
-    "Flag, single character" => '[0-9a-zA-Z]',
+    "Flag only, no value" => '\w{0}',
     "Sessionid, max. 16 alphanumerical characters" => '[0-9a-zA-Z]{1,16}',
+    "Username" => '[0-9-a-zA-Z_-\]{0,32}',
     "Header: User-Agent" => '[0-9a-zA-Z +:;!()/.-]{1,256}',
     "Header: Host" => '[0-9a-zA-Z-:.]{3,64}',
     "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
@@ -60,6 +61,8 @@ unless defined? REMO_RELEASE_VERSION
   # Those status codes, that result in a redirect to the user agent
   HTTP_REDIRECT_STATUS_CODES = ["300", "301", "302", "303", "305", "307"]
 
+  # The status code is part of every deny rule in a remo ruleset. 
+  # This is the default value.
   HTTP_DEFAULT_DENY_STATUS_CODE = "501"
 
   # ModSecurity collection names
