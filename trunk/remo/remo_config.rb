@@ -6,8 +6,8 @@ unless defined? REMO_RELEASE_VERSION
   DEFAULT_HEADERS = [
     # Header-Name -> [Standard_Domain, Custom_Domain]
     {"Host"  =>             ["Header: Host", ""]},
-    {"Referer" =>           ["Header: User-Agent", ""]},
-    {"User-Agent" =>        ["Custom", ".*"]},
+    {"Referer" =>           ["Custom", ".*"]},
+    {"User-Agent" =>        ["Header: User-Agent", ""]},
     {"Accept" =>            ["Custom", ".*"]},
     {"Accept-Language" =>   ["Custom", ".*"]},
     {"Accept-Encoding" =>   ["Custom", ".*"]},
