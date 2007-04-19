@@ -42,16 +42,32 @@ unless defined? REMO_RELEASE_VERSION
     "Sessionid, max. 16 alphanumerical characters" => '[0-9a-zA-Z]{1,16}',
     "Username" => '[0-9-a-zA-Z_-\]{0,32}',
     "Emailaddress" => '[0-9a-zA-Z\x40-_.]{0,64}',
+    "Anything, max. 16 characters" => '.{0,16}',
     "Letters/Numbers, max. 16 characters" => '[0-9a-zA-Z]{0,16}',
+    "Letters/Numbers/Space/-/_, max. 16 characters" => '[0-9a-zA-Z-\x20_]{0,16}',
     "Letters/Numbers, max. 32 characters" => '[0-9a-zA-Z]{0,32}',
-    "Letters/Numbers/Space, max. 32 characters" => '[0-9a-zA-Z\x20]{0,32}',
+    "Letters/Numbers/Space/-/_, max. 32 characters" => '[0-9a-zA-Z-\x20_]{0,32}',
     "Header: User-Agent" => '[0-9a-zA-Z +:;!()/.-]{1,256}',
     "Header: Host" => '[0-9a-zA-Z-:.]{3,64}',
     "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
   }
 
   # Standard domains per parameter type
-  common_domains = ["Custom"] + ["Hostname", "IP Address V4", "IP Address V6", "Base64, max. 16 characters", "Integer, max. 16 characters", "Flag, single character", "Sessionid, alphanumerical, max. 16 characters", "Username", "Emailaddress", "Letters/Numbers, max. 16 characters", "Letters/Numbers, max. 32 characters", "Letters/Numbers/Space, max. 32 characters"].sort
+  common_domains = ["Custom"] + 
+    ["Hostname", 
+    "IP Address V4", 
+    "IP Address V6", 
+    "Base64, max. 16 characters", 
+    "Integer, max. 16 characters", 
+    "Flag, single character", 
+    "Sessionid, alphanumerical, max. 16 characters", 
+    "Username", 
+    "Emailaddress", 
+    "Anything, max. 16 characters", 
+    "Letters/Numbers, max. 16 characters", 
+    "Letters/Numbers/Space/-/_, max. 16 characters", 
+    "Letters/Numbers, max. 32 characters", 
+    "Letters/Numbers/Space/-/_, max. 32 characters"].sort
 
   HEADER_DOMAINS = common_domains + ["Header: User-Agent", "Header: Host", "Header: Basic Authorization"].sort unless defined? HEADER_DOMAINS
   COOKIE_DOMAINS = common_domains unless defined? COOKIE_DOMAINS
