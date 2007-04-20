@@ -11,7 +11,13 @@ def main ()
   display, filenames, ids, quiet, reinject, stdin, summary, verbose = get_options 
     # filename is checked for existence/readability in get_options
 
-  requests = parse_logfiles(filenames, stdin)
+  request_limit=nil
+  unless ids.nil?
+    ids.each do |item|
+      request_limit = [request_limit.to_i, item.to_i].max if item.max == item.max.to_i.to_s # only numerical ids are taken as request_limit
+    end
+  end
+  requests = parse_logfiles(filenames, stdin, request_limit)
 
   display_requests(requests, ids, verbose) if display
   successes, failures = reinject_requests(requests, ids, verbose, quiet) if reinject
@@ -51,7 +57,7 @@ def print_usage
    puts 
 end
 
-def parse_line(requests, r, line, phase, phaseline, n)
+def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
      phaseline += 1
       regex_serial_phase_start=
 
@@ -65,6 +71,8 @@ def parse_line(requests, r, line, phase, phaseline, n)
       if phase == "A" and phaseline == 0
         r = {}
         r[:num] = n
+        r[:filename] = filename
+        r[:startline] = linenum
         phase = line.split("-")[3]
         n += 1
       end
@@ -91,7 +99,7 @@ def parse_line(requests, r, line, phase, phaseline, n)
           r[:querystring].split("&").each do |item|
             name = item.split("=")[0]
             if item.split("=").size > 1
-              value = item.split("=")[-1]
+              value = item.gsub(name + "=", "")
             else
               value = ""
             end
@@ -110,7 +118,7 @@ def parse_line(requests, r, line, phase, phaseline, n)
           value.split("; ").each do |item|
           name = item.split("=")[0]
           if item.split("=").size > 1
-            value = item.split("=")[-1]
+            value = item.gsub(name + "=", "")
           else
             value = ""
           end
@@ -122,7 +130,7 @@ def parse_line(requests, r, line, phase, phaseline, n)
         line.split("&").each do |item|
           name = item.split("=")[0]
           if item.split("=").size > 1
-            value = item.split("=")[-1]
+            value = item.gsub(name + "=", "")
           else
             value = ""
           end
@@ -149,7 +157,7 @@ def parse_line(requests, r, line, phase, phaseline, n)
       return requests, r, phase, phaseline, n
 end
 
-def parse_logfiles(filenames, stdin, n=0)
+def parse_logfiles(filenames, stdin, request_limit=nil, n=0)
 
   requests = []
 
@@ -174,7 +182,7 @@ def parse_logfiles(filenames, stdin, n=0)
     r = nil
 
     until $stdin.eof? do
-      requests, r, phase, phaseline, n = parse_line(requests, r, $stdin.readline, phase, phaseline, n)
+      requests, r, phase, phaseline, n = parse_line(requests, r, filename, "stdin", $stdin.readline, phase, phaseline, n)
     end
 
   else
@@ -185,7 +193,13 @@ def parse_logfiles(filenames, stdin, n=0)
         Find.find(filename) do |path|
           Find.prune if [".",".."].include? path
           unless FileTest::directory?(path)
-            requests = requests | parse_logfiles([path], false, requests.size) # append new requests to requests (union of sets)
+            if request_limit.nil?
+              requests = requests | parse_logfiles([path], false, request_limit, requests.size) # append new requests to requests (union of sets)
+            elsif (requests.size <= request_limit.to_i) 
+              requests = requests | parse_logfiles([path], false, request_limit, requests.size) # append new requests to requests (union of sets)
+            else
+              break
+            end
           end
         end
       elsif is_serial_log(filename)
@@ -193,8 +207,16 @@ def parse_logfiles(filenames, stdin, n=0)
         phaseline = 0
         r = nil
 
+        linenum = 0
         IO.foreach(filename) do |line|
-          requests, r, phase, phaseline, n = parse_line(requests, r, line, phase, phaseline, n)
+          if request_limit.nil?
+            requests, r, phase, phaseline, n = parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
+          elsif (requests.size <= request_limit.to_i) 
+            requests, r, phase, phaseline, n = parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
+          else
+            break
+          end
+          linenum += 1
         end
       else
         puts "Unknown logfile type: #{filename}. Aborting."
@@ -393,6 +415,7 @@ def display_single_request(r, verbose=false)
     puts "------------------------------------" if verbose
     puts "#{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:request_id]} #{r[:status_code]}"
     if verbose
+      puts "file: #{r[:filename]} (startline: #{r[:startline]})"
       r[:querystringparameters].each do |item|
         puts "Q: #{item[:name]}: #{item[:value]}"
       end
@@ -417,9 +440,9 @@ def display_requests(requests, ids=nil, verbose=false)
     end
   else
     ids.each do |id|
-      unless /\w/.match(id).nil?
+      if /[A-Z]/.match(id).nil?
         # numerical id
-        unless id.to_i > requests.size - 1
+        unless id.to_i > requests.size - 1 
           display_single_request(requests[id.to_i], verbose)
         else
           puts "Id #{id} is too big. There are only #{requests.size} requests. Ids are starting from 0; maximum id is thus #{requests.size-1}."
