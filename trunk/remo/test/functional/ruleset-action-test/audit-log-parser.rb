@@ -7,6 +7,41 @@ require "getoptlong"
 require "net/http"
 require "find"
 
+class Net::HTTP::Get
+  # Redefinition of initialize_http_header
+  # The original method does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  def initialize_http_header(initheader)
+    @header = {}
+    return unless initheader
+    initheader.each do |key, value|
+      warn "net/http: warning: duplicated HTTP header: #{key}" if key?(key) and $VERBOSE
+      @header[key] = [value.strip]
+    end
+  end
+
+end
+
+class Net::HTTPGenericRequest
+  # Redefinition of write_header
+  # The original one does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  # Furthermore there is a duplication of the host header
+  # introduced by our removal of the downcasing
+  def write_header(sock, ver, path)
+    buf = "#{@method} #{path} HTTP/#{ver}\r\n"
+    each do |k,v|
+      buf << "#{k}: #{v}\r\n" unless k == "host" 
+        # there is a strange duplication of the Host header
+        # we can omitt it like this.
+    end
+    buf << "\r\n"
+    sock.write buf
+  end
+end
+
+
+
 def main ()
   display, filenames, ids, quiet, reinject, stdin, summary, verbose = get_options 
     # filename is checked for existence/readability in get_options
@@ -598,9 +633,10 @@ def http_get(host, path, querystring={}, headers = {})
 
   begin
     url = URI.parse("http://" + host + path)
-    request = Net::HTTP::Get.new(url.path + myquerystring, myheaders) 
-      # unfortunately, headers come in random order in ruby
-      # do not know how to prevent his
+    request = Net::HTTP::Get.new(url.path + myquerystring) 
+    request.initialize_http_header(myheaders)
+    # unfortunately, headers come in random order in ruby
+    # do not know how to prevent his
     result = Net::HTTP.start(url.host, url.port) {|http|
       http.request(request)
     }
