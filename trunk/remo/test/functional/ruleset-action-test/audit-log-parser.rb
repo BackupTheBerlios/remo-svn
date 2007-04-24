@@ -495,10 +495,18 @@ def read_options(parser)
         print_usage
         exit 1
       when "-i"
-        ids = arg
-        ids = ids.split(",")
-        ids.each do |item|
-          item.strip!
+        ids = []
+        myids = arg
+        myids = myids.split(",")
+        myids.each do |item|
+          unless item.index("-").nil?
+            myids = item.split("-")
+            myids[0].upto(myids[1]) do |myitem|
+              ids << myitem.strip
+            end
+          else
+            ids << item.strip
+          end
         end
       when "-l"
         display = true
