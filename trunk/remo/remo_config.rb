@@ -1,6 +1,6 @@
 unless defined? REMO_RELEASE_VERSION
   # Remo Release Version
-  REMO_RELEASE_VERSION = "0.1.5-dev"
+  REMO_RELEASE_VERSION = "0.1.4"
 
   # This is a list of default headers that are added to a new request in remo by default
   DEFAULT_HEADERS = [
@@ -31,6 +31,10 @@ unless defined? REMO_RELEASE_VERSION
 
 
   # Standard domain to regex mapping
+  # It is really annoying to do this without IDs, but with the stringname as ID, but
+  # the rails support for inplace select-form-fields editor is really minimal and
+  # we would not be able to display the string if the value would be a numerical ID.
+  # So for the time being, the ID is the string name.
   STANDARD_DOMAINS = {
     # name - value pairs
     "Hostname" => '[0-9a-zA-Z-.]{1,64}',
