@@ -310,6 +310,11 @@ def reinject_single_request(r, verbose=false, quiet=false)
     return 1
   end
 
+  unless ["GET", "POST"].select { |e| e == r[:http_method] }.size == 1
+    puts "Http method is #{r[:http_method]}. Reinjection not supported."
+    return 1
+  end
+
   if r[:http_method] == "GET"
     result = http_get(r[:host], r[:path], r[:querystringparameters], r[:headers])
   else
