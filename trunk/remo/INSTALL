@@ -3,11 +3,11 @@ Installation
 Dependencies:
 
 ruby >= 1.8 
-rails = 1.2.2
-  if you use a different rails version, edit config/environment.rb: RAILS_GEM_VERSION
+irb
 sqlite3-ruby bindings
 
 Note that your browser needs to have javascript enabled to use remo.
+Remo is a ruby on rails application and rails is distributed together with remo.
 
 
 
