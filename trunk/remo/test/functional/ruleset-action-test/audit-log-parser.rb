@@ -22,18 +22,36 @@ class Net::HTTP::Get
 
 end
 
+class Net::HTTP::Post
+  # Redefinition of initialize_http_header
+  # The original method does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  def initialize_http_header(initheader)
+    @header = {}
+    return unless initheader
+    initheader.each do |key, value|
+      warn "net/http: warning: duplicated HTTP header: #{key}" if key?(key) and $VERBOSE
+      @header[key] = [value.strip]
+    end
+  end
+
+end
+
 class Net::HTTPGenericRequest
   # Redefinition of write_header
   # The original one does a downcase on the header name
   # We need it untouched however as we want to repeat a request as is
-  # Furthermore there is a duplication of the host header
-  # introduced by our removal of the downcasing
+  # Furthermore there is a duplication of certain headers
+  # introduced by our removal of the downcasing in initialize_http_header
   def write_header(sock, ver, path)
     buf = "#{@method} #{path} HTTP/#{ver}\r\n"
     each do |k,v|
-      buf << "#{k}: #{v}\r\n" unless k == "host" 
-        # there is a strange duplication of the Host header
-        # we can omitt it like this.
+      unless k == "host" or k == "content-length" or k == "content-type"
+        # due to our removal of the downcase code, some headers were reintroduced by
+        # the module. We ignore these.
+        buf << "#{k}: #{v}\r\n" 
+      else
+      end
     end
     buf << "\r\n"
     sock.write buf
@@ -658,9 +676,23 @@ def http_get(host, path, querystring={}, headers = {})
 end
 
 def http_post(host, path, querystring={}, headers = {}, data = {})
+  mybody = ""
+  data.each do |item|
+    unless mybody.size == 0
+      mybody += "&"
+    end
+    mybody += item[:name] + "=" + item[:value]
+  end
+
   myheaders = {}
   headers.each do |item|
-    myheaders[item[:name]] = item[:value]
+    unless item[:name].downcase == "content-length"
+      myheaders[item[:name]] = item[:value]
+    else
+      myheaders[item[:name]] = mybody.size.to_s  # better be safe than sorry. 
+                                            # there were a few cases where the content-length in
+                                            # the audit-log were wrong
+    end
   end
 
   myquerystring = ""
@@ -674,19 +706,14 @@ def http_post(host, path, querystring={}, headers = {}, data = {})
     myquerystring = "?" + myquerystring 
   end
 
-  mybody = ""
-  data.each do |item|
-    unless mybody.size == 0
-      mybody += "&"
-    end
-    mybody += item[:name] + "=" + item[:value]
-  end
+
 
   begin
     url = URI.parse("http://" + host + path )
-    request = Net::HTTP::Post.new(url.path + myquerystring, myheaders)
-      # unfortunately, headers come in random order in ruby
-      # do not know how to prevent his
+    request = Net::HTTP::Post.new(url.path + myquerystring)
+    request.initialize_http_header(myheaders)    
+    # unfortunately, headers come in random order in ruby
+    # do not know how to prevent his
     request.body = mybody 
       # we have to use our own function, as ruby translates certain characters to HEX characters
     result = Net::HTTP.start(url.host, url.port) {|http|
