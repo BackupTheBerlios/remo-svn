@@ -101,6 +101,10 @@ function toggleRequestParameterDetails(type, id)
   adjustdivheight();
   return false;
 }
+function openPopup(url) {
+  window.open(url, "popup_id", "resizable,width=500,height=150");
+  return false;
+}
 </script>
 </head>
 
@@ -117,10 +121,20 @@ function toggleRequestParameterDetails(type, id)
   <div id="maindiv">
     <div id="source" class="maincolumn">
       <div id="source-toolsetarea" class="toolsetarea">
-        area will be used later
+        <div id="source-toolsetarea-content">
+          <%= render(:partial => "source_toolset", :collection => @source_toolset_buttons) -%>
+        </div>
       </div>
       <div id="source-mainarea" class="mainarea">
-        area will be used later
+        <% unless @logfile.nil? %>
+        <div id="source-mainarea-content">
+          <pre>
+<%= @logfile.content -%>
+          </pre>
+        </div>
+        <% else %>
+        <div id="source-mainarea-content">No logfile loaded so far.</div>
+        <% end %>
       </div>
       <div id="source-statusarea" class="statusarea">
         none

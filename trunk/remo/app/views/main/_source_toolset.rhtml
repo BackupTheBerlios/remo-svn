@@ -1,0 +1,5 @@
+<% if source_toolset[5] # if ajaxrequest -%>
+<div id="<%= source_toolset[0] -%>" class="toolbutton"><% form_remote_tag :url => {:action => source_toolset[1]} do -%><%= image_submit_tag source_toolset[2], { :alt => "image: #{source_toolset[2]}", :title => "#{source_toolset[3]}"} -%><br /><%= submit_tag source_toolset[4] -%><% end -%></div>
+<% else -%>
+        <div id="<%= source_toolset[0] -%>" class="toolbutton" style="font-size: xx-small; text-align: center;"><a href="<%= source_toolset[1] -%>" onclick="return openPopup(this.href);"><img src="<%= source_toolset[2] -%>" alt="image: <%= source_toolset[2] -%>" title="<%= source_toolset[3] -%>" /><br /><%= source_toolset[4] -%></a></div>
+<% end -%>

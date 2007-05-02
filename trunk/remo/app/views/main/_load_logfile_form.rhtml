@@ -1,0 +1,7 @@
+<div id="source-toolsetarea-content">
+  <div id="load_logfile_form">
+    <% form_for :logfile, @logfile, :url=> {:action => 'load_logfile_create'}, :html=>{:multipart=>true} do |f| %>
+      <label for='logfile_file_data'>Logfile&nbsp;</label><%= f.file_field :file_data %><%= submit_tag "Load" %>
+    <% end %>
+  </div>
+</div>

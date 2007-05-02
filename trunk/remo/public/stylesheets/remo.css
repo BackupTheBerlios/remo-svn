@@ -341,3 +341,20 @@ li {
   list-style: square;
 }
 
+/* other files */
+/* - /logfile/new */
+#load_logfile_form {
+  color:gray;
+  font-size:small;
+  padding-left:10px;
+  padding-top:12px;
+}
+#load-logfile {
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+#load-logfile input{
+  border-style: none; /* This is a button by default. This way we make it into a text link.*/
+  font-size: small;
+  color: #2eaeff;
+  background: none;
+}

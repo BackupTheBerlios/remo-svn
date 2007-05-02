@@ -12,7 +12,7 @@ class MainController < ApplicationController
         "add_request",            # link
         "/add_request.png",       # image path
         "add http request",       # tooltip
-        "new request",                    # button label
+        "new request",            # button label
         true],                    # ajax request (inline display of javascript result)
 
       [ "generate_ruleset",       # htmlid
@@ -22,6 +22,23 @@ class MainController < ApplicationController
         "generate",               # button label
         false]                    # ajax request (inline display of javascript result)
   ]
+  SOURCE_TOOLSET_BUTTONS = [
+      # the partial display does not work with the form: array[ hash1, hash2, ...]
+      # so we are using array[array1, array2, ...]
+      [ "load_logfile",           # htmlid
+        "load_logfile",           # link
+        "/load_logfile.png",      # image path
+        "load logfile",           # tooltip
+        "load logfile",           # button label
+        true],                    # ajax request (inline display of javascript result)
+      [ "remove_logfile",           # htmlid
+        "remove_logfile",           # link
+        "/remove_logfile.png",      # image path
+        "remove logfile",           # tooltip
+        "remove logfile",           # button label
+        true],                      # ajax request (inline display of javascript result)
+  ]
+
 
   Request.content_columns.each do |column|
     extended_in_place_edit_for :request, column.name
@@ -44,21 +61,28 @@ class MainController < ApplicationController
   end  
 
   def index
-
     @requests = Request.find_requests
-
     @rules_status = "Status: active"
+    @logfile = nil
+    unless params[:logfile].nil?
+      @logfile = Logfile.find(params[:logfile])
+    end
 
     if flash[:notice]
       @rules_status = flash[:notice]
     end
 
-    Postparameter.find_postparameters.each { |item|
-      logger.error "#{item.id} #{item.name}"
-    }
-
     @rules_toolset_buttons = RULES_TOOLSET_BUTTONS
+    @source_toolset_buttons = SOURCE_TOOLSET_BUTTONS
 
+  end
+
+  def load_logfile
+  end
+
+  def load_logfile_create
+    @logfile = Logfile.create(params[:logfile])
+    redirect_to :action => 'index', :logfile => @logfile.id
   end
 
   def rearrange_requests

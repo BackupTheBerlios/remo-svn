@@ -2,7 +2,7 @@
 # migrations feature of ActiveRecord to incrementally modify your database, and
 # then regenerate this schema definition.
 
-ActiveRecord::Schema.define(:version => 16) do
+ActiveRecord::Schema.define(:version => 17) do
 
   create_table "cookieparameters", :force => true do |t|
     t.column "request_id",            :integer,               :default => 0,           :null => false
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(:version => 16) do
     t.column "domain_location",       :string,                :default => ""
     t.column "mandatory_status_code", :string,  :limit => 10, :default => "'Default'", :null => false
     t.column "mandatory_location",    :string,                :default => ""
+  end
+
+  create_table "logfiles", :force => true do |t|
+    t.column "name",    :string, :default => "NULL"
+    t.column "content", :text,   :default => "NULL"
   end
 
   create_table "postparameters", :force => true do |t|
