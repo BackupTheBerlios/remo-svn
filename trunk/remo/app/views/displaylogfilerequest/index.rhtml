@@ -1,0 +1,96 @@
+<% rid = get_check_logfile_requestid(@r[:http_method], @r[:path]) -%>
+<% failed_mandatory_parameters = check_mandatory_parameters(@r, rid) -%>
+<h1 class="<%= unless rid.nil? 
+                 "passed" 
+               else 
+                "failed" 
+               end -%>"><div><%= h(@r[:http_method]) -%> <%= h(@r[:path]) -%></div></h1>
+
+<% if check_logfile_request(@r) -%>
+  <div class="item passed">
+    <div class="item-name">The request <b>passes</b> the present ruleset.</div>
+  </div>
+<% elsif rid.nil? %>
+  <div class="item failed">
+    <div class="item-name">The request <b>fails</b> against the present ruleset. The path is not defined in the ruleset and/or the
+    method given is not covered.</div>
+  </div>
+<% else %>
+  <div class="item failed">
+    <div class="item-name">The request <b>fails</b> against the present ruleset due to one or multiple parameters.</div>
+  </div>
+<% end %>
+
+&nbsp;<p />
+
+<div class="item">
+  <div class="item-name">File, Request number:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:filename])-%>, #<%= h(@r[:num]) -%></div>
+</div>
+
+<div class="item">
+  <div class="item-name">Status:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:status_code]) -%> <%= h(@r[:status_code_name]) -%></div>
+</div>
+<div class="item">
+  <div class="item-name">ModSecurity Message:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:modsecurity_message]) -%></div>
+</div>
+
+<p />&nbsp;<p />
+
+<% unless rid.nil? %>
+<div class="item <%= unless failed_mandatory_parameters.size > 0
+                 "passed" 
+               else 
+                "failed" 
+               end -%>">
+  <div class="item-name">Missing mandatory parameters:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= 
+    unless failed_mandatory_parameters.size > 0
+      "None. All mandatory parameters present."
+    else
+      string = ""
+      failed_mandatory_parameters.each do |item|
+        string += ", " unless string.size == 0
+        string += item
+      end
+      string += "."
+      string
+    end
+    
+    -%></div>
+</div>
+<% end %>
+
+<h3>Headers</h3>
+<% @r[:headers].each do |item| -%>
+<div class="item <%= check_logfile_request_parameter(Header, rid, item[:name], item[:value]) -%>">
+  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(item[:value]) -%></div>
+</div>
+<% end %>
+
+<h3>Cookie Parameters</h3>
+<% @r[:cookieparameters].each do |item| -%>
+<div class="item <%= check_logfile_request_parameter(Cookieparameter, rid, item[:name], item[:value]) -%>">
+  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(item[:value]) -%></div>
+</div>
+<% end %>
+
+<h3>Querystring Parameters</h3>
+<% @r[:querystringparameters].each do |item| -%>
+<div class="item <%= check_logfile_request_parameter(Querystringparameter, rid, item[:name], item[:value]) -%>">
+  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(item[:value]) -%></div>
+</div>
+<% end %>
+
+<h3>Post Parameters</h3>
+<% @r[:postparameters].each do |item| -%>
+<div class="item <%= check_logfile_request_parameter(Postparameter, rid, item[:name], item[:value]) -%>">
+  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(item[:value]) -%></div>
+</div>
+<% end %>

@@ -1,7 +1,8 @@
-<div id="source-toolsetarea-content">
-  <div id="load_logfile_form">
-    <% form_for :logfile, @logfile, :url=> {:action => 'load_logfile_create'}, :html=>{:multipart=>true} do |f| %>
-      <label for='logfile_file_data'>Logfile&nbsp;</label><%= f.file_field :file_data %><%= submit_tag "Load" %>
-    <% end %>
-  </div>
+<div id="load_logfile_form">
+  <form method="post" target="frame" enctype="multipart/form-data" action="/main/load_logfile_action">
+    <label for='logfile_file_data'>Logfile&nbsp;</label>
+    <input id="logfile_file_data" type="file" name="logfile[file_data]"/>
+    <input type="submit" value="Load" name="commit"/>
+  </form>
+  <iframe id='load_logfile_frame' name="frame"></iframe>
 </div>

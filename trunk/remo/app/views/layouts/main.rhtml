@@ -122,7 +122,7 @@ function openPopup(url) {
     <div id="source" class="maincolumn">
       <div id="source-toolsetarea" class="toolsetarea">
         <div id="source-toolsetarea-content">
-          <%= render(:partial => "source_toolset", :collection => @source_toolset_buttons) -%>
+        <%= render(:partial => "source_toolset", :collection => @source_toolset_buttons) -%>
         </div>
       </div>
       <div id="source-mainarea" class="mainarea">
@@ -133,7 +133,9 @@ function openPopup(url) {
           </pre>
         </div>
         <% else %>
-        <div id="source-mainarea-content">No logfile loaded so far.</div>
+        <div id="source-mainarea-content">
+          <%= render(:partial => "logfile", :collection => @logfiles) -%>
+        </div>
         <% end %>
       </div>
       <div id="source-statusarea" class="statusarea">

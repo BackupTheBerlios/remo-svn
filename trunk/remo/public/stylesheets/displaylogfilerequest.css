@@ -1,0 +1,48 @@
+/* Global styles */
+
+/* START:notice */
+#notice {
+  border: 2px solid red;
+  padding: 1em;
+  margin-bottom: 2em;
+  background-color: #f0f0f0;
+  font: bold smaller sans-serif;
+}
+/* END:notice */
+
+h1 {
+  color: black;
+  font-size: 150%;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+}
+
+h3 {
+  color: black;
+  font-size: 120%;
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+  font-weight: bold;
+  padding-top: 20px;
+  margin-bottom: 5px;
+  clear: both;
+}
+
+div {
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+
+.item {
+  clear: both;
+  padding-bottom: 20px;
+}
+.passed > div {
+  background: #8bff98;
+}
+.failed > div {
+  background: #ff7f7f;
+}
+
+.item-name, .item-value {
+  float: left;
+}
+

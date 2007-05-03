@@ -2,6 +2,8 @@ require File.dirname(__FILE__) + '/../../remo_config'
 require 'helpers/various'
 require "rules_generator/main"
 
+ActionController::Base.send :include, RespondsToParent
+
 class MainController < ApplicationController
 
   VALID_ACTIONS_DETAILAREA = ["clear", "add", "save", "delete"]
@@ -31,12 +33,12 @@ class MainController < ApplicationController
         "load logfile",           # tooltip
         "load logfile",           # button label
         true],                    # ajax request (inline display of javascript result)
-      [ "remove_logfile",           # htmlid
-        "remove_logfile",           # link
-        "/remove_logfile.png",      # image path
-        "remove logfile",           # tooltip
-        "remove logfile",           # button label
-        true],                      # ajax request (inline display of javascript result)
+      [ "clean_logfile_area",     # htmlid
+        "clean_logfile_area",     # link
+        "/clean_logfile_area.png", # image path
+        "clean logfile area and show list of logfiles",     # tooltip
+        "clean logfile area",     # button label
+        true],                    # ajax request (inline display of javascript result)
   ]
 
 
@@ -63,10 +65,8 @@ class MainController < ApplicationController
   def index
     @requests = Request.find_requests
     @rules_status = "Status: active"
-    @logfile = nil
-    unless params[:logfile].nil?
-      @logfile = Logfile.find(params[:logfile])
-    end
+
+    @logfiles = Logfile.find(:all)
 
     if flash[:notice]
       @rules_status = flash[:notice]
@@ -80,9 +80,39 @@ class MainController < ApplicationController
   def load_logfile
   end
 
-  def load_logfile_create
+  def load_logfile_action
+    require "#{RAILS_ROOT}/lib/logfile"
+
     @logfile = Logfile.create(params[:logfile])
-    redirect_to :action => 'index', :logfile => @logfile.id
+    @logfile = Logfile.find(@logfile.id) unless @logfile.id.nil? # has to be reloaded, otherwise the @logfile.content is empty
+    responds_to_parent do
+      # this is a special module in lib/responds_to_parent.rb
+      render :update do |page|
+        # we have to render this locally. actually I just do know how to move it into an rjs file
+        page.replace_html("source-toolsetarea-content", "<div id=\"source-toolsetarea-content\"></div>")
+        page.insert_html(:bottom, "source-toolsetarea-content",  render(:partial => "source_toolset", :collection => SOURCE_TOOLSET_BUTTONS))
+        unless @logfile.content.nil?
+          string = get_html_display_logfile(@logfile) # from main_helper
+          page.replace_html("source-mainarea-content",  string)
+        end
+      end
+    end
+  end
+
+  def remove_logfile
+    begin
+      Logfile.delete(params[:id])
+    rescue => err
+      flash[:notice] = "Removing failed! " + err
+    end
+  end
+
+  def clean_logfile_area
+    @logfiles = Logfile.find(:all)
+  end
+
+  def display_logfile
+    @logfile = Logfile.find(params[:id])
   end
 
   def rearrange_requests

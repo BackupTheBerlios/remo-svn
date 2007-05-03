@@ -12,9 +12,13 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.replace_html("source-toolsetarea-content", "<div id=\"source-toolsetarea-content\"></div>")
-  page.insert_html(:bottom, "source-toolsetarea-content", render(:partial => "load_logfile_form"))
+  page.replace_html("source-mainarea-content", "<div id=\"source-mainarea-content\"></div>")
+  page.insert_html(:bottom, "source-mainarea-content", get_html_display_logfile(@logfile))
+                 
+  statusmessage = "Successfully display logfile #{@logfile.name}." if flash[:notice].nil?
 else
   statusmessage = flash[:notice]
 end
+
+page.replace_html("source-statusarea", "<div>#{statusmessage}</div>" )
 

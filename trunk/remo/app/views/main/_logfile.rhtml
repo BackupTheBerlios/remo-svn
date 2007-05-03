@@ -1,0 +1,5 @@
+<div id="logfile-<%= logfile.id -%>" class="logfile-listitem">
+  <div id="logfile-name-<%= logfile.id -%>" class="logfile-name">
+   <% form_remote_tag :url => { :action => "display_logfile", :id => logfile.id } do -%><input name="commit" type="submit" value="<%= logfile.name -%>" /><% end -%></div>
+  <div id="logfile-remove-<%= logfile.id -%>" class="logfile-remove"><% form_remote_tag :url => { :action => "remove_logfile", :id => logfile.id } do -%><%= image_submit_tag "/trash.png", { :alt => "image: trash.png", :title => "remove logfile"} -%><% end -%></div>
+</div>

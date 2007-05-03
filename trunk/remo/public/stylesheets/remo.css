@@ -303,6 +303,64 @@ li {
   padding-right: 10px;
 }
 
+/* load logfile form */
+
+#load_logfile_form {
+  color:gray;
+  font-size:small;
+  padding-left:10px;
+  padding-top:12px;
+}
+#load_logfile_frame {
+  margin: 0;
+  padding: 0;
+  height: 1px;
+  width: 1px;
+  visibility: hidden;
+}
+#load-logfile {
+  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
+}
+#load-logfile input{
+  border-style: none; /* This is a button by default. This way we make it into a text link.*/
+  font-size: small;
+  color: #2eaeff;
+  background: none;
+}
+
+
+/* logfile list */
+
+.logfile-listitem {
+  font-size: 90%;
+  padding: 5px 5px 5px 15px;
+  clear: both;
+}
+
+.logfile-name {
+  float: left;
+}
+.logfile-name input{
+  float: left;
+  white-space: nowrap;
+  background: none;
+  border-style: none; /* This is a button by default. This way we make it into a text link.*/
+  color: #2eaeff;
+}
+.logfile-remove {
+  padding-top: 2px;
+  padding-left: 5px;
+  float: left;
+}
+
+/* source request display */
+
+.sourcerequest {
+  font-size: 90%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
 /* The error box */
 
 .fieldWithErrors {
@@ -341,20 +399,4 @@ li {
   list-style: square;
 }
 
-/* other files */
-/* - /logfile/new */
-#load_logfile_form {
-  color:gray;
-  font-size:small;
-  padding-left:10px;
-  padding-top:12px;
-}
-#load-logfile {
-  font-family: "DejaVu Sans", Helvetica, Arial, sans-serif;
-}
-#load-logfile input{
-  border-style: none; /* This is a button by default. This way we make it into a text link.*/
-  font-size: small;
-  color: #2eaeff;
-  background: none;
-}
+

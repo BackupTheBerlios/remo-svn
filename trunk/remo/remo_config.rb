@@ -45,7 +45,7 @@ unless defined? REMO_RELEASE_VERSION
     "Flag, max. single character" => '[0-9a-zA-Z]{0,1}',
     "Sessionid, max. 16 alphanumerical characters" => '[0-9a-zA-Z]{1,16}',
     "Username" => '[0-9-a-zA-Z_-\]{0,32}',
-    "Emailaddress" => '[0-9a-zA-Z\x40-_.]{0,64}',
+    "Emailaddress" => '[0-9a-zA-Z-_.]{1,32}\x40[0-9a-zA-Z-.]{1,32}',
     "Anything, max. 16 characters" => '.{0,16}',
     "Letters/Numbers, max. 16 characters" => '[0-9a-zA-Z]{0,16}',
     "Letters/Numbers/Space/-/_, max. 16 characters" => '[0-9a-zA-Z-\x20_]{0,16}',
