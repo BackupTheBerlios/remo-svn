@@ -31,19 +31,21 @@ function getwindowheight()
 function getnewmainareaheight()
 {
   // calculate the new height of the two mainareas
-  var winheight = 0, divheight = 0, sortlistheight = 0, requestheaders, requestdetails;
+  var winheight = 0, divheightsources = 0, divheightrules = 0, sortlistheight = 0, sourcerequestsheight=0, requestheaders, requestdetails;
   winheight = getwindowheight();
-  divheight = winheight - 97 - getelementheight('flash-frame') - getelementheight('rules-statusarea') - getelementheight('rules-toolsetarea');
-    // This div height does not include the header and the details of the last list (ul) element.
+  divheightrules = winheight - 97 - getelementheight('flash-frame') - getelementheight('rules-statusarea') - getelementheight('rules-toolsetarea');
+  divheightsources = winheight - 97 - getelementheight('flash-frame') - getelementheight('source-statusarea') - getelementheight('source-toolsetarea');
+
+  sourcerequestsheight = getelementheight('source-mainarea-content');
+
+    // The requests div height does not include the header and the details of the last list (ul) element.
     // So the last element has to be added seperately
   requestheaders = document.getElementsByClassName('requesthead');
   requestdetails = document.getElementsByClassName('requestdetails');
   lastelementheight = requestheaders[requestheaders.length-1].offsetHeight + requestdetails[requestdetails.length-1].offsetHeight;
   sortlistheight =  getelementheight('rules-mainarea-sortlist') + lastelementheight;
-  if ( sortlistheight > divheight ) {
-    return sortlistheight;}
-  else {
-    return divheight;}
+
+  return Math.max(divheightsources, sourcerequestsheight, sortlistheight, divheightrules)
 }
 function adjustdivheight() 
 {   
