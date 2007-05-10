@@ -1,6 +1,7 @@
 require File.dirname(__FILE__) + '/../../remo_config'
 require 'helpers/various'
 require "rules_generator/main"
+require "logfile"
 
 ActionController::Base.send :include, RespondsToParent
 
@@ -81,7 +82,6 @@ class MainController < ApplicationController
   end
 
   def load_logfile_action
-    require "#{RAILS_ROOT}/lib/logfile"
 
     @logfile = Logfile.create(params[:logfile])
     @logfile = Logfile.find(@logfile.id) unless @logfile.id.nil? # has to be reloaded, otherwise the @logfile.content is empty

@@ -1,4 +1,6 @@
 require "#{RAILS_ROOT}/app/views/main/lib/display"
+require "#{RAILS_ROOT}/lib/logfile"
+
 
 # handle flash notice div. flash[:before] is written in the main controller
 if flash[:notice].nil? and ! flash[:before].nil?        
