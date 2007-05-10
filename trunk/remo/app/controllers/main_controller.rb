@@ -92,7 +92,7 @@ class MainController < ApplicationController
         page.replace_html("source-toolsetarea-content", "<div id=\"source-toolsetarea-content\"></div>")
         page.insert_html(:bottom, "source-toolsetarea-content",  render(:partial => "source_toolset", :collection => SOURCE_TOOLSET_BUTTONS))
         unless @logfile.content.nil?
-          string = get_html_display_logfile(@logfile) # from main_helper
+          string = get_html_display_logfile(@logfile) # from lib/logfile.rb
           page.replace_html("source-mainarea-content",  string)
         end
       end

@@ -24,7 +24,7 @@ def get_html_display_logfile(logfile)
 
   string = ""
   requests.each do |r|
-    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\"><a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:request_id]} #{r[:status_code]}</div>"
+    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\"><a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:status_code]}</div>"
   end
 
   return string unless string.size == 0
