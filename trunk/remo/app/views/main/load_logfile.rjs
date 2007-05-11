@@ -13,7 +13,8 @@ page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 
 if flash[:notice].nil?
-  page.replace_html("source-toolsetarea-content", "<div id=\"source-toolsetarea-content\"></div>")
+  page.remove("source-toolsetarea-content")
+  page.insert_html(:bottom, "source-toolsetarea", "<div id=\"source-toolsetarea-content\"></div>")
   page.insert_html(:bottom, "source-toolsetarea-content", render(:partial => "load_logfile_form"))
   statusmessage = "Status: active"
 else

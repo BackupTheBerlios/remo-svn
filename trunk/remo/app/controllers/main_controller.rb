@@ -83,6 +83,18 @@ class MainController < ApplicationController
     # display logfile load form in toolset area
   end
 
+  def load_logfile_action_cancel
+    responds_to_parent do
+      # this is a special module in lib/responds_to_parent.rb
+      render :update do |page|
+        # we have to render this locally. actually I just do know how to move it into an rjs file
+        page.remove("source-toolsetarea-content")
+        page.insert_html(:bottom, "source-toolsetarea", "<div id=\"source-toolsetarea-content\"></div>")
+        page.insert_html(:bottom, "source-toolsetarea-content",  render(:partial => "source_toolset", :collection => SOURCE_TOOLSET_BUTTONS))
+      end
+    end
+  end
+
   def load_logfile_action
 
     @logfile = Logfile.create(params[:logfile])
@@ -91,7 +103,8 @@ class MainController < ApplicationController
       # this is a special module in lib/responds_to_parent.rb
       render :update do |page|
         # we have to render this locally. actually I just do know how to move it into an rjs file
-        page.replace_html("source-toolsetarea-content", "<div id=\"source-toolsetarea-content\"></div>")
+        page.remove("source-toolsetarea-content")
+        page.insert_html(:bottom, "source-toolsetarea", "<div id=\"source-toolsetarea-content\"></div>")
         page.insert_html(:bottom, "source-toolsetarea-content",  render(:partial => "source_toolset", :collection => SOURCE_TOOLSET_BUTTONS))
         unless @logfile.content.nil?
           string = get_html_display_logfile(@logfile) # from lib/logfile.rb

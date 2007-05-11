@@ -1,8 +1,15 @@
 <div id="load_logfile_form">
-  <form method="post" target="frame" enctype="multipart/form-data" action="/main/load_logfile_action">
-    <label for='logfile_file_data'>Logfile&nbsp;</label>
-    <input id="logfile_file_data" type="file" name="logfile[file_data]"/>
-    <input type="submit" value="Load" name="commit"/>
-  </form>
+  <table><tr><td>
+    <form method="post" target="frame" enctype="multipart/form-data" action="/main/load_logfile_action">
+      <label for='logfile_file_data'>Logfile&nbsp;</label>
+      <input id="logfile_file_data" type="file" name="logfile[file_data]"/>
+      <input type="submit" value="Load" name="commit"/>
+    </form>
+    </td><td>&nbsp;&nbsp;
+    </td><td>
+    <form method="post" target="frame" enctype="multipart/form-data" action="/main/load_logfile_action_cancel">
+      <input type="submit" value="Cancel" name="commit-cancel"/>
+    </form>
+  </td></tr></table>
   <iframe id='load_logfile_frame' name="frame"></iframe>
 </div>
