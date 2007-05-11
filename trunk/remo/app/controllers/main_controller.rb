@@ -1,7 +1,8 @@
 require File.dirname(__FILE__) + '/../../remo_config'
 require 'helpers/various'
-require "rules_generator/main"
-require "logfile"
+require "#{RAILS_ROOT}/lib/rules_generator/main"
+require "#{RAILS_ROOT}/lib/logfile"
+
 
 ActionController::Base.send :include, RespondsToParent
 
@@ -28,19 +29,19 @@ class MainController < ApplicationController
   SOURCE_TOOLSET_BUTTONS = [
       # the partial display does not work with the form: array[ hash1, hash2, ...]
       # so we are using array[array1, array2, ...]
-      [ "load_logfile",           # htmlid
-        "load_logfile",           # link
-        "/load_logfile.png",      # image path
-        "load logfile",           # tooltip
-        "load logfile",           # button label
-        true],                    # ajax request (inline display of javascript result)
-      [ "clean_logfile_area",     # htmlid
+     [ "clean_logfile_area",     # htmlid
         "clean_logfile_area",     # link
         "/clean_logfile_area.png", # image path
         "clean logfile area and show list of logfiles",     # tooltip
         "clean logfile area",     # button label
         true],                    # ajax request (inline display of javascript result)
-  ]
+      [ "load_logfile",           # htmlid
+        "load_logfile",           # link
+        "/load_logfile.png",      # image path
+        "load/import logfile",           # tooltip
+        "import logfile",           # button label
+        true],                    # ajax request (inline display of javascript result)
+   ]
 
 
   Request.content_columns.each do |column|
