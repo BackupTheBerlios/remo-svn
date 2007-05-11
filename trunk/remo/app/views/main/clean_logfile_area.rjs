@@ -12,10 +12,7 @@ end
 page.replace_html("flash-notice", "<div>#{flash[:notice]}</div>")
 
 if flash[:notice].nil?
-  page.replace_html("source-mainarea-content", "<div id=\"source-mainarea-content\"></div>")
-
-  page.insert_html(:bottom, "source-mainarea-content", :partial => "logfile", :collection => @logfiles)
-                 
+  page.replace_html("source-mainarea-content", :partial => "logfile", :collection => @logfiles)
   statusmessage = "Successfully cleaned logfile area!" if flash[:notice].nil?
 else
   statusmessage = flash[:notice]

@@ -79,6 +79,7 @@ class MainController < ApplicationController
   end
 
   def load_logfile
+    # display logfile load form in toolset area
   end
 
   def load_logfile_action
@@ -94,6 +95,7 @@ class MainController < ApplicationController
         unless @logfile.content.nil?
           string = get_html_display_logfile(@logfile) # from lib/logfile.rb
           page.replace_html("source-mainarea-content",  string)
+          page.call 'adjustdivheight'
         end
       end
     end
