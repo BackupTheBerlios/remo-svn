@@ -20,3 +20,5 @@ end
 
 page.replace_html("source-statusarea", "<div>#{statusmessage}</div>" )
 
+page.call 'adjustdivheight'
+
