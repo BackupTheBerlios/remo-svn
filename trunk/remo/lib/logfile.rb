@@ -19,6 +19,7 @@ def get_logfile_requests(logfile)
 end
 
 def get_html_display_logfile(logfile)
+  # return a list of requests in a logfile formatted as html
 
   requests = get_logfile_requests(logfile)
 
@@ -46,6 +47,7 @@ def get_check_logfile_requestid(http_method, path)
 end
 
 def check_logfile_request_parameter(model, rid, name, value)
+  # check wether a given request parameter in a logfile passes with the given ruleset
   if rid.nil?
     return "failed"
   end
@@ -69,6 +71,7 @@ def check_logfile_request_parameter(model, rid, name, value)
 end
 
 def check_mandatory_parameters(r, rid)
+  # check wether a given request in a logfile has all mandatory parameters
 
   failed_parameters = []
 

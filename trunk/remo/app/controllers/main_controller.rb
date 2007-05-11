@@ -99,6 +99,10 @@ class MainController < ApplicationController
 
     @logfile = Logfile.create(params[:logfile])
     @logfile = Logfile.find(@logfile.id) unless @logfile.id.nil? # has to be reloaded, otherwise the @logfile.content is empty
+    logger.error "-----------------------"
+    logger.error @logfile.id
+    logger.error @logfile.name
+    logger.error @logfile.content
     responds_to_parent do
       # this is a special module in lib/responds_to_parent.rb
       render :update do |page|
@@ -106,10 +110,40 @@ class MainController < ApplicationController
         page.remove("source-toolsetarea-content")
         page.insert_html(:bottom, "source-toolsetarea", "<div id=\"source-toolsetarea-content\"></div>")
         page.insert_html(:bottom, "source-toolsetarea-content",  render(:partial => "source_toolset", :collection => SOURCE_TOOLSET_BUTTONS))
-        unless @logfile.content.nil?
+        unless @logfile.content.nil? or @logfile.content == "NULL"
           string = get_html_display_logfile(@logfile) # from lib/logfile.rb
           page.replace_html("source-mainarea-content",  string)
           page.call 'adjustdivheight'
+       
+        else
+          if @logfile.name == "NULL"
+            # did not selected a filename to import at all.
+            statusmessage = "You did not pick a logfile to be imported. Aborting import"
+            begin
+              Logfile.delete(@logfile.id) # remove the empty and corrupt logfile import
+            rescue => err
+              statusmessage = "Could not import logfile. Removing of precreated logfile record failed too. Check remo logfile for more information."
+            end
+            @logfiles = Logfile.find(:all)
+            page.replace_html("source-mainarea-content", :partial => "logfile", :collection => @logfiles)
+            statusmessage = "Could not import logfile. Check remo logfile for more information." unless statusmessage.size > 0
+            page.replace_html("source-statusarea", "<div>#{statusmessage}</div>" )
+
+          else
+            statusmessage = ""
+            begin
+              Logfile.delete(@logfile.id) # remove the empty and corrupt logfile import
+            rescue => err
+              logger.error "XXX1"
+              statusmessage = "Could not import logfile. Removing of precreated logfile record failed too. Check remo logfile for more information."
+            end
+            logger.error "XXX2"
+            @logfiles = Logfile.find(:all)
+            page.replace_html("source-mainarea-content", :partial => "logfile", :collection => @logfiles)
+            statusmessage = "Could not import logfile. Check remo logfile for more information." unless statusmessage.size > 0
+            logger.error statusmessage
+            page.replace_html("source-statusarea", "<div>#{statusmessage}</div>" )
+          end
         end
       end
     end

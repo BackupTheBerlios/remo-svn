@@ -111,6 +111,7 @@ def print_usage
 end
 
 def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
+     # parse a given logfile line and set values accordingly if appropriate
      phaseline += 1
       regex_serial_phase_start=
 
@@ -210,23 +211,39 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
       return requests, r, phase, phaseline, n
 end
 
+def is_serial_log(content)
+  content.each do |line|
+    unless /^#/.match(line) or /^$/.match(line)
+      # this is the first non-comment and non-empty line
+      if /^--[\w\d]+-[A-Z]--$/.match(line)
+        return true
+      else
+        return false
+      end
+    end
+  end
+  return false
+end
+
+def is_serial_logfile(filename)
+  IO.foreach(filename) do |line|
+    unless /^#/.match(line) or /^$/.match(line)
+      # this is the first non-comment and non-empty line
+      if /^--[\w\d]+-[A-Z]--$/.match(line)
+        return true
+      else
+        return false
+      end
+    end
+  end
+  return false
+end
+
 def parse_logfiles(filenames, stdin, request_limit=nil, n=0)
 
   requests = []
 
-  def is_serial_log(filename)
-    IO.foreach(filename) do |line|
-      unless /^#/.match(line) or /^$/.match(line)
-        # this is the first non-comment and non-empty line
-        if /^--[\w\d]+-[A-Z]--$/.match(line)
-          return true
-        else
-          return false
-        end
-      end
-    end
-    return false
-  end
+
 
   if stdin
 
@@ -255,7 +272,7 @@ def parse_logfiles(filenames, stdin, request_limit=nil, n=0)
             end
           end
         end
-      elsif is_serial_log(filename)
+      elsif is_serial_logfile(filename)
         phase = nil
         phaseline = 0
         r = nil
