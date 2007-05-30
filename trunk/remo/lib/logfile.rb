@@ -37,7 +37,7 @@ def get_check_logfile_requestid(http_method, path)
   requests = Request.find(:all, :select => "id, http_method, path")
 
   requests.each do |r|
-    if r.http_method == http_method and not /^(#{path})$/.match(path).nil?
+    if r.http_method == http_method and not /^(#{r.path})$/.match(path).nil?
       return r.id
     end
   end
@@ -48,6 +48,7 @@ end
 
 def check_logfile_request_parameter(model, rid, name, value)
   # check wether a given request parameter in a logfile passes with the given ruleset
+
   if rid.nil?
     return "failed"
   end
@@ -61,7 +62,6 @@ def check_logfile_request_parameter(model, rid, name, value)
       item_domain = item.custom_domain
     end
 
-    logger.error model.name.downcase + " " + item.name + " " + name + " " + item_domain + " " + value
     if not /^(#{item.name})$/.match(name).nil? and not /^(#{item_domain})$/.match(value).nil?
       return "passed"
     end
