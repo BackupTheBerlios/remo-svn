@@ -42,7 +42,13 @@ function getnewmainareaheight()
     // So the last element has to be added seperately
   requestheaders = document.getElementsByClassName('requesthead');
   requestdetails = document.getElementsByClassName('requestdetails');
-  lastelementheight = requestheaders[requestheaders.length-1].offsetHeight + requestdetails[requestdetails.length-1].offsetHeight;
+  if (requestheaders.length > 0) {
+    lastelementheight = requestheaders[requestheaders.length-1].offsetHeight + requestdetails[requestdetails.length-1].offsetHeight;
+  }
+  else {
+    lastelementheight = 0
+  }
+
   sortlistheight =  getelementheight('rules-mainarea-sortlist') + lastelementheight;
 
   return Math.max(divheightsources, sourcerequestsheight, sortlistheight, divheightrules)
