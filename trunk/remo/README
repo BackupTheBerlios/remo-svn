@@ -5,7 +5,7 @@ Remo is a project to build a graphical rule editor for ModSecurity,
 an Apache security module.
 
 Remo has been started in January 2007, the first alpha release came
-out in February 2007. The plan is to go beta sometimes during spring.
+out in February 2007. This is the first beta release.
 
 Basic Concept
 
@@ -29,7 +29,7 @@ every release of your online application. We are not there yet. Far from
 it to be honest. But the development has started and you are welcome to
 join in.  Screenshot detail Features
 
-This is the short list of features done so far:
+This is the list of features done so far:
 
  * Ruby on rails application with ajax use
  * Enter http requests, display them, edit them, delete 
@@ -47,9 +47,18 @@ This is the short list of features done so far:
    pattern match (including redirect with custom location)
  * Support custom http_status codes for every missing 
    mandatory parameter (including redirect with custom location)
+ * Import mode for modsecurity audit-logfiles
+ * Requests in the imported audit-log are checked against the present
+   ruleset in development. This tells you wether your ruleset will
+   work in practice.
 
-Near future plans
+Future plans
 
+ * Authentication and session support in Remo
+ * Cover performance issues
+ * Proxy-mode for on the fly rule development
+ * New CSS with better looks
+ * Bring a decent look to Remo in Internet Explorer 
  * Better default value domains
- * Going beta
+ * Polish the application
 

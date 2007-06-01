@@ -6,14 +6,14 @@ ruby >= 1.8
 irb
 sqlite3-ruby bindings
 
-Note that your browser needs to have javascript enabled to use remo.
-Remo is a ruby on rails application and rails is distributed together with remo.
+Note that your browser needs to have javascript enabled to use Remo.
+Remo is a ruby on rails application and rails is distributed together with Remo.
 
 
 
 WEBrick installation
 --------------------
-- Get remo from http://remo.netnea.com
+- Get Remo from http://remo.netnea.com
 - tar xvf remo-x.x.x.tar.gz
 - cd remo-x.x.x
 - ruby script/server
@@ -22,7 +22,7 @@ WEBrick installation
 
 Mongrel installation
 --------------------
-Note that mongrel is not part of the remo distribution.
+Note that mongrel is not part of the Remo distribution.
 You can get it from http://mongrel.rubyforge.org
 
 - Get remo from http://remo.netnea.com

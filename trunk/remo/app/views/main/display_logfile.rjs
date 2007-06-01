@@ -18,7 +18,7 @@ if flash[:notice].nil?
   page.insert_html(:bottom, "source-mainarea", "<div id=\"source-mainarea-content\"></div>")
   page.insert_html(:bottom, "source-mainarea-content", get_html_display_logfile(@logfile))
                  
-  statusmessage = "Successfully display logfile #{@logfile.name}." if flash[:notice].nil?
+  statusmessage = "Successfully displayed logfile #{@logfile.name}." if flash[:notice].nil?
 else
   statusmessage = flash[:notice]
 end
