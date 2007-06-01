@@ -5,27 +5,27 @@
 ActiveRecord::Schema.define(:version => 17) do
 
   create_table "cookieparameters", :force => true do |t|
-    t.column "request_id",            :integer,               :default => 0,           :null => false
-    t.column "name",                  :string,                :default => "''''''",    :null => false
+    t.column "request_id",            :integer,                                        :null => false
+    t.column "name",                  :string,                                         :null => false
     t.column "mandatory",             :boolean,               :default => false
-    t.column "standard_domain",       :text,                  :default => "''''''"
-    t.column "custom_domain",         :text,                  :default => "''''''"
+    t.column "standard_domain",       :text,                  :default => "'NULL'"
+    t.column "custom_domain",         :text,                  :default => "'NULL'"
     t.column "domain_status_code",    :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "domain_location",       :string,                :default => ""
+    t.column "domain_location",       :string
     t.column "mandatory_status_code", :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "mandatory_location",    :string,                :default => ""
+    t.column "mandatory_location",    :string
   end
 
   create_table "headers", :force => true do |t|
-    t.column "request_id",            :integer,               :default => 0,           :null => false
-    t.column "name",                  :string,                :default => "''''''",    :null => false
+    t.column "request_id",            :integer,                                        :null => false
+    t.column "name",                  :string,                                         :null => false
     t.column "mandatory",             :boolean,               :default => false
-    t.column "standard_domain",       :text,                  :default => "''''''"
-    t.column "custom_domain",         :text,                  :default => "''''''"
+    t.column "standard_domain",       :text,                  :default => "'NULL'"
+    t.column "custom_domain",         :text,                  :default => "'NULL'"
     t.column "domain_status_code",    :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "domain_location",       :string,                :default => ""
+    t.column "domain_location",       :string
     t.column "mandatory_status_code", :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "mandatory_location",    :string,                :default => ""
+    t.column "mandatory_location",    :string
   end
 
   create_table "logfiles", :force => true do |t|
@@ -34,34 +34,34 @@ ActiveRecord::Schema.define(:version => 17) do
   end
 
   create_table "postparameters", :force => true do |t|
-    t.column "request_id",            :integer,               :default => 0,           :null => false
-    t.column "name",                  :string,                :default => "''''''",    :null => false
+    t.column "request_id",            :integer,                                        :null => false
+    t.column "name",                  :string,                                         :null => false
     t.column "mandatory",             :boolean,               :default => false
-    t.column "standard_domain",       :text,                  :default => "''''''"
-    t.column "custom_domain",         :text,                  :default => "''''''"
+    t.column "standard_domain",       :text,                  :default => "'NULL'"
+    t.column "custom_domain",         :text,                  :default => "'NULL'"
     t.column "domain_status_code",    :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "domain_location",       :string,                :default => ""
+    t.column "domain_location",       :string
     t.column "mandatory_status_code", :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "mandatory_location",    :string,                :default => ""
+    t.column "mandatory_location",    :string
   end
 
   create_table "querystringparameters", :force => true do |t|
-    t.column "request_id",            :integer,               :default => 0,           :null => false
-    t.column "name",                  :string,                :default => "''''''",    :null => false
+    t.column "request_id",            :integer,                                        :null => false
+    t.column "name",                  :string,                                         :null => false
     t.column "mandatory",             :boolean,               :default => false
-    t.column "standard_domain",       :text,                  :default => "''''''"
-    t.column "custom_domain",         :text,                  :default => "''''''"
+    t.column "standard_domain",       :text,                  :default => "'NULL'"
+    t.column "custom_domain",         :text,                  :default => "'NULL'"
     t.column "domain_status_code",    :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "domain_location",       :string,                :default => ""
+    t.column "domain_location",       :string
     t.column "mandatory_status_code", :string,  :limit => 10, :default => "'Default'", :null => false
-    t.column "mandatory_location",    :string,                :default => ""
+    t.column "mandatory_location",    :string
   end
 
   create_table "requests", :force => true do |t|
-    t.column "http_method", :string,  :limit => 10, :default => "", :null => false
-    t.column "path",        :text,                  :default => "", :null => false
-    t.column "weight",      :integer,               :default => 0,  :null => false
-    t.column "remarks",     :text,                  :default => ""
+    t.column "http_method", :string,  :limit => 10, :null => false
+    t.column "path",        :text,                  :null => false
+    t.column "weight",      :integer,               :null => false
+    t.column "remarks",     :text
   end
 
 end
