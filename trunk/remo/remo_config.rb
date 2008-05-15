@@ -51,7 +51,7 @@ unless defined? REMO_RELEASE_VERSION
     "Letters/Numbers/Space/-/_, max. 16 characters" => '[0-9a-zA-Z-\x20_]{0,16}',
     "Letters/Numbers, max. 32 characters" => '[0-9a-zA-Z]{0,32}',
     "Letters/Numbers/Space/-/_, max. 32 characters" => '[0-9a-zA-Z-\x20_]{0,32}',
-    "Header: User-Agent" => '[0-9a-zA-Z +:;!()/.-]{1,256}',
+    "Header: User-Agent" => '[0-9a-zA-Z +:;!()\[\]/.-]{1,256}',
     "Header: Host" => '[0-9a-zA-Z-:.]{3,64}',
     "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
   }
