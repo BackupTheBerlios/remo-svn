@@ -25,7 +25,12 @@ def get_html_display_logfile(logfile)
 
   string = ""
   requests.each do |r|
-    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\"><a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:status_code]}</div>"
+    if check_logfile_request(r)
+     statusimage = "<img src=\"/ok.png\" width=\"16\" height=\"16\" alt=\"image: /ok.png\">"
+    else
+     statusimage = "<img src=\"/nok.png\" width=\"16\" height=\"16\" alt=\"image: /nok.png\">"
+    end
+    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\">#{statusimage}&nbsp;<a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:status_code]}</div>"
   end
 
   return string unless string.size == 0
@@ -115,13 +120,13 @@ def check_logfile_request(r)
   # - rule covering all parameters
   # return true or false
 
-  rid = get_check_logfile_requestid(@r[:http_method], @r[:path])
+  rid = get_check_logfile_requestid(r[:http_method], r[:path])
 
   if rid.nil?
     return false
   end
 
-  if check_mandatory_parameters(@r, rid).size > 0
+  if check_mandatory_parameters(r, rid).size > 0
     return false
   end
 
