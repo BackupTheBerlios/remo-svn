@@ -240,6 +240,39 @@ class MainController < ApplicationController
 
   end
 
+  def duplicate_request
+
+    begin
+      new_weight = Request.find(:first, :order => "weight DESC").weight + 1
+    rescue
+      new_weight = 1
+    end
+
+    begin
+
+      @request_src = Request.find(params[:id])
+      @request = Request.new(:http_method => @request_src.http_method,
+                             :path => @request_src.path,
+                             :weight => new_weight, # max(weight) + 1
+                             :remarks => "copy of request id #{params[:id]}")
+
+      @request.save!
+
+      [Header, Querystringparameter, Postparameter, Cookieparameter].each do |model|
+        model.find(:all, :conditions => "request_id = #{params[:id]}").each do |src|
+          new_item = src.clone
+          new_item.request_id = @request.id
+          new_item.save!
+        end
+      end
+
+    rescue => err
+      flash[:notice] = "Duplication failed! " + err
+    end
+
+  end
+
+
   def set_request_http_method
     # in place select edit
     
