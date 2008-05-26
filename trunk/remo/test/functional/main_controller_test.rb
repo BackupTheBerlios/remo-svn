@@ -202,6 +202,25 @@ class MainControllerTest < Test::Unit::TestCase
     assert_match /Element.update\("rules-statusarea", "<div>Successfully removed item 1!<\/div>"\)/, @response.body
   end
 
+  def test_duplicate_request
+    post :duplicate_request, :id => 1
+    assert_response :success
+    assert_template "duplicate_request"	
+
+    # add_request javascript reply
+    assert_select_rjs "rules-mainarea-sortlist" do
+      assert_select "li > table", 1                                           # head 
+      assert_select "li > div.requestdetails", 1                              # details
+      assert_select "li > div.requestdetails > div", 5                        # remarks + headers + cookies + query string p. + postparameters
+      assert_select "li > div.requestdetails > div.requestparameters", 4      # headers + query string p. + postparameters
+      assert_select "li > div.requestdetails > div:nth-child(2) > table ", 1  # headers header
+      # this will do
+    end
+
+    assert_match /Element.update\("rules-statusarea", "<div>Successfully duplicated item!<\/div>"\)/, @response.body
+  end
+
+
   def test_rearrange_requests_success
 
     post :rearrange_requests, "rules-mainarea-sortlist" => ["8", "1", "2", "3", "4", "5", "6", "7"]

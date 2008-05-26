@@ -35,6 +35,22 @@ class UserStory6Test < ActionController::IntegrationTest
         assert_equal Postparameter.find(:all, :conditions => "request_id = #{id}").size, 0
       end
 
+      def user.duplicates_request(id)
+        count_pre = Request.find(:all).size
+        new_id = Request.find(:all).last.id + 1
+
+        post "/main/duplicate_request", :id => id
+        assert_response :success
+        assert_template "duplicate_request"
+
+        assert_equal Request.find(:all).size, count_pre + 1 
+        assert_equal Request.find(:all, :conditions => "id = #{new_id}").size, 1
+        [Header, Querystringparameter, Cookieparameter, Postparameter].each do |model|
+          assert_equal model.find(:all, :conditions => "request_id = #{new_id}").size, model.find(:all, :conditions => "request_id = #{id}").size
+        end
+
+      end
+
       def user.rearranges_requests(order)
         post "/main/rearrange_requests", "rules-mainarea-sortlist" => order
         assert_response :success
@@ -149,6 +165,7 @@ class UserStory6Test < ActionController::IntegrationTest
 
     colin = regular_user
 
+
     colin.adds_request
     colin.uses_inline_editor(id=1, Request, "http_method", "GET")
     colin.uses_inline_editor(id=1, Request, "path", "/index.html")
@@ -201,10 +218,27 @@ class UserStory6Test < ActionController::IntegrationTest
     colin.rearranges_requests(["3", "1", "4"])
     colin.uses_inline_editor(4, Request, "remarks", "ooo\nxxx")
     colin.removes_request(1)
-
     colin.removes_request(3)
     colin.removes_request(4)
 
+    # duplicate test
+    # -> we add a few requests, so we can duplicate request_id 7, which has no fixtures
+    colin.adds_request
+    colin.adds_request
+    colin.adds_request
+    colin.adds_request
+    colin.adds_request
+    colin.adds_request
+    colin.adds_request
+    colin.duplicates_request(7)
+    colin.removes_request(8)
+    colin.removes_request(7)
+    colin.removes_request(6)
+    colin.removes_request(5)
+    colin.removes_request(4)
+    colin.removes_request(3)
+    colin.removes_request(2)
+    colin.removes_request(1)
   end
 
 end
