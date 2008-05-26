@@ -12,10 +12,12 @@ def escape_path(path)
 end
 
 def get_release_version
-  if REMO_RELEASE_VERSION.nil?
+  begin
+    return REMO_RELEASE_VERSION
+  rescue
     require File.dirname(__FILE__) + '/../../remo_config'
+    return REMO_RELEASE_VERSION
   end
-  return REMO_RELEASE_VERSION
 end
 
 def extended_in_place_edit_for (object, attribute, options = {})
