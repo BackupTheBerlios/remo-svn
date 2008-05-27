@@ -37,22 +37,22 @@ unless defined? REMO_RELEASE_VERSION
   # So for the time being, the ID is the string name.
   STANDARD_DOMAINS = {
     # name - value pairs
-    "Hostname" => '[0-9a-zA-Z-.]{1,64}',
+    "Hostname" => '[0-9a-zA-Z\-.]{1,64}',
     "IP Address V4" => '\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}',
     "IP Address V6" => '([0-9a-fA-F]{4}|0)(\:([0-9a-fA-F]{4}|0)){7}',
     "Base64, max. 16 characters" => '[0-9a-zA-Z+/]{0,16}={0,2}',
     "Integer, max. 16 characters" => '\d{0,16}',
     "Flag, max. single character" => '[0-9a-zA-Z]{0,1}',
     "Sessionid, alphanumerical, max. 16 characters" => '[0-9a-zA-Z]{1,16}',
-    "Username" => '[0-9-a-zA-Z_-\]{0,32}',
-    "Emailaddress" => '[0-9a-zA-Z-_.]{1,32}\x40[0-9a-zA-Z-.]{1,32}',
+    "Username" => '[0-9-a-zA-Z_\-\]{0,32}',
+    "Emailaddress" => '[0-9a-zA-Z\-_.]{1,32}\x40[0-9a-zA-Z\-.]{1,32}',
     "Anything, max. 16 characters" => '.{0,16}',
     "Letters/Numbers, max. 16 characters" => '[0-9a-zA-Z]{0,16}',
-    "Letters/Numbers/Space/-/_, max. 16 characters" => '[0-9a-zA-Z-\x20_]{0,16}',
+    "Letters/Numbers/Space/-/_, max. 16 characters" => '[0-9a-zA-Z\-\x20_]{0,16}',
     "Letters/Numbers, max. 32 characters" => '[0-9a-zA-Z]{0,32}',
-    "Letters/Numbers/Space/-/_, max. 32 characters" => '[0-9a-zA-Z-\x20_]{0,32}',
-    "Header: User-Agent" => '[0-9a-zA-Z +:;!()\[\]/.-]{1,256}',
-    "Header: Host" => '[0-9a-zA-Z-:.]{3,64}',
+    "Letters/Numbers/Space/-/_, max. 32 characters" => '[0-9a-zA-Z\-\x20_]{0,32}',
+    "Header: User-Agent" => '[0-9a-zA-Z +:;!()\[\]/.\-]{1,256}',
+    "Header: Host" => '[0-9a-zA-Z\-:.]{3,64}',
     "Header: Basic Authorization" => 'Basic\s[0-9a-zA-Z+/]{0,256}={0,2}'
   }
 
