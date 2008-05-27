@@ -26,25 +26,13 @@ class Logfile < ActiveRecord::Base
 
     logfile = @file_data.read
 
-    record = Logfile.find(self.id)
-    record.content = logfile
-    filename = record.name
-
     if is_serial_log(logfile)
 
-      requests = []
-      phase = nil
-      phaseline = 0
-      current_request = nil
-      linenum = 0
-      n = 0
-
-      logfile.each do |line|
-        # loop over the lines and add one request after the other to the requests array
-        requests, current_request, phase, phaseline, n = parse_line(requests, current_request, filename, linenum, line, phase, phaseline, n)
-      end
+      record = Logfile.find(self.id)
+      record.content = SQLite3::Blob.new(logfile)
 
       record.save!
+
     else
 
       logger.error "Import logfile: Unknown logfile type or logfile corrupt: #{filename}. Aborting import."
