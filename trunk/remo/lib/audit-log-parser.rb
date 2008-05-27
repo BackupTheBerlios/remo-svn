@@ -181,14 +181,21 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
         end
       end
       if phase == "C" and phaseline > 0 and line.size > 1
-        line.split("&").each do |item|
-          name = item.split("=")[0]
-          if item.split("=").size > 1
-            value = item.gsub(name + "=", "")
-          else
-            value = ""
+        
+        if /^multipart\/form-data.*/.match(r[:headers].select { |e| e[:name].downcase == "content-type" }[0][:value]).nil?
+          # normal form data
+          line.split("&").each do |item|
+            name = item.split("=")[0]
+            if item.split("=").size > 1
+              value = item.gsub(name + "=", "")
+            else
+              value = ""
+            end
+            r[:postparameters] << {:name => name, :value => value.chomp}
           end
-          r[:postparameters] << {:name => name, :value => value.chomp}
+        else
+          # multipart form data
+          logger.error "Encountered content-type \"multipart/form-data\". Can not display this."
         end
       end
       if phase == "F" and phaseline == 1 and line.size > 1
