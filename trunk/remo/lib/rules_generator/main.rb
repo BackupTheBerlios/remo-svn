@@ -300,7 +300,7 @@ def get_check_individual_parameter (parametername, item)
   commentname = get_commentname(item.name) # we have to replace "\d" with "d" etc., as mod_security complains otherwise
   paramname = ""
   domain = get_domain(item.standard_domain, item.custom_domain)
-  if /\\[dDwWstrn]/.match(item.name).nil? and /\[/.match(item.name).nil? and /\(/.match(item.name).nil?
+  if /\\[dDwWstrn.]/.match(item.name).nil? and /\[/.match(item.name).nil? and /\(/.match(item.name).nil? and /\.\{/.match(item.name).nil?
     paramname = item.name
   else
     paramname = "'/^#{get_doubleescapedname(item.name)}$/'"
