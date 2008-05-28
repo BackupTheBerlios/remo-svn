@@ -198,9 +198,11 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
           boundary = r[:headers].select { |e| e[:name].downcase == "content-type" }[0][:value].split("boundary=", 2)[1]
           if not /#{boundary}/.match(line).nil?
             # boundary line
-            if defined?($multipart_name)
+            if defined?($multipart_name) and not $multipart_name.nil?
               # finished an item with the boundary, adding the item to the post parameters
               r[:postparameters] << {:name => $multipart_name, :value => $multipart_value}
+              $multipart_name = nil
+              $multipart_value = nil
             end
           elsif /^Content-Disposition: form-data/i.match(line)
             # disposition line
