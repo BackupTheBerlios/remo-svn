@@ -180,7 +180,7 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
           end
         end
       end
-      if phase == "C" and phaseline > 0 and line.size > 1
+      if phase == "C" and phaseline > 0
         
         if /^multipart\/form-data.*/.match(r[:headers].select { |e| e[:name].downcase == "content-type" }[0][:value]).nil?
           # normal form data
@@ -195,7 +195,31 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
           end
         else
           # multipart form data
-          logger.error "Encountered content-type \"multipart/form-data\". Can not display this."
+          boundary = r[:headers].select { |e| e[:name].downcase == "content-type" }[0][:value].split("boundary=", 2)[1]
+          if not /#{boundary}/.match(line).nil?
+            # boundary line
+            if defined?($multipart_name)
+              # finished an item with the boundary, adding the item to the post parameters
+              r[:postparameters] << {:name => $multipart_name, :value => $multipart_value}
+            end
+          elsif /^Content-Disposition: form-data/i.match(line)
+            # disposition line
+            name = line.split("=", 2)[1]
+            name.sub!(/^"/, "")
+            name.chomp!
+            name.sub!(/"$/, "")
+            $multipart_name = name
+            $multipart_value = nil  # define it as nil
+          else
+            if defined?($multipart_name)
+              if $multipart_value.nil? and line.size <= 2
+                $multipart_value = "" # set from nil to "" on the empty line after the content disposition
+              else
+                # now adding to the value
+                $multipart_value = $multipart_value + line
+              end
+            end
+          end
         end
       end
       if phase == "F" and phaseline == 1 and line.size > 1
