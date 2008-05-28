@@ -730,11 +730,26 @@ end
 
 def http_post(host, path, querystring={}, headers = {}, data = {})
   mybody = ""
-  data.each do |item|
-    unless mybody.size == 0
-      mybody += "&"
+
+
+  if /^multipart\/form-data.*/.match(headers.select { |e| e[:name].downcase == "content-type" }[0][:value]).nil?
+    # standard post body
+    data.each do |item|
+      unless mybody.size == 0
+        mybody += "&"
+      end
+      mybody += item[:name] + "=" + item[:value]
     end
-    mybody += item[:name] + "=" + item[:value]
+  else 
+    # multipart body
+    boundary = headers.select { |e| e[:name].downcase == "content-type" }[0][:value].split("boundary=", 2)[1]
+    data.each do |item|
+      mybody += "--#{boundary}\r\n"
+      mybody += "Content-Disposition: form-data; name=\"#{item[:name]}\"\r\n"
+      mybody += "\r\n"
+      mybody += "#{item[:value]}"
+    end
+    mybody += "--#{boundary}--\r\n"
   end
 
   myheaders = {}
