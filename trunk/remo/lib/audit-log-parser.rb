@@ -218,6 +218,9 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
                 $multipart_value = "" # set from nil to "" on the empty line after the content disposition
               else
                 # now adding to the value
+                if not defined?($multipart_value) or $multipart_value.nil?
+                  $multipart_value=""
+                end
                 $multipart_value = $multipart_value + line
               end
             end
