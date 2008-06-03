@@ -23,6 +23,8 @@ unless defined? REMO_RELEASE_VERSION
     {"From" =>              ["Custom", ".*"]},
     {"Content-Length" =>    ["Custom", ".*"]},
     {"Content-Type" =>      ["Custom", ".*"]},
+    {"UA-CPU" =>            ["Letters/Numbers/Space/-/_, max. 16 characters", ""]},
+    {"Pragma" =>            ["Letters/Numbers/Space/-/_, max. 16 characters", ""]},
   ]
 
   # http methods
@@ -85,8 +87,14 @@ unless defined? REMO_RELEASE_VERSION
   # Those status codes, that result in a redirect to the user agent
   HTTP_REDIRECT_STATUS_CODES = ["300", "301", "302", "303", "305", "307"]
 
+  # Ruleset Mode
+  # - block
+  # - detect
+  # When blocking is selected, HTTP_DEFAULT_DENY_STATUS_CODE will be used.
+  RULESET_MODE = "detect"
+
   # The status code is part of every deny rule in a remo ruleset. 
-  # This is the default value.
+  # This is the default value when the RULESET_MODE is set to "block"
   HTTP_DEFAULT_DENY_STATUS_CODE = "501"
 
   # ModSecurity collection names

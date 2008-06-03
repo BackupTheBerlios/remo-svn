@@ -311,11 +311,24 @@ def get_check_individual_parameter (parametername, item)
   string += get_crosscheck parametername, commentname, item
   string += get_mandatorycheck parametername, commentname, collection_name, item
 
-  status = get_domain_status item
-  status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
-  redirect = get_domain_redirect item
+  action = "pass"
+  if RULESET_MODE == "detect"
+    action = "pass"
+  elsif RULESET_MODE == "block"
+    action = "deny"
+  else
+    logger.error "Ruleset mode #{RULESET_MODE} is unknown. Falling back to detect."
+  end
 
-  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,deny,id:#{item.request_id}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
+  status, redirect = ""
+  if action == "deny"
+    status = get_domain_status item
+    status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
+    redirect = get_domain_redirect item
+  else
+  end
+
+  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,id:#{item.request_id},#{action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
 
   return string
 
