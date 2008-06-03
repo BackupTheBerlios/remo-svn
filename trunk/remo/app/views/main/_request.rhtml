@@ -3,7 +3,7 @@
           <table id="request-item_<%= request.id -%>-head" class="requesthead">
             <tr>
               <td><div id="request-item_<%= request.id -%>-collapsed" class="foldhandle"><%= link_to_function "<img src=\"/collapsed.png\">", "toggleRequestDetails(#{request.id})" -%></div>
-                <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div></td>
+                <div id="request-item_<%= request.id -%>-expanded" class="foldhandle" style="display: none;"><%= link_to_function "<img src=\"/expanded.png\">", "toggleRequestDetails(#{request.id})" -%></div>
               </td>
               <td class="request_http_method"><%= in_place_select_editor_field :request, :http_method, {}, :select_options => MainHelper::HTTP_METHODS -%>
               </td>
