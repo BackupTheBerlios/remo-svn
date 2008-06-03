@@ -132,7 +132,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
     assert_regex_match "SecRule ARGS:q_single_integer", string, "Error in 1st part of the rule:\n#{string}"
     assert_regex_match '!^(\d)$', string, "Error in 2nd part of the rule:\n#{string}"
 
-    assert_regex_match "t:none,deny,id:3,status:501,severity:3,msg:'Querystringparameter q_single_integer failed validity check. Value domain: Custom.'",
+    assert_regex_match "t:none,id:3,deny,status:501,severity:3,msg:'Querystringparameter q_single_integer failed validity check. Value domain: Custom.'",
                         string, "Error in 3rd part of the rule:\n#{string}"
 
     # crosscheck is tested seperately above. 

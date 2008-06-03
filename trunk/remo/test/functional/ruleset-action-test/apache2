@@ -5,6 +5,9 @@
 # Now this is really simple.
 #
 
+BINARY=/usr/sbin/apache2
+CONF=`pwd`/httpd.conf
+
 pidof_apache() {
 	if [ -f ./httpd.pid ]; then
 		PID=`cat ./httpd.pid`
@@ -17,11 +20,11 @@ pidof_apache() {
 
 case $1 in
 	start)
-		/usr/sbin/apache2 -f httpd.conf
+		$BINARY -f $CONF
 		sleep 1
 	;;
 	stop)
-		/usr/sbin/apache2 -k stop -f httpd.conf
+		$BINARY -k stop -f $CONF
 		sleep 1
 		if [ -f httpd.pid ]; then
 			rm httpd.pid
@@ -31,6 +34,6 @@ case $1 in
 		pidof_apache
 		kill $PID
 		sleep 1
-		/usr/sbin/apache2 -f httpd.conf
+		$BINARY -f $CONF
 	;;
 esac

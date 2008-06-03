@@ -33,7 +33,7 @@ class ModSecurityTest < ActionController::IntegrationTest
 
   def test_run
 
-   def write_requestrule(id, filename)
+    def write_requestrule(id, filename)
 
       get "/generate_requestrule/index/#{id}"
 
@@ -61,18 +61,16 @@ class ModSecurityTest < ActionController::IntegrationTest
     Dir.chdir("./test/functional/ruleset-action-test/") if FileTest::exists?("./test/functional/ruleset-action-test/")
 
     system("./apache2 stop") if File::exists?("./httpd.pid")
+
+    write_requestrule(3, "rulefile-index.php.conf")
+    write_requestrule(4, "rulefile-submit.php.conf")
+    write_requestrule(5, "rulefile-redirect.php.conf")
+
     system("./apache2 start")
 
-    Dir.chdir("../../..")
+    require "./audit-log-parser"
 
-    write_requestrule(3, "test/functional/ruleset-action-test/rulefile-index.php.conf")
-    write_requestrule(4, "test/functional/ruleset-action-test/rulefile-submit.php.conf")
-    write_requestrule(5, "test/functional/ruleset-action-test/rulefile-redirect.php.conf")
-
-    require "test/functional/ruleset-action-test/audit-log-parser"
-
-    requests = parse_logfiles(["test/functional/ruleset-action-test/blueprints/blueprint_index.php.log", "test/functional/ruleset-action-test/blueprints/blueprint_submit.php.log", "test/functional/ruleset-action-test/blueprints/blueprint_redirect.php.log"], nil)
-
+    requests = parse_logfiles(["./blueprints/blueprint_index.php.log", "./blueprints/blueprint_submit.php.log", "./blueprints/blueprint_redirect.php.log"], nil)
 
     successes, failures = reinject_requests(requests, nil, false, true) if requests.size > 0
 
