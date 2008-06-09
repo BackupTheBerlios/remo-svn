@@ -185,13 +185,15 @@ def parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
         if /^multipart\/form-data.*/.match(r[:headers].select { |e| e[:name].downcase == "content-type" }[0][:value]).nil?
           # normal form data
           line.split("&").each do |item|
-            name = item.split("=")[0]
-            if item.split("=").size > 1
-              value = item.gsub(name + "=", "")
-            else
-              value = ""
+            if item.chomp.size > 0
+              name = item.split("=")[0]
+              if item.split("=").size > 1
+                value = item.gsub(name + "=", "")
+              else
+                value = ""
+              end
+              r[:postparameters] << {:name => name, :value => value.chomp}
             end
-            r[:postparameters] << {:name => name, :value => value.chomp}
           end
         else
           # multipart form data
