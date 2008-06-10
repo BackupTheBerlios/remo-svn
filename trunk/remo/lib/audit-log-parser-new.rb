@@ -13,7 +13,7 @@ require "getoptlong"
 require "find"
 require "rdoc/usage"
 
-FIELDSYMBOLS=[:status, :method, :path, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+FIELDSYMBOLS=[:status, :method, :path, :http_version, :response_http_version, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
 
 # ------------------------------------------
 # Initialization
@@ -129,8 +129,8 @@ def parse_filter(filterstring)
           exit 1
         end
 
-        # canonify paramter
-        parameter = parameter.chomp
+        # canonify parameter
+        parameter = parameter.chomp.strip
         if ["==", "!="].index(operator)
           parameter = parameter[1..parameter.length] if parameter[0..0] == "\"" # remove beginning " if there is one
           parameter = parameter[0..parameter.length-2] if parameter[-1..-1] == "\"" # remove trailing " if there is one
@@ -188,10 +188,15 @@ def sanitize_check_parameters(params)
     end
   end
       
+  if not defined?(params["output"])
+    params["output"] = ""
+  end
+
   if params["debug"]
     puts "sanitize_check_parameters debug:         #{params["debug"]}"
     puts "sanitize_check_parameters filenames:     #{params["filenames"].each do |file| file; end}"
     puts "sanitize_check_parameters filters.size:  #{params["filters"].size}"
+    puts "sanitize_check_parameters output:        #{params["output"]}"
   end
 
   return params
@@ -282,7 +287,7 @@ def parse_request_parts(partial_request)
       # treat first request line
       request[:method] = lines[0].split(" ")[0]
       request[:path] = lines[0].split(" ")[1]
-      request[:version] = lines[0].split(" ")[2]
+      request[:http_version] = lines[0].split(" ")[2]
       request[:path], request[:querystring] = request[:path].split("?", 2)
       request[:querystringparameters] = Hash.new
       request[:cookieparameters] = Hash.new
@@ -369,8 +374,9 @@ def parse_request_parts(partial_request)
         elsif /^application\/x-www-form-urlencoded/.match(content_type).nil? == false
           # form urlencoded
           items = part.split("&")
-          if items.chomp.size > 0
+          if items.size > 0
             items.each do |item|
+              item.chomp!
               request[:postparameters][item.split("=")[0]] = item.split("=")[1]
             end
           end
@@ -414,7 +420,7 @@ def parse_request_parts(partial_request)
       lines = part.split("\n")
 
       # treat first request line
-      request[:response_version] = lines[0].split(" ")[0]
+      request[:response_http_version] = lines[0].split(" ")[0]
       request[:status] = lines[0].split(" ")[1]
       request[:status_message] = lines[0].split(" ")[2]
 
@@ -442,7 +448,7 @@ def parse_request_parts(partial_request)
     begin
       request[:audit_trailer] = part
       lines = part.split("\n")
-      for i in 1..lines.size-1
+      for i in 0..lines.size-1
         if not /^Message: /.match(lines[i]).nil? 
           # ModSecurity message
           request[:modsec_messages] << lines[i].chomp.gsub("Message: ", "")
@@ -453,8 +459,8 @@ def parse_request_parts(partial_request)
           request[:microtimestamp] = foo[0]
           request[:duration] = foo[1]
           request[:modsectime1] = foo[2].gsub("(", "")
-          request[:modsectime2] = foo[2]
-          request[:modsectime3] = foo[3].gsub(")", "")
+          request[:modsectime2] = foo[3]
+          request[:modsectime3] = foo[4].gsub(")", "")
         elsif not /^Producer: /.match(lines[i]).nil? 
           request[:producer] = lines[i].chomp.gsub("Producer: ", "")
         elsif not /^Server: /.match(lines[i]).nil? 
@@ -586,9 +592,8 @@ def run_parser(filename, requests, params)
     puts "run_parser new request local_addr:     #{request[:local_addr]}"
     puts "run_parser new request local_port:     #{request[:local_port]}"
     puts "run_parser new request method:         #{request[:method]}"
-    puts "run_parser new request path:            #{request[:path]}"
-    puts "run_parser new request version:        #{request[:version]}"
     puts "run_parser new request path:           #{request[:path]}"
+    puts "run_parser new request version:        #{request[:http_version]}"
     puts "run_parser new request querystring:    #{request[:querystring]}"
     request[:querystringparameters].each do |key,value|
       puts "run_parser new request querystringparameter: #{key}=#{value}"
@@ -600,7 +605,7 @@ def run_parser(filename, requests, params)
       puts "run_parser new request postparameter: #{key}: #{value}"
     end
     puts "run_parser new request response body.size: #{request[:response_body].size}"
-    puts "run_parser new request response version: #{request[:response_version]}"
+    puts "run_parser new request response version: #{request[:response_http_version]}"
     puts "run_parser new request response status:  #{request[:status]}"
     puts "run_parser new request response status message:  #{request[:status_message]}"
     request[:response_headers].each do |key,value|
@@ -642,12 +647,9 @@ def run_parser(filename, requests, params)
 
       if filter["field"] == :message
         mydisplay = false
-
         request[:modsec_messages].each do |value|
-
           if not /#{parameter}/.match(value).nil?
             mydisplay = true
-
           end
         end
         display = false if not mydisplay
@@ -728,7 +730,7 @@ def run_parser(filename, requests, params)
       display = apply_filter(request, params)
       puts "run_parser filter code done. Display has value #{display}" if params["debug"]
 
-      display_request(request) if display
+      display_request(request) if display and not params["output"] == "none"
 
       # adding request
       if params["collect_requests"]
