@@ -10,8 +10,6 @@ class AuditLogParserNewTest < Test::Unit::TestCase
   $testfile1 = "./data/modsec_audit_log_1.log"            # logfile with 1 request
   $testfile2 = "./data/modsec_audit_log_2.log"            # logfile with 3 requests
   $testfile3 = "./data/modsec_audit_log_3.log"            # logfile with 3 requests, new request starting without old request being finished
-  $testfile4 = "./data/modsec_audit_log_archive_1.tar.gz"
-  $testfile5 = "./data/modsec_audit_log_archive_2.tar"
 
   $params = {
     "collect_requests" => true,
@@ -66,6 +64,11 @@ class AuditLogParserNewTest < Test::Unit::TestCase
     assert_match /delimiter00003a24/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
     assert_match /delimiter00003fh2/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
     assert_match /delimiter000025j3/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
+  end
+
+  def test_stdin
+    call = "cat #{$testfile1} | #{$script_path} -f \"method = GET \" 2>&1"
+    assert_match /A--/i, `#{call}`, "STDIN processing failed with call to \"#{call}\"."
   end
 
   def test_filter

@@ -84,6 +84,45 @@ def read_parameters
 
 end
 
+def sanitize_check_parameters(params)
+  # What   : sanitize and check the command line parameters
+  # Input  : hash with command line parameters
+  # Output : cleaned hash with command line parameters
+  # Example: params = sanitize_check_parameters(params)
+  # Remarks: function will exit, if it can not cope with a certain parameter 
+  #          or if it is really illegal. An inexisting/unreadable file will 
+  #          be ignored unless it is the only input.
+
+  params["filters"] = parse_filter(params["filterstring"])
+
+  if params["filenames"].length == 0 and not check_stdin()
+      $stderr.puts "No filenames passed. This is fatal. Aborting."
+      RDoc::usage
+      exit 1
+  else
+    params["filenames"].each do |filename|
+      unless File::exists?(filename)
+        $stderr.puts "File #{filename} not found. This is fatal. Aborting."
+        exit 1
+      end
+    end
+  end
+      
+  if not defined?(params["output"])
+    params["output"] = ""
+  end
+
+  if params["debug"]
+    puts "sanitize_check_parameters debug:         #{params["debug"]}"
+    puts "sanitize_check_parameters filenames:     #{params["filenames"].each do |file| file; end}"
+    puts "sanitize_check_parameters filters.size:  #{params["filters"].size}"
+    puts "sanitize_check_parameters output:        #{params["output"]}"
+  end
+
+  return params
+
+end
+
 def parse_filter(filterstring)
   # What   : parse a filterstring as passed by the user
   # Input  : filterstring
@@ -164,43 +203,20 @@ def parse_filter(filterstring)
 
 end
 
-def sanitize_check_parameters(params)
-  # What   : sanitize and check the command line parameters
-  # Input  : hash with command line parameters
-  # Output : cleaned hash with command line parameters
-  # Example: params = sanitize_check_parameters(params)
-  # Remarks: function will exit, if it can not cope with a certain parameter 
-  #          or if it is really illegal. An inexisting/unreadable file will 
-  #          be ignored unless it is the only input.
+def check_stdin ()
+  # What   : check for existence of stdin
+  # Input  : none
+  # Output : true if there is stdin, false if there is none
+  # Example: foo = check_stdin()
+  # Remarks: none
 
-  params["filters"] = parse_filter(params["filterstring"])
-
-  if params["filenames"].length == 0
-      $stderr.puts "No filenames passed. This is fatal. Aborting."
-      RDoc::usage
-      exit 1
+  if STDIN.tty?
+    # no stdin
+    return false
   else
-    params["filenames"].each do |filename|
-      unless File::exists?(filename)
-        $stderr.puts "File #{filename} not found. This is fatal. Aborting."
-        exit 1
-      end
-    end
+    # stdin
+    return true
   end
-      
-  if not defined?(params["output"])
-    params["output"] = ""
-  end
-
-  if params["debug"]
-    puts "sanitize_check_parameters debug:         #{params["debug"]}"
-    puts "sanitize_check_parameters filenames:     #{params["filenames"].each do |file| file; end}"
-    puts "sanitize_check_parameters filters.size:  #{params["filters"].size}"
-    puts "sanitize_check_parameters output:        #{params["output"]}"
-  end
-
-  return params
-
 end
 
 def parse_line(item, line)
@@ -691,15 +707,8 @@ def run_parser(filename, requests, params)
     puts
   end
 
-  item = Hash.new
-  item["current_part"] = ""
-  item["current_part_linenum"] = 0
-
-  linenum = 1
-
-  IO.foreach(filename) do |line|
-
-    puts "run_parser parsing line #{linenum}:      #{line}" if params["debug"]
+  def run_parser_io (filename, requests, item, line, params)
+    puts "run_parser parsing line #{item["linenum"]}:      #{line}" if params["debug"]
    
     # parse line
     item = parse_line(item, line)
@@ -732,8 +741,29 @@ def run_parser(filename, requests, params)
 
     end
     
-    linenum += 1
+    item["linenum"] += 1
 
+  end
+
+  item = Hash.new
+  item["current_part"] = ""
+  item["current_part_linenum"] = 0
+  item["linenum"] = 1
+
+  if filename == STDIN
+    STDIN.each do |line|
+      run_parser_io("STDIN", requests, item, line, params)
+    end
+  else
+    unless `file #{filename}`.chomp == "#{filename}: ASCII text"
+      $stderr.puts "Unknown filetype of file #{filename}. This is fatal. Aborting."
+      exit 1
+    end
+    File.open(filename) do |handler|
+      handler.each do |line|
+        run_parser_io(filename, requests, item, line, params)
+      end
+    end
   end
 
   return requests
@@ -751,6 +781,7 @@ def main
 
   requests = Array.new
 
+  requests = run_parser(STDIN, requests, params) if check_stdin()
   params["filenames"].each do |filename|
     requests = run_parser(filename, requests, params)
   end
