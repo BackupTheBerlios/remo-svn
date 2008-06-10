@@ -18,6 +18,7 @@ end
 def get_escapedname (name)
   myname = name.clone # otherwise name is updated too
   myname.gsub!('\\', '\\\\')
+  myname.gsub!('"', '\"')
   return myname
 end
 
