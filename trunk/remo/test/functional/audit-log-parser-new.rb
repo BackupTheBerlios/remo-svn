@@ -7,10 +7,11 @@ require 'helpers/various'
 class AuditLogParserNewTest < Test::Unit::TestCase
 
   $script_path = "../../lib/audit-log-parser-new.rb"
-  $testfile1 = "./data/modsec_audit_log_1.log"
-  $testfile2 = "./data/modsec_audit_log_2.log"            # simple logfile with 3 requests
-  $testfile3 = "./data/modsec_audit_log_archive_1.tar.gz"
-  $testfile4 = "./data/modsec_audit_log_archive_2.tar"
+  $testfile1 = "./data/modsec_audit_log_1.log"            # logfile with 1 request
+  $testfile2 = "./data/modsec_audit_log_2.log"            # logfile with 3 requests
+  $testfile3 = "./data/modsec_audit_log_3.log"            # logfile with 3 requests, new request starting without old request being finished
+  $testfile4 = "./data/modsec_audit_log_archive_1.tar.gz"
+  $testfile5 = "./data/modsec_audit_log_archive_2.tar"
 
   $params = {
     "collect_requests" => true,
@@ -61,6 +62,10 @@ class AuditLogParserNewTest < Test::Unit::TestCase
   def test_run_parser
     assert_equal run_parser($testfile1, Array.new, $params).size, 1, "Audit-log parsed, but wrong number of requests returned"
     assert_equal run_parser($testfile2, Array.new, $params).size, 3, "Audit-log parsed, but wrong number of requests returned"
+    assert_equal run_parser($testfile3, Array.new, $params).size, 3, "Audit-log parsed, but wrong number of requests returned"
+    assert_match /delimiter00003a24/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
+    assert_match /delimiter00003fh2/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
+    assert_match /delimiter000025j3/i, run_parser($testfile3, Array.new, $params).to_s, "Audit-log parsed, but individual request not returned"
   end
 
   def test_filter

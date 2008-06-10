@@ -221,28 +221,32 @@ def parse_line(item, line)
   #          If a new request is starting with ..-A-- without an old one being 
   #          finished we are bailing out. (FIXME)
 
-  item["part_linenum"] += 1
+  item["current_part_linenum"] += 1
 
   if /^--[\w\d]+-[A-Z]--$/.match(line)
     # part start identified
-    if line.split("-")[3] == "A" and item["partial_request"]["request_delimiter"].nil?
+    delimiter = line.split("-")[2]
+    if line.split("-")[3] == "A"
       # new request starting
-      item["partial_request"]["request_delimiter"] = line.split("-")[2]
-    elsif line.split("-")[3] == "A" and item["partial_request"]["request_delimiter"] != ""
-      # new request starting without old request being finished.
-      # FIXME
-      puts "Request with delimiter #{item["partial_request"]["request_delimiter"]} not finished and new request with delimiter #{line.split("-")[2]} starting. This is fatal. Aborting."
-      exit 1
+      item[delimiter] = Hash.new 
+      item[delimiter]["partial_request"] = Hash.new
+      item[delimiter]["partial_request"]["delimiter"] = delimiter
+      item[delimiter]["partial_request"]["parts"] = Hash.new
     end
-    item["part"] = line.split("-")[3]
-    item["part_linenum"] = 0
-  else
-    if item["partial_request"]["parts"][item["part"]].nil?
-      item["partial_request"]["parts"][item["part"]] = ""
+    item["current_delimiter"] = delimiter
+    item["current_part"] = line.split("-")[3]
+    item["current_part_linenum"] = 0
+  elsif not item["current_delimiter"].nil? \
+        and (item["current_part"] != "Z" or \
+            (item["current_part"] == "Z" and item["current_part_linenum"] == 0) \
+            )
+    delimiter = item["current_delimiter"]
+    if item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]].nil?
+       item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] = ""
     end
-    item["partial_request"]["parts"][item["part"]] += line 
+    item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] += line 
   end
-  
+
   return item
 end
 
@@ -505,7 +509,7 @@ def parse_request_parts(partial_request)
 
   request = Hash.new
 
-  request[:delimiter] = partial_request["request_delimiter"]
+  request[:delimiter] = partial_request["delimiter"]
   request[:filename] = partial_request[:filename]
 
   ["A", "B", "C", "E", "F", "H", "I", "K"]. each do |part|
@@ -547,21 +551,6 @@ def run_parser(filename, requests, params)
   # Output : requests array
   # Example: requests = run_parser(params["filenames"][0], requests, params)
   # Remarks: parsing includes display
-
-  def init_item
-    # What   : initialize a request
-    # Input  : none
-    # Output : request hash
-    # Example: item = init_item
-    # Remarks: none
-
-    item = Hash.new
-    item["part"] = ""
-    item["partial_request"] = Hash.new
-    item["partial_request"]["parts"] = Hash.new
-    item["part_linenum"] = 0
-    return item
-  end
 
   def print_debug_line_information (item)
     # What   : print debug information about a line being processed
@@ -702,7 +691,9 @@ def run_parser(filename, requests, params)
     puts
   end
 
-  item = init_item
+  item = Hash.new
+  item["current_part"] = ""
+  item["current_part_linenum"] = 0
 
   linenum = 1
 
@@ -715,13 +706,15 @@ def run_parser(filename, requests, params)
 
     print_debug_line_information (item) if params["debug"]
 
-    if item["part"] == "Z" and item["part_linenum"] == 0
+    if item["current_part"] == "Z" and item["current_part_linenum"] == 0
       # request finished, handling complete request
 
-      puts "run_parser adding request with delimiter #{item["partial_request"]["request_delimiter"]}" if params["debug"]
+      puts "run_parser adding request with delimiter #{item[item["current_delimiter"]]["partial_request"]["request_delimiter"]}" if params["debug"]
 
       # interprete request
-      request = parse_request_parts(item["partial_request"])
+      request = parse_request_parts(item[item["current_delimiter"]]["partial_request"])
+      delimiter = item["current_delimiter"]
+      item[delimiter] = nil # undef won't work, this is equally effective, all we want is freeing the memory
       request[:filename] = filename
 
       print_debug_request_information (request) if params["debug"]
@@ -736,8 +729,6 @@ def run_parser(filename, requests, params)
       if params["collect_requests"]
         requests << request
       end
-
-      item = init_item
 
     end
     
