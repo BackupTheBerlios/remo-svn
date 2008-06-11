@@ -365,7 +365,7 @@ end
 def get_fallback_rule()
   action = get_action
   status = get_domain_status
-  string =  "# Fallback rule (unknown request)"
+  string =  "# Fallback rule (unknown request path)\n"
   string +=  "<LocationMatch \"^/.*$\">\n"
   string += "  SecAction \"#{action}#{status},severity:3,msg:'Unknown request. Access denied by fallback rule.'\"\n"
   string += "</LocationMatch>\n"
