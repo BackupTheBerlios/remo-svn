@@ -1,15 +1,16 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require '../../lib/audit-log-parser-new'
+require File.dirname(__FILE__) + '/../../lib/audit-log-parser-new'
 
 require 'rules_generator/main'
 require 'helpers/various'
 
 class AuditLogParserNewTest < Test::Unit::TestCase
 
-  $script_path = "../../lib/audit-log-parser-new.rb"
-  $testfile1 = "./data/modsec_audit_log_1.log"            # logfile with 1 request
-  $testfile2 = "./data/modsec_audit_log_2.log"            # logfile with 3 requests
-  $testfile3 = "./data/modsec_audit_log_3.log"            # logfile with 3 requests, new request starting without old request being finished
+  $testfile1 = File.dirname(__FILE__) + "/data/modsec_audit_log_1.log"            # logfile with 1 request
+  $testfile2 = File.dirname(__FILE__) + "/data/modsec_audit_log_2.log"            # logfile with 3 requests
+  $testfile3 = File.dirname(__FILE__) + "/data/modsec_audit_log_3.log"            # logfile with 3 requests, new request starting without old request being finished
+
+  $script_path = File.dirname(__FILE__) + "/../../lib/audit-log-parser-new.rb"
 
   $params = {
     "collect_requests" => true,
