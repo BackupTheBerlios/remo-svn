@@ -75,6 +75,12 @@ class AuditLogParserNewTest < Test::Unit::TestCase
   def test_filter
     # *** filter for a static data items
 
+    #request_id
+    call = "#{$script_path} -f \"request_id = 6JH5wqwfsQsAAF9ZAxMAAAAX \" #{$testfile1} 2>&1"
+    assert_match /A--/i, `#{call}`, "Filter for method failed with call to \"#{call}\"."
+    call = "#{$script_path} -f \"request_id = XXX6JH5wqwfsQsAAF9ZAxMAAAAX \" #{$testfile1} 2>&1"
+    assert_no_match /A--/i, `#{call}`, "Filter for method failed with call to \"#{call}\"."
+
     # method
     call = "#{$script_path} -f \"method = GET \" #{$testfile1} 2>&1"
     assert_match /A--/i, `#{call}`, "Filter for method failed with call to \"#{call}\"."

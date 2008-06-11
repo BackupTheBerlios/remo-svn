@@ -13,7 +13,7 @@ require "getoptlong"
 require "find"
 require "rdoc/usage"
 
-FIELDSYMBOLS=[:status, :method, :path, :http_version, :response_http_version, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
 
 # ------------------------------------------
 # Initialization
