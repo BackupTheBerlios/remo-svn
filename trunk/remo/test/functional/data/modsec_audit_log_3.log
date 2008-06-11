@@ -1,0 +1,130 @@
+--00003a24-A--
+[27/May/2008:12:39:19 +0200] 6JH5wqwfsQsAAF9ZAxM3453X 192.168.1.10 3148 192.168.1.16 80
+--00003a24-B--
+GET /index.php?foo=a&bar HTTP/1.1
+Connection: Keep-Alive
+User-Agent: Mozilla/4.06 [en] (WinNT; I)
+Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg, image/png, */*
+Accept-Language: en
+Accept-Charset: iso-8859-1,*,utf-8
+Host: 192.168.1.16
+
+--00003a24-F--
+HTTP/1.1 200 OK
+Last-Modified: Wed, 30 Apr 2008 11:40:08 GMT
+ETag: "1cb0-5c-44c159c67141b"
+Accept-Ranges: bytes
+Content-Length: 36
+Keep-Alive: timeout=10, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+
+--00003a24-E--
+<html>
+<body>
+Hello
+</body>
+</html>
+
+--00003fh2-A--
+[27/May/2008:12:39:19 +0200] 6JH5wsadfrzAAF9ZAxMAAAAX 192.168.1.10 3148 192.168.1.16 80
+
+--00003a24-H--
+Message: Warning. Pattern match "HTTP" at REQUEST_PROTOCOL.
+Stopwatch: 1211884759022018 2720 (1293 1305 1879)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.4 (Apache 2.x)
+Server: Apache
+
+--00003a24-Z--
+
+--00003fh2-B--
+POST /submit.php HTTP/1.1
+Connection: Keep-Alive
+User-Agent: Mozilla/4.06 [en] (WinNT; I)
+Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg, image/png, */*
+Accept-Language: en
+Accept-Charset: iso-8859-1,*,utf-8
+Host: 192.168.1.16
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 12
+
+--00003fh2-C--
+foo=x&bar=0
+--00003fh2-F--
+HTTP/1.1 200 OK
+Last-Modified: Wed, 30 Apr 2008 11:40:08 GMT
+ETag: "1cb0-5c-44c159c67141b"
+Accept-Ranges: bytes
+Content-Length: 36
+Keep-Alive: timeout=10, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+
+--00003fh2-E--
+<html>
+<body>
+Hello
+</body>
+</html>
+
+--00003fh2-H--
+Message: Warning. Pattern match "HTTP" at REQUEST_PROTOCOL.
+Stopwatch: 1211884759022018 2720 (1293 1305 1879)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.4 (Apache 2.x)
+Server: Apache
+
+--000025j3-A--
+[27/May/2008:12:39:19 +0200] 6JH5wqwfs123rtz6AxMAAAAX 192.168.1.10 3148 192.168.1.16 80
+--000025j3-B--
+POST /submit.php HTTP/1.1
+Connection: Keep-Alive
+User-Agent: Mozilla/4.06 [en] (WinNT; I)
+Accept: image/gif, image/x-bitmap, image/jpeg, image/pjpeg, image/png, */*
+Accept-Language: en
+Accept-Charset: iso-8859-1,*,utf-8
+Host: 192.168.1.16
+Content-Type: multipart/form-data; boundary=---------------------------19485235801714639450544197471
+Content-Length: 277
+
+--000025j3-C--
+-----------------------------19485235801714639450544197471
+Content-Disposition: form-data; name="foo"
+
+bar
+-----------------------------19485235801714639450544197471
+Content-Disposition: form-data; name="foo2"
+
+barX
+-----------------------------19485235801714639450544197471--
+
+--00003fh2-Z--
+
+--000025j3-F--
+HTTP/1.1 200 OK
+Last-Modified: Wed, 30 Apr 2008 11:40:08 GMT
+ETag: "1cb0-5c-44c159c67141b"
+Accept-Ranges: bytes
+Content-Length: 36
+Keep-Alive: timeout=10, max=100
+Connection: Keep-Alive
+Content-Type: text/html
+
+--000025j3-E--
+<html>
+<body>
+Hello
+</body>
+</html>
+
+--000025j3-H--
+Message: Warning. Pattern match "HTTP" at REQUEST_PROTOCOL.
+Stopwatch: 1211884759022018 2720 (1293 1305 1879)
+Response-Body-Transformed: Dechunked
+Producer: ModSecurity v2.1.4 (Apache 2.x)
+Server: Apache
+
+--000025j3-Z--
+
+
