@@ -11,8 +11,38 @@ def get_logfile_requests(logfile)
   linenum = 0
   n = 0
 
+  item = Hash.new
+  item["current_part"] = ""
+  item["current_part_linenum"] = 0
+  item["linenum"] = 1
+  requests = Array.new
+
+  params = Hash.new
+  params["filters"] = parse_filter("")
+  params["collect_requests"] = true
+
   logfile.content.each do |line|
-    requests, r, phase, phaseline, n = parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
+    item = parse_line(item, line)
+    # requests, r, phase, phaseline, n = parse_line(requests, r, filename, linenum, line, phase, phaseline, n)
+
+    if item["current_part"] == "Z" and item["current_part_linenum"] == 0
+      # request finished, handling complete request
+
+      request = parse_request_parts(item[item["current_delimiter"]]["partial_request"])
+      delimiter = item["current_delimiter"]
+      item[delimiter] = nil # undef won't work, this is equally effective, all we want is freeing the memory
+      request[:filename] = filename
+      request[:num] = requests.size + 1
+
+      # filter code
+      display = apply_filter(request, params)
+
+      # adding request
+      if params["collect_requests"]
+        requests << request
+      end
+
+    end
   end
 
   return requests
@@ -30,7 +60,7 @@ def get_html_display_logfile(logfile)
     else
      statusimage = "<img src=\"/nok.png\" width=\"16\" height=\"16\" alt=\"image: /nok.png\">"
     end
-    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\">#{statusimage}&nbsp;<a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:http_method]} #{r[:uri]} #{r[:version]} #{r[:status_code]}</div>"
+    string += "<div id=\"srequest-#{r[:num]}\" class=\"sourcerequest\">#{statusimage}&nbsp;<a href=\"../displaylogfilerequest/index/#{logfile.id}&#{r[:num]-1}\" target=\"_blank\">view</a> #{r[:num]}: #{r[:method]} #{r[:path]} #{r[:http_version]} #{r[:status]}</div>"
   end
 
   return string unless string.size == 0
@@ -57,6 +87,11 @@ def check_logfile_request_parameter(model, rid, name, value)
   if rid.nil?
     return "failed"
   end
+
+  if value.nil?
+    value = ""
+  end
+
 
   parameters = model.find(:all, :conditions => "request_id='#{h(rid)}'")
 
@@ -120,7 +155,15 @@ def check_logfile_request(r)
   # - rule covering all parameters
   # return true or false
 
-  rid = get_check_logfile_requestid(r[:http_method], r[:path])
+  def myfunc(model, rid, name, value)
+    if check_logfile_request_parameter(model, rid, name, value) == "passed"
+      return true
+    else
+      return false
+    end
+  end
+
+  rid = get_check_logfile_requestid(r[:method], r[:path])
 
   if rid.nil?
     return false
@@ -130,38 +173,30 @@ def check_logfile_request(r)
     return false
   end
 
-  def myfunc(model, rid, item)
-    if check_logfile_request_parameter(model, rid, item[:name], item[:value]) == "passed"
-      return true
-    else
-      return false
-    end
-  end
-
   model = Header
-  r[:headers].each do |item|
-    unless myfunc(model, rid, item)
+  r[:headers].each do |name, value|
+    unless myfunc(model, rid, name, value)
       return false
     end
   end
 
   model = Cookieparameter
-  r[:cookieparameters].each do |item|
-    unless myfunc(model, rid, item)
+  r[:cookieparameters].each do |name, value|
+    unless myfunc(model, rid, name, value)
       return false
     end
   end
 
   model = Querystringparameter
-  r[:querystringparameters].each do |item|
-    unless myfunc(model, rid, item)
+  r[:querystringparameters].each do |name, value|
+    unless myfunc(model, rid, name, value)
       return false
     end
   end
 
   model = Postparameter
-  r[:postparameters].each do |item|
-    unless myfunc(model, rid, item)
+  r[:postparameters].each do |name, value|
+    unless myfunc(model, rid, name, value)
       return false
     end
   end

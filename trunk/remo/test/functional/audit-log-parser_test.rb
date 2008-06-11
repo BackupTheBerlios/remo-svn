@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../test_helper'
-require File.dirname(__FILE__) + '/../../lib/audit-log-parser-new'
+require File.dirname(__FILE__) + '/../../lib/audit-log-parser'
 
 require 'rules_generator/main'
 require 'helpers/various'
@@ -10,7 +10,7 @@ class AuditLogParserNewTest < Test::Unit::TestCase
   $testfile2 = File.dirname(__FILE__) + "/data/modsec_audit_log_2.log"            # logfile with 3 requests
   $testfile3 = File.dirname(__FILE__) + "/data/modsec_audit_log_3.log"            # logfile with 3 requests, new request starting without old request being finished
 
-  $script_path = File.dirname(__FILE__) + "/../../lib/audit-log-parser-new.rb"
+  $script_path = File.dirname(__FILE__) + "/../../lib/audit-log-parser.rb"
 
   $params = {
     "collect_requests" => true,
@@ -103,6 +103,12 @@ class AuditLogParserNewTest < Test::Unit::TestCase
     call = "#{$script_path} -f \"status == 200\" #{$testfile1} 2>&1"
     assert_match /A--/i, `#{call}`, "Filter for status failed with call to \"#{call}\"."
     call = "#{$script_path} -f \"status == 404\" #{$testfile1} 2>&1"
+    assert_no_match /A--/i, `#{call}`, "Filter for status failed with call to \"#{call}\"."
+
+    # status_message
+    call = "#{$script_path} -f \"status_message == OK \" #{$testfile1} 2>&1"
+    assert_match /A--/i, `#{call}`, "Filter for status_message failed with call to \"#{call}\"."
+    call = "#{$script_path} -f \"status_message == File not found \" #{$testfile1} 2>&1"
     assert_no_match /A--/i, `#{call}`, "Filter for status failed with call to \"#{call}\"."
 
     # http_response_version

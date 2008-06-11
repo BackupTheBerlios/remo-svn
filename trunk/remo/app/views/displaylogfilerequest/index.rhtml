@@ -1,10 +1,10 @@
-<% rid = get_check_logfile_requestid(@r[:http_method], @r[:path]) -%>
+<% rid = get_check_logfile_requestid(@r[:method], @r[:path]) -%>
 <% failed_mandatory_parameters = check_mandatory_parameters(@r, rid) -%>
 <h1 class="<%= unless rid.nil? 
                  "passed" 
                else 
                 "failed" 
-               end -%>"><div><%= h(@r[:http_method]) -%> <%= h(@r[:path]) -%></div></h1>
+               end -%>"><div><%= h(@r[:method]) -%> <%= h(@r[:path]) -%></div></h1>
 
 <% if check_logfile_request(@r) -%>
   <div class="item passed">
@@ -24,17 +24,21 @@
 &nbsp;<p />
 
 <div class="item">
-  <div class="item-name">File, Request number:&nbsp;&nbsp;</div>
+  <div class="item-name"><b>File, Request number</b>:&nbsp;&nbsp;</div>
   <div class="item-value"><%= h(@r[:filename])-%>, #<%= h(@r[:num]) -%></div>
 </div>
 
 <div class="item">
-  <div class="item-name">Status:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(@r[:status_code]) -%> <%= h(@r[:status_code_name]) -%></div>
+  <div class="item-name"><b>Status</b>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:status]) -%> <%= h(@r[:status_message]) -%></div>
 </div>
 <div class="item">
-  <div class="item-name">ModSecurity Message:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(@r[:modsecurity_message]) -%></div>
+  <div class="item-name"><b>ModSecurity Messages</b>:&nbsp;&nbsp;</div>
+</div>
+<div class="item">
+  <% @r[:modsec_messages].each do |item| -%>
+  <div class="item-value"><%= h(item) -%></div>
+  <% end %>
 </div>
 
 <p />&nbsp;<p />
@@ -64,33 +68,33 @@
 <% end %>
 
 <h3>Headers</h3>
-<% @r[:headers].each do |item| -%>
-<div class="item <%= check_logfile_request_parameter(Header, rid, item[:name], item[:value]) -%>">
-  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(item[:value]) -%></div>
+<% @r[:headers].each do |name, value| -%>
+<div class="item <%= check_logfile_request_parameter(Header, rid, name, value) -%>">
+  <div class="item-name"><%= h(name) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(value) -%></div>
 </div>
 <% end %>
 
 <h3>Cookie Parameters</h3>
-<% @r[:cookieparameters].each do |item| -%>
-<div class="item <%= check_logfile_request_parameter(Cookieparameter, rid, item[:name], item[:value]) -%>">
-  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(item[:value]) -%></div>
+<% @r[:cookieparameters].each do |name, value| -%>
+<div class="item <%= check_logfile_request_parameter(Cookieparameter, rid, name, value) -%>">
+  <div class="item-name"><%= h(name) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(value) -%></div>
 </div>
 <% end %>
 
 <h3>Querystring Parameters</h3>
-<% @r[:querystringparameters].each do |item| -%>
-<div class="item <%= check_logfile_request_parameter(Querystringparameter, rid, item[:name], item[:value]) -%>">
-  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(item[:value]) -%></div>
+<% @r[:querystringparameters].each do |name, value| -%>
+<div class="item <%= check_logfile_request_parameter(Querystringparameter, rid, name, value) -%>">
+  <div class="item-name"><%= h(name) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(value) -%></div>
 </div>
 <% end %>
 
 <h3>Post Parameters</h3>
-<% @r[:postparameters].each do |item| -%>
-<div class="item <%= check_logfile_request_parameter(Postparameter, rid, item[:name], item[:value]) -%>">
-  <div class="item-name"><%= h(item[:name]) -%>:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(item[:value]) -%></div>
+<% @r[:postparameters].each do |name, value| -%>
+<div class="item <%= check_logfile_request_parameter(Postparameter, rid, name, value) -%>">
+  <div class="item-name"><%= h(name) -%>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(value) -%></div>
 </div>
 <% end %>
