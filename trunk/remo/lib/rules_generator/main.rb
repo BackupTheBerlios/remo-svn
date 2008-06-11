@@ -46,18 +46,23 @@ def get_check_http_method (value, id)
   # it is problematic, that remo allows a single method per path so far.
   # remo gui should allow regexes on this field.
   #
+
+  status = get_domain_status 
+
   string = ""
   string += "  # Checking request method\n"
-  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,deny,id:#{id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
+  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,id:#{id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
   string += "\n"
   return string
 end
 
 def get_check_strict_http_methods(requests)
+  status = get_domain_status
+
   string = ""
   string += "  # Checking request method\n"
   unless requests.length > 1
-    string += "  SecRule REQUEST_METHOD \"!^(#{requests[0].http_method})$\" \"t:none,deny,id:#{requests[0].id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not #{requests[0].http_method}).'\"\n"
+    string += "  SecRule REQUEST_METHOD \"!^(#{requests[0].http_method})$\" \"t:none,id:#{requests[0].id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{requests[0].http_method}).'\"\n"
   else
     # check http_methods
     mystring = ""
@@ -65,7 +70,7 @@ def get_check_strict_http_methods(requests)
       mystring += "|" unless mystring.size == 0
       mystring += r.http_method
     end
-    string += "  SecRule REQUEST_METHOD \"!^(#{mystring})$\" \"t:none,deny,id:#{requests[0].id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Request method wrong (it is not one of #{mystring}).'\"\n"
+    string += "  SecRule REQUEST_METHOD \"!^(#{mystring})$\" \"t:none,id:#{requests[0].id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not one of #{mystring}).'\"\n"
     # note that the id is the request id of the first request in the set. this is a convention.
   end
   string += "\n"
@@ -79,11 +84,13 @@ def get_check_strict_parametertype (model, id)
 
   # The rule looks like the following:
   #
-  # SecRule REQUEST_HEADERS_NAMES "!^(Host|Referer|...)$" "t:none,deny,id:2,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
+  # SecRule REQUEST_HEADERS_NAMES "!^(Host|Referer|...)$" "t:none,pass,id:2,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'"
   #
   # In this example, only Host, Referer, etc. are accepted as headers.
   # Every other header would lead to a denial of the request.
   #
+
+  status = get_domain_status
 
   string = ""
   collection_name = MOD_SECURITY_COLLECTIONS[model.name.downcase] + "_NAMES"
@@ -112,7 +119,7 @@ def get_check_strict_parametertype (model, id)
   end
 
   string += "  # Strict #{name}check (make sure the request contains only predefined request #{name}s)\n"
-  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,deny,id:#{id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
+  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,id:#{id},#{get_action}#{status},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
 
   return string
 end
@@ -131,28 +138,30 @@ def get_crosscheck (parametername, commentname, item)
   # crosscheck (postparameters and querystringparameters form part of the same collection, 
   #            we have to make sure they are not present in the query-string or payload unless 
   #            this is really wanted)
+
+  status = get_domain_status item
+
   string = ""
 
   if (parametername == "querystringparameter" and Postparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{item.request_id},#{get_action}#{status},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
   end
   if (parametername == "postparameter" and Querystringparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,deny,id:#{item.request_id},status:#{HTTP_DEFAULT_DENY_STATUS_CODE},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{item.request_id},#{get_action}#{status},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
   end
 
   return string
 end
 
 def get_mandatorycheck (parametername, commentname, collection_name, item)
-  string = ""
-  
+
   status = get_mandatory_status item
-  status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
   redirect = get_mandatory_redirect item
 
+  string = ""
 
   if item.mandatory
-    string += "  SecRule &#{collection_name}:#{item.name} \"@eq 0\" \"t:none,deny,id:#{item.request_id}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &#{collection_name}:#{item.name} \"@eq 0\" \"t:none,id:#{item.request_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} is mandatory, but it is not present in request.'\"\n" 
   end
 
   return string
@@ -161,13 +170,23 @@ end
 def get_status(status_code)
     string = ""
     unless status_code.downcase.gsub("'", "") == "default" 
-      string = ",status:#{status_code}"
+      if get_action == "deny"
+        string = ",status:#{status_code}"
+      end
+    else
+      if get_action == "deny"
+        string = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}"
+      end
     end
     return string
 end
 
-def get_domain_status(item)
-  return get_status(item.domain_status_code)
+def get_domain_status(item=nil)
+  unless item.nil?
+    return get_status(item.domain_status_code)
+  else
+    return get_status(HTTP_DEFAULT_DENY_STATUS_CODE)
+  end
 end
 def get_mandatory_status(item)
   return get_status(item.mandatory_status_code)
@@ -175,16 +194,24 @@ end
 
 def get_redirect(status_code, location)
   string = ""
-  if HTTP_REDIRECT_STATUS_CODES.grep(/#{status_code}/).size == 1
+  if HTTP_REDIRECT_STATUS_CODES.grep(/#{status_code}/).size == 1 and get_action == "deny"
     string = ",redirect:#{location}"
   end
   return string
 end
 def get_domain_redirect(item)
-  return get_redirect(item.domain_status_code, item.domain_location)
+  unless item.nil?
+    return get_redirect(item.domain_status_code, item.domain_location)
+  else
+    return ""
+  end
 end
 def get_mandatory_redirect(item)
-  return get_redirect(item.mandatory_status_code, item.mandatory_location)
+  unless item.nil?
+    return get_redirect(item.mandatory_status_code, item.mandatory_location)
+  else
+    return ""
+  end
 end
 
 def get_http_method_position(requests, http_method)
@@ -292,6 +319,20 @@ def get_check_the_four_parameter_types(r)
   return string
 end
 
+def get_action ()
+  # return mod_security action
+  action = "pass"
+  if RULESET_MODE == "detect"
+    action = "pass"
+  elsif RULESET_MODE == "block"
+    action = "deny"
+  else
+    logger.error "Ruleset mode #{RULESET_MODE} is unknown. Falling back to detect."
+  end
+
+  return action
+end
+
 def get_check_individual_parameter (parametername, item)
   # write a rule that checks a single post parameter for compliance with rules
   # the header is optional
@@ -312,27 +353,22 @@ def get_check_individual_parameter (parametername, item)
   string += get_crosscheck parametername, commentname, item
   string += get_mandatorycheck parametername, commentname, collection_name, item
 
-  action = "pass"
-  if RULESET_MODE == "detect"
-    action = "pass"
-  elsif RULESET_MODE == "block"
-    action = "deny"
-  else
-    logger.error "Ruleset mode #{RULESET_MODE} is unknown. Falling back to detect."
-  end
+  status = get_domain_status item
+  redirect = get_domain_redirect item
 
-  status, redirect = ""
-  if action == "deny"
-    status = get_domain_status item
-    status = ",status:#{HTTP_DEFAULT_DENY_STATUS_CODE}" if status == ""
-    redirect = get_domain_redirect item
-  else
-  end
-
-  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,id:#{item.request_id},#{action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
+  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,id:#{item.request_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
 
   return string
 
+end
+
+def get_fallback_rule()
+  action = get_action
+  status = get_domain_status
+  string =  "# Fallback rule (unknown request)"
+  string +=  "<LocationMatch \"^/.*$\">\n"
+  string += "  SecAction \"#{action}#{status},severity:3,msg:'Unknown request. Access denied by fallback rule.'\"\n"
+  string += "</LocationMatch>\n"
 end
 
 def get_requestrule(r)
@@ -388,6 +424,8 @@ def generate(request=nil, version=nil)
       file.puts get_requestrule(r) unless r.path == old_path
       old_path = r.path
     end
+
+    file.puts get_fallback_rule
 
     append_file(file, append_filename, request, version)
 

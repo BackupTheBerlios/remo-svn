@@ -52,8 +52,9 @@ class RulesGeneratorTest < Test::Unit::TestCase
   end
 
   def test_get_status
-    assert_equal '', get_status("Default")
+    assert_equal ',status:501', get_status("Default")
     assert_equal ',status:501', get_status("501")
+    assert_equal ',status:404', get_status("404")
   end
   
   def test_get_redirect
@@ -66,7 +67,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
     assert_regex_match "# Checking request method", string, "Comment not found"
     assert_regex_match "SecRule REQUEST_METHOD", string, "Error in 1st part of the rule:\n#{string}"
     assert_regex_match "!^GET$", string, "Error in the 2nd part of the rule:\n#{string}"
-    assert_regex_match "t:none,deny,id:1,status:501,severity:3,msg:'Request method wrong (it is not GET).'",
+    assert_regex_match "t:none,id:1,deny,status:501,severity:3,msg:'Request method wrong (it is not GET).'",
                         string , "Error in the 3rd part of the rule:\n#{string}"
   end
 
@@ -77,7 +78,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
     assert_regex_match "SecRule REQUEST_HEADERS_NAMES", string, "Error in 1st part of the rule:\n#{string}"
     assert_regex_match "!^(Host|Accept|Accept-Language|Accept-Encoding|Accept-Charset|Keep-Alive|Referer|Cookie|If-Modified-Since|If-None-Match|Cache-Control)$",
                         string, "Error in 2nd part of the rule:\n#{string}"
-    assert_regex_match "t:none,deny,id:1,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'", 
+    assert_regex_match "t:none,id:1,deny,status:501,severity:3,msg:'Strict headercheck: At least one request header is not predefined for this path.'", 
                         string, "Error in 3rd part of the rule:\n#{string}"
 
     string = get_check_strict_parametertype(Querystringparameter, 1)
@@ -95,13 +96,13 @@ class RulesGeneratorTest < Test::Unit::TestCase
     assert_regex_match "SecRule REQUEST_BODY", string, "Error in 1st part of the rule:\n#{string}"
     assert_regex_match "^q_single_integer[=&]|^q_single_integer$",
                         string, "Error in crosscheck:\n#{string}"
-    assert_regex_match "t:none,deny,id:3,status:501,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
+    assert_regex_match "t:none,id:3,deny,status:501,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
                         string, "Error in crosscheck:\n#{string}"
 
     # crosscheck not needed                       
     item = Querystringparameter.find(:first, :conditions => "name = 'qp_single_integer'")
     string = get_crosscheck "querystringparameter", get_commentname(item.name), item
-    assert_regex_no_match "t:none,deny,id:3,status:501,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
+    assert_regex_no_match "t:none,id:3,deny,status:501,severity:3,msg:'Querystringparameter q_single_integer is present in post payload. This is illegal.'",
                         string, "Crosscheck is there, but parameter does not need a crosscheck:\n#{string}"
 
   end
@@ -117,7 +118,7 @@ class RulesGeneratorTest < Test::Unit::TestCase
     item = Cookieparameter.find(:first, :conditions => "name = 'c_session'")
     string = get_mandatorycheck "cookieparameter", get_commentname(item.name), "REQUEST_COOKIES", item
     assert_regex_match( 
-      'SecRule &REQUEST_COOKIES:c_session "@eq 0" "t:none,deny,id:4,status:501,severity:3,msg:\'Cookieparameter c_session is mandatory, but it is not present in request.\'',
+      'SecRule &REQUEST_COOKIES:c_session "@eq 0" "t:none,id:4,deny,status:501,severity:3,msg:\'Cookieparameter c_session is mandatory, but it is not present in request.\'',
       string, 
       "Error in mandatory check:\n#{string}")
 
