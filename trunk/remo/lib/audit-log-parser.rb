@@ -778,7 +778,7 @@ def run_parser(filename, requests, params)
       run_parser_io("STDIN", requests, item, line, params)
     end
   else
-    unless /ascii text/i.match(`file #{filename}`.chomp)
+    unless /ascii text/i.match(`file #{filename}`.chomp) or /unicode text/i.match(`file #{filename}`.chomp) or /: data$/i.match(`file #{filename}`.chomp)
       $stderr.puts "Unknown filetype of file #{filename}. This is fatal. Aborting."
       exit 1
     end
