@@ -162,7 +162,7 @@ def parse_filter(filterstring)
         
         # canonify operator
         operator = "==" if operator == "="  
-        if ["==", "!=", ">=", "<=", ">", "<", "=~" ].index(operator).nil?
+        if ["==", "!=", ">=", "<=", ">", "<", "=~", "!=~" ].index(operator).nil?
           # check for known operators
           $stderr.puts "Filter operator #{operator} is not known. This is fatal. Aborting."
           exit 1
@@ -175,7 +175,7 @@ def parse_filter(filterstring)
           parameter = parameter[0..parameter.length-2] if parameter[-1..-1] == "\"" # remove trailing " if there is one
         end
 
-        if operator == "=~"
+        if operator == "=~" or operator == "!=~"
           parameter = parameter[1..parameter.length] if parameter[0..0] == "/" # remove beginning slash if there is one
           parameter = parameter[0..parameter.length-2] if parameter[-1..-1] == "/"  # remove trailing slash if there is one
         end
@@ -187,6 +187,11 @@ def parse_filter(filterstring)
            and /^(header_|cookie_|querystringparameter_|postparameter_)/i.match(fieldname.downcase).nil? 
            $stderr.puts "Filter field #{fieldname} not supported. This is fatal. Aborting."
             exit 1
+        end
+
+        if fieldsymbol == :message and (operator != "=~" and operator != "!=~")
+           $stderr.puts "Filter field message only supports operator =~ and !=~. Aborting."
+           exit 1
         end
 
         filters << {"field" => fieldsymbol, "operator" => operator , "parameter" => parameter}
@@ -614,9 +619,17 @@ def apply_filter (request, params)
 
     if filter["field"] == :message
       mydisplay = false
-      request[:modsec_messages].each do |value|
-        if not /#{parameter}/.match(value).nil?
-          mydisplay = true
+      if operator == "=~"
+        request[:modsec_messages].each do |value|
+          if not /#{parameter}/.match(value).nil?
+            mydisplay = true
+          end
+        end
+      elsif operator == "!=~"
+        request[:modsec_messages].each do |value|
+          if /#{parameter}/.match(value).nil?
+            mydisplay = true
+          end
         end
       end
       display = false if not mydisplay
@@ -632,6 +645,10 @@ def apply_filter (request, params)
       if /#{parameter}/.match(value).nil?
         display = false
       end
+    elsif operator == "!=~"
+      unless /#{parameter}/.match(value).nil?
+        display = false
+      end
     elsif value.to_s == "-" and parameter.to_i > 0
         # filtering for number, but there is "-" in the logfile instead.
         # this happens with modsectime[1-3] in some situations
@@ -645,7 +662,7 @@ def apply_filter (request, params)
     else 
       $stderr.puts "Can not cope with filter value/operator/parameter (#{value} #{operator} #{parameter}) in request with id #{request[:request_id]}. Not applying this filter to this request."
     end
-    
+
   end
 
   return display
@@ -778,7 +795,7 @@ def run_parser(filename, requests, params)
       run_parser_io("STDIN", requests, item, line, params)
     end
   else
-    unless /ascii text/i.match(`file #{filename}`.chomp) or /unicode text/i.match(`file #{filename}`.chomp) or /: data$/i.match(`file #{filename}`.chomp)
+    unless /ascii/i.match(`file #{filename}`.chomp) or /unicode text/i.match(`file #{filename}`.chomp) or /: data$/i.match(`file #{filename}`.chomp) or /iso-8859/i.match(`file #{filename}`.chomp)
       $stderr.puts "Unknown filetype of file #{filename}. This is fatal. Aborting."
       exit 1
     end
