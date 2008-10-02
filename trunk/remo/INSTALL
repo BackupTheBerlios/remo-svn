@@ -4,6 +4,7 @@ Dependencies:
 
 ruby >= 1.8 
 irb
+rdoc
 sqlite3-ruby bindings
 
 Note that your browser needs to have javascript enabled to use Remo.
