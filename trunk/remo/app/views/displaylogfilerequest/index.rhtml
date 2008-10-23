@@ -93,8 +93,12 @@
 
 <h3>Post Parameters</h3>
 <% @r[:postparameters].each do |name, value| -%>
+<% if name or value %>
+<% # rails tends add an empty parameter to imported logfiles %>
+<% # with 0 content-length and no post-parameter. This is a workaround. %>
 <div class="item <%= check_logfile_request_parameter(Postparameter, rid, name, value) -%>">
   <div class="item-name"><%= h(name) -%>:&nbsp;&nbsp;</div>
   <div class="item-value"><%= h(value) -%></div>
 </div>
+<% end %>
 <% end %>

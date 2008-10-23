@@ -92,19 +92,29 @@ def check_logfile_request_parameter(model, rid, name, value)
     value = ""
   end
 
-
   parameters = model.find(:all, :conditions => "request_id='#{h(rid)}'")
 
   parameters.each do |item|
+
     unless item.standard_domain == "Custom"
       item_domain = STANDARD_DOMAINS[item.standard_domain]
     else
       item_domain = item.custom_domain
     end
 
-    if not /^(#{item.name})$/.match(name).nil? and not /^(#{item_domain})$/.match(value).nil?
-      return "passed"
+    #$stderr.puts "n:#{name} v:#{value} in:#{item.name} id:#{item_domain}"
+
+    if not /^(#{item.name})$/.match(name).nil? 
+      
+      #$stderr.puts "name hit"
+      
+      if not /^(#{item_domain})$/.match(value).nil?
+        return "passed"
+      end
     end
+
+    #$stderr.puts "no hit"
+
   end
 
   return "failed"
@@ -196,8 +206,12 @@ def check_logfile_request(r)
 
   model = Postparameter
   r[:postparameters].each do |name, value|
-    unless myfunc(model, rid, name, value)
-      return false
+    if name or value
+      # rails tends add an empty parameter to imported logfiles
+      # with 0 content-length and no post-parameter. This is a workaround.
+      unless myfunc(model, rid, name, value)
+        return false
+      end
     end
   end
 

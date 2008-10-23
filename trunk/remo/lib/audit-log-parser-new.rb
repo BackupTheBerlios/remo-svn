@@ -1,11 +1,17 @@
 #!/usr/bin/env ruby
 # == Synopsis
 #
-# read a modsecurity audit log and parse it.
+# Read a modsecurity audit log and parse it according to a filter. 
+# Output the filtered log.
 #
 # == Usage
 #
-# ...
+# Options
+# -f  --filter STR Filter audit-log
+# -d  --debug      Enable debug output
+# -h  --help       This help text
+# -u  --usage -?   Dito
+#
 # headers, qs, cookies and postparameters only supported for regex filtering
 #
 
@@ -156,7 +162,7 @@ def parse_filter(filterstring)
         
         # canonify fieldname
         fieldname = fieldname.gsub(":", "_sub_").gsub("-", "_strike_")
-          # turn Header:Accept-Encoding into Header_sub_Accept_strike_Encoding
+          # Example: Translate Header:Accept-Encoding into Header_sub_Accept_strike_Encoding
           # the fieldname will be turned into ruby symbol, which does not allow
           # certain characters
         
