@@ -102,18 +102,21 @@ def check_logfile_request_parameter(model, rid, name, value)
       item_domain = item.custom_domain
     end
 
-    #$stderr.puts "n:#{name} v:#{value} in:#{item.name} id:#{item_domain}"
+    # $stderr.puts "n:#{name} v:#{value} in:#{item.name} id:#{item_domain}"
 
     if not /^(#{item.name})$/.match(name).nil? 
       
-      #$stderr.puts "name hit"
+      # $stderr.puts "name hit"
       
-      if not /^(#{item_domain})$/.match(value).nil?
+      if not /^(#{item_domain})$/.match(value.delete("\n")).nil?
+        # not sure this delete idea is so smart.
+        # It is needed to handle multiline values in multipart encoded forms.
+        # $stderr.puts "value hit"
         return "passed"
       end
     end
 
-    #$stderr.puts "no hit"
+    # $stderr.puts "no hit"
 
   end
 

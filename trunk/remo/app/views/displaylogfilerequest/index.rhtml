@@ -24,8 +24,13 @@
 &nbsp;<p />
 
 <div class="item">
-  <div class="item-name"><b>File, Request number</b>:&nbsp;&nbsp;</div>
-  <div class="item-value"><%= h(@r[:filename])-%>, #<%= h(@r[:num]) -%></div>
+  <div class="item-name"><b>File, Request ID, Request number</b>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:filename])-%>, <%= h(@r[:request_id]) -%>, #<%= h(@r[:num]) -%></div>
+</div>
+
+<div class="item">
+  <div class="item-name"><b>Timestamp</b>:&nbsp;&nbsp;</div>
+  <div class="item-value"><%= h(@r[:timestamp])-%></div>
 </div>
 
 <div class="item">

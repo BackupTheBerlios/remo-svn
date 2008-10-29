@@ -7,19 +7,62 @@
 # == Usage
 #
 # Options
-# -f  --filter STR Filter audit-log
-# -d  --debug      Enable debug output
-# -h  --help       This help text
-# -u  --usage -?   Dito
+# -f  --filter STR       Filter audit-log
+# -r  --reinject         Reinject a request into a webserver
+#     --reinjecthost STR Host to reinject a request to 
+#                        (default is the Host-Header)
+#     --reinjectid       Add the unique-id of a request as an additional
+#                        http header during reinjection. This helps to find
+#                        it in the logfiles afterwards.
+# -d  --debug            Enable debug output
+# -h  --help             This help text
+# -u  --usage -?         Dito
 #
-# headers, qs, cookies and postparameters only supported for regex filtering
+# headers, qs, cookies and postparameters only supported for regex filtering.
 #
+# == Filters
+#
+# Example usage:
+#  ... -f "path == /index.html"
+#  ... -f "duration >= 1000000"
+#  ... -f "message ~= /parametercheck failed/"
+#
+# Supported variables:
+# request_id              unique request id
+# status                  http response status
+# method                  http request method
+# path                    request path
+# http_version            http request version
+# response_http_version   http response version
+# message                 ModSecurity message
+# apache_handler          apache handler being used
+# microtimestamp          microtimestamp of request (start)
+# duration                duration of request
+# modsectime1             ModSecurity timestamp 1
+# modsectime2             ModSecurity timestamp 2
+# modsectime3             ModSecurity timestamp 3
+# producer                producer string
+# server                  server
+#
+# The following verbs are supported
+# ==  equals
+# !=  does not equal
+# >=  greater or equal than
+# <=  lower or equal than
+# >   greater than
+# <   greater than
+# =~  matches (regex)
+# !=~ does not match (regex)
+
 
 require "getoptlong"                                                         
 require "find"
+require "net/http"
 require "rdoc/usage"
 
 FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+
+UNIQUEIDNAME="X-UniqueId" # name of the optional unique-id http header when reinjecting a request
 
 # ------------------------------------------
 # Initialization
@@ -29,6 +72,57 @@ FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_htt
 # ------------------------------------------
 # Subfunctions
 # ------------------------------------------
+
+class Net::HTTP::Get
+  # Redefinition of initialize_http_header
+  # The original ruby library method does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  def initialize_http_header(initheader)
+    @header = {}
+    return unless initheader
+    initheader.each do |key, value|
+      warn "net/http: warning: duplicated HTTP header: #{key}" if key?(key) and $VERBOSE
+      @header[key] = [value.strip]
+    end
+  end
+
+end
+
+class Net::HTTP::Post
+  # Redefinition of initialize_http_header
+  # The original ruby library method does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  def initialize_http_header(initheader)
+    @header = {}
+    return unless initheader
+    initheader.each do |key, value|
+      warn "net/http: warning: duplicated HTTP header: #{key}" if key?(key) and $VERBOSE
+      @header[key] = [value.strip]
+    end
+  end
+
+end
+
+class Net::HTTPGenericRequest
+  # Redefinition of write_header
+  # The original ruby library method does a downcase on the header name
+  # We need it untouched however as we want to repeat a request as is
+  # Furthermore there is a duplication of certain headers
+  # introduced by our removal of the downcasing in initialize_http_header
+  def write_header(sock, ver, path)
+    buf = "#{@method} #{path} HTTP/#{ver}\r\n"
+    each do |k,v|
+      unless k == "host" or k == "content-length" or k == "content-type"
+        # due to our removal of the downcase code, some headers were reintroduced by
+        # the module. We ignore these.
+        buf << "#{k}: #{v}\r\n" 
+      else
+      end
+    end
+    buf << "\r\n"
+    sock.write buf
+  end
+end
 
 def read_parameters
   # What   : read command line parameters
@@ -42,7 +136,10 @@ def read_parameters
   begin
     opts = GetoptLong.new(
       [ '-h', '--help', '-?', '-u', '--usage',  GetoptLong::NO_ARGUMENT ],
+      [ '-r', '--reinject',                     GetoptLong::NO_ARGUMENT ],
       [ '-d', '--debug',                        GetoptLong::NO_ARGUMENT ],
+      [       '--reinjecthost',                 GetoptLong::REQUIRED_ARGUMENT ],
+      [       '--reinjectid',                   GetoptLong::NO_ARGUMENT ],
       [ '-f', '--filter',                       GetoptLong::REQUIRED_ARGUMENT ]
     )
 
@@ -63,10 +160,19 @@ def read_parameters
         when '-?'
           RDoc::usage
           exit
+        when '-r'
+          params["reinject"] = true
+          params["output"] = "none"
+        when '--reinject'
+          params["debug"] = true
         when '-d'
           params["debug"] = true
         when '--debug'
           params["debug"] = true
+        when '--reinjecthost'
+          params["reinjecthost"] = arg
+        when '--reinjectid'
+          params["reinjectid"] = true          
         when '-f'
           params["filterstring"] = arg
         when '--filter'
@@ -125,6 +231,16 @@ def sanitize_check_parameters(params)
     puts "sanitize_check_parameters output:        #{params["output"]}"
   end
 
+  if not params["reinjecthost"].nil? and params["reinject"].nil?
+      $stderr.puts "Reinjecthost defined, but no reinjection called. This does not make sense. Aborting."
+      exit 1
+  end
+
+  if not params["reinjectid"].nil? and params["reinject"].nil?
+      $stderr.puts "Reinjectid flag set, but no reinjection called. This does not make sense. Aborting."
+      exit 1
+  end
+
   return params
 
 end
@@ -168,7 +284,7 @@ def parse_filter(filterstring)
         
         # canonify operator
         operator = "==" if operator == "="  
-        if ["==", "!=", ">=", "<=", ">", "<", "=~" ].index(operator).nil?
+        if ["==", "!=", ">=", "<=", ">", "<", "=~", "!=~" ].index(operator).nil?
           # check for known operators
           $stderr.puts "Filter operator #{operator} is not known. This is fatal. Aborting."
           exit 1
@@ -181,7 +297,7 @@ def parse_filter(filterstring)
           parameter = parameter[0..parameter.length-2] if parameter[-1..-1] == "\"" # remove trailing " if there is one
         end
 
-        if operator == "=~"
+        if operator == "=~" or operator == "!=~"
           parameter = parameter[1..parameter.length] if parameter[0..0] == "/" # remove beginning slash if there is one
           parameter = parameter[0..parameter.length-2] if parameter[-1..-1] == "/"  # remove trailing slash if there is one
         end
@@ -294,7 +410,7 @@ def parse_request_parts(partial_request)
         request[:remote_addr], request[:remote_port], \
         request[:local_addr], request[:local_port] = line.split(" ")
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part A. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part A. Ignoring problems."
     end
 
     return request
@@ -338,7 +454,7 @@ def parse_request_parts(partial_request)
       end
 
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part A. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part B. Ignoring problems."
     end
 
     return request
@@ -407,12 +523,12 @@ def parse_request_parts(partial_request)
             end
           end
         else
-          puts "Content type unknown in request with delimiter #{request[:request_delimiter]} in part A. Ignoring body."
+          puts "Content type unknown in request with delimiter #{request[:delimiter]} in part C. Ignoring body."
         end
       
       end
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part C. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part C. Ignoring problems."
     end
 
     return request
@@ -428,7 +544,7 @@ def parse_request_parts(partial_request)
     begin
       request[:response_body] = part
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part E. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part E. Ignoring problems."
     end
 
     return request
@@ -457,7 +573,7 @@ def parse_request_parts(partial_request)
       end
 
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part F. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part F. Ignoring problems."
     end
 
     return request
@@ -495,7 +611,7 @@ def parse_request_parts(partial_request)
       end
 
     rescue
-      puts "Problems parsing request with delimiter #{request[:request_delimiter]} in part H. Ignoring problems."
+      puts "Problems parsing request with delimiter #{request[:delimiter]} in part H. Ignoring problems."
     end
 
     return request
@@ -582,7 +698,7 @@ def run_parser(filename, requests, params)
     # Remarks: none
 
     puts "run_parser line parsed"
-    puts "run_parser partial_request.request_delimiter:    #{item["partial_request"]["request_delimiter"]}"
+    puts "run_parser partial_request.delimiter:    #{item["partial_request"]["delimiter"]}"
     puts "run_parser part:                #{item["part"]}"
     puts "run_parser part_linenum:        #{item["part_linenum"]}"
     puts "run_parser partial_request.parts.size: #{item["partial_request"]["parts"].size}"
@@ -676,6 +792,10 @@ def run_parser(filename, requests, params)
         if /#{parameter}/.match(value).nil?
           display = false
         end
+      elsif operator == "!=~"
+        unless /#{parameter}/.match(value).nil?
+          display = false
+        end
       elsif value.to_s == "-" and parameter.to_i > 0
           # filtering for number, but there is "-" in the logfile instead.
           # this happens with modsectime[1-3] in some situations
@@ -724,7 +844,7 @@ def run_parser(filename, requests, params)
     if item["current_part"] == "Z" and item["current_part_linenum"] == 0
       # request finished, handling complete request
 
-      puts "run_parser adding request with delimiter #{item[item["current_delimiter"]]["partial_request"]["request_delimiter"]}" if params["debug"]
+      puts "run_parser adding request with delimiter #{item[item["current_delimiter"]]["partial_request"]["delimiter"]}" if params["debug"]
 
       # interprete request
       request = parse_request_parts(item[item["current_delimiter"]]["partial_request"])
@@ -745,6 +865,11 @@ def run_parser(filename, requests, params)
         requests << request
       end
 
+      # reinject if display is set (display means, that filter code selected this request)
+      if params["reinject"] and display
+        reinject_single_request(request,params)
+      end
+
     end
     
     item["linenum"] += 1
@@ -761,10 +886,6 @@ def run_parser(filename, requests, params)
       run_parser_io("STDIN", requests, item, line, params)
     end
   else
-    unless /ascii text/i.match(`file #{filename}`.chomp)
-      $stderr.puts "Unknown filetype of file #{filename}. This is fatal. Aborting."
-      exit 1
-    end
     File.open(filename) do |handler|
       handler.each do |line|
         run_parser_io(filename, requests, item, line, params)
@@ -773,6 +894,267 @@ def run_parser(filename, requests, params)
   end
 
   return requests
+
+end
+
+def reinject_single_request(r, params)
+  # What   : reinject a request
+  # Input  : request hash
+  # Output : success as boolean
+  # Example: reinject_single_request(request, params)
+  # Remarks: none
+
+  def http_get(host, path, querystring={}, headers = {})
+    # What   : perform a http get request
+    # Input  : hostname, path, querystring (hash) and headers (hash)
+    # Output : response
+    # Example: http_get(reinjecthost, r[:path], r[:querystringparameters], r[:headers])
+    # Remarks: none
+
+    myheaders = {}
+    headers.each do |name, value|
+      myheaders[name] = value
+    end
+
+    myquerystring = ""
+    querystring.each do |name, value|
+      unless myquerystring.size == 0
+        myquerystring += "&"
+      end
+      myquerystring += name
+      if value
+        myquerystring += "=" + value unless value.chomp.size == 0
+      end
+    end
+    if myquerystring.size > 0
+      myquerystring = "?" + myquerystring 
+    end
+
+    begin
+      url = URI.parse("http://" + host + path)
+      request = Net::HTTP::Get.new(url.path + myquerystring) 
+      request.initialize_http_header(myheaders)
+      # unfortunately, headers come in random order in ruby
+      # do not know how to prevent his
+      result = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(request)
+      }
+    rescue Errno::ECONNREFUSED
+      puts "Connection refused."
+      return nil
+    rescue 
+      puts "Unknown error."
+      return nil
+    end
+
+    return result
+
+  end
+
+  def http_post(host, path, querystring={}, headers = {}, data = {})
+    # What   : perform a http post request
+    # Input  : hostname, path, querystring (hash), headers (hash), post parameters (hash)
+    # Output : response
+    # Example: http_post(r[:host], r[:path], r[:querystringparameters], r[:headers], r[:postparameters])
+    # Remarks: none
+
+    mybody = ""                             # we need body to be defined first as it determines 
+                                            # the content-length header
+    multipartboundary = ""
+
+    if not /multipart\/form-data/.match(headers["Content-Type"]).nil?
+      multipartboundary = headers["Content-Type"].split("=")[1]
+      if multipartboundary.nil?
+        $stderr.puts "Content-Type multipart encountered, but could not determine boundary. This is fatal. Aborting."
+      end
+    end
+
+    if multipartboundary == ""
+      # x-www-form-urlencoded body
+      data.each do |name, value|
+        unless mybody.size == 0
+          mybody += "&"
+        end
+        if value and name
+          mybody += name + "=" + value
+        elsif name
+          mybody += name + "="
+        end
+      end
+    else
+      # multipart body
+      data.each do |name, value|
+          mybody += "--#{multipartboundary}\n"
+          mybody += "Content-Disposition: form-data; name=\"#{name}\"\n"
+          if /Content-Type: application/.match(value).nil?
+            # no Content-Type given, so we add an empty line
+            mybody += "\n"
+          end
+
+          mybody += value
+      end
+      mybody += "--#{multipartboundary}--\n"
+    end
+
+    myheaders = {}
+    headers.each do |name, value|
+      unless name.downcase == "content-length"
+        myheaders[name] = value
+      else
+        myheaders[name] = mybody.size.to_s    # better be safe than sorry. 
+                                              # there were a few cases where the content-length in
+                                              # the audit-log were wrong
+      end
+    end
+
+    myquerystring = ""
+    querystring.each do |name, value|
+      unless myquerystring.size == 0
+        myquerystring += "&"
+      end
+      myquerystring += name
+      if value
+        myquerystring += "=" + value unless value.chomp.size == 0
+      end
+    end
+    if myquerystring.size > 0
+      myquerystring = "?" + myquerystring 
+    end
+
+    begin
+      url = URI.parse("http://" + host + path )
+      request = Net::HTTP::Post.new(url.path + myquerystring)
+      request.initialize_http_header(myheaders)    
+      # unfortunately, headers come in random order in ruby
+      # do not know how to prevent his
+      request.body = mybody 
+        # we have to use our own function, as ruby translates certain characters to HEX characters
+      result = Net::HTTP.start(url.host, url.port) {|http|
+        http.request(request)
+      }
+    rescue Errno::ECONNREFUSED
+      puts "Connection refused."
+      return nil
+    rescue 
+      puts "Unknown error."
+      return nil
+    end
+
+    return result
+
+  end
+
+
+  response = nil
+  success = false
+
+  if not params["reinjecthost"].nil?
+    reinjecthost = params["reinjecthost"]
+  else
+    if r[:headers]["Host"].nil?
+      $stderr.puts "Host header not set. Can't reinject request. Aborting."
+      exit 1
+    end
+    reinjecthost = r[:headers]["Host"]
+  end
+
+  unless ["GET", "POST"].select { |e| e == r[:method] }.size == 1
+    $stderr.puts "Http method is #{r[:method]}. Reinjection not supported."
+    return 1
+  end
+
+  if params["reinjectid"] 
+    unless r[:request_id].nil?
+      r[:headers][UNIQUEIDNAME] = r[:request_id]
+    else
+      r[:headers][UNIQUEIDNAME] = "unknown"
+    end
+  end
+
+  if r[:method] == "GET"
+    result = http_get(reinjecthost, r[:path], r[:querystringparameters], r[:headers])
+  else
+    result = http_post(reinjecthost, r[:path], r[:querystringparameters], r[:headers], r[:postparameters])
+  end
+
+  unless result.nil?
+    hit_code = false
+    if result.code.to_i == r[:status]
+      hit_code = true
+    end
+
+    hit_length = nil
+    if result.body.size > 0
+      if result.read_header["Content-Length"] == r[:response_headers]["Content-Length"]
+        hit_length = true
+      else
+        hit_length = false
+      end
+    end
+
+    hit_location = nil
+    if result.code.to_i == 201 or (result.code.to_i >= 300 and result.code.to_i < 400)
+      if result.read_header["Location"] == r[:response_location]
+        hit_location = true
+      else
+        hit_location = false
+      end
+    end
+
+    string = ""
+    string += "#{r[:request_id]}: #{result.code}(#{r[:status]}) - #{r[:method]} - "
+
+    if not hit_length.nil? and not hit_location.nil?
+      # length and location
+      if hit_code and hit_length and hit_location
+        string += "OK. Logrequest and Injection have identical status, identical content-length and identical location."
+        success = true
+      elsif hit_code and hit_length and not hit_location
+        string += "FAILURE. Logrequest and Injection have identical status, identical content-length, but different location header: Logrequest: #{r[:response_location]}, Injection: #{result.read_header["Location"]}."
+      elsif hit_code and not hit_length and hit_location
+        string += "FAILURE. Logrequest and Injection have identical status, identical location header, but different content-length: Logrequest: #{r[:response_content_length]}, Injection: #{result.content_length}."
+      elsif hit_code and not hit_length and not hit_location
+        string += "FAILURE. Logrequest and Injection have identical status but differring location header and content-length: Location logrequest: #{r[:response_location]}, Location injection: #{result.read_header["Location"]}, length logrequest: #{r[:response_content_length]}, length injection:  #{result.content_length}."
+      else
+        string += "FAILURE. Not able to qualify response."
+      end
+    elsif hit_length.nil? and not hit_location.nil?
+      # no length, but a location
+      if hit_code and hit_location
+        string += "OK. Logrequest and Injection have identical status and identical location."
+        success = true
+      elsif hit_code and not hit_location
+        string += "FAILURE. Logrequest and Injection have identical status, but differring location: Logrequest: #{r[:response_location]}, Injection: #{result.read_header["Location"]}."
+      else
+        string += "FAILURE. Not able to qualify response."
+      end
+    elsif not hit_length.nil? and hit_location.nil?
+      # length, but no location
+      if hit_code and hit_length
+        string += "OK. Logrequest and Injection have identical status and identical content length."
+        success = true
+      elsif hit_code and not hit_length
+        string += "FAILURE. Logrequest and Injection have identical status, but differring content length: Logrequest: #{r[:response_content_length]}, Injection: #{result.content_length}."
+      else
+        string += "FAILURE. Not able to qualify response."
+      end
+    elsif hit_length.nil? and hit_location.nil?
+      # no length, no location
+      if hit_code
+        string += "OK. Logrequest and Injection have identical status and neither content-lenght nor a location."
+        success = true
+      else
+        string += "FAILURE. Logrequest and Injection have different status codes: Logrequest: #{r[:method]}}, Injection: #{result.code}}"
+      end
+    else
+      string += "FAILURE. Not able to qualify response."
+    end
+
+    puts string 
+
+  end
+
+  return success
 
 end
 
@@ -787,13 +1169,17 @@ def main
 
   requests = Array.new
 
-  requests = run_parser(STDIN, requests, params) if check_stdin()
-  params["filenames"].each do |filename|
-    requests = run_parser(filename, requests, params)
+  if check_stdin()
+    requests = run_parser(STDIN, requests, params) 
+  else
+    params["filenames"].each do |filename|
+      requests = run_parser(filename, requests, params)
+    end
   end
+
 end
 
 if __FILE__ == $0
   main
 end
-  
+

@@ -128,7 +128,7 @@ def get_http_method_skip_block(requests)
   string = ""
   requests.each do |r|
     skip = get_http_method_skip_distance(requests, r.http_method)
-    string += "  SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"t:none,pass,skip:#{skip}\"\n"
+    string += "  SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"t:none,pass,nolog,noauditlog,skip:#{skip}\"\n"
   end
   string += "\n" unless string.length == 0
   return string
@@ -295,7 +295,7 @@ def get_remaining_skip_rule(requests, http_method)
     end
 
     string += "  # skip the remaining http_method blocks until the fall back rule\n"
-    string += "  SecAction \"t:none,pass,skip:#{skip}\"\n"
+    string += "  SecAction \"t:none,pass,nolog,noauditlog,skip:#{skip}\"\n"
     string += "\n"
   end
 
@@ -399,7 +399,7 @@ def get_requestrule(r)
 
   # all checks for this path passed. So we can allow the request
   string += "  # All checks passed for this path. Request is allowed.\n"
-  string += "  SecAction \"allow,id:#{r.id},t:none,msg:'Request passed all checks, it is thus allowed.'\"\n"
+  string += "  SecAction \"allow,id:#{r.id},t:none,nolog,noauditlog,msg:'Request passed all checks, it is thus allowed.'\"\n"
 
   # request rule group footer
   string += "</LocationMatch>\n"
