@@ -330,9 +330,9 @@ end
 
 def get_action ()
   # return mod_security action
-  action = "pass"
+  action = "log,auditlog,pass"
   if RULESET_MODE == "detect"
-    action = "pass"
+    action = "log,auditlog,pass"
   elsif RULESET_MODE == "block"
     action = "deny"
   else
@@ -377,9 +377,11 @@ def get_fallback_rule()
   status = get_domain_status
   string =  "# Fallback rule (unknown request path)\n"
   string +=  "<LocationMatch \"^/.*$\">\n"
-  string += "  SecAction \"#{action}#{status},id:#{$rule_id},severity:3,msg:'Unknown request. Access denied by fallback rule.'\"\n"
+  string += "  SecAction \"#{action}#{status},id:#{$rule_id},severity:3,msg:'Unknown request. Request caught by fallback rule.'\"\n"
   string += "</LocationMatch>\n"
   $rule_id += 1
+
+  return string
 end
 
 def get_requestrule(r)

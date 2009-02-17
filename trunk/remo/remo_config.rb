@@ -91,7 +91,7 @@ unless defined? REMO_RELEASE_VERSION
   # - block
   # - detect
   # When blocking is selected, HTTP_DEFAULT_DENY_STATUS_CODE will be used.
-  RULESET_MODE = "block"
+  RULESET_MODE = "detect"
 
   # The status code is part of every deny rule in a remo ruleset. 
   # This is the default value when the RULESET_MODE is set to "block"
