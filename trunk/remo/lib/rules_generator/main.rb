@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/../../remo_config'
 
+$rule_id = 20000  # global variable rule id
+
 def append_file(file, app_file, request, version)
   File.foreach(app_file) do |line|
     line.gsub!("__VERSION__", version) unless version.nil?
@@ -51,8 +53,9 @@ def get_check_http_method (value, id)
 
   string = ""
   string += "  # Checking request method\n"
-  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,id:#{id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
+  string += "  SecRule REQUEST_METHOD \"!^#{value}$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{value}).'\"\n"
   string += "\n"
+  $rule_id += 1
   return string
 end
 
@@ -62,7 +65,8 @@ def get_check_strict_http_methods(requests)
   string = ""
   string += "  # Checking request method\n"
   unless requests.length > 1
-    string += "  SecRule REQUEST_METHOD \"!^(#{requests[0].http_method})$\" \"t:none,id:#{requests[0].id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{requests[0].http_method}).'\"\n"
+    string += "  SecRule REQUEST_METHOD \"!^(#{requests[0].http_method})$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not #{requests[0].http_method}).'\"\n"
+    $rule_id += 1
   else
     # check http_methods
     mystring = ""
@@ -70,7 +74,8 @@ def get_check_strict_http_methods(requests)
       mystring += "|" unless mystring.size == 0
       mystring += r.http_method
     end
-    string += "  SecRule REQUEST_METHOD \"!^(#{mystring})$\" \"t:none,id:#{requests[0].id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not one of #{mystring}).'\"\n"
+    string += "  SecRule REQUEST_METHOD \"!^(#{mystring})$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Request method wrong (it is not one of #{mystring}).'\"\n"
+    $rule_id += 1
     # note that the id is the request id of the first request in the set. this is a convention.
   end
   string += "\n"
@@ -119,7 +124,8 @@ def get_check_strict_parametertype (model, id)
   end
 
   string += "  # Strict #{name}check (make sure the request contains only predefined request #{name}s)\n"
-  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,id:#{id},#{get_action}#{status},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
+  string += "  SecRule #{collection_name} \"!^(#{my_string})$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Strict #{name}check: At least one request #{name} is not predefined for this path.'\"\n"
+  $rule_id += 1
 
   return string
 end
@@ -128,7 +134,8 @@ def get_http_method_skip_block(requests)
   string = ""
   requests.each do |r|
     skip = get_http_method_skip_distance(requests, r.http_method)
-    string += "  SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"t:none,pass,nolog,noauditlog,skip:#{skip}\"\n"
+    string += "  SecRule REQUEST_METHOD \"^#{r.http_method}$\" \"t:none,id:#{$rule_id},pass,nolog,noauditlog,skip:#{skip}\"\n"
+    $rule_id += 1
   end
   string += "\n" unless string.length == 0
   return string
@@ -144,10 +151,12 @@ def get_crosscheck (parametername, commentname, item)
   string = ""
 
   if (parametername == "querystringparameter" and Postparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{item.request_id},#{get_action}#{status},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
+    string += "  SecRule REQUEST_BODY \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Querystringparameter #{commentname} is present in post payload. This is illegal.'\"\n"
+    $rule_id += 1
   end
   if (parametername == "postparameter" and Querystringparameter.find(:all, :conditions => "request_id = #{item.request_id} and name = \"#{item.name}\"").size == 0)
-    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{item.request_id},#{get_action}#{status},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
+    string += "  SecRule QUERY_STRING \"^#{item.name}[=&]|^#{item.name}$\" \"t:none,id:#{$rule_id},#{get_action}#{status},severity:3,msg:'Postparameter #{commentname} is present in query string. This is illegal.'\"\n"
+    $rule_id += 1
   end
 
   return string
@@ -161,7 +170,8 @@ def get_mandatorycheck (parametername, commentname, collection_name, item)
   string = ""
 
   if item.mandatory
-    string += "  SecRule &#{collection_name}:#{item.name} \"@eq 0\" \"t:none,id:#{item.request_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    string += "  SecRule &#{collection_name}:#{item.name} \"@eq 0\" \"t:none,id:#{$rule_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} is mandatory, but it is not present in request.'\"\n" 
+    $rule_id += 1
   end
 
   return string
@@ -295,8 +305,9 @@ def get_remaining_skip_rule(requests, http_method)
     end
 
     string += "  # skip the remaining http_method blocks until the fall back rule\n"
-    string += "  SecAction \"t:none,pass,nolog,noauditlog,skip:#{skip}\"\n"
+    string += "  SecAction \"t:none,id:#{$rule_id},pass,nolog,noauditlog,skip:#{skip}\"\n"
     string += "\n"
+    $rule_id += 1
   end
 
   return string
@@ -356,7 +367,8 @@ def get_check_individual_parameter (parametername, item)
   status = get_domain_status item
   redirect = get_domain_redirect item
 
-  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,id:#{item.request_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
+  string += "  SecRule #{collection_name}:#{paramname} \"!^(#{domain})$\" \"t:none,id:#{$rule_id},#{get_action}#{status}#{redirect},severity:3,msg:'#{parametername.capitalize} #{commentname} failed validity check. Value domain: #{item.standard_domain}.'\"\n"
+  $rule_id += 1
 
   return string
 
@@ -367,8 +379,9 @@ def get_fallback_rule()
   status = get_domain_status
   string =  "# Fallback rule (unknown request path)\n"
   string +=  "<LocationMatch \"^/.*$\">\n"
-  string += "  SecAction \"#{action}#{status},severity:3,msg:'Unknown request. Access denied by fallback rule.'\"\n"
+  string += "  SecAction \"#{action}#{status},id:#{$rule_id},severity:3,msg:'Unknown request. Access denied by fallback rule.'\"\n"
   string += "</LocationMatch>\n"
+  $rule_id += 1
 end
 
 def get_requestrule(r)
@@ -399,7 +412,8 @@ def get_requestrule(r)
 
   # all checks for this path passed. So we can allow the request
   string += "  # All checks passed for this path. Request is allowed.\n"
-  string += "  SecAction \"allow,id:#{r.id},t:none,nolog,noauditlog,msg:'Request passed all checks, it is thus allowed.'\"\n"
+  string += "  SecAction \"allow,id:#{$rule_id},t:none,nolog,noauditlog,msg:'Request passed all checks, it is thus allowed.'\"\n"
+  $rule_id += 1
 
   # request rule group footer
   string += "</LocationMatch>\n"

@@ -24,8 +24,15 @@
 #
 # Example usage:
 #  ... -f "path == /index.html"
+#          filter for requests with a URI path equal to /index.html
 #  ... -f "duration >= 1000000"
+#          filter for requests with a duration greater or equal than 1000000 microseconds (1s)
 #  ... -f "message ~= /parametercheck failed/"
+#          filter for requests containing a regular expression in the modsecurity messages
+#          Note that the slashes are optional.
+#  ... -f "action ~= ^$ "
+#          filter for requests with an empty modsecurity action line, or without such a line
+#
 #
 # Supported variables:
 # request_id              unique request id
@@ -35,6 +42,7 @@
 # http_version            http request version
 # response_http_version   http response version
 # message                 ModSecurity message
+# action                  ModSecurity action
 # apache_handler          apache handler being used
 # microtimestamp          microtimestamp of request (start)
 # duration                duration of request
@@ -60,7 +68,7 @@ require "find"
 require "net/http"
 require "rdoc/usage"
 
-FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :action, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
 
 UNIQUEIDNAME="X-UniqueId" # name of the optional unique-id http header when reinjecting a request
 
@@ -397,7 +405,7 @@ def parse_request_parts(partial_request)
   #          for information about the audit-log parts
   
   def parse_request_part_A(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part A (audit log header) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_A(request, partial_request["parts"]["A"])
@@ -417,7 +425,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_B(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part B (request header) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_B(request, partial_request["parts"]["A"])
@@ -461,7 +469,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_C(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part C (request body) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_C(request, partial_request["parts"]["A"])
@@ -551,7 +559,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_F(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part F (Response Header) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_F(request, partial_request["parts"]["A"])
@@ -580,7 +588,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_H(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part H (modsecurity infos) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_H(request, partial_request["parts"]["A"])
@@ -596,6 +604,8 @@ def parse_request_parts(partial_request)
           request[:modsec_messages] << lines[i].chomp.gsub("Message: ", "")
         elsif not /^Apache-Handler: /.match(lines[i]).nil? 
           request[:apache_handler] = lines[i].chomp.gsub("Apache-Handler: ", "")
+        elsif not /^Action: /.match(lines[i]).nil? 
+          request[:action] = lines[i].chomp.gsub("Action: ", "")
         elsif not /^Stopwatch: /.match(lines[i]).nil? 
           foo = lines[i].chomp.gsub("Stopwatch: ", "").split(" ")
           request[:microtimestamp] = foo[0]
@@ -618,7 +628,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_I(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part I (request body translated) and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_I(request, partial_request["parts"]["A"])
@@ -632,7 +642,7 @@ def parse_request_parts(partial_request)
   end
 
   def parse_request_part_K(request, part)
-    # What   : parse a audit-log part and fill it into a request hash
+    # What   : parse a audit-log part K and fill it into a request hash
     # Input  : request hash and part string
     # Output : request hash
     # Example: request = parse_request_part_K(request, partial_request["parts"]["A"])
