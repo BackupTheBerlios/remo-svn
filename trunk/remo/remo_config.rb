@@ -105,4 +105,7 @@ unless defined? REMO_RELEASE_VERSION
     "postparameter" => "ARGS"
   }
 
+  # Rule Generator rule id base
+  RULE_ID_BASE = 20001
+
 end

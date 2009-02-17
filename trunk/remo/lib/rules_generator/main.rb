@@ -1,7 +1,5 @@
 require File.dirname(__FILE__) + '/../../remo_config'
 
-$rule_id = 20000  # global variable rule id
-
 def append_file(file, app_file, request, version)
   File.foreach(app_file) do |line|
     line.gsub!("__VERSION__", version) unless version.nil?
@@ -426,6 +424,8 @@ def generate(request=nil, version=nil)
   filename = "rulefile.conf"
   prepend_filename= "prepend-file.conf"
   append_filename= "append-file.conf"
+
+  $rule_id = RULE_ID_BASE  # set global variable rule id set to base, base defined in remo_config.rb
 
   requests = Request.find(:all, :order => "path, weight ASC")
 
