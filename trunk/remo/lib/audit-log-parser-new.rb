@@ -27,14 +27,15 @@
 #          filter for requests with a URI path equal to /index.html
 #  ... -f "duration >= 1000000"
 #          filter for requests with a duration greater or equal than 1000000 microseconds (1s)
-#  ... -f "message ~= /parametercheck failed/"
+#  ... -f "message =~ /parametercheck failed/"
 #          filter for requests containing a regular expression in the modsecurity messages
 #          Note that the slashes are optional.
-#  ... -f "action ~= ^$ "
+#  ... -f "action =~ ^$ "
 #          filter for requests with an empty modsecurity action line, or without such a line
 #
 #
 # Supported variables:
+# remote_addr             client ip address
 # request_id              unique request id
 # status                  http response status
 # method                  http request method
@@ -68,7 +69,7 @@ require "find"
 require "net/http"
 require "rdoc/usage"
 
-FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :action, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+FIELDSYMBOLS=[:remote_addr, :request_id, :status, :method, :path, :http_version, :response_http_version, :message, :action, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
 
 UNIQUEIDNAME="X-UniqueId" # name of the optional unique-id http header when reinjecting a request
 
