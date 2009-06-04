@@ -27,15 +27,14 @@
 #          filter for requests with a URI path equal to /index.html
 #  ... -f "duration >= 1000000"
 #          filter for requests with a duration greater or equal than 1000000 microseconds (1s)
-#  ... -f "message =~ /parametercheck failed/"
+#  ... -f "message ~= /parametercheck failed/"
 #          filter for requests containing a regular expression in the modsecurity messages
 #          Note that the slashes are optional.
-#  ... -f "action =~ ^$ "
+#  ... -f "action ~= ^$ "
 #          filter for requests with an empty modsecurity action line, or without such a line
 #
 #
 # Supported variables:
-# remote_addr             client ip address
 # request_id              unique request id
 # status                  http response status
 # method                  http request method
@@ -69,7 +68,7 @@ require "find"
 require "net/http"
 require "rdoc/usage"
 
-FIELDSYMBOLS=[:remote_addr, :request_id, :status, :method, :path, :http_version, :response_http_version, :message, :action, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
+FIELDSYMBOLS=[:request_id, :status, :method, :path, :http_version, :response_http_version, :message, :action, :apache_handler, :microtimestamp, :duration, :modsectime1, :modsectime2, :modsectime3, :producer, :server]
 
 UNIQUEIDNAME="X-UniqueId" # name of the optional unique-id http header when reinjecting a request
 
@@ -368,30 +367,43 @@ def parse_line(item, line)
   #          If a new request is starting with ..-A-- without an old one being 
   #          finished we are bailing out. (FIXME)
 
-  item["current_part_linenum"] += 1
+  begin
 
-  if /^--[\w\d]+-[A-Z]--$/.match(line)
-    # part start identified
-    delimiter = line.split("-")[2]
-    if line.split("-")[3] == "A"
-      # new request starting
-      item[delimiter] = Hash.new 
-      item[delimiter]["partial_request"] = Hash.new
-      item[delimiter]["partial_request"]["delimiter"] = delimiter
-      item[delimiter]["partial_request"]["parts"] = Hash.new
+    item["current_part_linenum"] += 1
+
+    if /^--[\w\d]+-[A-Z]--$/.match(line)
+      # part start identified
+      delimiter = line.split("-")[2]
+      if line.split("-")[3] == "A"
+        # new request starting
+        item[delimiter] = Hash.new 
+        item[delimiter]["partial_request"] = Hash.new
+        item[delimiter]["partial_request"]["delimiter"] = delimiter
+        item[delimiter]["partial_request"]["parts"] = Hash.new
+      end
+      item["current_delimiter"] = delimiter
+      item["current_part"] = line.split("-")[3]
+      item["current_part_linenum"] = 0
+    elsif not item["current_delimiter"].nil? \
+          and (item["current_part"] != "Z" or \
+              (item["current_part"] == "Z" and item["current_part_linenum"] == 0) \
+              )
+      delimiter = item["current_delimiter"]
+      if item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]].nil?
+         item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] = ""
+      end
+      item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] += line 
     end
-    item["current_delimiter"] = delimiter
-    item["current_part"] = line.split("-")[3]
-    item["current_part_linenum"] = 0
-  elsif not item["current_delimiter"].nil? \
-        and (item["current_part"] != "Z" or \
-            (item["current_part"] == "Z" and item["current_part_linenum"] == 0) \
-            )
-    delimiter = item["current_delimiter"]
-    if item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]].nil?
-       item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] = ""
-    end
-    item[item["current_delimiter"]]["partial_request"]["parts"][item["current_part"]] += line 
+  rescue
+      mydelimiter = "unknown"
+      part = "unknown"
+      unless item["current_delimiter"].nil?
+        mydelimiter = item["current_delimiter"]
+      end
+      unless item["current_part"].nil?
+      	part = item["current_part"]
+      end
+      puts "Error parsing line, ignoring (delimiter: #{mydelimiter}, part: #{part}, line number within current part: #{item['current_part_linenum']})."
   end
 
   return item
@@ -850,37 +862,36 @@ def run_parser(filename, requests, params)
     # parse line
     item = parse_line(item, line)
 
-    print_debug_line_information (item) if params["debug"]
-
     if item["current_part"] == "Z" and item["current_part_linenum"] == 0
       # request finished, handling complete request
 
-      puts "run_parser adding request with delimiter #{item[item["current_delimiter"]]["partial_request"]["delimiter"]}" if params["debug"]
+      #puts "run_parser adding request with delimiter #{item[item["current_delimiter"]]["partial_request"]["delimiter"]}" if params["debug"]
 
       # interprete request
-      request = parse_request_parts(item[item["current_delimiter"]]["partial_request"])
-      delimiter = item["current_delimiter"]
-      item[delimiter] = nil # undef won't work, this is equally effective, all we want is freeing the memory
-      request[:filename] = filename
+      unless item[item["current_delimiter"]].nil?
+        request = parse_request_parts(item[item["current_delimiter"]]["partial_request"])
+        delimiter = item["current_delimiter"]
+        item[delimiter] = nil # undef won't work, this is equally effective, all we want is freeing the memory
+        request[:filename] = filename
 
-      print_debug_request_information (request) if params["debug"]
+        # filter code
+        display = apply_filter(request, params)
+        puts "run_parser filter code done. Display has value #{display}" if params["debug"]
 
-      # filter code
-      display = apply_filter(request, params)
-      puts "run_parser filter code done. Display has value #{display}" if params["debug"]
+        display_request(request) if display and not params["output"] == "none"
 
-      display_request(request) if display and not params["output"] == "none"
+        # adding request
+        if params["collect_requests"]
+          requests << request
+        end
 
-      # adding request
-      if params["collect_requests"]
-        requests << request
+        # reinject if display is set (display means, that filter code selected this request)
+        if params["reinject"] and display
+          reinject_single_request(request,params)
+        end
+      else
+        puts "Could not interprete request with delimiter #{item['current_delimiter']}"
       end
-
-      # reinject if display is set (display means, that filter code selected this request)
-      if params["reinject"] and display
-        reinject_single_request(request,params)
-      end
-
     end
     
     item["linenum"] += 1
@@ -1193,4 +1204,5 @@ end
 if __FILE__ == $0
   main
 end
+
 
